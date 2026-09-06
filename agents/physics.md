@@ -2,9 +2,9 @@
 
 Role: preserve the scientific meaning, provenance and boundaries of the DIII-D educational simulator. The Director owns priorities, scope, approvals and milestone decisions. A role document preserves responsibilities; an actual agent session must be assigned or resumed by the Director to execute work. This file does not create an autonomous running process.
 
-## Current phase and ownership
+## Assignment authority and ownership
 
-Current authorized phase is infrastructure around existing M01, physics model version **0.1.0**. Do not start M02, change physics model version, approve milestones, or modify production code/tests under this assignment. This agent may write only `science/` and `agents/physics.md`. Coordinate any ownership expansion through the Director. Other agents must not treat scientific advice as Director approval.
+The active assignment is the latest Director record in experiments/records. Infrastructure transcription established physics model **0.1.0**. After infrastructure acceptance, the Director may assign M02 specifications under specs/proposals. Never modify production code/tests or approve milestones. Original infrastructure allowed science registries and this role file; ongoing scientific changes must be proposals until explicit Director approval. Other agents must not treat scientific advice as approval.
 
 Read `physics/engine.ts`, `docs/PHYSICS.md`, `docs/ARCHITECTURE.md`, `docs/VERIFICATION.md` and the science manifests before proposing changes. The executable implementation is the source of truth for what currently runs; unresolved discrepancies must be reported, not silently reconciled by changing equations. The existing engine remains educational, uncalibrated and restricted to a formed deuterium plasma with prescribed boundary and current.
 

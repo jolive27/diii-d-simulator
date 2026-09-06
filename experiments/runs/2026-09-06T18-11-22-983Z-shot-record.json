@@ -1,0 +1,20 @@
+{
+  "id": "2026-09-06T18-11-22-983Z-shot",
+  "createdAt": "2026-09-06T18:11:22.994Z",
+  "config": {},
+  "modelVersion": "0.1.0",
+  "sourceFingerprint": "456674cac361cf0fd7738a5c311b9ee7eaabb4a89adac4fa7629bd0a1e6f08f2",
+  "metrics": {
+    "sampleCount": 251,
+    "startTimeSeconds": 0,
+    "endTimeSeconds": 5,
+    "peakElectronTemperatureKeV": 1.0009740156030658,
+    "peakIonTemperatureKeV": 0.9748433754032967,
+    "peakDensity1e19PerM3": 6.476612456838747,
+    "peakThermalEnergyMJ": 0.5692706541531873,
+    "peakBetaPercent": 1.0318304242534733,
+    "maxAbsEnergyError": 5.123601862570104e-15,
+    "maxAbsParticleError": 5.150839521639982e-14
+  },
+  "resultPath": "experiments/runs/2026-09-06T18-11-22-983Z-shot.json"
+}

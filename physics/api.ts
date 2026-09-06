@@ -1,6 +1,7 @@
 /** Pure infrastructure API. The M01 engine remains the sole physics implementation. */
 import { DEFAULT, LIMITS, geometry, runShot } from './engine.ts';
 import type { Controls, Sample, Shot } from './engine.ts';
+import { analytic_benchmark, shaped_benchmark, run_verification } from './verification.ts';
 
 export type ShotConfig = {
   controls?: Partial<Controls>;
@@ -54,10 +55,17 @@ export function run_shot(config: ShotConfig = {}): Shot {
   return runShot(controls, geometry(controls, gridSize), dt);
 }
 
-/** Infrastructure baseline only: this name makes no new validation claim. */
-export function run_benchmark(name: 'baseline'): Shot {
-  if (name !== 'baseline') throw new Error(`Unsupported benchmark: ${String(name)}`);
-  return run_shot();
+/** Named numerical measurements; acceptance belongs to independent validation and Director. */
+export function run_benchmark(name: 'baseline'): Shot;
+export function run_benchmark(name: 'analytic-solovev'): ReturnType<typeof analytic_benchmark>;
+export function run_benchmark(name: 'shaped-convergence'): ReturnType<typeof shaped_benchmark>;
+export function run_benchmark(name: 'm02'): ReturnType<typeof run_verification>;
+export function run_benchmark(name: string): Shot | ReturnType<typeof analytic_benchmark> | ReturnType<typeof shaped_benchmark> | ReturnType<typeof run_verification> {
+  if (name === 'baseline') return run_shot();
+  if (name === 'analytic-solovev') return analytic_benchmark();
+  if (name === 'shaped-convergence') return shaped_benchmark();
+  if (name === 'm02') return run_verification();
+  throw new Error(`Unsupported benchmark: ${String(name)}`);
 }
 
 /** Ordered single-control sweep. Any failed run throws; no partial result is returned. */

@@ -6,9 +6,9 @@ Implement only specifications approved by the Director. Work within the files an
 
 Do not change scientific assumptions, equations, numerical methods, parameter meanings, physical constants, or model claims. Do not accept or close milestones. Do not edit validation reports or determine scientific acceptance. Report test failures and unsupported cases explicitly; never silently substitute a model or claim validation from software tests.
 
-## Infrastructure assignment
+## Initial infrastructure assignment (completed)
 
-Own `physics/api.ts`, `tests/api.test.mjs`, `docs/API.md`, and this role document unless the Director changes the assignment. Preserve `physics/engine.ts` and the exact M01 baseline output. The initial API exposes only the existing baseline benchmark. No M02 physics, new solver, calibration, deployment, or external service integration is authorized by this assignment.
+Own `physics/api.ts`, `tests/api.test.mjs`, `docs/API.md`, and this role document unless the Director changes the assignment. Preserve `physics/engine.ts` and the exact M01 baseline output. The initial API exposes only the existing baseline benchmark. M02 implementation requires its own recorded Director assignment and approved specification. Calibration and external service integration remain outside scope.
 
 ## Working contract
 

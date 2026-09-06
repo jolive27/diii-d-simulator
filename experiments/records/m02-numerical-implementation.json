@@ -1,0 +1,55 @@
+{
+  "task": "m02-numerical-implementation",
+  "role": "software",
+  "agentId": "/root/software",
+  "model": "gpt-6-astra",
+  "reasoning": "medium",
+  "spec": "specs/m02.json",
+  "allowedFiles": [
+    "physics/engine.ts",
+    "physics/verification.ts",
+    "physics/api.ts",
+    "tests/m02.test.mjs",
+    "tests/m02/",
+    "tools/run-verification.mjs",
+    "docs/API.md"
+  ],
+  "physicsAssumptionChanges": [],
+  "physicsModelVersion": "0.1.0",
+  "verificationVersion": "0.2.0",
+  "decision": "approved-for-implementation",
+  "completedAt": "2026-09-06T18:17:26.043Z",
+  "filesModified": [
+    {
+      "file": "physics/engine.ts",
+      "sha256": "ccdfd56ef87ded796d6e55a555cb0a76f6d3288edcc96c05af997175596a4a93"
+    },
+    {
+      "file": "physics/verification.ts",
+      "sha256": "fe4ecb05860308974d76ac8a989e56cca6eba92b70a22ca72c4a103b3756bc39"
+    },
+    {
+      "file": "physics/api.ts",
+      "sha256": "f16f8632894ece031b4ea61bd755d506b017a208e62da7cd0d44c3bf5d9951d4"
+    },
+    {
+      "file": "tests/m02.test.mjs",
+      "sha256": "b4e0f1356211512be27320fcdf9c99e8b2ef7138d92202a636f5dd3c835cc871"
+    },
+    {
+      "file": "tests/m02/ledger.mjs",
+      "sha256": "34d71b84868e0f075e49c83ebcbbe3d286a77a64751e24d060cb631267ad4843"
+    },
+    {
+      "file": "tools/run-verification.mjs",
+      "sha256": "0417d6062a7dd18e55a2e0dc51c2986a081e080dd6bbaa6155c65d32c266a777"
+    },
+    {
+      "file": "docs/API.md",
+      "sha256": "109370a054bc0e473d99039d3fffcbc2ba539f59e408698ea3c619f26daa8e0d"
+    }
+  ],
+  "testResults": "validation/m02-report.json",
+  "directorDecision": "ACCEPTED",
+  "decisionRecord": "validation/m02-decision.json"
+}

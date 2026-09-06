@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "checks": [
+    "M02-REGRESSION-EXACT",
+    "M02-OPERATOR-PROVENANCE",
+    "M02-ANALYTIC-IDENTITY",
+    "M02-RECT-FLUX",
+    "M02-RECT-BOUNDARY-AXIS",
+    "M02-RECT-CURRENT-PRESSURE",
+    "M02-SHAPED-CONVERGENCE",
+    "M02-LEDGERS-INDEPENDENT",
+    "M02-LEDGERS-NEGATIVE",
+    "M02-PARTICLE-ANALYTIC",
+    "M02-TIMESTEP-CONVERGENCE",
+    "M02-STABILITY-GUARDS",
+    "M02-EXISTING-TESTS",
+    "M02-TYPECHECK",
+    "M02-BUILD",
+    "M02-SCIENTIFIC-SCOPE"
+  ],
+  "approvedSpec": "specs/m02.json",
+  "approval": "validation/m02-approval.json",
+  "independentReport": "validation/m02-report.json",
+  "directorDecision": "validation/m02-decision.json",
+  "note": "Registry points to evidence; it does not assert any check has passed."
+}

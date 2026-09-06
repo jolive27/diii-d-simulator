@@ -1,0 +1,37 @@
+{
+  "task": "m02-physics-specification",
+  "role": "physics",
+  "agentId": "/root/physics",
+  "allowedFiles": [
+    "specs/proposals/m02.md",
+    "specs/proposals/m02.json"
+  ],
+  "time": "2026-09-06T18:08:05.900Z",
+  "model": "gpt-6-astra",
+  "reasoning": "medium",
+  "physicsModelVersion": "0.1.0",
+  "physicsAssumptionChanges": [],
+  "decision": "delegated-after-infrastructure-acceptance",
+  "completedAt": "2026-09-06T18:17:26.046Z",
+  "filesModified": [
+    {
+      "file": "specs/proposals/m02.json",
+      "sha256": "3dba9c84dadf1098e1be549739ec60804095093c752ecfa7342c2f088ea6490c"
+    },
+    {
+      "file": "specs/proposals/m02.md",
+      "sha256": "43d16d808da7a9e9cc73a576b351ad5a36b912271287f584654428fe18728b0b"
+    },
+    {
+      "file": "specs/proposals/m02-physics-review.json",
+      "sha256": "ff24333e94e85426970a1bd9b3ab82859574d55393661c8dc2724e4c54df86a6"
+    },
+    {
+      "file": "specs/proposals/m02-physics-review.md",
+      "sha256": "4cd2167ac7be0388725dd1b045e574f117b829c879679603d4fe770926a63a7c"
+    }
+  ],
+  "testResults": "validation/m02-report.json",
+  "directorDecision": "ACCEPTED",
+  "decisionRecord": "validation/m02-decision.json"
+}

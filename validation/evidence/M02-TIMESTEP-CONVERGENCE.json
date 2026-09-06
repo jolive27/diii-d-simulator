@@ -1,0 +1,283 @@
+{
+  "checkId": "M02-TIMESTEP-CONVERGENCE",
+  "status": "PASS",
+  "testCommandOrName": "node --experimental-strip-types validation/independent/m02.mjs (M02-TIMESTEP-CONVERGENCE)",
+  "thresholds": {
+    "basisResidual": 1e-8,
+    "truncationIdentityRelative": 0.000001,
+    "fluxOrder": [
+      1.7,
+      2.3
+    ],
+    "fineFluxLinfRelative": 0.0002,
+    "fineFluxL2Relative": 0.0001,
+    "boundaryRelative": 1e-14,
+    "fineAxisErrorGridSpacings": 0.25,
+    "finePeakRelative": 0.0002,
+    "finePressurePointwiseRelative": 0.0002,
+    "fineCurrentPointwiseRelative": 2e-7,
+    "fineIntegratedCurrentRelative": 0.0001,
+    "fineMeanPressureRelative": 0.0003,
+    "shapedCurrentPressureRelative": 1e-11,
+    "shapedResidual": 1e-7,
+    "shaped65to129VolumeRelative": 0.03,
+    "shaped65to129PeakFluxRelative": 0.08,
+    "shapedAxisCoarseGridDiagonals": 2,
+    "ellipseFineVolumeRelative": 0.005,
+    "boundaryDistanceGridDiagonals": 2,
+    "ledgerRelative": 1e-12,
+    "analyticParticleDt002Relative": 0.002,
+    "timeFineDifferenceRelative": 0.01,
+    "timeObservedOrder": [
+      0.7,
+      1.3
+    ],
+    "timeRoundoffRelative": 1e-10,
+    "stabilityCoarseDifferenceRelative": 0.1
+  },
+  "measurements": {
+    "timesteps": [
+      0.004,
+      0.002,
+      0.001,
+      0.0005
+    ],
+    "checkpoints": [
+      0.5,
+      1,
+      2,
+      2.5,
+      3,
+      4,
+      4.5,
+      5
+    ],
+    "rows": [
+      {
+        "case": "default",
+        "component": "N",
+        "differences": [
+          {
+            "max": 0.0001589852648225034,
+            "norm": 0.00030651394970873484
+          },
+          {
+            "max": 0.00007943623499354504,
+            "norm": 0.00015316364787283933
+          },
+          {
+            "max": 0.0000397040334710164,
+            "norm": 0.00007655851953500106
+          }
+        ],
+        "orders": [
+          1.0008788075449797,
+          1.000439089319704
+        ]
+      },
+      {
+        "case": "default",
+        "component": "We",
+        "differences": [
+          {
+            "max": 0.0008516597846833329,
+            "norm": 0.0008730892317291989
+          },
+          {
+            "max": 0.0004267562907351159,
+            "norm": 0.0004377671093839923
+          },
+          {
+            "max": 0.00021360456161512175,
+            "norm": 0.00021918519140580467
+          }
+        ],
+        "orders": [
+          0.9959655430977591,
+          0.9980132348458478
+        ]
+      },
+      {
+        "case": "default",
+        "component": "Wi",
+        "differences": [
+          {
+            "max": 0.0026248236576423825,
+            "norm": 0.003236927517185235
+          },
+          {
+            "max": 0.0013099877461716213,
+            "norm": 0.001624440455109788
+          },
+          {
+            "max": 0.0006543805000038452,
+            "norm": 0.0008137044386241633
+          }
+        ],
+        "orders": [
+          0.9946821986585495,
+          0.9973660962422615
+        ]
+      },
+      {
+        "case": "default",
+        "component": "Te",
+        "differences": [
+          {
+            "max": 0.000892255757475673,
+            "norm": 0.0009465773158440244
+          },
+          {
+            "max": 0.0004470824736904803,
+            "norm": 0.00047460557284363864
+          },
+          {
+            "max": 0.00022377470191612374,
+            "norm": 0.000237627972439695
+          }
+        ],
+        "orders": [
+          0.9959913083392201,
+          0.9980243674686621
+        ]
+      },
+      {
+        "case": "default",
+        "component": "Ti",
+        "differences": [
+          {
+            "max": 0.002665347585764894,
+            "norm": 0.0033283029982469417
+          },
+          {
+            "max": 0.0013302959687380722,
+            "norm": 0.0016703350074872133
+          },
+          {
+            "max": 0.0006645461565939455,
+            "norm": 0.0008367024548494454
+          }
+        ],
+        "orders": [
+          0.9946492948405276,
+          0.9973509100283526
+        ]
+      },
+      {
+        "case": "zero-aux-gas",
+        "component": "N",
+        "differences": [
+          {
+            "max": 0.0019561028488431233,
+            "norm": 0.003537899747104702
+          },
+          {
+            "max": 0.0009773066641636946,
+            "norm": 0.0017674399520602826
+          },
+          {
+            "max": 0.0004884672537739925,
+            "norm": 0.0008833428217812274
+          }
+        ],
+        "orders": [
+          1.0012319662076472,
+          1.0006158452019867
+        ]
+      },
+      {
+        "case": "zero-aux-gas",
+        "component": "We",
+        "differences": [
+          {
+            "max": 0.0013843970498710438,
+            "norm": 0.0024424679785417444
+          },
+          {
+            "max": 0.0006916193514466671,
+            "norm": 0.0012203062900838166
+          },
+          {
+            "max": 0.0003456650139296179,
+            "norm": 0.0006099223179674175
+          }
+        ],
+        "orders": [
+          1.001096346509069,
+          1.0005458893154406
+        ]
+      },
+      {
+        "case": "zero-aux-gas",
+        "component": "Wi",
+        "differences": [
+          {
+            "max": 0.002086714132109136,
+            "norm": 0.0038127151230456626
+          },
+          {
+            "max": 0.0010501188019816827,
+            "norm": 0.0019139793188368785
+          },
+          {
+            "max": 0.0005291413515889904,
+            "norm": 0.0009588910339289571
+          }
+        ],
+        "orders": [
+          0.9942434992447622,
+          0.9971364558479071
+        ]
+      },
+      {
+        "case": "zero-aux-gas",
+        "component": "Te",
+        "differences": [
+          {
+            "max": 0.0005728263061414862,
+            "norm": 0.0011193131387929145
+          },
+          {
+            "max": 0.00028596678996646997,
+            "norm": 0.0005590898239313142
+          },
+          {
+            "max": 0.00014287202815162483,
+            "norm": 0.0002794051565415985
+          }
+        ],
+        "orders": [
+          1.0014617091895524,
+          1.000721439973938
+        ]
+      },
+      {
+        "case": "zero-aux-gas",
+        "component": "Ti",
+        "differences": [
+          {
+            "max": 0.001871787590169922,
+            "norm": 0.0019576032027183565
+          },
+          {
+            "max": 0.0009524382515567447,
+            "norm": 0.0009945490951662292
+          },
+          {
+            "max": 0.00048030735247626044,
+            "norm": 0.0005011703221472371
+          }
+        ],
+        "orders": [
+          0.9769738713570901,
+          0.9887416053962167
+        ]
+      }
+    ]
+  },
+  "sourceHash": "df49bda983a97bc14cecbf8209fab47da7b7ff4bf9d44a9a5216e43b9a02c7e6",
+  "runtimeVersion": "v24.19.0",
+  "artifactPaths": [
+    "validation/evidence/M02-TIMESTEP-CONVERGENCE.json"
+  ]
+}

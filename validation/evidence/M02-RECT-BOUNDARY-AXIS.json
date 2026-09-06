@@ -1,0 +1,89 @@
+{
+  "checkId": "M02-RECT-BOUNDARY-AXIS",
+  "status": "PASS",
+  "testCommandOrName": "node --experimental-strip-types validation/independent/m02.mjs (M02-RECT-BOUNDARY-AXIS)",
+  "thresholds": {
+    "basisResidual": 1e-8,
+    "truncationIdentityRelative": 0.000001,
+    "fluxOrder": [
+      1.7,
+      2.3
+    ],
+    "fineFluxLinfRelative": 0.0002,
+    "fineFluxL2Relative": 0.0001,
+    "boundaryRelative": 1e-14,
+    "fineAxisErrorGridSpacings": 0.25,
+    "finePeakRelative": 0.0002,
+    "finePressurePointwiseRelative": 0.0002,
+    "fineCurrentPointwiseRelative": 2e-7,
+    "fineIntegratedCurrentRelative": 0.0001,
+    "fineMeanPressureRelative": 0.0003,
+    "shapedCurrentPressureRelative": 1e-11,
+    "shapedResidual": 1e-7,
+    "shaped65to129VolumeRelative": 0.03,
+    "shaped65to129PeakFluxRelative": 0.08,
+    "shapedAxisCoarseGridDiagonals": 2,
+    "ellipseFineVolumeRelative": 0.005,
+    "boundaryDistanceGridDiagonals": 2,
+    "ledgerRelative": 1e-12,
+    "analyticParticleDt002Relative": 0.002,
+    "timeFineDifferenceRelative": 0.01,
+    "timeObservedOrder": [
+      0.7,
+      1.3
+    ],
+    "timeRoundoffRelative": 1e-10,
+    "stabilityCoarseDifferenceRelative": 0.1
+  },
+  "measurements": {
+    "rows": [
+      {
+        "n": 33,
+        "boundaryRelative": 1.6653345369377348e-16,
+        "edgeMinimum": 0.11143608800000003,
+        "edgeMaximum": 0.45644,
+        "axis": {
+          "gridR": 1.66,
+          "gridZ": 0,
+          "gridPeak": 0.5000214322003127,
+          "R": 1.6594906659800377,
+          "Z": 7.592796444096096e-10,
+          "peak": 0.5000215752056169
+        }
+      },
+      {
+        "n": 65,
+        "boundaryRelative": 1.6653345369377348e-16,
+        "edgeMinimum": 0.11143608800000003,
+        "edgeMaximum": 0.45644,
+        "axis": {
+          "gridR": 1.66,
+          "gridZ": 0,
+          "gridPeak": 0.5000053602666672,
+          "R": 1.6598726465369438,
+          "Z": 1.0938735173240747e-9,
+          "peak": 0.5000053692057476
+        }
+      },
+      {
+        "n": 129,
+        "boundaryRelative": 1.6653345369377348e-16,
+        "edgeMinimum": 0.11143608800000003,
+        "edgeMaximum": 0.45644,
+        "axis": {
+          "gridR": 1.66,
+          "gridZ": 0,
+          "gridPeak": 0.5000013396495372,
+          "R": 1.6599681602792187,
+          "Z": 6.39741047409889e-10,
+          "peak": 0.500001340208253
+        }
+      }
+    ]
+  },
+  "sourceHash": "df49bda983a97bc14cecbf8209fab47da7b7ff4bf9d44a9a5216e43b9a02c7e6",
+  "runtimeVersion": "v24.19.0",
+  "artifactPaths": [
+    "validation/evidence/M02-RECT-BOUNDARY-AXIS.json"
+  ]
+}

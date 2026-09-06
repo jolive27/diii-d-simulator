@@ -12,6 +12,7 @@ export function audit(event){const p=path.join(root,'experiments/records/audit.j
 export function gate(m){
  const errors=[];let spec,approval,report;
  try{spec=read(`specs/${m}.json`);approval=read(`validation/${m}-approval.json`);report=read(`validation/${m}-report.json`);}catch(e){return {status:'FAIL',errors:['Missing specification, approval, or independent report']};}
+ if(spec.normativeMarkdownHash){try{if(hash(fs.readFileSync(path.join(root,spec.specification)))!==spec.normativeMarkdownHash)errors.push('Normative physics specification changed without approval');}catch{errors.push('Normative physics specification missing');}}
  if(approval.role!=='director'||approval.specHash!==hash(JSON.stringify(spec)))errors.push('Physics specification lacks current Director approval');
  if(report.role!=='validation'||!report.agentId||!report.implementationAgentId||report.agentId===report.implementationAgentId)errors.push('Independent agent identity missing or not independent');
  if(!Array.isArray(spec.requiredChecks)||spec.requiredChecks.length===0)errors.push('Required checks cannot be empty');
@@ -20,6 +21,7 @@ export function gate(m){
  if(report.sourceFingerprint!==fingerprint())errors.push('Validation evidence is stale for current source');
  for(const name of spec.requiredChecks||[]){const c=report.checks?.find(c=>c.name===name);if(!c||c.status!=='PASS'||!c.evidence)errors.push(`Required check failed/missing: ${name}`);else {try{if(hash(fs.readFileSync(path.join(root,c.evidence)))!==c.sha256)errors.push(`Evidence altered: ${name}`);}catch{errors.push(`Evidence missing: ${name}`);}}}
  if(m==='m02'){try{if(read('validation/infrastructure-decision.json').status!=='ACCEPTED')errors.push('Infrastructure not accepted');}catch{errors.push('Infrastructure not accepted');}}
+ if(m==='m03'){try{if(read('validation/m02-decision.json').status!=='ACCEPTED')errors.push('M02 not accepted; M03 blocked');}catch{errors.push('M02 not accepted; M03 blocked');}}
  return {status:errors.length?'FAIL':'PASS',errors,sourceFingerprint:fingerprint()};
 }
 if(process.argv[1]===import.meta.filename){const [cmd,m]=process.argv.slice(2);if(cmd==='fingerprint')console.log(fingerprint());else if(cmd==='gate'){const g=gate(m);console.log(JSON.stringify(g,null,2));process.exitCode=g.status==='PASS'?0:1;}else if(cmd==='approve'){const spec=read(`specs/${m}.json`);write(`validation/${m}-approval.json`,{role:'director',agentId:'/root',specHash:hash(JSON.stringify(spec)),time:new Date().toISOString()});audit({role:'director',action:'approve-spec',milestone:m,specHash:hash(JSON.stringify(spec))});}else if(cmd==='accept'){const g=gate(m);const decision={...g,status:g.status==='PASS'?'ACCEPTED':'REJECTED',role:'director',agentId:'/root',time:new Date().toISOString()};write(`validation/${m}-decision.json`,decision);audit({role:'director',action:'milestone-decision',milestone:m,...decision});console.log(JSON.stringify(decision,null,2));process.exitCode=g.status==='PASS'?0:1;}else throw Error('Use fingerprint | gate MILESTONE | approve MILESTONE | accept MILESTONE');}

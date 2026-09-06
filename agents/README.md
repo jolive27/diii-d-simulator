@@ -12,3 +12,7 @@ This session uses Codex native collaboration subagents: /root (Director), /root/
 For future terminal-driven runs, `tools/dispatch-agent.mjs ROLE TASK-ID "task"` starts a real Codex process in a separate workspace with gpt-6-astra/medium. It records changed files and rejects output beyond agents/permissions.json. It does not auto-import changes. Director reviews and imports permitted artifacts, records the real session identity from execution logs, and applies the same gates. CLI requires existing Codex authentication. It is an alternate dispatcher, not a web LLM feature.
 
 Only the local trusted Director invokes approval commands. The scripts are provenance/quality enforcement, not authentication against a malicious process running as the same OS user. For adversarial hard isolation, use separate OS accounts/containers and a privileged integration service.
+
+## Evidence and experiments
+
+`node tools/milestone-status.mjs` shows recorded milestone decisions and whether current source still matches its evidence. Infrastructure acceptance is a historical prerequisite; M02 naturally changes its source fingerprint and carries its own final report. `node --experimental-strip-types tools/run-shot.mjs [CONFIG.json] [LABEL]` saves shot JSON, CSV, metrics, configuration and source fingerprint under experiments/runs. `node tools/export-validation.mjs m02` exports the recorded independent report for the website only after checking current gates. The dashboard is a saved snapshot, not a live development agent.

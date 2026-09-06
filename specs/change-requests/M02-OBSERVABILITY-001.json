@@ -1,0 +1,17 @@
+{
+  "id": "M02-OBSERVABILITY-001",
+  "kind": "verification-interface-extension",
+  "physicsAgent": "/root/physics",
+  "director": "/root",
+  "status": "APPROVED",
+  "specification": "specs/m02.json",
+  "affectedAssumptionIds": ["A-M01-012", "A-M01-013"],
+  "oldBehavior": "Fixed-zero inactive basis values and no per-step observation callback",
+  "newBehavior": "Optional prescribed inactive values for a verification rectangle, and optional immutable per-step scalar observations; defaults remain exact",
+  "physicsAssumptionChanges": [],
+  "rationale": "Exercise the same production solver on an analytic boundary and independently reconstruct each conservation equation",
+  "physicsModelVersion": "0.1.0",
+  "verificationVersion": "0.2.0",
+  "conditions": ["No source equations or numerical update ordering changes", "Exact frozen M01 fixture equality", "Independent validation of all approved M02 checks"],
+  "decision": "Approved for implementation only; milestone acceptance remains gated"
+}

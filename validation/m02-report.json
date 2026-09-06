@@ -1,0 +1,346 @@
+{
+  "role": "validation",
+  "agentId": "/root/validation",
+  "implementationAgentId": "/root/software",
+  "status": "PASS",
+  "sourceFingerprint": "df49bda983a97bc14cecbf8209fab47da7b7ff4bf9d44a9a5216e43b9a02c7e6",
+  "checks": [
+    {
+      "name": "M02-REGRESSION-EXACT",
+      "status": "PASS",
+      "evidence": "validation/evidence/M02-REGRESSION-EXACT.json",
+      "sha256": "7f7d36acbdaf3863bda336ea06e8b27dc7f13e411d29b1023bd587214946ec68"
+    },
+    {
+      "name": "M02-OPERATOR-PROVENANCE",
+      "status": "PASS",
+      "evidence": "validation/evidence/M02-OPERATOR-PROVENANCE.json",
+      "sha256": "dbdb8765b9c0b1eb9124fda3947700c5c226e2caa0a4d883b74cc9b9ff12d0ab"
+    },
+    {
+      "name": "M02-ANALYTIC-IDENTITY",
+      "status": "PASS",
+      "evidence": "validation/evidence/M02-ANALYTIC-IDENTITY.json",
+      "sha256": "123b8f8d359a5c67ab86df591d0c9720ed2008be7dbc2feb07d1e35986aab067"
+    },
+    {
+      "name": "M02-RECT-FLUX",
+      "status": "PASS",
+      "evidence": "validation/evidence/M02-RECT-FLUX.json",
+      "sha256": "364916c17293d4213b3e1c30ba7065c23aa369af72efc80937c686e063c62d3f"
+    },
+    {
+      "name": "M02-RECT-BOUNDARY-AXIS",
+      "status": "PASS",
+      "evidence": "validation/evidence/M02-RECT-BOUNDARY-AXIS.json",
+      "sha256": "e9d8a35abd3a7224203ea03aa98e9f0f5b29700782261db5587e6bcbfe2e2ad3"
+    },
+    {
+      "name": "M02-RECT-CURRENT-PRESSURE",
+      "status": "PASS",
+      "evidence": "validation/evidence/M02-RECT-CURRENT-PRESSURE.json",
+      "sha256": "37f5c4f1c121c5a6502b7cf844935caa3f1d89620fc12aae1891b53f68cc0ecd"
+    },
+    {
+      "name": "M02-SHAPED-CONVERGENCE",
+      "status": "PASS",
+      "evidence": "validation/evidence/M02-SHAPED-CONVERGENCE.json",
+      "sha256": "0497201fccc0c6cb464bdae8a9e292de984f3d6d9a0d5dbbf7a4b9d307bbc814"
+    },
+    {
+      "name": "M02-LEDGERS-INDEPENDENT",
+      "status": "PASS",
+      "evidence": "validation/evidence/M02-LEDGERS-INDEPENDENT.json",
+      "sha256": "ca3264ff19e2dbed6ecc3ee9825824cf8c2f5f6ec20652e2f3a6a198ec055a44"
+    },
+    {
+      "name": "M02-LEDGERS-NEGATIVE",
+      "status": "PASS",
+      "evidence": "validation/evidence/M02-LEDGERS-NEGATIVE.json",
+      "sha256": "f17b943ed3ebd5ca5c5dc60b098a982e54e6abbbd20fa5978b99c2d0342d4d5d"
+    },
+    {
+      "name": "M02-PARTICLE-ANALYTIC",
+      "status": "PASS",
+      "evidence": "validation/evidence/M02-PARTICLE-ANALYTIC.json",
+      "sha256": "57c8744260a03e73817828b7930f4d9ecbacd1d8df2d156b566196fbe78edc90"
+    },
+    {
+      "name": "M02-TIMESTEP-CONVERGENCE",
+      "status": "PASS",
+      "evidence": "validation/evidence/M02-TIMESTEP-CONVERGENCE.json",
+      "sha256": "588990c9b6b1f2cf82d0edeb5f78bc2940bbfd260de1a5671bbc6e621b3fe904"
+    },
+    {
+      "name": "M02-STABILITY-GUARDS",
+      "status": "PASS",
+      "evidence": "validation/evidence/M02-STABILITY-GUARDS.json",
+      "sha256": "1115f730a0a7786a33d368d868ffe49661841e88a0034c7b52dc0578e343112d"
+    },
+    {
+      "name": "M02-EXISTING-TESTS",
+      "status": "PASS",
+      "evidence": "validation/evidence/M02-EXISTING-TESTS.json",
+      "sha256": "bf3a95d163d44c088d506a9db289a5b0bd0d4a29da25dfa1a772650ef95e5df3"
+    },
+    {
+      "name": "M02-TYPECHECK",
+      "status": "PASS",
+      "evidence": "validation/evidence/M02-TYPECHECK.json",
+      "sha256": "6d618c494ef5b51733895cbbd8d8d050ee435aa9549284904d27e1b3776cf7fa"
+    },
+    {
+      "name": "M02-BUILD",
+      "status": "PASS",
+      "evidence": "validation/evidence/M02-BUILD.json",
+      "sha256": "d73a96af73f2efa9123ac122376f7889af93dcc8cc50277d6fdd12dd895599b1"
+    },
+    {
+      "name": "M02-SCIENTIFIC-SCOPE",
+      "status": "PASS",
+      "evidence": "validation/evidence/M02-SCIENTIFIC-SCOPE.json",
+      "sha256": "2714b7ba89086c7b5d345f26124a23b1349bcf193cb5519c604b8ce0d024c4da"
+    }
+  ],
+  "findings": [],
+  "gridConvergence": [
+    {
+      "n": 33,
+      "Linf": 0.00004299829532417032,
+      "L2": 0.000024916561147173287,
+      "basisResidual": 3.981144672766674e-9,
+      "iterations": 360
+    },
+    {
+      "n": 65,
+      "Linf": 0.000010754038421545431,
+      "L2": 0.000006133084098432566,
+      "basisResidual": 8.745187494399263e-9,
+      "iterations": 1460,
+      "orderLinf": 1.9994009338900876,
+      "orderL2": 2.022420330079368
+    },
+    {
+      "n": 129,
+      "Linf": 0.0000026876731106240115,
+      "L2": 0.000001520812864718088,
+      "basisResidual": 9.335485463401585e-9,
+      "iterations": 5880,
+      "orderLinf": 2.000448945625122,
+      "orderL2": 2.011770092659294
+    }
+  ],
+  "shapedConvergence": [
+    {
+      "delta": 0.35,
+      "n": 33,
+      "volume": 23.190011498938773,
+      "peakFlux": 0.1863246596940817,
+      "axisR": 1.7887,
+      "axisZ": 0,
+      "A": 318047.1658378738,
+      "B": 0.02180927781799734,
+      "current": 1199999.9999999967,
+      "meanPressure": 30000.00000000003,
+      "residual": 2.4333981987906517e-9,
+      "minF2": 11.022713906921378,
+      "extent": {
+        "R": [
+          0.9735999999999999,
+          2.3464
+        ],
+        "Z": [
+          -1.1668800000000001,
+          1.1668800000000001
+        ]
+      },
+      "diag": 0.08461202574102569,
+      "boundary": {
+        "curveToInterface": 0.03957743454323145,
+        "interfaceToCurve": 0.03331928478593543,
+        "curveIntervals": 4096,
+        "interfaceLinks": 124
+      }
+    },
+    {
+      "delta": 0.35,
+      "n": 65,
+      "volume": 23.031047567757597,
+      "peakFlux": 0.18216667351156388,
+      "axisR": 1.7887,
+      "axisZ": 0,
+      "A": 332614.64861862996,
+      "B": -0.016165119404676062,
+      "current": 1199999.99999999,
+      "meanPressure": 30000.00000000001,
+      "residual": 3.3918754139701403e-9,
+      "minF2": 11.016510507942264,
+      "extent": {
+        "R": [
+          0.9735999999999999,
+          2.3464
+        ],
+        "Z": [
+          -1.1668800000000001,
+          1.1668800000000001
+        ]
+      },
+      "diag": 0.04230601287051282,
+      "boundary": {
+        "curveToInterface": 0.019293857534093354,
+        "interfaceToCurve": 0.016005307137548715,
+        "curveIntervals": 4096,
+        "interfaceLinks": 244
+      }
+    },
+    {
+      "delta": 0.35,
+      "n": 129,
+      "volume": 23.050779653260623,
+      "peakFlux": 0.18051838775211643,
+      "axisR": 1.7887,
+      "axisZ": 0,
+      "A": 339985.45899599267,
+      "B": -0.039794138752311276,
+      "current": 1199999.9999999597,
+      "meanPressure": 29999.999999999924,
+      "residual": 4.0412299573461e-9,
+      "minF2": 11.008032852460897,
+      "extent": {
+        "R": [
+          0.9735999999999999,
+          2.3464
+        ],
+        "Z": [
+          -1.1668800000000001,
+          1.1668800000000001
+        ]
+      },
+      "diag": 0.021153006435256503,
+      "boundary": {
+        "curveToInterface": 0.010075159623299993,
+        "interfaceToCurve": 0.008195306388501217,
+        "curveIntervals": 4096,
+        "interfaceLinks": 492
+      },
+      "volumeChange": 0.0008567602252991005,
+      "fluxChange": 0.00904822889760248,
+      "axisDisplacement": 0,
+      "volumeObservedOrder": 3.0100841069644426,
+      "volumeDifferenceRatio": 8.056114046170963,
+      "peakFluxObservedOrder": 1.3349185830871244,
+      "peakFluxDifferenceRatio": 2.5226124527774294
+    },
+    {
+      "delta": 0,
+      "n": 33,
+      "volume": 24.44180527735109,
+      "peakFlux": 0.18784577604858194,
+      "axisR": 1.7887,
+      "axisZ": 0,
+      "A": 308425.78448287427,
+      "B": 0.00018187581339217064,
+      "current": 1199999.9999999986,
+      "meanPressure": 30000.000000000022,
+      "residual": 1.0118276209460754e-9,
+      "minF2": 11.022403564944302,
+      "extent": {
+        "R": [
+          0.9735999999999999,
+          2.3464
+        ],
+        "Z": [
+          -1.1668800000000001,
+          1.1668800000000001
+        ]
+      },
+      "diag": 0.08461202574102569,
+      "boundary": {
+        "curveToInterface": 0.03829413928994054,
+        "interfaceToCurve": 0.028479693788295762,
+        "curveIntervals": 4096,
+        "interfaceLinks": 124
+      }
+    },
+    {
+      "delta": 0,
+      "n": 65,
+      "volume": 24.188902752785655,
+      "peakFlux": 0.1833203353918711,
+      "axisR": 1.8101500000000001,
+      "axisZ": 0,
+      "A": 322564.3212908436,
+      "B": -0.03605612702840692,
+      "current": 1199999.999999992,
+      "meanPressure": 30000.000000000007,
+      "residual": 2.869987590160479e-9,
+      "minF2": 11.00918035740044,
+      "extent": {
+        "R": [
+          0.9735999999999999,
+          2.3464
+        ],
+        "Z": [
+          -1.1668800000000001,
+          1.1668800000000001
+        ]
+      },
+      "diag": 0.04230601287051282,
+      "boundary": {
+        "curveToInterface": 0.01889738741969767,
+        "interfaceToCurve": 0.01562948403993649,
+        "curveIntervals": 4096,
+        "interfaceLinks": 244
+      }
+    },
+    {
+      "delta": 0,
+      "n": 129,
+      "volume": 24.264365602857847,
+      "peakFlux": 0.18155682057064848,
+      "axisR": 1.7994249999999998,
+      "axisZ": 0,
+      "A": 330126.0003658419,
+      "B": -0.06437429618542445,
+      "current": 1199999.9999999888,
+      "meanPressure": 29999.999999999694,
+      "residual": 4.156990941484739e-9,
+      "minF2": 10.9990248149162,
+      "extent": {
+        "R": [
+          0.9735999999999999,
+          2.3464
+        ],
+        "Z": [
+          -1.1668800000000001,
+          1.1668800000000001
+        ]
+      },
+      "diag": 0.021153006435256503,
+      "boundary": {
+        "curveToInterface": 0.009665343467854746,
+        "interfaceToCurve": 0.00861482616744521,
+        "curveIntervals": 4096,
+        "interfaceLinks": 492
+      },
+      "volumeChange": 0.003119730185508378,
+      "fluxChange": 0.009619853779194047,
+      "axisDisplacement": 0.010725000000000318,
+      "volumeObservedOrder": 1.7447429447531897,
+      "volumeDifferenceRatio": 3.3513513513403503,
+      "peakFluxObservedOrder": 1.3596045781405766,
+      "peakFluxDifferenceRatio": 2.5661483545533468,
+      "analyticEllipseVolume": 24.264682977634376,
+      "ellipseVolumeRelative": 0.000013079700106585291
+    }
+  ],
+  "limitations": [
+    "Numerical verification of unchanged educational M01 model; no experimental validation.",
+    "Analytic rectangular boundary is not an LCFS or hardware geometry.",
+    "Shaped staircase refinement has no global second-order accuracy claim.",
+    "Balances cover tracked particles and thermal energies only.",
+    "Stability means tested numerical state validity, not plasma MHD stability.",
+    "Fine-grid quartic stencil identity is cancellation-sensitive in double precision: about 9.20e-7 relative against the locked 1e-6 limit; endpoint construction and runtime are recorded."
+  ],
+  "independentTestSha256": "6581b04d76b03c2cc46355689655393f9da91922ce304aa04ab0a6ad64fb9984"
+}

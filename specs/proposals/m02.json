@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "proposalId": "M02-PHYSICS-VERIFY-001",
+  "status": "PROPOSED",
+  "authorAgent": "/root/physics",
+  "approvalAuthority": "/root",
+  "createdOn": "2026-09-06",
+  "physicsModelVersion": "0.1.0",
+  "verificationVersion": "0.2.0",
+  "assumptionsChanged": false,
+  "specification": "specs/proposals/m02.md",
+  "requiredChecks": [
+    "M02-REGRESSION-EXACT",
+    "M02-OPERATOR-PROVENANCE",
+    "M02-ANALYTIC-IDENTITY",
+    "M02-RECT-FLUX",
+    "M02-RECT-BOUNDARY-AXIS",
+    "M02-RECT-CURRENT-PRESSURE",
+    "M02-SHAPED-CONVERGENCE",
+    "M02-LEDGERS-INDEPENDENT",
+    "M02-LEDGERS-NEGATIVE",
+    "M02-PARTICLE-ANALYTIC",
+    "M02-TIMESTEP-CONVERGENCE",
+    "M02-STABILITY-GUARDS",
+    "M02-EXISTING-TESTS",
+    "M02-TYPECHECK",
+    "M02-BUILD",
+    "M02-SCIENTIFIC-SCOPE"
+  ],
+  "checkDescriptions": {
+    "M02-REGRESSION-EXACT": "Exact same-runtime M01 default output/basis/geometry/equilibrium fixtures; observer off/on identical",
+    "M02-OPERATOR-PROVENANCE": "Analytic and default paths execute the same production finite-difference/SOR implementation",
+    "M02-ANALYTIC-IDENTITY": "Continuum derivation and nonzero alpha*dR\u00b2/4 truncation identity",
+    "M02-RECT-FLUX": "33/65/129 L2 and Linf flux errors and second-order rates",
+    "M02-RECT-BOUNDARY-AXIS": "Exact nonzero rectangle boundary and independently estimated axis/peak",
+    "M02-RECT-CURRENT-PRESSURE": "Independent derivative current and independent analytic quadrature current/pressure",
+    "M02-SHAPED-CONVERGENCE": "Default and delta-zero staircase studies at fixed pressure, no second-order claim",
+    "M02-LEDGERS-INDEPENDENT": "Per-step/cumulative independent N,We,Wi and total thermal ledgers",
+    "M02-LEDGERS-NEGATIVE": "Perturbed particle and equal/opposite species trace errors rejected",
+    "M02-PARTICLE-ANALYTIC": "Continuous constant-source particle solution comparison",
+    "M02-TIMESTEP-CONVERGENCE": "Four aligned timesteps and first-order self-convergence",
+    "M02-STABILITY-GUARDS": "Positive baseline sweep plus explicit stiff-state and invalid-dt failures",
+    "M02-EXISTING-TESTS": "Original nine numerical tests pass unchanged",
+    "M02-TYPECHECK": "Project type checking passes",
+    "M02-BUILD": "Production build passes",
+    "M02-SCIENTIFIC-SCOPE": "No physics assumptions, parameters, export schema or runtime model-version changes"
+  },
+  "source": {
+    "url": "https://arxiv.org/pdf/1906.05534",
+    "authors": [
+      "Haolong Li",
+      "Ping Zhu"
+    ],
+    "version": "v1",
+    "equations": [
+      10,
+      11,
+      16
+    ],
+    "readOn": "2026-09-06",
+    "mapping": "alpha=mu0 A, F0=B, no rotation; independent SI differentiation in proposal"
+  },
+  "analyticFixture": {
+    "grids": [
+      33,
+      65,
+      129
+    ],
+    "R_m": [
+      1,
+      2.32
+    ],
+    "Z_m": [
+      -0.66,
+      0.66
+    ],
+    "axis_R_m": 1.66,
+    "axis_Z_m": 0,
+    "psi_axis_Wb": 0.5,
+    "alpha_Wb_per_m4": 0.4,
+    "B_Wb_per_m2": 0.2,
+    "formula": "psi_axis-alpha/8*(R^2-Ra^2)^2-B/2*Z^2",
+    "boundary": "Exact nonzero Dirichlet at all rectangular edge nodes",
+    "productionPath": "Existing basis SOR with optional boundary arrays, or approved shared production kernel preserving exact default behavior"
+  },
+  "thresholds": {
+    "basisResidual": 1e-08,
+    "truncationIdentityRelative": 1e-06,
+    "fluxOrder": [
+      1.7,
+      2.3
+    ],
+    "fineFluxLinfRelative": 0.0002,
+    "fineFluxL2Relative": 0.0001,
+    "boundaryRelative": 1e-14,
+    "fineAxisErrorGridSpacings": 0.25,
+    "finePeakRelative": 0.0002,
+    "finePressurePointwiseRelative": 0.0002,
+    "fineCurrentPointwiseRelative": 2e-07,
+    "fineIntegratedCurrentRelative": 0.0001,
+    "fineMeanPressureRelative": 0.0003,
+    "shapedCurrentPressureRelative": 1e-11,
+    "shapedResidual": 1e-07,
+    "shaped65to129VolumeRelative": 0.03,
+    "shaped65to129PeakFluxRelative": 0.08,
+    "shapedAxisCoarseGridDiagonals": 2,
+    "ellipseFineVolumeRelative": 0.005,
+    "boundaryDistanceGridDiagonals": 2,
+    "ledgerRelative": 1e-12,
+    "analyticParticleDt002Relative": 0.002,
+    "timeFineDifferenceRelative": 0.01,
+    "timeObservedOrder": [
+      0.7,
+      1.3
+    ],
+    "timeRoundoffRelative": 1e-10,
+    "stabilityCoarseDifferenceRelative": 0.1
+  },
+  "reportRequiredFields": [
+    "checkId",
+    "status",
+    "testCommandOrName",
+    "thresholds",
+    "measurements",
+    "sourceHash",
+    "runtimeVersion",
+    "artifactPaths"
+  ],
+  "acceptance": "All required checks pass; separate Validation Agent assessment and Director approval required. No silently skipped checks or retrospective threshold changes. Detailed metric definitions in companion markdown are normative.",
+  "changeRequestRequired": true
+}

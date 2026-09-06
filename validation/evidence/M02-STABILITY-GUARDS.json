@@ -1,0 +1,275 @@
+{
+  "checkId": "M02-STABILITY-GUARDS",
+  "status": "PASS",
+  "testCommandOrName": "node --experimental-strip-types validation/independent/m02.mjs (M02-STABILITY-GUARDS)",
+  "thresholds": {
+    "basisResidual": 1e-8,
+    "truncationIdentityRelative": 0.000001,
+    "fluxOrder": [
+      1.7,
+      2.3
+    ],
+    "fineFluxLinfRelative": 0.0002,
+    "fineFluxL2Relative": 0.0001,
+    "boundaryRelative": 1e-14,
+    "fineAxisErrorGridSpacings": 0.25,
+    "finePeakRelative": 0.0002,
+    "finePressurePointwiseRelative": 0.0002,
+    "fineCurrentPointwiseRelative": 2e-7,
+    "fineIntegratedCurrentRelative": 0.0001,
+    "fineMeanPressureRelative": 0.0003,
+    "shapedCurrentPressureRelative": 1e-11,
+    "shapedResidual": 1e-7,
+    "shaped65to129VolumeRelative": 0.03,
+    "shaped65to129PeakFluxRelative": 0.08,
+    "shapedAxisCoarseGridDiagonals": 2,
+    "ellipseFineVolumeRelative": 0.005,
+    "boundaryDistanceGridDiagonals": 2,
+    "ledgerRelative": 1e-12,
+    "analyticParticleDt002Relative": 0.002,
+    "timeFineDifferenceRelative": 0.01,
+    "timeObservedOrder": [
+      0.7,
+      1.3
+    ],
+    "timeRoundoffRelative": 1e-10,
+    "stabilityCoarseDifferenceRelative": 0.1
+  },
+  "measurements": {
+    "baseline": [
+      {
+        "dt": 0.01,
+        "worst": {
+          "N": 4.490071004878451e-16,
+          "We": 1.0851102068106581e-16,
+          "Wi": 2.848056368794035e-16,
+          "thermal": 3.053233784861667e-16
+        },
+        "worstTime": {
+          "N": 0.29,
+          "We": 2.56,
+          "Wi": 0.32,
+          "thermal": 3.91
+        },
+        "componentTotals": {
+          "sourceGas": 3.7500000000000446e+21,
+          "sourceBeam": 748981088935292300000,
+          "lossN": 3.833463754668078e+21,
+          "Pe": 6060000,
+          "Pi": 6240000,
+          "Pohm": 1626649.0172540825,
+          "Pbr": 146563.9577731294,
+          "Pion": 8171.100833400027,
+          "Q": 367698.68507367646,
+          "Le": 7199831.277598542,
+          "Li": 6669173.757494786
+        },
+        "total": {
+          "N": 665517334267211200000,
+          "We": -35616.004024668655,
+          "Wi": -61475.07242110777,
+          "thermal": -97091.07644577607
+        },
+        "stepCount": 500
+      },
+      {
+        "dt": 0.005,
+        "worst": {
+          "N": 5.671668637741201e-16,
+          "We": 1.746739605786306e-16,
+          "Wi": 1.8670676040650936e-16,
+          "thermal": 3.1441737174680736e-16
+        },
+        "worstTime": {
+          "N": 0.325,
+          "We": 0.07,
+          "Wi": 0.39,
+          "thermal": 2.14
+        },
+        "componentTotals": {
+          "sourceGas": 3.750000000000055e+21,
+          "sourceBeam": 748981088935294800000,
+          "lossN": 3.833490669428667e+21,
+          "Pe": 6060000,
+          "Pi": 6240000,
+          "Pohm": 1625350.5707245336,
+          "Pbr": 146528.64749538898,
+          "Pion": 8171.100833399803,
+          "Q": 367348.91723239014,
+          "Le": 7198908.904660838,
+          "Li": 6668794.638407154
+        },
+        "total": {
+          "N": 665490419506622000000,
+          "We": -35606.99949748414,
+          "Wi": -61445.72117476442,
+          "thermal": -97052.72067224902
+        },
+        "stepCount": 1000
+      },
+      {
+        "dt": 0.002,
+        "worst": {
+          "N": 1.1087118379358937e-15,
+          "We": 4.366849014465765e-16,
+          "Wi": 3.8397714389214583e-16,
+          "thermal": 5.240218817358918e-16
+        },
+        "worstTime": {
+          "N": 2,
+          "We": 0.054,
+          "Wi": 0.458,
+          "thermal": 0.15
+        },
+        "componentTotals": {
+          "sourceGas": 3.7500000000002244e+21,
+          "sourceBeam": 748981088935281800000,
+          "lossN": 3.8335071621995865e+21,
+          "Pe": 6060000,
+          "Pi": 6240000,
+          "Pohm": 1624606.706540086,
+          "Pbr": 146507.57922533184,
+          "Pion": 8171.100833399658,
+          "Q": 367148.1969213799,
+          "Le": 7198381.190138114,
+          "Li": 6668575.611363103
+        },
+        "total": {
+          "N": 665473926735709200000,
+          "We": -35601.36057813669,
+          "Wi": -61427.41444174547,
+          "thermal": -97028.77501988334
+        },
+        "stepCount": 2500
+      },
+      {
+        "dt": 0.001,
+        "worst": {
+          "N": 2.324815791897274e-15,
+          "We": 5.240218817358918e-16,
+          "Wi": 4.366849014465765e-16,
+          "thermal": 3.493479211572612e-16
+        },
+        "worstTime": {
+          "N": 0.669,
+          "We": 0.057,
+          "Wi": 0.134,
+          "thermal": 0.157
+        },
+        "componentTotals": {
+          "sourceGas": 3.749999999999791e+21,
+          "sourceBeam": 748981088935322800000,
+          "lossN": 3.833512716858782e+21,
+          "Pe": 6060000,
+          "Pi": 6240000,
+          "Pohm": 1624364.2970714804,
+          "Pbr": 146500.57551622012,
+          "Pion": 8171.100833400525,
+          "Q": 367082.7338329773,
+          "Le": 7198209.327955267,
+          "Li": 6668503.9292526515
+        },
+        "total": {
+          "N": 665468372076504000000,
+          "We": -35599.441066372274,
+          "Wi": -61421.19541965353,
+          "thermal": -97020.63648602596
+        },
+        "stepCount": 5000
+      }
+    ],
+    "coarseRelativeDifferences": {
+      "N": 0.0007164341157356146,
+      "We": 0.003813381035909711,
+      "Wi": 0.011805306411079795
+    },
+    "invalidDtRejected": [
+      0,
+      -0.001,
+      "NaN",
+      0.010001
+    ],
+    "stiffClosureRejected": true,
+    "observerExceptionsPropagate": true,
+    "unaligned": {
+      "requestedDt": 0.003,
+      "actualDt": 0.002999400119976005,
+      "worst": {
+        "N": 2.0796118338384405e-15,
+        "We": 2.620109408679459e-16,
+        "Wi": 5.424340363653186e-16,
+        "thermal": 4.799186133329111e-16
+      },
+      "worstTime": {
+        "N": 0.40191961607678467,
+        "We": 0.07498500299940013,
+        "Wi": 0.29094181163767247,
+        "thermal": 0.18596280743851232
+      },
+      "componentTotals": {
+        "sourceGas": 3.749999999999902e+21,
+        "sourceBeam": 748831322670759700000,
+        "lossN": 3.8332282778444366e+21,
+        "Pe": 6058788.24235151,
+        "Pi": 6238752.249550075,
+        "Pohm": 1625131.1307894543,
+        "Pbr": 146495.5537451272,
+        "Pion": 8171.10083340015,
+        "Q": 367333.65910497325,
+        "Le": 7197518.863908495,
+        "Li": 6667516.310018122
+      },
+      "total": {
+        "N": 665603044826321300000,
+        "We": -35599.804451014184,
+        "Wi": -61430.4013630599,
+        "thermal": -97030.20581407553
+      },
+      "stepCount": 1667
+    },
+    "heldOut": [
+      {
+        "controls": {
+          "bt": 1,
+          "delta": -0.3
+        },
+        "worst": {
+          "N": 1.91116765074077e-15,
+          "We": 2.0470765828252483e-16,
+          "Wi": 9.697355499596197e-16,
+          "thermal": 4.852311230747344e-16
+        }
+      },
+      {
+        "controls": {
+          "ip": 2,
+          "kappa": 1.95
+        },
+        "worst": {
+          "N": 1.1173786430907912e-15,
+          "We": 4.1876962343851218e-16,
+          "Wi": 6.64425402945196e-16,
+          "thermal": 3.2833429282102046e-16
+        }
+      },
+      {
+        "controls": {
+          "nbi": 11.25,
+          "gas": 0.7
+        },
+        "worst": {
+          "N": 1.2288615381772603e-15,
+          "We": 1.3100547043397295e-16,
+          "Wi": 1.0892163428635671e-15,
+          "thermal": 3.493479211572612e-16
+        }
+      }
+    ],
+    "scope": "Numerical state validity only; no plasma stability inference."
+  },
+  "sourceHash": "df49bda983a97bc14cecbf8209fab47da7b7ff4bf9d44a9a5216e43b9a02c7e6",
+  "runtimeVersion": "v24.19.0",
+  "artifactPaths": [
+    "validation/evidence/M02-STABILITY-GUARDS.json"
+  ]
+}

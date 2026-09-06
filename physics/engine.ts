@@ -21,8 +21,12 @@ export function geometry(c:Controls,n=49){
  return {n,R,Z,dr,dz,mask,volume,C,D};
 }
 /** Independent basis solves: Delta* u=-mu0 R²; Delta* v=-1. */
-export function basis(g:Geometry){
+export type BasisBoundary={u:readonly number[]|Float64Array;v:readonly number[]|Float64Array};
+export function basis(g:Geometry,boundaryValues?:BasisBoundary){
  const {n,R,dr,dz,mask}=g; const u=new Float64Array(n*n),v=new Float64Array(n*n);
+ if(boundaryValues!==undefined){
+  for(const key of ['u','v'] as const){const values=boundaryValues[key];if(!values||values.length!==n*n)throw new Error('Boundary arrays must match the grid');for(let k=0;k<n*n;k++){if(!Number.isFinite(values[k]))throw new Error('Boundary values must be finite');if(!mask[k])(key==='u'?u:v)[k]=values[k];}}
+ }
  const ar=1/dr**2,az=1/dz**2,den=2*(ar+az);let iterations=0,residual=Infinity;
  for(;iterations<12000;iterations++){
   for(let j=1;j<n-1;j++)for(let i=1;i<n-1;i++){const k=j*n+i;if(!mask[k])continue;
@@ -60,7 +64,9 @@ export type Shot={schemaVersion:1;modelVersion:string;controls:Controls;volume:n
 export interface TransportClosure { evaluate(c:Controls,ne:number,te:number,ip:number,pAux:number):{tauE:number;tauP:number;resistivity:number} }
 export const educationalTransport:TransportClosure={evaluate(c,ne,te,ip,pAux){return {tauE:0.12*(ip/1.2)**0.7*(c.bt/2)**0.2*(Math.max(ne,1e18)/4e19)**0.2*(Math.max(pAux,0.5)/5)**-0.35,tauP:1.6,resistivity:2.8e-8*(Math.max(te,0.02))**-1.5};}};
 export function waveform(c:Controls,t:number){const ramp=t<1?0.4+(c.ip-0.4)*t:t>4?c.ip+(0.4-c.ip)*(t-4):c.ip;const heat=t>=1&&t<4?1:0;return {ip:ramp,nbi:c.nbi*heat,ech:c.ech*heat};}
-export function runShot(c:Controls,g:Geometry,dt=0.002,closure:TransportClosure=educationalTransport):Shot{
+export type StepObservation=Readonly<{step:number;t:number;dt:number;volume:number;initialN:number;initialWe:number;initialWi:number;preN:number;preWe:number;preWi:number;postN:number;postWe:number;postWi:number}>;
+export type StepObserver=(step:StepObservation)=>void;
+export function runShot(c:Controls,g:Geometry,dt=0.002,closure:TransportClosure=educationalTransport,observer?:StepObserver):Shot{
  validate(c);if(!(dt>0&&dt<=0.01))throw new Error('Time step must be >0 and <=0.01 s');
  const V=g.volume,N0=3e19*V,W0=1.5*N0*KEV*0.5;let N=N0,We=W0,Wi=W0,Ein=0,Eout=0,Nin=0,Nout=0;
  const samples:Sample[]=[];const steps=Math.round(5/dt);dt=5/steps;
@@ -77,9 +83,11 @@ export function runShot(c:Controls,g:Geometry,dt=0.002,closure:TransportClosure=
   const exchange=(We-Wi)/0.25,ionization=0.0136*KEV*0.3*c.gas*1e21;
   const pe=(0.8*0.35*r.nbi+0.9*r.ech)*1e6+r.pOhm,pi=0.8*0.65*r.nbi*1e6;
   const le=We/r.tauE+r.pRad+ionization,li=Wi/r.tauE;
+  const observed=observer?{step:s,t,dt,volume:V,initialN:N0,initialWe:W0,initialWi:W0,preN:N,preWe:We,preWi:Wi}:undefined;
   We+=dt*(pe-le-exchange);Wi+=dt*(pi-li+exchange);
   const sink=N/r.tauP;N+=dt*(r.source-sink);Ein+=dt*(pe+pi);Eout+=dt*(le+li);Nin+=dt*r.source;Nout+=dt*sink;
   if(!Number.isFinite(We+Wi+N)||We<=0||Wi<=0||N<=0)throw new Error(`Reduced model left its valid thermal-plasma regime at ${t.toFixed(3)} s. Reduce fueling or increase heating.`);
+  if(observer&&observed)observer(Object.freeze({...observed,postN:N,postWe:We,postWi:Wi}));
  }
  return {schemaVersion:1,modelVersion:'0.1.0',controls:{...c},volume:V,dt,samples,assumptions:['Formed deuterium plasma; no breakdown or extinction','Constant boundary per shot; programmed current with ideal external drive','Heuristic confinement, resistivity and electron-ion exchange; no calibration','Fixed absorbed heating fractions and 80 keV beam particle source','Solovev fixed-boundary equilibrium; no coils, X-point, stability or disruptions']};
 }

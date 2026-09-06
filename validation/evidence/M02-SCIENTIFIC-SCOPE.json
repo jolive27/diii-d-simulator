@@ -1,0 +1,73 @@
+{
+  "checkId": "M02-SCIENTIFIC-SCOPE",
+  "status": "PASS",
+  "testCommandOrName": "node --experimental-strip-types validation/independent/m02.mjs (M02-SCIENTIFIC-SCOPE)",
+  "thresholds": {
+    "basisResidual": 1e-8,
+    "truncationIdentityRelative": 0.000001,
+    "fluxOrder": [
+      1.7,
+      2.3
+    ],
+    "fineFluxLinfRelative": 0.0002,
+    "fineFluxL2Relative": 0.0001,
+    "boundaryRelative": 1e-14,
+    "fineAxisErrorGridSpacings": 0.25,
+    "finePeakRelative": 0.0002,
+    "finePressurePointwiseRelative": 0.0002,
+    "fineCurrentPointwiseRelative": 2e-7,
+    "fineIntegratedCurrentRelative": 0.0001,
+    "fineMeanPressureRelative": 0.0003,
+    "shapedCurrentPressureRelative": 1e-11,
+    "shapedResidual": 1e-7,
+    "shaped65to129VolumeRelative": 0.03,
+    "shaped65to129PeakFluxRelative": 0.08,
+    "shapedAxisCoarseGridDiagonals": 2,
+    "ellipseFineVolumeRelative": 0.005,
+    "boundaryDistanceGridDiagonals": 2,
+    "ledgerRelative": 1e-12,
+    "analyticParticleDt002Relative": 0.002,
+    "timeFineDifferenceRelative": 0.01,
+    "timeObservedOrder": [
+      0.7,
+      1.3
+    ],
+    "timeRoundoffRelative": 1e-10,
+    "stabilityCoarseDifferenceRelative": 0.1
+  },
+  "measurements": {
+    "scienceFiles": [
+      {
+        "file": "science/assumptions.yaml",
+        "sha256": "685a131eae99f02adb4c90d3f249010277342316d572ac3bec94ee0874805e53"
+      },
+      {
+        "file": "science/constants.json",
+        "sha256": "d081ad0cedb07092f59c78e024db1952ea3d04308e77c41057d4f5625e3d8888"
+      },
+      {
+        "file": "science/models.json",
+        "sha256": "0114a41a9358d4d4b6253e2b3e046709e164c7d44cbde577bae20642b332dfa2"
+      },
+      {
+        "file": "science/equations.md",
+        "sha256": "aff433e44714c9fe45e4845f97921845795cfe095a19b9ca30dc073c85fb7496"
+      }
+    ],
+    "physicsModelVersion": "0.1.0",
+    "exportSchema": 1,
+    "sourceReview": "Engine diff limited to optional inactive-node boundaries and immutable observer. Existing numerical update, SOR arithmetic, closure, waveform, constants and default output unchanged.",
+    "limitations": [
+      "Analytic rectangle is a verification domain, not a new LCFS.",
+      "Shaped-mask study does not establish global second-order boundary accuracy.",
+      "Independent ledgers establish discrete thermal/particle equation consistency, not whole-machine or experimental accuracy.",
+      "Numerical state-validity checks do not establish MHD stability, disruption prediction or facility operating safety.",
+      "Fine-grid quartic identity is cancellation-sensitive in double precision (about 9.20e-7 relative against the 1e-6 gate); endpoint construction and runtime are recorded."
+    ]
+  },
+  "sourceHash": "df49bda983a97bc14cecbf8209fab47da7b7ff4bf9d44a9a5216e43b9a02c7e6",
+  "runtimeVersion": "v24.19.0",
+  "artifactPaths": [
+    "validation/evidence/M02-SCIENTIFIC-SCOPE.json"
+  ]
+}

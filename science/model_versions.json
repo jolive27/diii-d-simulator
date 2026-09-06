@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "physicsModelVersion": "0.1.0",
+  "verificationVersion": "0.2.0",
+  "changes": [
+    {
+      "version": "0.1.0",
+      "kind": "physics",
+      "baselineCommit": "b07537877cec168d20783a3cfc45366fccbd4538",
+      "description": "Unchanged educational model and default numerical behavior"
+    },
+    {
+      "version": "0.2.0",
+      "kind": "verification",
+      "spec": "specs/m02.json",
+      "description": "Analytic boundary fixture, observational step snapshots, numerical verification dashboard; no changed physical assumptions"
+    }
+  ],
+  "acceptanceRecord": "validation/m02-decision.json"
+}

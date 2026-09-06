@@ -1,0 +1,2281 @@
+{
+  "status": "PASS",
+  "generatedAt": "2026-09-06T18:16:56.229Z",
+  "modelVersion": "0.1.0",
+  "verificationVersion": "0.2.0",
+  "sourceFingerprint": "df49bda983a97bc14cecbf8209fab47da7b7ff4bf9d44a9a5216e43b9a02c7e6",
+  "directorDecision": "ACCEPTED",
+  "checks": [
+    {
+      "name": "Milestone 01 preserved exactly",
+      "status": "PASS",
+      "evidence": "validation/evidence/M02-REGRESSION-EXACT.json",
+      "sha256": "7f7d36acbdaf3863bda336ea06e8b27dc7f13e411d29b1023bd587214946ec68",
+      "id": "M02-REGRESSION-EXACT",
+      "detail": {
+        "checkId": "M02-REGRESSION-EXACT",
+        "status": "PASS",
+        "testCommandOrName": "node --experimental-strip-types validation/independent/m02.mjs (M02-REGRESSION-EXACT)",
+        "thresholds": {
+          "basisResidual": 1e-8,
+          "truncationIdentityRelative": 0.000001,
+          "fluxOrder": [
+            1.7,
+            2.3
+          ],
+          "fineFluxLinfRelative": 0.0002,
+          "fineFluxL2Relative": 0.0001,
+          "boundaryRelative": 1e-14,
+          "fineAxisErrorGridSpacings": 0.25,
+          "finePeakRelative": 0.0002,
+          "finePressurePointwiseRelative": 0.0002,
+          "fineCurrentPointwiseRelative": 2e-7,
+          "fineIntegratedCurrentRelative": 0.0001,
+          "fineMeanPressureRelative": 0.0003,
+          "shapedCurrentPressureRelative": 1e-11,
+          "shapedResidual": 1e-7,
+          "shaped65to129VolumeRelative": 0.03,
+          "shaped65to129PeakFluxRelative": 0.08,
+          "shapedAxisCoarseGridDiagonals": 2,
+          "ellipseFineVolumeRelative": 0.005,
+          "boundaryDistanceGridDiagonals": 2,
+          "ledgerRelative": 1e-12,
+          "analyticParticleDt002Relative": 0.002,
+          "timeFineDifferenceRelative": 0.01,
+          "timeObservedOrder": [
+            0.7,
+            1.3
+          ],
+          "timeRoundoffRelative": 1e-10,
+          "stabilityCoarseDifferenceRelative": 0.1
+        },
+        "measurements": {
+          "fixtureSha256": "7a3e96558b79b4be772958dd357a8f42dd4ee7d4cc27d2292893a2ed13c7b241",
+          "sourceBeforeM02": "9dde261db38c18469902fd7dc02c80978f417a824c2aa159b573282bf63b84c7",
+          "rows": [
+            {
+              "case": "default",
+              "exact": true,
+              "observerSteps": 2500
+            },
+            {
+              "case": "no-nbi",
+              "exact": true,
+              "observerSteps": 2500
+            },
+            {
+              "case": "no-gas",
+              "exact": true,
+              "observerSteps": 2500
+            },
+            {
+              "case": "high-nbi",
+              "exact": true,
+              "observerSteps": 2500
+            },
+            {
+              "case": "high-gas",
+              "exact": true,
+              "observerSteps": 2500
+            },
+            {
+              "case": "zero-aux-gas",
+              "exact": true,
+              "observerSteps": 2500
+            }
+          ]
+        },
+        "sourceHash": "df49bda983a97bc14cecbf8209fab47da7b7ff4bf9d44a9a5216e43b9a02c7e6",
+        "runtimeVersion": "v24.19.0",
+        "artifactPaths": [
+          "validation/evidence/M02-REGRESSION-EXACT.json"
+        ]
+      }
+    },
+    {
+      "name": "Shared production solver",
+      "status": "PASS",
+      "evidence": "validation/evidence/M02-OPERATOR-PROVENANCE.json",
+      "sha256": "dbdb8765b9c0b1eb9124fda3947700c5c226e2caa0a4d883b74cc9b9ff12d0ab",
+      "id": "M02-OPERATOR-PROVENANCE",
+      "detail": {
+        "checkId": "M02-OPERATOR-PROVENANCE",
+        "status": "PASS",
+        "testCommandOrName": "node --experimental-strip-types validation/independent/m02.mjs (M02-OPERATOR-PROVENANCE)",
+        "thresholds": {
+          "basisResidual": 1e-8,
+          "truncationIdentityRelative": 0.000001,
+          "fluxOrder": [
+            1.7,
+            2.3
+          ],
+          "fineFluxLinfRelative": 0.0002,
+          "fineFluxL2Relative": 0.0001,
+          "boundaryRelative": 1e-14,
+          "fineAxisErrorGridSpacings": 0.25,
+          "finePeakRelative": 0.0002,
+          "finePressurePointwiseRelative": 0.0002,
+          "fineCurrentPointwiseRelative": 2e-7,
+          "fineIntegratedCurrentRelative": 0.0001,
+          "fineMeanPressureRelative": 0.0003,
+          "shapedCurrentPressureRelative": 1e-11,
+          "shapedResidual": 1e-7,
+          "shaped65to129VolumeRelative": 0.03,
+          "shaped65to129PeakFluxRelative": 0.08,
+          "shapedAxisCoarseGridDiagonals": 2,
+          "ellipseFineVolumeRelative": 0.005,
+          "boundaryDistanceGridDiagonals": 2,
+          "ledgerRelative": 1e-12,
+          "analyticParticleDt002Relative": 0.002,
+          "timeFineDifferenceRelative": 0.01,
+          "timeObservedOrder": [
+            0.7,
+            1.3
+          ],
+          "timeRoundoffRelative": 1e-10,
+          "stabilityCoarseDifferenceRelative": 0.1
+        },
+        "measurements": {
+          "productionSolver": "physics/engine.ts::basis",
+          "analyticCall": "independent rectangle -> same imported basis(g,{u,v})",
+          "defaultCall": "geometry(DEFAULT) -> same basis(g)",
+          "sourceSha256": "ccdfd56ef87ded796d6e55a555cb0a76f6d3288edcc96c05af997175596a4a93",
+          "note": "Source inspected: same SOR sweep and residual loop; only inactive-node initialization differs. Exact old arrays and iteration count checked by regression."
+        },
+        "sourceHash": "df49bda983a97bc14cecbf8209fab47da7b7ff4bf9d44a9a5216e43b9a02c7e6",
+        "runtimeVersion": "v24.19.0",
+        "artifactPaths": [
+          "validation/evidence/M02-OPERATOR-PROVENANCE.json"
+        ]
+      }
+    },
+    {
+      "name": "Solov’ev equation and discretization",
+      "status": "PASS",
+      "evidence": "validation/evidence/M02-ANALYTIC-IDENTITY.json",
+      "sha256": "123b8f8d359a5c67ab86df591d0c9720ed2008be7dbc2feb07d1e35986aab067",
+      "id": "M02-ANALYTIC-IDENTITY",
+      "detail": {
+        "checkId": "M02-ANALYTIC-IDENTITY",
+        "status": "PASS",
+        "testCommandOrName": "node --experimental-strip-types validation/independent/m02.mjs (M02-ANALYTIC-IDENTITY)",
+        "thresholds": {
+          "basisResidual": 1e-8,
+          "truncationIdentityRelative": 0.000001,
+          "fluxOrder": [
+            1.7,
+            2.3
+          ],
+          "fineFluxLinfRelative": 0.0002,
+          "fineFluxL2Relative": 0.0001,
+          "boundaryRelative": 1e-14,
+          "fineAxisErrorGridSpacings": 0.25,
+          "finePeakRelative": 0.0002,
+          "finePressurePointwiseRelative": 0.0002,
+          "fineCurrentPointwiseRelative": 2e-7,
+          "fineIntegratedCurrentRelative": 0.0001,
+          "fineMeanPressureRelative": 0.0003,
+          "shapedCurrentPressureRelative": 1e-11,
+          "shapedResidual": 1e-7,
+          "shaped65to129VolumeRelative": 0.03,
+          "shaped65to129PeakFluxRelative": 0.08,
+          "shapedAxisCoarseGridDiagonals": 2,
+          "ellipseFineVolumeRelative": 0.005,
+          "boundaryDistanceGridDiagonals": 2,
+          "ledgerRelative": 1e-12,
+          "analyticParticleDt002Relative": 0.002,
+          "timeFineDifferenceRelative": 0.01,
+          "timeObservedOrder": [
+            0.7,
+            1.3
+          ],
+          "timeRoundoffRelative": 1e-10,
+          "stabilityCoarseDifferenceRelative": 0.1
+        },
+        "measurements": {
+          "rows": [
+            {
+              "n": 33,
+              "expectedTruncation": 0.0001701562500000001,
+              "worstRelative": 2.572714545482461e-9
+            },
+            {
+              "n": 65,
+              "expectedTruncation": 0.00004253906249999956,
+              "worstRelative": 3.452592146090235e-8
+            },
+            {
+              "n": 129,
+              "expectedTruncation": 0.00001063476562499989,
+              "worstRelative": 9.201988461148303e-7
+            }
+          ],
+          "derivation": "psi_R=-alpha R(R²-Ra²)/2; psi_RR=-alpha(3R²-Ra²)/2; psi_ZZ=-B. Delta*psi=-alpha R²-B. Central stencil residual=alpha dR²/4.",
+          "dimensions": {
+            "psi": "Wb",
+            "alpha": "Wb/m^4",
+            "B": "Wb/m^2",
+            "A": "Pa/Wb",
+            "j": "A/m^2",
+            "pressure": "Pa"
+          },
+          "source": "https://arxiv.org/pdf/1906.05534",
+          "sourceRead": "Independent reviewer read v1 equations 10-12 and static-limit construction; SI signs differentiated independently."
+        },
+        "sourceHash": "df49bda983a97bc14cecbf8209fab47da7b7ff4bf9d44a9a5216e43b9a02c7e6",
+        "runtimeVersion": "v24.19.0",
+        "artifactPaths": [
+          "validation/evidence/M02-ANALYTIC-IDENTITY.json"
+        ]
+      }
+    },
+    {
+      "name": "Analytic flux accuracy and convergence",
+      "status": "PASS",
+      "evidence": "validation/evidence/M02-RECT-FLUX.json",
+      "sha256": "364916c17293d4213b3e1c30ba7065c23aa369af72efc80937c686e063c62d3f",
+      "id": "M02-RECT-FLUX",
+      "detail": {
+        "checkId": "M02-RECT-FLUX",
+        "status": "PASS",
+        "testCommandOrName": "node --experimental-strip-types validation/independent/m02.mjs (M02-RECT-FLUX)",
+        "thresholds": {
+          "basisResidual": 1e-8,
+          "truncationIdentityRelative": 0.000001,
+          "fluxOrder": [
+            1.7,
+            2.3
+          ],
+          "fineFluxLinfRelative": 0.0002,
+          "fineFluxL2Relative": 0.0001,
+          "boundaryRelative": 1e-14,
+          "fineAxisErrorGridSpacings": 0.25,
+          "finePeakRelative": 0.0002,
+          "finePressurePointwiseRelative": 0.0002,
+          "fineCurrentPointwiseRelative": 2e-7,
+          "fineIntegratedCurrentRelative": 0.0001,
+          "fineMeanPressureRelative": 0.0003,
+          "shapedCurrentPressureRelative": 1e-11,
+          "shapedResidual": 1e-7,
+          "shaped65to129VolumeRelative": 0.03,
+          "shaped65to129PeakFluxRelative": 0.08,
+          "shapedAxisCoarseGridDiagonals": 2,
+          "ellipseFineVolumeRelative": 0.005,
+          "boundaryDistanceGridDiagonals": 2,
+          "ledgerRelative": 1e-12,
+          "analyticParticleDt002Relative": 0.002,
+          "timeFineDifferenceRelative": 0.01,
+          "timeObservedOrder": [
+            0.7,
+            1.3
+          ],
+          "timeRoundoffRelative": 1e-10,
+          "stabilityCoarseDifferenceRelative": 0.1
+        },
+        "measurements": {
+          "gridConvergence": [
+            {
+              "n": 33,
+              "Linf": 0.00004299829532417032,
+              "L2": 0.000024916561147173287,
+              "basisResidual": 3.981144672766674e-9,
+              "iterations": 360
+            },
+            {
+              "n": 65,
+              "Linf": 0.000010754038421545431,
+              "L2": 0.000006133084098432566,
+              "basisResidual": 8.745187494399263e-9,
+              "iterations": 1460,
+              "orderLinf": 1.9994009338900876,
+              "orderL2": 2.022420330079368
+            },
+            {
+              "n": 129,
+              "Linf": 0.0000026876731106240115,
+              "L2": 0.000001520812864718088,
+              "basisResidual": 9.335485463401585e-9,
+              "iterations": 5880,
+              "orderLinf": 2.000448945625122,
+              "orderL2": 2.011770092659294
+            }
+          ]
+        },
+        "sourceHash": "df49bda983a97bc14cecbf8209fab47da7b7ff4bf9d44a9a5216e43b9a02c7e6",
+        "runtimeVersion": "v24.19.0",
+        "artifactPaths": [
+          "validation/evidence/M02-RECT-FLUX.json"
+        ]
+      }
+    },
+    {
+      "name": "Boundary and magnetic axis",
+      "status": "PASS",
+      "evidence": "validation/evidence/M02-RECT-BOUNDARY-AXIS.json",
+      "sha256": "e9d8a35abd3a7224203ea03aa98e9f0f5b29700782261db5587e6bcbfe2e2ad3",
+      "id": "M02-RECT-BOUNDARY-AXIS",
+      "detail": {
+        "checkId": "M02-RECT-BOUNDARY-AXIS",
+        "status": "PASS",
+        "testCommandOrName": "node --experimental-strip-types validation/independent/m02.mjs (M02-RECT-BOUNDARY-AXIS)",
+        "thresholds": {
+          "basisResidual": 1e-8,
+          "truncationIdentityRelative": 0.000001,
+          "fluxOrder": [
+            1.7,
+            2.3
+          ],
+          "fineFluxLinfRelative": 0.0002,
+          "fineFluxL2Relative": 0.0001,
+          "boundaryRelative": 1e-14,
+          "fineAxisErrorGridSpacings": 0.25,
+          "finePeakRelative": 0.0002,
+          "finePressurePointwiseRelative": 0.0002,
+          "fineCurrentPointwiseRelative": 2e-7,
+          "fineIntegratedCurrentRelative": 0.0001,
+          "fineMeanPressureRelative": 0.0003,
+          "shapedCurrentPressureRelative": 1e-11,
+          "shapedResidual": 1e-7,
+          "shaped65to129VolumeRelative": 0.03,
+          "shaped65to129PeakFluxRelative": 0.08,
+          "shapedAxisCoarseGridDiagonals": 2,
+          "ellipseFineVolumeRelative": 0.005,
+          "boundaryDistanceGridDiagonals": 2,
+          "ledgerRelative": 1e-12,
+          "analyticParticleDt002Relative": 0.002,
+          "timeFineDifferenceRelative": 0.01,
+          "timeObservedOrder": [
+            0.7,
+            1.3
+          ],
+          "timeRoundoffRelative": 1e-10,
+          "stabilityCoarseDifferenceRelative": 0.1
+        },
+        "measurements": {
+          "rows": [
+            {
+              "n": 33,
+              "boundaryRelative": 1.6653345369377348e-16,
+              "edgeMinimum": 0.11143608800000003,
+              "edgeMaximum": 0.45644,
+              "axis": {
+                "gridR": 1.66,
+                "gridZ": 0,
+                "gridPeak": 0.5000214322003127,
+                "R": 1.6594906659800377,
+                "Z": 7.592796444096096e-10,
+                "peak": 0.5000215752056169
+              }
+            },
+            {
+              "n": 65,
+              "boundaryRelative": 1.6653345369377348e-16,
+              "edgeMinimum": 0.11143608800000003,
+              "edgeMaximum": 0.45644,
+              "axis": {
+                "gridR": 1.66,
+                "gridZ": 0,
+                "gridPeak": 0.5000053602666672,
+                "R": 1.6598726465369438,
+                "Z": 1.0938735173240747e-9,
+                "peak": 0.5000053692057476
+              }
+            },
+            {
+              "n": 129,
+              "boundaryRelative": 1.6653345369377348e-16,
+              "edgeMinimum": 0.11143608800000003,
+              "edgeMaximum": 0.45644,
+              "axis": {
+                "gridR": 1.66,
+                "gridZ": 0,
+                "gridPeak": 0.5000013396495372,
+                "R": 1.6599681602792187,
+                "Z": 6.39741047409889e-10,
+                "peak": 0.500001340208253
+              }
+            }
+          ]
+        },
+        "sourceHash": "df49bda983a97bc14cecbf8209fab47da7b7ff4bf9d44a9a5216e43b9a02c7e6",
+        "runtimeVersion": "v24.19.0",
+        "artifactPaths": [
+          "validation/evidence/M02-RECT-BOUNDARY-AXIS.json"
+        ]
+      }
+    },
+    {
+      "name": "Current and pressure reconstruction",
+      "status": "PASS",
+      "evidence": "validation/evidence/M02-RECT-CURRENT-PRESSURE.json",
+      "sha256": "37f5c4f1c121c5a6502b7cf844935caa3f1d89620fc12aae1891b53f68cc0ecd",
+      "id": "M02-RECT-CURRENT-PRESSURE",
+      "detail": {
+        "checkId": "M02-RECT-CURRENT-PRESSURE",
+        "status": "PASS",
+        "testCommandOrName": "node --experimental-strip-types validation/independent/m02.mjs (M02-RECT-CURRENT-PRESSURE)",
+        "thresholds": {
+          "basisResidual": 1e-8,
+          "truncationIdentityRelative": 0.000001,
+          "fluxOrder": [
+            1.7,
+            2.3
+          ],
+          "fineFluxLinfRelative": 0.0002,
+          "fineFluxL2Relative": 0.0001,
+          "boundaryRelative": 1e-14,
+          "fineAxisErrorGridSpacings": 0.25,
+          "finePeakRelative": 0.0002,
+          "finePressurePointwiseRelative": 0.0002,
+          "fineCurrentPointwiseRelative": 2e-7,
+          "fineIntegratedCurrentRelative": 0.0001,
+          "fineMeanPressureRelative": 0.0003,
+          "shapedCurrentPressureRelative": 1e-11,
+          "shapedResidual": 1e-7,
+          "shaped65to129VolumeRelative": 0.03,
+          "shaped65to129PeakFluxRelative": 0.08,
+          "shapedAxisCoarseGridDiagonals": 2,
+          "ellipseFineVolumeRelative": 0.005,
+          "boundaryDistanceGridDiagonals": 2,
+          "ledgerRelative": 1e-12,
+          "analyticParticleDt002Relative": 0.002,
+          "timeFineDifferenceRelative": 0.01,
+          "timeObservedOrder": [
+            0.7,
+            1.3
+          ],
+          "timeRoundoffRelative": 1e-10,
+          "stabilityCoarseDifferenceRelative": 0.1
+        },
+        "measurements": {
+          "rows": [
+            {
+              "n": 33,
+              "currentDerivativeRelative": 2.047224802369819e-9,
+              "exactDerivativeError": 130.04181650356622,
+              "derivativeIdentityRelative": 2.5743535031785252e-9,
+              "currentIntegral": 1097498.9140569747,
+              "exactCurrentIntegral": 1097474.6641987201,
+              "currentIntegralRelative": 0.000022096052916421458,
+              "meanPressure": 125966.0050799753,
+              "exactMeanPressure": 126041.16817867465,
+              "meanPressureRelative": 0.0005963376870071896,
+              "pressurePointwiseRelative": 0.00004299829532404849
+            },
+            {
+              "n": 65,
+              "currentDerivativeRelative": 4.8797292877393894e-9,
+              "exactDerivativeError": 33.16743231838336,
+              "derivativeIdentityRelative": 3.452815965025602e-8,
+              "currentIntegral": 1097480.7275799282,
+              "exactCurrentIntegral": 1097474.6641987201,
+              "currentIntegralRelative": 0.000005524848459744467,
+              "meanPressure": 126022.37780509423,
+              "exactMeanPressure": 126041.16817867465,
+              "meanPressureRelative": 0.00014908123950245234,
+              "pressurePointwiseRelative": 0.000010754038421460236,
+              "exactDerivativeOrder": 1.9711363794833707
+            },
+            {
+              "n": 129,
+              "currentDerivativeRelative": 5.4094046894352515e-9,
+              "exactDerivativeError": 8.37649649870582,
+              "derivativeIdentityRelative": 9.202150871197737e-7,
+              "currentIntegral": 1097476.180101366,
+              "exactCurrentIntegral": 1097474.6641987201,
+              "currentIntegralRelative": 0.0000013812643656723718,
+              "meanPressure": 126036.47053870738,
+              "exactMeanPressure": 126041.16817867465,
+              "meanPressureRelative": 0.00003727067937526506,
+              "pressurePointwiseRelative": 0.0000026876731105902653,
+              "exactDerivativeOrder": 1.9853484665889138
+            }
+          ],
+          "quadrature": "Independent complete-domain composite trapezoid of analytic current and numerical pressure; continuum polynomial/log reference integrals; no C/D or basis averages used."
+        },
+        "sourceHash": "df49bda983a97bc14cecbf8209fab47da7b7ff4bf9d44a9a5216e43b9a02c7e6",
+        "runtimeVersion": "v24.19.0",
+        "artifactPaths": [
+          "validation/evidence/M02-RECT-CURRENT-PRESSURE.json"
+        ]
+      }
+    },
+    {
+      "name": "Shaped plasma grid refinement",
+      "status": "PASS",
+      "evidence": "validation/evidence/M02-SHAPED-CONVERGENCE.json",
+      "sha256": "0497201fccc0c6cb464bdae8a9e292de984f3d6d9a0d5dbbf7a4b9d307bbc814",
+      "id": "M02-SHAPED-CONVERGENCE",
+      "detail": {
+        "checkId": "M02-SHAPED-CONVERGENCE",
+        "status": "PASS",
+        "testCommandOrName": "node --experimental-strip-types validation/independent/m02.mjs (M02-SHAPED-CONVERGENCE)",
+        "thresholds": {
+          "basisResidual": 1e-8,
+          "truncationIdentityRelative": 0.000001,
+          "fluxOrder": [
+            1.7,
+            2.3
+          ],
+          "fineFluxLinfRelative": 0.0002,
+          "fineFluxL2Relative": 0.0001,
+          "boundaryRelative": 1e-14,
+          "fineAxisErrorGridSpacings": 0.25,
+          "finePeakRelative": 0.0002,
+          "finePressurePointwiseRelative": 0.0002,
+          "fineCurrentPointwiseRelative": 2e-7,
+          "fineIntegratedCurrentRelative": 0.0001,
+          "fineMeanPressureRelative": 0.0003,
+          "shapedCurrentPressureRelative": 1e-11,
+          "shapedResidual": 1e-7,
+          "shaped65to129VolumeRelative": 0.03,
+          "shaped65to129PeakFluxRelative": 0.08,
+          "shapedAxisCoarseGridDiagonals": 2,
+          "ellipseFineVolumeRelative": 0.005,
+          "boundaryDistanceGridDiagonals": 2,
+          "ledgerRelative": 1e-12,
+          "analyticParticleDt002Relative": 0.002,
+          "timeFineDifferenceRelative": 0.01,
+          "timeObservedOrder": [
+            0.7,
+            1.3
+          ],
+          "timeRoundoffRelative": 1e-10,
+          "stabilityCoarseDifferenceRelative": 0.1
+        },
+        "measurements": {
+          "rows": [
+            {
+              "delta": 0.35,
+              "n": 33,
+              "volume": 23.190011498938773,
+              "peakFlux": 0.1863246596940817,
+              "axisR": 1.7887,
+              "axisZ": 0,
+              "A": 318047.1658378738,
+              "B": 0.02180927781799734,
+              "current": 1199999.9999999967,
+              "meanPressure": 30000.00000000003,
+              "residual": 2.4333981987906517e-9,
+              "minF2": 11.022713906921378,
+              "extent": {
+                "R": [
+                  0.9735999999999999,
+                  2.3464
+                ],
+                "Z": [
+                  -1.1668800000000001,
+                  1.1668800000000001
+                ]
+              },
+              "diag": 0.08461202574102569,
+              "boundary": {
+                "curveToInterface": 0.03957743454323145,
+                "interfaceToCurve": 0.03331928478593543,
+                "curveIntervals": 4096,
+                "interfaceLinks": 124
+              }
+            },
+            {
+              "delta": 0.35,
+              "n": 65,
+              "volume": 23.031047567757597,
+              "peakFlux": 0.18216667351156388,
+              "axisR": 1.7887,
+              "axisZ": 0,
+              "A": 332614.64861862996,
+              "B": -0.016165119404676062,
+              "current": 1199999.99999999,
+              "meanPressure": 30000.00000000001,
+              "residual": 3.3918754139701403e-9,
+              "minF2": 11.016510507942264,
+              "extent": {
+                "R": [
+                  0.9735999999999999,
+                  2.3464
+                ],
+                "Z": [
+                  -1.1668800000000001,
+                  1.1668800000000001
+                ]
+              },
+              "diag": 0.04230601287051282,
+              "boundary": {
+                "curveToInterface": 0.019293857534093354,
+                "interfaceToCurve": 0.016005307137548715,
+                "curveIntervals": 4096,
+                "interfaceLinks": 244
+              }
+            },
+            {
+              "delta": 0.35,
+              "n": 129,
+              "volume": 23.050779653260623,
+              "peakFlux": 0.18051838775211643,
+              "axisR": 1.7887,
+              "axisZ": 0,
+              "A": 339985.45899599267,
+              "B": -0.039794138752311276,
+              "current": 1199999.9999999597,
+              "meanPressure": 29999.999999999924,
+              "residual": 4.0412299573461e-9,
+              "minF2": 11.008032852460897,
+              "extent": {
+                "R": [
+                  0.9735999999999999,
+                  2.3464
+                ],
+                "Z": [
+                  -1.1668800000000001,
+                  1.1668800000000001
+                ]
+              },
+              "diag": 0.021153006435256503,
+              "boundary": {
+                "curveToInterface": 0.010075159623299993,
+                "interfaceToCurve": 0.008195306388501217,
+                "curveIntervals": 4096,
+                "interfaceLinks": 492
+              },
+              "volumeChange": 0.0008567602252991005,
+              "fluxChange": 0.00904822889760248,
+              "axisDisplacement": 0,
+              "volumeObservedOrder": 3.0100841069644426,
+              "volumeDifferenceRatio": 8.056114046170963,
+              "peakFluxObservedOrder": 1.3349185830871244,
+              "peakFluxDifferenceRatio": 2.5226124527774294
+            },
+            {
+              "delta": 0,
+              "n": 33,
+              "volume": 24.44180527735109,
+              "peakFlux": 0.18784577604858194,
+              "axisR": 1.7887,
+              "axisZ": 0,
+              "A": 308425.78448287427,
+              "B": 0.00018187581339217064,
+              "current": 1199999.9999999986,
+              "meanPressure": 30000.000000000022,
+              "residual": 1.0118276209460754e-9,
+              "minF2": 11.022403564944302,
+              "extent": {
+                "R": [
+                  0.9735999999999999,
+                  2.3464
+                ],
+                "Z": [
+                  -1.1668800000000001,
+                  1.1668800000000001
+                ]
+              },
+              "diag": 0.08461202574102569,
+              "boundary": {
+                "curveToInterface": 0.03829413928994054,
+                "interfaceToCurve": 0.028479693788295762,
+                "curveIntervals": 4096,
+                "interfaceLinks": 124
+              }
+            },
+            {
+              "delta": 0,
+              "n": 65,
+              "volume": 24.188902752785655,
+              "peakFlux": 0.1833203353918711,
+              "axisR": 1.8101500000000001,
+              "axisZ": 0,
+              "A": 322564.3212908436,
+              "B": -0.03605612702840692,
+              "current": 1199999.999999992,
+              "meanPressure": 30000.000000000007,
+              "residual": 2.869987590160479e-9,
+              "minF2": 11.00918035740044,
+              "extent": {
+                "R": [
+                  0.9735999999999999,
+                  2.3464
+                ],
+                "Z": [
+                  -1.1668800000000001,
+                  1.1668800000000001
+                ]
+              },
+              "diag": 0.04230601287051282,
+              "boundary": {
+                "curveToInterface": 0.01889738741969767,
+                "interfaceToCurve": 0.01562948403993649,
+                "curveIntervals": 4096,
+                "interfaceLinks": 244
+              }
+            },
+            {
+              "delta": 0,
+              "n": 129,
+              "volume": 24.264365602857847,
+              "peakFlux": 0.18155682057064848,
+              "axisR": 1.7994249999999998,
+              "axisZ": 0,
+              "A": 330126.0003658419,
+              "B": -0.06437429618542445,
+              "current": 1199999.9999999888,
+              "meanPressure": 29999.999999999694,
+              "residual": 4.156990941484739e-9,
+              "minF2": 10.9990248149162,
+              "extent": {
+                "R": [
+                  0.9735999999999999,
+                  2.3464
+                ],
+                "Z": [
+                  -1.1668800000000001,
+                  1.1668800000000001
+                ]
+              },
+              "diag": 0.021153006435256503,
+              "boundary": {
+                "curveToInterface": 0.009665343467854746,
+                "interfaceToCurve": 0.00861482616744521,
+                "curveIntervals": 4096,
+                "interfaceLinks": 492
+              },
+              "volumeChange": 0.003119730185508378,
+              "fluxChange": 0.009619853779194047,
+              "axisDisplacement": 0.010725000000000318,
+              "volumeObservedOrder": 1.7447429447531897,
+              "volumeDifferenceRatio": 3.3513513513403503,
+              "peakFluxObservedOrder": 1.3596045781405766,
+              "peakFluxDifferenceRatio": 2.5661483545533468,
+              "analyticEllipseVolume": 24.264682977634376,
+              "ellipseVolumeRelative": 0.000013079700106585291
+            }
+          ],
+          "scope": "Staircase boundary distance and numerical refinement consistency. No global second-order or LCFS contour-accuracy claim."
+        },
+        "sourceHash": "df49bda983a97bc14cecbf8209fab47da7b7ff4bf9d44a9a5216e43b9a02c7e6",
+        "runtimeVersion": "v24.19.0",
+        "artifactPaths": [
+          "validation/evidence/M02-SHAPED-CONVERGENCE.json"
+        ]
+      }
+    },
+    {
+      "name": "Independent particle and energy balances",
+      "status": "PASS",
+      "evidence": "validation/evidence/M02-LEDGERS-INDEPENDENT.json",
+      "sha256": "ca3264ff19e2dbed6ecc3ee9825824cf8c2f5f6ec20652e2f3a6a198ec055a44",
+      "id": "M02-LEDGERS-INDEPENDENT",
+      "detail": {
+        "checkId": "M02-LEDGERS-INDEPENDENT",
+        "status": "PASS",
+        "testCommandOrName": "node --experimental-strip-types validation/independent/m02.mjs (M02-LEDGERS-INDEPENDENT)",
+        "thresholds": {
+          "basisResidual": 1e-8,
+          "truncationIdentityRelative": 0.000001,
+          "fluxOrder": [
+            1.7,
+            2.3
+          ],
+          "fineFluxLinfRelative": 0.0002,
+          "fineFluxL2Relative": 0.0001,
+          "boundaryRelative": 1e-14,
+          "fineAxisErrorGridSpacings": 0.25,
+          "finePeakRelative": 0.0002,
+          "finePressurePointwiseRelative": 0.0002,
+          "fineCurrentPointwiseRelative": 2e-7,
+          "fineIntegratedCurrentRelative": 0.0001,
+          "fineMeanPressureRelative": 0.0003,
+          "shapedCurrentPressureRelative": 1e-11,
+          "shapedResidual": 1e-7,
+          "shaped65to129VolumeRelative": 0.03,
+          "shaped65to129PeakFluxRelative": 0.08,
+          "shapedAxisCoarseGridDiagonals": 2,
+          "ellipseFineVolumeRelative": 0.005,
+          "boundaryDistanceGridDiagonals": 2,
+          "ledgerRelative": 1e-12,
+          "analyticParticleDt002Relative": 0.002,
+          "timeFineDifferenceRelative": 0.01,
+          "timeObservedOrder": [
+            0.7,
+            1.3
+          ],
+          "timeRoundoffRelative": 1e-10,
+          "stabilityCoarseDifferenceRelative": 0.1
+        },
+        "measurements": {
+          "rows": [
+            {
+              "case": "default",
+              "dt": 0.002,
+              "worst": {
+                "N": 1.1087118379358937e-15,
+                "We": 4.366849014465765e-16,
+                "Wi": 3.8397714389214583e-16,
+                "thermal": 5.240218817358918e-16
+              },
+              "worstTime": {
+                "N": 2,
+                "We": 0.054,
+                "Wi": 0.458,
+                "thermal": 0.15
+              },
+              "componentTotals": {
+                "sourceGas": 3.7500000000002244e+21,
+                "sourceBeam": 748981088935281800000,
+                "lossN": 3.8335071621995865e+21,
+                "Pe": 6060000,
+                "Pi": 6240000,
+                "Pohm": 1624606.706540086,
+                "Pbr": 146507.57922533184,
+                "Pion": 8171.100833399658,
+                "Q": 367148.1969213799,
+                "Le": 7198381.190138114,
+                "Li": 6668575.611363103
+              },
+              "total": {
+                "N": 665473926735709200000,
+                "We": -35601.36057813669,
+                "Wi": -61427.41444174547,
+                "thermal": -97028.77501988334
+              },
+              "stepCount": 2500
+            },
+            {
+              "case": "default",
+              "dt": 0.001,
+              "worst": {
+                "N": 2.324815791897274e-15,
+                "We": 5.240218817358918e-16,
+                "Wi": 4.366849014465765e-16,
+                "thermal": 3.493479211572612e-16
+              },
+              "worstTime": {
+                "N": 0.669,
+                "We": 0.057,
+                "Wi": 0.134,
+                "thermal": 0.157
+              },
+              "componentTotals": {
+                "sourceGas": 3.749999999999791e+21,
+                "sourceBeam": 748981088935322800000,
+                "lossN": 3.833512716858782e+21,
+                "Pe": 6060000,
+                "Pi": 6240000,
+                "Pohm": 1624364.2970714804,
+                "Pbr": 146500.57551622012,
+                "Pion": 8171.100833400525,
+                "Q": 367082.7338329773,
+                "Le": 7198209.327955267,
+                "Li": 6668503.9292526515
+              },
+              "total": {
+                "N": 665468372076504000000,
+                "We": -35599.441066372274,
+                "Wi": -61421.19541965353,
+                "thermal": -97020.63648602596
+              },
+              "stepCount": 5000
+            },
+            {
+              "case": "no-nbi",
+              "dt": 0.002,
+              "worst": {
+                "N": 1.0634378695764753e-15,
+                "We": 4.366849014465765e-16,
+                "Wi": 3.8397714389214583e-16,
+                "thermal": 5.240218817358918e-16
+              },
+              "worstTime": {
+                "N": 0.28400000000000003,
+                "We": 0.054,
+                "Wi": 0.458,
+                "thermal": 0.15
+              },
+              "componentTotals": {
+                "sourceGas": 3.7500000000002244e+21,
+                "sourceBeam": 0,
+                "lossN": 3.265518042217704e+21,
+                "Pe": 2700000,
+                "Pi": 0,
+                "Pohm": 1970246.2470933332,
+                "Pbr": 93182.23477498261,
+                "Pion": 8171.100833399658,
+                "Q": 1439389.092941295,
+                "Le": 3169688.3008188372,
+                "Li": 1503658.946910657
+              },
+              "total": {
+                "N": 484481957782287750000,
+                "We": -40184.48227517882,
+                "Wi": -64269.853969368596,
+                "thermal": -104454.336244547
+              },
+              "stepCount": 2500
+            },
+            {
+              "case": "no-nbi",
+              "dt": 0.001,
+              "worst": {
+                "N": 2.324815791897274e-15,
+                "We": 5.240218817358918e-16,
+                "Wi": 4.366849014465765e-16,
+                "thermal": 3.493479211572612e-16
+              },
+              "worstTime": {
+                "N": 0.669,
+                "We": 0.057,
+                "Wi": 0.134,
+                "thermal": 0.157
+              },
+              "componentTotals": {
+                "sourceGas": 3.749999999999791e+21,
+                "sourceBeam": 0,
+                "lossN": 3.265539778657123e+21,
+                "Pe": 2700000,
+                "Pi": 0,
+                "Pohm": 1970100.5507799801,
+                "Pbr": 93179.48898694573,
+                "Pion": 8171.100833400525,
+                "Q": 1439337.1033598182,
+                "Le": 3169597.559369052,
+                "Li": 1503605.6952019143
+              },
+              "total": {
+                "N": 484460221342887440000,
+                "We": -40184.70176921672,
+                "Wi": -64268.591842092785,
+                "thermal": -104453.29361130978
+              },
+              "stepCount": 5000
+            },
+            {
+              "case": "no-gas",
+              "dt": 0.002,
+              "worst": {
+                "N": 2.1741396444674604e-15,
+                "We": 1.3100547043397295e-16,
+                "Wi": 5.257075495256029e-16,
+                "thermal": 5.179096102396433e-16
+              },
+              "worstTime": {
+                "N": 0.61,
+                "We": 0.016,
+                "Wi": 0.526,
+                "thermal": 0.292
+              },
+              "componentTotals": {
+                "sourceGas": 0,
+                "sourceBeam": 748981088935281800000,
+                "lossN": 1.2308858042686348e+21,
+                "Pe": 6060000,
+                "Pi": 6240000,
+                "Pohm": 692386.7706985262,
+                "Pbr": 21036.90193973428,
+                "Pion": 0,
+                "Q": 137573.85225971937,
+                "Le": 6663357.511141863,
+                "Li": 6456041.631587991
+              },
+              "total": {
+                "N": -481904715333345740000,
+                "We": -69581.49464279598,
+                "Wi": -78467.77932826903,
+                "thermal": -148049.27397106463
+              },
+              "stepCount": 2500
+            },
+            {
+              "case": "no-gas",
+              "dt": 0.001,
+              "worst": {
+                "N": 1.3706532541207904e-15,
+                "We": 5.676903718805494e-16,
+                "Wi": 1.0931745885968891e-15,
+                "thermal": 5.240218817358918e-16
+              },
+              "worstTime": {
+                "N": 0.166,
+                "We": 0.07,
+                "Wi": 0.266,
+                "thermal": 0.049
+              },
+              "componentTotals": {
+                "sourceGas": 0,
+                "sourceBeam": 748981088935322800000,
+                "lossN": 1.2308398814147487e+21,
+                "Pe": 6060000,
+                "Pi": 6240000,
+                "Pohm": 692139.0813061728,
+                "Pbr": 21037.15932799902,
+                "Pion": 0,
+                "Q": 137512.67646810005,
+                "Le": 6663167.855446182,
+                "Li": 6455977.367088462
+              },
+              "total": {
+                "N": -481858792479452500000,
+                "We": -69578.60993609425,
+                "Wi": -78464.69062035989,
+                "thermal": -148043.30055645356
+              },
+              "stepCount": 5000
+            },
+            {
+              "case": "high-nbi",
+              "dt": 0.002,
+              "worst": {
+                "N": 1.0634378695764753e-15,
+                "We": 4.366849014465765e-16,
+                "Wi": 3.8397714389214583e-16,
+                "thermal": 5.240218817358918e-16
+              },
+              "worstTime": {
+                "N": 0.28400000000000003,
+                "We": 0.054,
+                "Wi": 0.458,
+                "thermal": 0.15
+              },
+              "componentTotals": {
+                "sourceGas": 3.7500000000002244e+21,
+                "sourceBeam": 1.4979621778705636e+21,
+                "lossN": 4.401496282181455e+21,
+                "Pe": 9420000,
+                "Pi": 12480000,
+                "Pohm": 1483303.9451748629,
+                "Pbr": 210736.41440055292,
+                "Pion": 8171.100833399658,
+                "Q": -366084.4403961125,
+                "Le": 11081686.641023569,
+                "Li": 12172500.212172339
+              },
+              "total": {
+                "N": 846465895689132400000,
+                "We": -31205.77068652825,
+                "Wi": -58584.65256845574,
+                "thermal": -89790.4232549831
+              },
+              "stepCount": 2500
+            },
+            {
+              "case": "high-nbi",
+              "dt": 0.001,
+              "worst": {
+                "N": 2.324815791897274e-15,
+                "We": 5.240218817358918e-16,
+                "Wi": 4.366849014465765e-16,
+                "thermal": 3.493479211572612e-16
+              },
+              "worstTime": {
+                "N": 0.669,
+                "We": 0.057,
+                "Wi": 0.134,
+                "thermal": 0.157
+              },
+              "componentTotals": {
+                "sourceGas": 3.749999999999791e+21,
+                "sourceBeam": 1.4979621778706457e+21,
+                "lossN": 4.4014856550604593e+21,
+                "Pe": 9420000,
+                "Pi": 12480000,
+                "Pohm": 1482976.8610986718,
+                "Pbr": 210723.93522979636,
+                "Pion": 8171.100833400525,
+                "Q": -366163.8884715136,
+                "Le": 11081447.059750997,
+                "Li": 12172408.646702742
+              },
+              "total": {
+                "N": 846476522810117500000,
+                "We": -31201.3462439894,
+                "Wi": -58572.5351742835,
+                "thermal": -89773.88141827274
+              },
+              "stepCount": 5000
+            },
+            {
+              "case": "high-gas",
+              "dt": 0.002,
+              "worst": {
+                "N": 2.0796118338384405e-15,
+                "We": 1.3100547043397295e-16,
+                "Wi": 3.493479211572612e-16,
+                "thermal": 4.366849014465765e-16
+              },
+              "worstTime": {
+                "N": 0.20800000000000002,
+                "We": 0.042,
+                "Wi": 0.066,
+                "thermal": 0.1
+              },
+              "componentTotals": {
+                "sourceGas": 7.500000000000449e+21,
+                "sourceBeam": 748981088935281800000,
+                "lossN": 6.436128520130519e+21,
+                "Pe": 6060000,
+                "Pi": 6240000,
+                "Pohm": 2476553.5830268874,
+                "Pbr": 357125.83001153584,
+                "Pion": 16342.201666799316,
+                "Q": 562100.5730456496,
+                "Le": 7613181.305820084,
+                "Li": 6849842.478677847
+              },
+              "total": {
+                "N": 1.8128525688047691e+21,
+                "We": -12196.327517178483,
+                "Wi": -47741.90563220046,
+                "thermal": -59938.23314937799
+              },
+              "stepCount": 2500
+            },
+            {
+              "case": "high-gas",
+              "dt": 0.001,
+              "worst": {
+                "N": 1.7960284019513804e-15,
+                "We": 2.1962692464431015e-16,
+                "Wi": 6.1135886202520705e-16,
+                "thermal": 2.840286524201687e-16
+              },
+              "worstTime": {
+                "N": 0.274,
+                "We": 0.627,
+                "Wi": 0.18,
+                "thermal": 1.596
+              },
+              "componentTotals": {
+                "sourceGas": 7.499999999999582e+21,
+                "sourceBeam": 748981088935322800000,
+                "lossN": 6.436185552302835e+21,
+                "Pe": 6060000,
+                "Pi": 6240000,
+                "Pohm": 2476319.382619893,
+                "Pbr": 357102.36125696247,
+                "Pion": 16342.20166680105,
+                "Q": 562038.407558338,
+                "Le": 7613031.181651061,
+                "Li": 6849772.80019333
+              },
+              "total": {
+                "N": 1.812795536632465e+21,
+                "We": -12194.769513258581,
+                "Wi": -47734.392634995376,
+                "thermal": -59929.16214825418
+              },
+              "stepCount": 5000
+            },
+            {
+              "case": "zero-aux-gas",
+              "dt": 0.002,
+              "worst": {
+                "N": 2.1741396444674604e-15,
+                "We": 1.3100547043397295e-16,
+                "Wi": 5.257075495256029e-16,
+                "thermal": 5.179096102396433e-16
+              },
+              "worstTime": {
+                "N": 0.61,
+                "We": 0.016,
+                "Wi": 0.526,
+                "thermal": 0.292
+              },
+              "componentTotals": {
+                "sourceGas": 0,
+                "sourceBeam": 0,
+                "lossN": 662896684286764500000,
+                "Pe": 0,
+                "Pi": 0,
+                "Pohm": 1140492.6410306662,
+                "Pbr": 6024.483536866081,
+                "Pion": 0,
+                "Q": 333653.73449917795,
+                "Le": 880479.7700860038,
+                "Li": 416069.64064595336
+              },
+              "total": {
+                "N": -662896684286764500000,
+                "We": -79665.34709138134,
+                "Wi": -82415.90614677483,
+                "thermal": -162081.25323815647
+              },
+              "stepCount": 2500
+            },
+            {
+              "case": "zero-aux-gas",
+              "dt": 0.001,
+              "worst": {
+                "N": 3.2139455613866807e-15,
+                "We": 5.676903718805494e-16,
+                "Wi": 1.0931745885968891e-15,
+                "thermal": 5.240218817358918e-16
+              },
+              "worstTime": {
+                "N": 4.251,
+                "We": 0.07,
+                "Wi": 0.266,
+                "thermal": 0.049
+              },
+              "componentTotals": {
+                "sourceGas": 0,
+                "sourceBeam": 0,
+                "lossN": 662866943213071200000,
+                "Pe": 0,
+                "Pi": 0,
+                "Pohm": 1140513.6655881787,
+                "Pbr": 6023.964635461294,
+                "Pion": 0,
+                "Q": 333668.52112175524,
+                "Le": 880484.0051484734,
+                "Li": 416083.49494063965
+              },
+              "total": {
+                "N": -662866943213071200000,
+                "We": -79662.82531751672,
+                "Wi": -82414.97381888637,
+                "thermal": -162077.79913640363
+              },
+              "stepCount": 5000
+            },
+            {
+              "case": "independent-constant-closure",
+              "dt": 0.002,
+              "worst": {
+                "N": 1.1087118379358937e-15,
+                "We": 8.168066231720949e-16,
+                "Wi": 2.275787561489786e-15,
+                "thermal": 9.364899424700089e-16
+              },
+              "worstTime": {
+                "N": 2,
+                "We": 0.624,
+                "Wi": 0.784,
+                "thermal": 0.97
+              },
+              "componentTotals": {
+                "sourceGas": 3.7500000000002244e+21,
+                "sourceBeam": 748981088935281800000,
+                "lossN": 3.8335071621995865e+21,
+                "Pe": 6060000,
+                "Pi": 6240000,
+                "Pohm": 752172.4771674743,
+                "Pbr": 160540.17600303493,
+                "Pion": 8171.100833399658,
+                "Q": 123675.79587540621,
+                "Le": 6596397.789580493,
+                "Li": 6441803.0447362345
+              },
+              "total": {
+                "N": 665473926735709200000,
+                "We": -76612.38512486023,
+                "Wi": -78127.24886082047,
+                "thermal": -154739.63398568076
+              },
+              "stepCount": 2500
+            }
+          ],
+          "handCalculatedSourceChecks": {
+            "sourceGas": 750000000000000000000,
+            "sourceBeam": 249660362978430520000,
+            "lossN": 625000000000000000000,
+            "Pe": 2020000,
+            "Pi": 2080000,
+            "Pohm": 288884.29094287584,
+            "Pbr": 24376.473676865422,
+            "Pion": 1634.2201666799997,
+            "Q": 400000,
+            "Le": 1593920.8329833953,
+            "Li": 796960.4164916977
+          },
+          "oracle": "Independent literal constants and pre-state equations; production errors, net increments, rates and closure not used."
+        },
+        "sourceHash": "df49bda983a97bc14cecbf8209fab47da7b7ff4bf9d44a9a5216e43b9a02c7e6",
+        "runtimeVersion": "v24.19.0",
+        "artifactPaths": [
+          "validation/evidence/M02-LEDGERS-INDEPENDENT.json"
+        ]
+      }
+    },
+    {
+      "name": "Deliberate balance errors detected",
+      "status": "PASS",
+      "evidence": "validation/evidence/M02-LEDGERS-NEGATIVE.json",
+      "sha256": "f17b943ed3ebd5ca5c5dc60b098a982e54e6abbbd20fa5978b99c2d0342d4d5d",
+      "id": "M02-LEDGERS-NEGATIVE",
+      "detail": {
+        "checkId": "M02-LEDGERS-NEGATIVE",
+        "status": "PASS",
+        "testCommandOrName": "node --experimental-strip-types validation/independent/m02.mjs (M02-LEDGERS-NEGATIVE)",
+        "thresholds": {
+          "basisResidual": 1e-8,
+          "truncationIdentityRelative": 0.000001,
+          "fluxOrder": [
+            1.7,
+            2.3
+          ],
+          "fineFluxLinfRelative": 0.0002,
+          "fineFluxL2Relative": 0.0001,
+          "boundaryRelative": 1e-14,
+          "fineAxisErrorGridSpacings": 0.25,
+          "finePeakRelative": 0.0002,
+          "finePressurePointwiseRelative": 0.0002,
+          "fineCurrentPointwiseRelative": 2e-7,
+          "fineIntegratedCurrentRelative": 0.0001,
+          "fineMeanPressureRelative": 0.0003,
+          "shapedCurrentPressureRelative": 1e-11,
+          "shapedResidual": 1e-7,
+          "shaped65to129VolumeRelative": 0.03,
+          "shaped65to129PeakFluxRelative": 0.08,
+          "shapedAxisCoarseGridDiagonals": 2,
+          "ellipseFineVolumeRelative": 0.005,
+          "boundaryDistanceGridDiagonals": 2,
+          "ledgerRelative": 1e-12,
+          "analyticParticleDt002Relative": 0.002,
+          "timeFineDifferenceRelative": 0.01,
+          "timeObservedOrder": [
+            0.7,
+            1.3
+          ],
+          "timeRoundoffRelative": 1e-10,
+          "stabilityCoarseDifferenceRelative": 0.1
+        },
+        "measurements": {
+          "particleMutation": {
+            "N": 0.000009999999999269294,
+            "We": 4.366849014465765e-16,
+            "Wi": 3.8397714389214583e-16,
+            "thermal": 5.240218817358918e-16
+          },
+          "speciesMutation": {
+            "N": 1.1087118379358937e-15,
+            "We": 0.00002016519938655994,
+            "Wi": 0.00003641808759398653,
+            "thermal": 5.240218817358918e-16
+          },
+          "mutantCopiesOnly": true,
+          "continuityChecksDisabledForMutation": "Ensures independent rate balance itself rejects the copies, not just adjacent-state checks."
+        },
+        "sourceHash": "df49bda983a97bc14cecbf8209fab47da7b7ff4bf9d44a9a5216e43b9a02c7e6",
+        "runtimeVersion": "v24.19.0",
+        "artifactPaths": [
+          "validation/evidence/M02-LEDGERS-NEGATIVE.json"
+        ]
+      }
+    },
+    {
+      "name": "Analytic particle evolution",
+      "status": "PASS",
+      "evidence": "validation/evidence/M02-PARTICLE-ANALYTIC.json",
+      "sha256": "57c8744260a03e73817828b7930f4d9ecbacd1d8df2d156b566196fbe78edc90",
+      "id": "M02-PARTICLE-ANALYTIC",
+      "detail": {
+        "checkId": "M02-PARTICLE-ANALYTIC",
+        "status": "PASS",
+        "testCommandOrName": "node --experimental-strip-types validation/independent/m02.mjs (M02-PARTICLE-ANALYTIC)",
+        "thresholds": {
+          "basisResidual": 1e-8,
+          "truncationIdentityRelative": 0.000001,
+          "fluxOrder": [
+            1.7,
+            2.3
+          ],
+          "fineFluxLinfRelative": 0.0002,
+          "fineFluxL2Relative": 0.0001,
+          "boundaryRelative": 1e-14,
+          "fineAxisErrorGridSpacings": 0.25,
+          "finePeakRelative": 0.0002,
+          "finePressurePointwiseRelative": 0.0002,
+          "fineCurrentPointwiseRelative": 2e-7,
+          "fineIntegratedCurrentRelative": 0.0001,
+          "fineMeanPressureRelative": 0.0003,
+          "shapedCurrentPressureRelative": 1e-11,
+          "shapedResidual": 1e-7,
+          "shaped65to129VolumeRelative": 0.03,
+          "shaped65to129PeakFluxRelative": 0.08,
+          "shapedAxisCoarseGridDiagonals": 2,
+          "ellipseFineVolumeRelative": 0.005,
+          "boundaryDistanceGridDiagonals": 2,
+          "ledgerRelative": 1e-12,
+          "analyticParticleDt002Relative": 0.002,
+          "timeFineDifferenceRelative": 0.01,
+          "timeObservedOrder": [
+            0.7,
+            1.3
+          ],
+          "timeRoundoffRelative": 1e-10,
+          "stabilityCoarseDifferenceRelative": 0.1
+        },
+        "measurements": {
+          "rows": [
+            {
+              "dt": 0.002,
+              "expected": 1.1777370947929451e+21,
+              "actual": 1.1777805707925912e+21,
+              "relative": 0.0000369148597241035
+            },
+            {
+              "dt": 0.001,
+              "expected": 1.1777370947929451e+21,
+              "actual": 1.177758834353185e+21,
+              "relative": 0.000018458754790017382
+            }
+          ],
+          "observedOrder": 0.9998964428732606
+        },
+        "sourceHash": "df49bda983a97bc14cecbf8209fab47da7b7ff4bf9d44a9a5216e43b9a02c7e6",
+        "runtimeVersion": "v24.19.0",
+        "artifactPaths": [
+          "validation/evidence/M02-PARTICLE-ANALYTIC.json"
+        ]
+      }
+    },
+    {
+      "name": "Time-step convergence",
+      "status": "PASS",
+      "evidence": "validation/evidence/M02-TIMESTEP-CONVERGENCE.json",
+      "sha256": "588990c9b6b1f2cf82d0edeb5f78bc2940bbfd260de1a5671bbc6e621b3fe904",
+      "id": "M02-TIMESTEP-CONVERGENCE",
+      "detail": {
+        "checkId": "M02-TIMESTEP-CONVERGENCE",
+        "status": "PASS",
+        "testCommandOrName": "node --experimental-strip-types validation/independent/m02.mjs (M02-TIMESTEP-CONVERGENCE)",
+        "thresholds": {
+          "basisResidual": 1e-8,
+          "truncationIdentityRelative": 0.000001,
+          "fluxOrder": [
+            1.7,
+            2.3
+          ],
+          "fineFluxLinfRelative": 0.0002,
+          "fineFluxL2Relative": 0.0001,
+          "boundaryRelative": 1e-14,
+          "fineAxisErrorGridSpacings": 0.25,
+          "finePeakRelative": 0.0002,
+          "finePressurePointwiseRelative": 0.0002,
+          "fineCurrentPointwiseRelative": 2e-7,
+          "fineIntegratedCurrentRelative": 0.0001,
+          "fineMeanPressureRelative": 0.0003,
+          "shapedCurrentPressureRelative": 1e-11,
+          "shapedResidual": 1e-7,
+          "shaped65to129VolumeRelative": 0.03,
+          "shaped65to129PeakFluxRelative": 0.08,
+          "shapedAxisCoarseGridDiagonals": 2,
+          "ellipseFineVolumeRelative": 0.005,
+          "boundaryDistanceGridDiagonals": 2,
+          "ledgerRelative": 1e-12,
+          "analyticParticleDt002Relative": 0.002,
+          "timeFineDifferenceRelative": 0.01,
+          "timeObservedOrder": [
+            0.7,
+            1.3
+          ],
+          "timeRoundoffRelative": 1e-10,
+          "stabilityCoarseDifferenceRelative": 0.1
+        },
+        "measurements": {
+          "timesteps": [
+            0.004,
+            0.002,
+            0.001,
+            0.0005
+          ],
+          "checkpoints": [
+            0.5,
+            1,
+            2,
+            2.5,
+            3,
+            4,
+            4.5,
+            5
+          ],
+          "rows": [
+            {
+              "case": "default",
+              "component": "N",
+              "differences": [
+                {
+                  "max": 0.0001589852648225034,
+                  "norm": 0.00030651394970873484
+                },
+                {
+                  "max": 0.00007943623499354504,
+                  "norm": 0.00015316364787283933
+                },
+                {
+                  "max": 0.0000397040334710164,
+                  "norm": 0.00007655851953500106
+                }
+              ],
+              "orders": [
+                1.0008788075449797,
+                1.000439089319704
+              ]
+            },
+            {
+              "case": "default",
+              "component": "We",
+              "differences": [
+                {
+                  "max": 0.0008516597846833329,
+                  "norm": 0.0008730892317291989
+                },
+                {
+                  "max": 0.0004267562907351159,
+                  "norm": 0.0004377671093839923
+                },
+                {
+                  "max": 0.00021360456161512175,
+                  "norm": 0.00021918519140580467
+                }
+              ],
+              "orders": [
+                0.9959655430977591,
+                0.9980132348458478
+              ]
+            },
+            {
+              "case": "default",
+              "component": "Wi",
+              "differences": [
+                {
+                  "max": 0.0026248236576423825,
+                  "norm": 0.003236927517185235
+                },
+                {
+                  "max": 0.0013099877461716213,
+                  "norm": 0.001624440455109788
+                },
+                {
+                  "max": 0.0006543805000038452,
+                  "norm": 0.0008137044386241633
+                }
+              ],
+              "orders": [
+                0.9946821986585495,
+                0.9973660962422615
+              ]
+            },
+            {
+              "case": "default",
+              "component": "Te",
+              "differences": [
+                {
+                  "max": 0.000892255757475673,
+                  "norm": 0.0009465773158440244
+                },
+                {
+                  "max": 0.0004470824736904803,
+                  "norm": 0.00047460557284363864
+                },
+                {
+                  "max": 0.00022377470191612374,
+                  "norm": 0.000237627972439695
+                }
+              ],
+              "orders": [
+                0.9959913083392201,
+                0.9980243674686621
+              ]
+            },
+            {
+              "case": "default",
+              "component": "Ti",
+              "differences": [
+                {
+                  "max": 0.002665347585764894,
+                  "norm": 0.0033283029982469417
+                },
+                {
+                  "max": 0.0013302959687380722,
+                  "norm": 0.0016703350074872133
+                },
+                {
+                  "max": 0.0006645461565939455,
+                  "norm": 0.0008367024548494454
+                }
+              ],
+              "orders": [
+                0.9946492948405276,
+                0.9973509100283526
+              ]
+            },
+            {
+              "case": "zero-aux-gas",
+              "component": "N",
+              "differences": [
+                {
+                  "max": 0.0019561028488431233,
+                  "norm": 0.003537899747104702
+                },
+                {
+                  "max": 0.0009773066641636946,
+                  "norm": 0.0017674399520602826
+                },
+                {
+                  "max": 0.0004884672537739925,
+                  "norm": 0.0008833428217812274
+                }
+              ],
+              "orders": [
+                1.0012319662076472,
+                1.0006158452019867
+              ]
+            },
+            {
+              "case": "zero-aux-gas",
+              "component": "We",
+              "differences": [
+                {
+                  "max": 0.0013843970498710438,
+                  "norm": 0.0024424679785417444
+                },
+                {
+                  "max": 0.0006916193514466671,
+                  "norm": 0.0012203062900838166
+                },
+                {
+                  "max": 0.0003456650139296179,
+                  "norm": 0.0006099223179674175
+                }
+              ],
+              "orders": [
+                1.001096346509069,
+                1.0005458893154406
+              ]
+            },
+            {
+              "case": "zero-aux-gas",
+              "component": "Wi",
+              "differences": [
+                {
+                  "max": 0.002086714132109136,
+                  "norm": 0.0038127151230456626
+                },
+                {
+                  "max": 0.0010501188019816827,
+                  "norm": 0.0019139793188368785
+                },
+                {
+                  "max": 0.0005291413515889904,
+                  "norm": 0.0009588910339289571
+                }
+              ],
+              "orders": [
+                0.9942434992447622,
+                0.9971364558479071
+              ]
+            },
+            {
+              "case": "zero-aux-gas",
+              "component": "Te",
+              "differences": [
+                {
+                  "max": 0.0005728263061414862,
+                  "norm": 0.0011193131387929145
+                },
+                {
+                  "max": 0.00028596678996646997,
+                  "norm": 0.0005590898239313142
+                },
+                {
+                  "max": 0.00014287202815162483,
+                  "norm": 0.0002794051565415985
+                }
+              ],
+              "orders": [
+                1.0014617091895524,
+                1.000721439973938
+              ]
+            },
+            {
+              "case": "zero-aux-gas",
+              "component": "Ti",
+              "differences": [
+                {
+                  "max": 0.001871787590169922,
+                  "norm": 0.0019576032027183565
+                },
+                {
+                  "max": 0.0009524382515567447,
+                  "norm": 0.0009945490951662292
+                },
+                {
+                  "max": 0.00048030735247626044,
+                  "norm": 0.0005011703221472371
+                }
+              ],
+              "orders": [
+                0.9769738713570901,
+                0.9887416053962167
+              ]
+            }
+          ]
+        },
+        "sourceHash": "df49bda983a97bc14cecbf8209fab47da7b7ff4bf9d44a9a5216e43b9a02c7e6",
+        "runtimeVersion": "v24.19.0",
+        "artifactPaths": [
+          "validation/evidence/M02-TIMESTEP-CONVERGENCE.json"
+        ]
+      }
+    },
+    {
+      "name": "Numerical stability and invalid-state guards",
+      "status": "PASS",
+      "evidence": "validation/evidence/M02-STABILITY-GUARDS.json",
+      "sha256": "1115f730a0a7786a33d368d868ffe49661841e88a0034c7b52dc0578e343112d",
+      "id": "M02-STABILITY-GUARDS",
+      "detail": {
+        "checkId": "M02-STABILITY-GUARDS",
+        "status": "PASS",
+        "testCommandOrName": "node --experimental-strip-types validation/independent/m02.mjs (M02-STABILITY-GUARDS)",
+        "thresholds": {
+          "basisResidual": 1e-8,
+          "truncationIdentityRelative": 0.000001,
+          "fluxOrder": [
+            1.7,
+            2.3
+          ],
+          "fineFluxLinfRelative": 0.0002,
+          "fineFluxL2Relative": 0.0001,
+          "boundaryRelative": 1e-14,
+          "fineAxisErrorGridSpacings": 0.25,
+          "finePeakRelative": 0.0002,
+          "finePressurePointwiseRelative": 0.0002,
+          "fineCurrentPointwiseRelative": 2e-7,
+          "fineIntegratedCurrentRelative": 0.0001,
+          "fineMeanPressureRelative": 0.0003,
+          "shapedCurrentPressureRelative": 1e-11,
+          "shapedResidual": 1e-7,
+          "shaped65to129VolumeRelative": 0.03,
+          "shaped65to129PeakFluxRelative": 0.08,
+          "shapedAxisCoarseGridDiagonals": 2,
+          "ellipseFineVolumeRelative": 0.005,
+          "boundaryDistanceGridDiagonals": 2,
+          "ledgerRelative": 1e-12,
+          "analyticParticleDt002Relative": 0.002,
+          "timeFineDifferenceRelative": 0.01,
+          "timeObservedOrder": [
+            0.7,
+            1.3
+          ],
+          "timeRoundoffRelative": 1e-10,
+          "stabilityCoarseDifferenceRelative": 0.1
+        },
+        "measurements": {
+          "baseline": [
+            {
+              "dt": 0.01,
+              "worst": {
+                "N": 4.490071004878451e-16,
+                "We": 1.0851102068106581e-16,
+                "Wi": 2.848056368794035e-16,
+                "thermal": 3.053233784861667e-16
+              },
+              "worstTime": {
+                "N": 0.29,
+                "We": 2.56,
+                "Wi": 0.32,
+                "thermal": 3.91
+              },
+              "componentTotals": {
+                "sourceGas": 3.7500000000000446e+21,
+                "sourceBeam": 748981088935292300000,
+                "lossN": 3.833463754668078e+21,
+                "Pe": 6060000,
+                "Pi": 6240000,
+                "Pohm": 1626649.0172540825,
+                "Pbr": 146563.9577731294,
+                "Pion": 8171.100833400027,
+                "Q": 367698.68507367646,
+                "Le": 7199831.277598542,
+                "Li": 6669173.757494786
+              },
+              "total": {
+                "N": 665517334267211200000,
+                "We": -35616.004024668655,
+                "Wi": -61475.07242110777,
+                "thermal": -97091.07644577607
+              },
+              "stepCount": 500
+            },
+            {
+              "dt": 0.005,
+              "worst": {
+                "N": 5.671668637741201e-16,
+                "We": 1.746739605786306e-16,
+                "Wi": 1.8670676040650936e-16,
+                "thermal": 3.1441737174680736e-16
+              },
+              "worstTime": {
+                "N": 0.325,
+                "We": 0.07,
+                "Wi": 0.39,
+                "thermal": 2.14
+              },
+              "componentTotals": {
+                "sourceGas": 3.750000000000055e+21,
+                "sourceBeam": 748981088935294800000,
+                "lossN": 3.833490669428667e+21,
+                "Pe": 6060000,
+                "Pi": 6240000,
+                "Pohm": 1625350.5707245336,
+                "Pbr": 146528.64749538898,
+                "Pion": 8171.100833399803,
+                "Q": 367348.91723239014,
+                "Le": 7198908.904660838,
+                "Li": 6668794.638407154
+              },
+              "total": {
+                "N": 665490419506622000000,
+                "We": -35606.99949748414,
+                "Wi": -61445.72117476442,
+                "thermal": -97052.72067224902
+              },
+              "stepCount": 1000
+            },
+            {
+              "dt": 0.002,
+              "worst": {
+                "N": 1.1087118379358937e-15,
+                "We": 4.366849014465765e-16,
+                "Wi": 3.8397714389214583e-16,
+                "thermal": 5.240218817358918e-16
+              },
+              "worstTime": {
+                "N": 2,
+                "We": 0.054,
+                "Wi": 0.458,
+                "thermal": 0.15
+              },
+              "componentTotals": {
+                "sourceGas": 3.7500000000002244e+21,
+                "sourceBeam": 748981088935281800000,
+                "lossN": 3.8335071621995865e+21,
+                "Pe": 6060000,
+                "Pi": 6240000,
+                "Pohm": 1624606.706540086,
+                "Pbr": 146507.57922533184,
+                "Pion": 8171.100833399658,
+                "Q": 367148.1969213799,
+                "Le": 7198381.190138114,
+                "Li": 6668575.611363103
+              },
+              "total": {
+                "N": 665473926735709200000,
+                "We": -35601.36057813669,
+                "Wi": -61427.41444174547,
+                "thermal": -97028.77501988334
+              },
+              "stepCount": 2500
+            },
+            {
+              "dt": 0.001,
+              "worst": {
+                "N": 2.324815791897274e-15,
+                "We": 5.240218817358918e-16,
+                "Wi": 4.366849014465765e-16,
+                "thermal": 3.493479211572612e-16
+              },
+              "worstTime": {
+                "N": 0.669,
+                "We": 0.057,
+                "Wi": 0.134,
+                "thermal": 0.157
+              },
+              "componentTotals": {
+                "sourceGas": 3.749999999999791e+21,
+                "sourceBeam": 748981088935322800000,
+                "lossN": 3.833512716858782e+21,
+                "Pe": 6060000,
+                "Pi": 6240000,
+                "Pohm": 1624364.2970714804,
+                "Pbr": 146500.57551622012,
+                "Pion": 8171.100833400525,
+                "Q": 367082.7338329773,
+                "Le": 7198209.327955267,
+                "Li": 6668503.9292526515
+              },
+              "total": {
+                "N": 665468372076504000000,
+                "We": -35599.441066372274,
+                "Wi": -61421.19541965353,
+                "thermal": -97020.63648602596
+              },
+              "stepCount": 5000
+            }
+          ],
+          "coarseRelativeDifferences": {
+            "N": 0.0007164341157356146,
+            "We": 0.003813381035909711,
+            "Wi": 0.011805306411079795
+          },
+          "invalidDtRejected": [
+            0,
+            -0.001,
+            "NaN",
+            0.010001
+          ],
+          "stiffClosureRejected": true,
+          "observerExceptionsPropagate": true,
+          "unaligned": {
+            "requestedDt": 0.003,
+            "actualDt": 0.002999400119976005,
+            "worst": {
+              "N": 2.0796118338384405e-15,
+              "We": 2.620109408679459e-16,
+              "Wi": 5.424340363653186e-16,
+              "thermal": 4.799186133329111e-16
+            },
+            "worstTime": {
+              "N": 0.40191961607678467,
+              "We": 0.07498500299940013,
+              "Wi": 0.29094181163767247,
+              "thermal": 0.18596280743851232
+            },
+            "componentTotals": {
+              "sourceGas": 3.749999999999902e+21,
+              "sourceBeam": 748831322670759700000,
+              "lossN": 3.8332282778444366e+21,
+              "Pe": 6058788.24235151,
+              "Pi": 6238752.249550075,
+              "Pohm": 1625131.1307894543,
+              "Pbr": 146495.5537451272,
+              "Pion": 8171.10083340015,
+              "Q": 367333.65910497325,
+              "Le": 7197518.863908495,
+              "Li": 6667516.310018122
+            },
+            "total": {
+              "N": 665603044826321300000,
+              "We": -35599.804451014184,
+              "Wi": -61430.4013630599,
+              "thermal": -97030.20581407553
+            },
+            "stepCount": 1667
+          },
+          "heldOut": [
+            {
+              "controls": {
+                "bt": 1,
+                "delta": -0.3
+              },
+              "worst": {
+                "N": 1.91116765074077e-15,
+                "We": 2.0470765828252483e-16,
+                "Wi": 9.697355499596197e-16,
+                "thermal": 4.852311230747344e-16
+              }
+            },
+            {
+              "controls": {
+                "ip": 2,
+                "kappa": 1.95
+              },
+              "worst": {
+                "N": 1.1173786430907912e-15,
+                "We": 4.1876962343851218e-16,
+                "Wi": 6.64425402945196e-16,
+                "thermal": 3.2833429282102046e-16
+              }
+            },
+            {
+              "controls": {
+                "nbi": 11.25,
+                "gas": 0.7
+              },
+              "worst": {
+                "N": 1.2288615381772603e-15,
+                "We": 1.3100547043397295e-16,
+                "Wi": 1.0892163428635671e-15,
+                "thermal": 3.493479211572612e-16
+              }
+            }
+          ],
+          "scope": "Numerical state validity only; no plasma stability inference."
+        },
+        "sourceHash": "df49bda983a97bc14cecbf8209fab47da7b7ff4bf9d44a9a5216e43b9a02c7e6",
+        "runtimeVersion": "v24.19.0",
+        "artifactPaths": [
+          "validation/evidence/M02-STABILITY-GUARDS.json"
+        ]
+      }
+    },
+    {
+      "name": "Existing regression tests",
+      "status": "PASS",
+      "evidence": "validation/evidence/M02-EXISTING-TESTS.json",
+      "sha256": "bf3a95d163d44c088d506a9db289a5b0bd0d4a29da25dfa1a772650ef95e5df3",
+      "id": "M02-EXISTING-TESTS",
+      "detail": {
+        "checkId": "M02-EXISTING-TESTS",
+        "status": "PASS",
+        "testCommandOrName": "node --experimental-strip-types validation/independent/m02.mjs (M02-EXISTING-TESTS)",
+        "thresholds": {
+          "basisResidual": 1e-8,
+          "truncationIdentityRelative": 0.000001,
+          "fluxOrder": [
+            1.7,
+            2.3
+          ],
+          "fineFluxLinfRelative": 0.0002,
+          "fineFluxL2Relative": 0.0001,
+          "boundaryRelative": 1e-14,
+          "fineAxisErrorGridSpacings": 0.25,
+          "finePeakRelative": 0.0002,
+          "finePressurePointwiseRelative": 0.0002,
+          "fineCurrentPointwiseRelative": 2e-7,
+          "fineIntegratedCurrentRelative": 0.0001,
+          "fineMeanPressureRelative": 0.0003,
+          "shapedCurrentPressureRelative": 1e-11,
+          "shapedResidual": 1e-7,
+          "shaped65to129VolumeRelative": 0.03,
+          "shaped65to129PeakFluxRelative": 0.08,
+          "shapedAxisCoarseGridDiagonals": 2,
+          "ellipseFineVolumeRelative": 0.005,
+          "boundaryDistanceGridDiagonals": 2,
+          "ledgerRelative": 1e-12,
+          "analyticParticleDt002Relative": 0.002,
+          "timeFineDifferenceRelative": 0.01,
+          "timeObservedOrder": [
+            0.7,
+            1.3
+          ],
+          "timeRoundoffRelative": 1e-10,
+          "stabilityCoarseDifferenceRelative": 0.1
+        },
+        "measurements": {
+          "unchangedTestSha256": "9e0d44e2e583951d475079a2dcfd9136314abac7465fe66b322fd2e4a390cccb",
+          "exitCode": 0,
+          "output": "✔ five-second shot conserves tracked particles and thermal energy (0.793167ms)\n✔ baseline equilibrium meets current, pressure, and GS equation independently (26.182542ms)\n✔ time-step refinement changes flat-top temperatures by less than 1% (3.217167ms)\n✔ particle inventory agrees with analytic constant-source solution without NBI (3.028708ms)\n✔ doubling heating raises thermal energy; gas raises density (3.7325ms)\n✔ zero heating and zero fueling are supported for formed plasma (1.463709ms)\n✔ unphysical controls and unsolvable equilibrium fail explicitly (0.261ms)\n✔ elliptical geometry volume approaches analytic torus volume (1.273875ms)\n✔ grid refinement keeps volume and peak flux within 5% (218.232666ms)\nℹ tests 9\nℹ suites 0\nℹ pass 9\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 353.886542\n"
+        },
+        "sourceHash": "df49bda983a97bc14cecbf8209fab47da7b7ff4bf9d44a9a5216e43b9a02c7e6",
+        "runtimeVersion": "v24.19.0",
+        "artifactPaths": [
+          "validation/evidence/M02-EXISTING-TESTS.json"
+        ]
+      }
+    },
+    {
+      "name": "Code consistency",
+      "status": "PASS",
+      "evidence": "validation/evidence/M02-TYPECHECK.json",
+      "sha256": "6d618c494ef5b51733895cbbd8d8d050ee435aa9549284904d27e1b3776cf7fa",
+      "id": "M02-TYPECHECK",
+      "detail": {
+        "checkId": "M02-TYPECHECK",
+        "status": "PASS",
+        "testCommandOrName": "node --experimental-strip-types validation/independent/m02.mjs (M02-TYPECHECK)",
+        "thresholds": {
+          "basisResidual": 1e-8,
+          "truncationIdentityRelative": 0.000001,
+          "fluxOrder": [
+            1.7,
+            2.3
+          ],
+          "fineFluxLinfRelative": 0.0002,
+          "fineFluxL2Relative": 0.0001,
+          "boundaryRelative": 1e-14,
+          "fineAxisErrorGridSpacings": 0.25,
+          "finePeakRelative": 0.0002,
+          "finePressurePointwiseRelative": 0.0002,
+          "fineCurrentPointwiseRelative": 2e-7,
+          "fineIntegratedCurrentRelative": 0.0001,
+          "fineMeanPressureRelative": 0.0003,
+          "shapedCurrentPressureRelative": 1e-11,
+          "shapedResidual": 1e-7,
+          "shaped65to129VolumeRelative": 0.03,
+          "shaped65to129PeakFluxRelative": 0.08,
+          "shapedAxisCoarseGridDiagonals": 2,
+          "ellipseFineVolumeRelative": 0.005,
+          "boundaryDistanceGridDiagonals": 2,
+          "ledgerRelative": 1e-12,
+          "analyticParticleDt002Relative": 0.002,
+          "timeFineDifferenceRelative": 0.01,
+          "timeObservedOrder": [
+            0.7,
+            1.3
+          ],
+          "timeRoundoffRelative": 1e-10,
+          "stabilityCoarseDifferenceRelative": 0.1
+        },
+        "measurements": {
+          "exitCode": 0,
+          "output": ""
+        },
+        "sourceHash": "df49bda983a97bc14cecbf8209fab47da7b7ff4bf9d44a9a5216e43b9a02c7e6",
+        "runtimeVersion": "v24.19.0",
+        "artifactPaths": [
+          "validation/evidence/M02-TYPECHECK.json"
+        ]
+      }
+    },
+    {
+      "name": "Application build",
+      "status": "PASS",
+      "evidence": "validation/evidence/M02-BUILD.json",
+      "sha256": "d73a96af73f2efa9123ac122376f7889af93dcc8cc50277d6fdd12dd895599b1",
+      "id": "M02-BUILD",
+      "detail": {
+        "checkId": "M02-BUILD",
+        "status": "PASS",
+        "testCommandOrName": "node --experimental-strip-types validation/independent/m02.mjs (M02-BUILD)",
+        "thresholds": {
+          "basisResidual": 1e-8,
+          "truncationIdentityRelative": 0.000001,
+          "fluxOrder": [
+            1.7,
+            2.3
+          ],
+          "fineFluxLinfRelative": 0.0002,
+          "fineFluxL2Relative": 0.0001,
+          "boundaryRelative": 1e-14,
+          "fineAxisErrorGridSpacings": 0.25,
+          "finePeakRelative": 0.0002,
+          "finePressurePointwiseRelative": 0.0002,
+          "fineCurrentPointwiseRelative": 2e-7,
+          "fineIntegratedCurrentRelative": 0.0001,
+          "fineMeanPressureRelative": 0.0003,
+          "shapedCurrentPressureRelative": 1e-11,
+          "shapedResidual": 1e-7,
+          "shaped65to129VolumeRelative": 0.03,
+          "shaped65to129PeakFluxRelative": 0.08,
+          "shapedAxisCoarseGridDiagonals": 2,
+          "ellipseFineVolumeRelative": 0.005,
+          "boundaryDistanceGridDiagonals": 2,
+          "ledgerRelative": 1e-12,
+          "analyticParticleDt002Relative": 0.002,
+          "timeFineDifferenceRelative": 0.01,
+          "timeObservedOrder": [
+            0.7,
+            1.3
+          ],
+          "timeRoundoffRelative": 1e-10,
+          "stabilityCoarseDifferenceRelative": 0.1
+        },
+        "measurements": {
+          "exitCode": 0,
+          "output": "\n  vinext build  (Vite 8.0.13)\n\n[1/5] analyze client references...\n\u001b[2K\rtransforming...✓ 226 modules transformed.\nrendering chunks...\n✓ built in 409ms\n[2/5] analyze server references...\n\u001b[2K\rtransforming...✓ 198 modules transformed.\nrendering chunks...\n✓ built in 142ms\n[3/5] build rsc environment...\n\u001b[2K\rtransforming...✓ 223 modules transformed.\nrendering chunks...\ncomputing gzip size...\n✓ built in 357ms\n[4/5] build client environment...\n\u001b[2K\rtransforming...✓ 2010 modules transformed.\nrendering chunks...\ncomputing gzip size...\n✓ built in 929ms\n[5/5] build ssr environment...\n\u001b[2K\rtransforming...✓ 205 modules transformed.\nrendering chunks...\ncomputing gzip size...\n✓ built in 280ms\n\u001b[0m\n  Route (app)\n  ┌ ? /          \n  └ ? /validation\n\n  ? Unknown\n\n  ? Some routes could not be classified. vinext currently uses static analysis\n    and cannot detect dynamic API usage (headers(), cookies(), etc.) at build time.\n    Automatic classification will be improved in a future release.\n\n  Build complete. Run `vinext start` to start the production server.\n\n"
+        },
+        "sourceHash": "df49bda983a97bc14cecbf8209fab47da7b7ff4bf9d44a9a5216e43b9a02c7e6",
+        "runtimeVersion": "v24.19.0",
+        "artifactPaths": [
+          "validation/evidence/M02-BUILD.json"
+        ]
+      }
+    },
+    {
+      "name": "Educational model and assumptions preserved",
+      "status": "PASS",
+      "evidence": "validation/evidence/M02-SCIENTIFIC-SCOPE.json",
+      "sha256": "2714b7ba89086c7b5d345f26124a23b1349bcf193cb5519c604b8ce0d024c4da",
+      "id": "M02-SCIENTIFIC-SCOPE",
+      "detail": {
+        "checkId": "M02-SCIENTIFIC-SCOPE",
+        "status": "PASS",
+        "testCommandOrName": "node --experimental-strip-types validation/independent/m02.mjs (M02-SCIENTIFIC-SCOPE)",
+        "thresholds": {
+          "basisResidual": 1e-8,
+          "truncationIdentityRelative": 0.000001,
+          "fluxOrder": [
+            1.7,
+            2.3
+          ],
+          "fineFluxLinfRelative": 0.0002,
+          "fineFluxL2Relative": 0.0001,
+          "boundaryRelative": 1e-14,
+          "fineAxisErrorGridSpacings": 0.25,
+          "finePeakRelative": 0.0002,
+          "finePressurePointwiseRelative": 0.0002,
+          "fineCurrentPointwiseRelative": 2e-7,
+          "fineIntegratedCurrentRelative": 0.0001,
+          "fineMeanPressureRelative": 0.0003,
+          "shapedCurrentPressureRelative": 1e-11,
+          "shapedResidual": 1e-7,
+          "shaped65to129VolumeRelative": 0.03,
+          "shaped65to129PeakFluxRelative": 0.08,
+          "shapedAxisCoarseGridDiagonals": 2,
+          "ellipseFineVolumeRelative": 0.005,
+          "boundaryDistanceGridDiagonals": 2,
+          "ledgerRelative": 1e-12,
+          "analyticParticleDt002Relative": 0.002,
+          "timeFineDifferenceRelative": 0.01,
+          "timeObservedOrder": [
+            0.7,
+            1.3
+          ],
+          "timeRoundoffRelative": 1e-10,
+          "stabilityCoarseDifferenceRelative": 0.1
+        },
+        "measurements": {
+          "scienceFiles": [
+            {
+              "file": "science/assumptions.yaml",
+              "sha256": "685a131eae99f02adb4c90d3f249010277342316d572ac3bec94ee0874805e53"
+            },
+            {
+              "file": "science/constants.json",
+              "sha256": "d081ad0cedb07092f59c78e024db1952ea3d04308e77c41057d4f5625e3d8888"
+            },
+            {
+              "file": "science/models.json",
+              "sha256": "0114a41a9358d4d4b6253e2b3e046709e164c7d44cbde577bae20642b332dfa2"
+            },
+            {
+              "file": "science/equations.md",
+              "sha256": "aff433e44714c9fe45e4845f97921845795cfe095a19b9ca30dc073c85fb7496"
+            }
+          ],
+          "physicsModelVersion": "0.1.0",
+          "exportSchema": 1,
+          "sourceReview": "Engine diff limited to optional inactive-node boundaries and immutable observer. Existing numerical update, SOR arithmetic, closure, waveform, constants and default output unchanged.",
+          "limitations": [
+            "Analytic rectangle is a verification domain, not a new LCFS.",
+            "Shaped-mask study does not establish global second-order boundary accuracy.",
+            "Independent ledgers establish discrete thermal/particle equation consistency, not whole-machine or experimental accuracy.",
+            "Numerical state-validity checks do not establish MHD stability, disruption prediction or facility operating safety.",
+            "Fine-grid quartic identity is cancellation-sensitive in double precision (about 9.20e-7 relative against the 1e-6 gate); endpoint construction and runtime are recorded."
+          ]
+        },
+        "sourceHash": "df49bda983a97bc14cecbf8209fab47da7b7ff4bf9d44a9a5216e43b9a02c7e6",
+        "runtimeVersion": "v24.19.0",
+        "artifactPaths": [
+          "validation/evidence/M02-SCIENTIFIC-SCOPE.json"
+        ]
+      }
+    }
+  ],
+  "gridConvergence": [
+    {
+      "n": 33,
+      "Linf": 0.00004299829532417032,
+      "L2": 0.000024916561147173287,
+      "basisResidual": 3.981144672766674e-9,
+      "iterations": 360
+    },
+    {
+      "n": 65,
+      "Linf": 0.000010754038421545431,
+      "L2": 0.000006133084098432566,
+      "basisResidual": 8.745187494399263e-9,
+      "iterations": 1460,
+      "orderLinf": 1.9994009338900876,
+      "orderL2": 2.022420330079368
+    },
+    {
+      "n": 129,
+      "Linf": 0.0000026876731106240115,
+      "L2": 0.000001520812864718088,
+      "basisResidual": 9.335485463401585e-9,
+      "iterations": 5880,
+      "orderLinf": 2.000448945625122,
+      "orderL2": 2.011770092659294
+    }
+  ],
+  "limitations": [
+    "Numerical verification of unchanged educational M01 model; no experimental validation.",
+    "Analytic rectangular boundary is not an LCFS or hardware geometry.",
+    "Shaped staircase refinement has no global second-order accuracy claim.",
+    "Balances cover tracked particles and thermal energies only.",
+    "Stability means tested numerical state validity, not plasma MHD stability.",
+    "Fine-grid quartic stencil identity is cancellation-sensitive in double precision: about 9.20e-7 relative against the locked 1e-6 limit; endpoint construction and runtime are recorded."
+  ],
+  "errors": []
+}

@@ -2,7 +2,7 @@
 
 Your simulator project is saved in the **DIII-D-Simulator** folder on your Desktop.
 
-You can also double-click **Open Hosted Simulator.webloc** for the private hosted version.
+Use **Launch Simulator.command** for the current Desktop development version. **Open Hosted Simulator.webloc** opens the separately published version, which may be older; this phase updates your local Desktop project.
 
 1. Open `Launch Simulator.command` to start the local simulator. Keep the Terminal window open.
 2. Use the sliders to set current, field, heating, fueling, elongation, and triangularity.
@@ -33,3 +33,11 @@ All of these live inside **Desktop → DIII-D-Simulator**. The development agent
 ## Reasoning level
 
 Use **GPT-6 Astra / Medium** for infrastructure, routine implementation and test execution. Consider **High** when deriving or revising physics, investigating unexplained convergence or conservation failures, comparing experimental equilibria, or designing radial transport. A higher setting is not a substitute for independent evidence or acceptance gates. The Director should flag the need before changing the requested setting.
+
+## Open the verification dashboard
+
+After starting **Launch Simulator.command**, click **Physics validation** in the simulator header, or double-click **Open Local Validation.webloc**. The dashboard displays a saved validation snapshot and links to its full report. It does not run development agents from the website.
+
+## Current status
+
+Milestone 02 is accepted. Read **MILESTONE-02-RESULTS.md** for the results, evidence and reasoning-level recommendation. Milestone 03 has not started.

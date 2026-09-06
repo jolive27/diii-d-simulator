@@ -1,0 +1,89 @@
+{
+  "checkId": "M02-RECT-CURRENT-PRESSURE",
+  "status": "PASS",
+  "testCommandOrName": "node --experimental-strip-types validation/independent/m02.mjs (M02-RECT-CURRENT-PRESSURE)",
+  "thresholds": {
+    "basisResidual": 1e-8,
+    "truncationIdentityRelative": 0.000001,
+    "fluxOrder": [
+      1.7,
+      2.3
+    ],
+    "fineFluxLinfRelative": 0.0002,
+    "fineFluxL2Relative": 0.0001,
+    "boundaryRelative": 1e-14,
+    "fineAxisErrorGridSpacings": 0.25,
+    "finePeakRelative": 0.0002,
+    "finePressurePointwiseRelative": 0.0002,
+    "fineCurrentPointwiseRelative": 2e-7,
+    "fineIntegratedCurrentRelative": 0.0001,
+    "fineMeanPressureRelative": 0.0003,
+    "shapedCurrentPressureRelative": 1e-11,
+    "shapedResidual": 1e-7,
+    "shaped65to129VolumeRelative": 0.03,
+    "shaped65to129PeakFluxRelative": 0.08,
+    "shapedAxisCoarseGridDiagonals": 2,
+    "ellipseFineVolumeRelative": 0.005,
+    "boundaryDistanceGridDiagonals": 2,
+    "ledgerRelative": 1e-12,
+    "analyticParticleDt002Relative": 0.002,
+    "timeFineDifferenceRelative": 0.01,
+    "timeObservedOrder": [
+      0.7,
+      1.3
+    ],
+    "timeRoundoffRelative": 1e-10,
+    "stabilityCoarseDifferenceRelative": 0.1
+  },
+  "measurements": {
+    "rows": [
+      {
+        "n": 33,
+        "currentDerivativeRelative": 2.047224802369819e-9,
+        "exactDerivativeError": 130.04181650356622,
+        "derivativeIdentityRelative": 2.5743535031785252e-9,
+        "currentIntegral": 1097498.9140569747,
+        "exactCurrentIntegral": 1097474.6641987201,
+        "currentIntegralRelative": 0.000022096052916421458,
+        "meanPressure": 125966.0050799753,
+        "exactMeanPressure": 126041.16817867465,
+        "meanPressureRelative": 0.0005963376870071896,
+        "pressurePointwiseRelative": 0.00004299829532404849
+      },
+      {
+        "n": 65,
+        "currentDerivativeRelative": 4.8797292877393894e-9,
+        "exactDerivativeError": 33.16743231838336,
+        "derivativeIdentityRelative": 3.452815965025602e-8,
+        "currentIntegral": 1097480.7275799282,
+        "exactCurrentIntegral": 1097474.6641987201,
+        "currentIntegralRelative": 0.000005524848459744467,
+        "meanPressure": 126022.37780509423,
+        "exactMeanPressure": 126041.16817867465,
+        "meanPressureRelative": 0.00014908123950245234,
+        "pressurePointwiseRelative": 0.000010754038421460236,
+        "exactDerivativeOrder": 1.9711363794833707
+      },
+      {
+        "n": 129,
+        "currentDerivativeRelative": 5.4094046894352515e-9,
+        "exactDerivativeError": 8.37649649870582,
+        "derivativeIdentityRelative": 9.202150871197737e-7,
+        "currentIntegral": 1097476.180101366,
+        "exactCurrentIntegral": 1097474.6641987201,
+        "currentIntegralRelative": 0.0000013812643656723718,
+        "meanPressure": 126036.47053870738,
+        "exactMeanPressure": 126041.16817867465,
+        "meanPressureRelative": 0.00003727067937526506,
+        "pressurePointwiseRelative": 0.0000026876731105902653,
+        "exactDerivativeOrder": 1.9853484665889138
+      }
+    ],
+    "quadrature": "Independent complete-domain composite trapezoid of analytic current and numerical pressure; continuum polynomial/log reference integrals; no C/D or basis averages used."
+  },
+  "sourceHash": "df49bda983a97bc14cecbf8209fab47da7b7ff4bf9d44a9a5216e43b9a02c7e6",
+  "runtimeVersion": "v24.19.0",
+  "artifactPaths": [
+    "validation/evidence/M02-RECT-CURRENT-PRESSURE.json"
+  ]
+}

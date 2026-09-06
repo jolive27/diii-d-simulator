@@ -1,0 +1,72 @@
+{
+  "checkId": "M02-RECT-FLUX",
+  "status": "PASS",
+  "testCommandOrName": "node --experimental-strip-types validation/independent/m02.mjs (M02-RECT-FLUX)",
+  "thresholds": {
+    "basisResidual": 1e-8,
+    "truncationIdentityRelative": 0.000001,
+    "fluxOrder": [
+      1.7,
+      2.3
+    ],
+    "fineFluxLinfRelative": 0.0002,
+    "fineFluxL2Relative": 0.0001,
+    "boundaryRelative": 1e-14,
+    "fineAxisErrorGridSpacings": 0.25,
+    "finePeakRelative": 0.0002,
+    "finePressurePointwiseRelative": 0.0002,
+    "fineCurrentPointwiseRelative": 2e-7,
+    "fineIntegratedCurrentRelative": 0.0001,
+    "fineMeanPressureRelative": 0.0003,
+    "shapedCurrentPressureRelative": 1e-11,
+    "shapedResidual": 1e-7,
+    "shaped65to129VolumeRelative": 0.03,
+    "shaped65to129PeakFluxRelative": 0.08,
+    "shapedAxisCoarseGridDiagonals": 2,
+    "ellipseFineVolumeRelative": 0.005,
+    "boundaryDistanceGridDiagonals": 2,
+    "ledgerRelative": 1e-12,
+    "analyticParticleDt002Relative": 0.002,
+    "timeFineDifferenceRelative": 0.01,
+    "timeObservedOrder": [
+      0.7,
+      1.3
+    ],
+    "timeRoundoffRelative": 1e-10,
+    "stabilityCoarseDifferenceRelative": 0.1
+  },
+  "measurements": {
+    "gridConvergence": [
+      {
+        "n": 33,
+        "Linf": 0.00004299829532417032,
+        "L2": 0.000024916561147173287,
+        "basisResidual": 3.981144672766674e-9,
+        "iterations": 360
+      },
+      {
+        "n": 65,
+        "Linf": 0.000010754038421545431,
+        "L2": 0.000006133084098432566,
+        "basisResidual": 8.745187494399263e-9,
+        "iterations": 1460,
+        "orderLinf": 1.9994009338900876,
+        "orderL2": 2.022420330079368
+      },
+      {
+        "n": 129,
+        "Linf": 0.0000026876731106240115,
+        "L2": 0.000001520812864718088,
+        "basisResidual": 9.335485463401585e-9,
+        "iterations": 5880,
+        "orderLinf": 2.000448945625122,
+        "orderL2": 2.011770092659294
+      }
+    ]
+  },
+  "sourceHash": "df49bda983a97bc14cecbf8209fab47da7b7ff4bf9d44a9a5216e43b9a02c7e6",
+  "runtimeVersion": "v24.19.0",
+  "artifactPaths": [
+    "validation/evidence/M02-RECT-FLUX.json"
+  ]
+}
