@@ -65,7 +65,7 @@
     "source": "https://arxiv.org/pdf/1906.05534",
     "sourceRead": "Independent reviewer read v1 equations 10-12 and static-limit construction; SI signs differentiated independently."
   },
-  "sourceHash": "df49bda983a97bc14cecbf8209fab47da7b7ff4bf9d44a9a5216e43b9a02c7e6",
+  "sourceHash": "d6005863c79912d3c00a727a735fe66dc88d36fbe42e9bd47cf41d655c1b72f8",
   "runtimeVersion": "v24.19.0",
   "artifactPaths": [
     "validation/evidence/M02-ANALYTIC-IDENTITY.json"

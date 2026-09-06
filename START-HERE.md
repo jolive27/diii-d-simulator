@@ -41,3 +41,7 @@ After starting **Launch Simulator.command**, click **Physics validation** in the
 ## Current status
 
 Milestone 02 is accepted. Read **MILESTONE-02-RESULTS.md** for the results, evidence and reasoning-level recommendation. Milestone 03 has not started.
+
+## Requirements for future physics
+
+Read **science/NEW-PHYSICS-REQUIREMENTS.md** for the mandatory verification, experimental validation, uncertainty, validity-domain and reference-comparison package. The report dashboard now groups checks and shows the main numerical results first; technical evidence remains expandable.

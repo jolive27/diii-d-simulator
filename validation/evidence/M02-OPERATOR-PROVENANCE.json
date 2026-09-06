@@ -42,7 +42,7 @@
     "sourceSha256": "ccdfd56ef87ded796d6e55a555cb0a76f6d3288edcc96c05af997175596a4a93",
     "note": "Source inspected: same SOR sweep and residual loop; only inactive-node initialization differs. Exact old arrays and iteration count checked by regression."
   },
-  "sourceHash": "df49bda983a97bc14cecbf8209fab47da7b7ff4bf9d44a9a5216e43b9a02c7e6",
+  "sourceHash": "d6005863c79912d3c00a727a735fe66dc88d36fbe42e9bd47cf41d655c1b72f8",
   "runtimeVersion": "v24.19.0",
   "artifactPaths": [
     "validation/evidence/M02-OPERATOR-PROVENANCE.json"

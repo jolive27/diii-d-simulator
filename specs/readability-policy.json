@@ -1,0 +1,7 @@
+{
+ "id":"readability-policy",
+ "physicsCapabilityChange":false,
+ "noPhysicsChangeRationale":"Adds future-capability governance and improves presentation of existing recorded dashboard evidence; no governing equations, closures, numerical solver, controls, constants, uncertainty estimates, physical claims or model parameters are changed.",
+ "requiredChecks":["CAPABILITY-POLICY","DASHBOARD-READABILITY","CURRENT-M02-VALIDATION"],
+ "scope":"User-requested mandatory five-element evidence packages and a more readable local report dashboard. Existing M02 specification exemption is bound to its exact historical approved hash. No M03 implementation is authorized."
+}

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "effectiveFrom": "2026-09-06",
+  "scope": "All new physics capabilities; historical accepted specifications are exempt only by exact hash. No new physics is implemented by this policy.",
+  "legacySpecHashes": {
+    "infrastructure": "58e8ca3af1f0697b4f930a9610d247c1ca6a47725e0647f278e9ee270f62f09f",
+    "m02": "277885d3cd4468dbbcf532a2d3b48642ed5779a639f04bff94a0e826f6b819a7"
+  },
+  "requiredElements": [
+    "verification",
+    "experimentalValidationPlan",
+    "uncertaintyModel",
+    "domainOfValidity",
+    "referenceComparison"
+  ],
+  "reviewAuthority": "director",
+  "referenceException": "Where no established implementation is identified, record search scope, sources, date and scientific rationale for Director review. Missing data or access does not equal nonexistent reference.",
+  "legacyApprovedSpecHashes": [
+    "58e8ca3af1f0697b4f930a9610d247c1ca6a47725e0647f278e9ee270f62f09f",
+    "277885d3cd4468dbbcf532a2d3b48642ed5779a639f04bff94a0e826f6b819a7"
+  ]
+}

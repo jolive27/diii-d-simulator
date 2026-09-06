@@ -1,0 +1,33 @@
+{
+  "name": "DASHBOARD-READABILITY",
+  "status": "PASS",
+  "sourceFingerprint": "d6005863c79912d3c00a727a735fe66dc88d36fbe42e9bd47cf41d655c1b72f8",
+  "runtimeVersion": "v24.19.0",
+  "measurements": {
+    "sourceSha256": "48684ae913024096809d20d831d6a3aff7b384b229675ed653a381dc4466b2c3",
+    "stylesheetSha256": "099c632563524f22259eb69dfed284ef41ca37441eb0473d56d95ae26e97fbf1",
+    "renderedStateTests": [
+      "saved evidence numeric percentages",
+      "all three readable check groups",
+      "complete supporting evidence disclosures",
+      "accepted",
+      "rejected decision",
+      "missing report",
+      "loading",
+      "network error",
+      "failed check filtering",
+      "inconclusive filtering",
+      "zero attention",
+      "missing metrics"
+    ],
+    "physicsHashes": {
+      "physics/engine.ts": "ccdfd56ef87ded796d6e55a555cb0a76f6d3288edcc96c05af997175596a4a93",
+      "physics/api.ts": "f16f8632894ece031b4ea61bd755d506b017a208e62da7cd0d44c3bf5d9951d4",
+      "physics/verification.ts": "fe4ecb05860308974d76ac8a989e56cca6eba92b70a22ca72c4a103b3756bc39"
+    },
+    "limitations": [
+      "React static render verifies content and branching, not browser layout or interaction. No browser QA performed.",
+      "Snapshot evidence is explicitly identified; displayed metrics are derived from recorded fields without invented values."
+    ]
+  }
+}

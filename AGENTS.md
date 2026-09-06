@@ -4,3 +4,7 @@ Infrastructure must be accepted before M02 physics work. M02 must pass before M0
 Physics owns specs/proposals; Software owns approved implementation; Validation owns independent evidence; Director owns approval/decision files. No silent assumption or constant changes. Use specs/change-requests with reason, old/new values, model version and Director approval.
 Native collaboration agents share a filesystem: path restrictions are instructions and acceptance checks, not an OS security sandbox. For stronger execution separation use tools/dispatch-agent.mjs, which runs a separate workspace and refuses out-of-role changed files before import. Only Director imports reviewed changes and runs approve/accept; local scripts do not authenticate a hostile same-user process.
 No LLM calls or agent orchestration inside the web app. The app displays numerical simulation and evidence only.
+
+## Mandatory requirements for new physics
+
+Every new physics capability requires a verification test, experimental validation plan, uncertainty model, documented domain of validity, and comparison pathway against at least one established reference implementation where available. Follow science/NEW-PHYSICS-REQUIREMENTS.md and science/capability-policy.json. Explicitly classify future specs with physicsCapabilityChange; approved artifact hashes and independent scientific review are mandatory. Plans do not justify claims of completed validation. No reference identified requires a documented search/rationale, not omission.

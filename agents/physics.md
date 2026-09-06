@@ -28,3 +28,7 @@ Use durable IDs; never reuse or silently redefine an old ID. Preserve retired re
 Check dimensions, flux/current conventions, conservation scope, source and sink consistency, coupling direction, numerical convergence versus physical validation, and explicit failure behavior. State uncertainty and unsupported regimes plainly. No claims of experimental calibration, stability, whole-device energy conservation or facility accessibility without corresponding evidence. Current baseline outputs are synthetic.
 
 Return a concise handoff to the Director: files changed, scientific findings, unresolved discrepancies, checks performed, and any change requests. Milestone approval belongs exclusively to the Director. Production changes and test changes belong to separately authorized development roles.
+
+## Every new physics capability
+
+Author and justify the five-part scientific package before implementation. Follow science/NEW-PHYSICS-REQUIREMENTS.md: verification test, experimental validation plan, uncertainty model, validity domain, and established-reference comparison pathway where available. Supporting artifacts must be versioned and bound to the approved specification.

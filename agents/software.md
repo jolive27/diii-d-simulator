@@ -13,3 +13,7 @@ Own `physics/api.ts`, `tests/api.test.mjs`, `docs/API.md`, and this role documen
 ## Working contract
 
 Keep the callable API deterministic and free of browser, network, and filesystem side effects. Validate configuration boundaries, preserve engine errors, document units and limitations, and test exact baseline equivalence. Include the commands and outcomes of checks in the handoff. Once the assignment is complete, wait for the Director's next assignment.
+
+## Every new physics capability
+
+Implement the approved capability and its verification tests; do not omit or silently alter the scientific package. Follow science/NEW-PHYSICS-REQUIREMENTS.md: verification test, experimental validation plan, uncertainty model, validity domain, and established-reference comparison pathway where available. Supporting artifacts must be versioned and bound to the approved specification.

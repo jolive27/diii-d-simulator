@@ -1,16 +1,16 @@
 {
   "status": "PASS",
-  "generatedAt": "2026-09-06T18:16:56.229Z",
+  "generatedAt": "2026-09-06T18:25:04.071Z",
   "modelVersion": "0.1.0",
   "verificationVersion": "0.2.0",
-  "sourceFingerprint": "df49bda983a97bc14cecbf8209fab47da7b7ff4bf9d44a9a5216e43b9a02c7e6",
+  "sourceFingerprint": "d6005863c79912d3c00a727a735fe66dc88d36fbe42e9bd47cf41d655c1b72f8",
   "directorDecision": "ACCEPTED",
   "checks": [
     {
       "name": "Milestone 01 preserved exactly",
       "status": "PASS",
       "evidence": "validation/evidence/M02-REGRESSION-EXACT.json",
-      "sha256": "7f7d36acbdaf3863bda336ea06e8b27dc7f13e411d29b1023bd587214946ec68",
+      "sha256": "5d725542d513f82f2a0c956f6268dd03e567f2d1f67e378f925836dd221ee275",
       "id": "M02-REGRESSION-EXACT",
       "detail": {
         "checkId": "M02-REGRESSION-EXACT",
@@ -85,7 +85,7 @@
             }
           ]
         },
-        "sourceHash": "df49bda983a97bc14cecbf8209fab47da7b7ff4bf9d44a9a5216e43b9a02c7e6",
+        "sourceHash": "d6005863c79912d3c00a727a735fe66dc88d36fbe42e9bd47cf41d655c1b72f8",
         "runtimeVersion": "v24.19.0",
         "artifactPaths": [
           "validation/evidence/M02-REGRESSION-EXACT.json"
@@ -96,7 +96,7 @@
       "name": "Shared production solver",
       "status": "PASS",
       "evidence": "validation/evidence/M02-OPERATOR-PROVENANCE.json",
-      "sha256": "dbdb8765b9c0b1eb9124fda3947700c5c226e2caa0a4d883b74cc9b9ff12d0ab",
+      "sha256": "e14bfc09ac1417a8aff9ffc6535127f7c337ea6d17152ca8172399c85ccee559",
       "id": "M02-OPERATOR-PROVENANCE",
       "detail": {
         "checkId": "M02-OPERATOR-PROVENANCE",
@@ -142,7 +142,7 @@
           "sourceSha256": "ccdfd56ef87ded796d6e55a555cb0a76f6d3288edcc96c05af997175596a4a93",
           "note": "Source inspected: same SOR sweep and residual loop; only inactive-node initialization differs. Exact old arrays and iteration count checked by regression."
         },
-        "sourceHash": "df49bda983a97bc14cecbf8209fab47da7b7ff4bf9d44a9a5216e43b9a02c7e6",
+        "sourceHash": "d6005863c79912d3c00a727a735fe66dc88d36fbe42e9bd47cf41d655c1b72f8",
         "runtimeVersion": "v24.19.0",
         "artifactPaths": [
           "validation/evidence/M02-OPERATOR-PROVENANCE.json"
@@ -153,7 +153,7 @@
       "name": "Solov’ev equation and discretization",
       "status": "PASS",
       "evidence": "validation/evidence/M02-ANALYTIC-IDENTITY.json",
-      "sha256": "123b8f8d359a5c67ab86df591d0c9720ed2008be7dbc2feb07d1e35986aab067",
+      "sha256": "3ae6be59dc00667a700a235cc518a881e2db8c250b7174d23f18ac44ad1af440",
       "id": "M02-ANALYTIC-IDENTITY",
       "detail": {
         "checkId": "M02-ANALYTIC-IDENTITY",
@@ -222,7 +222,7 @@
           "source": "https://arxiv.org/pdf/1906.05534",
           "sourceRead": "Independent reviewer read v1 equations 10-12 and static-limit construction; SI signs differentiated independently."
         },
-        "sourceHash": "df49bda983a97bc14cecbf8209fab47da7b7ff4bf9d44a9a5216e43b9a02c7e6",
+        "sourceHash": "d6005863c79912d3c00a727a735fe66dc88d36fbe42e9bd47cf41d655c1b72f8",
         "runtimeVersion": "v24.19.0",
         "artifactPaths": [
           "validation/evidence/M02-ANALYTIC-IDENTITY.json"
@@ -233,7 +233,7 @@
       "name": "Analytic flux accuracy and convergence",
       "status": "PASS",
       "evidence": "validation/evidence/M02-RECT-FLUX.json",
-      "sha256": "364916c17293d4213b3e1c30ba7065c23aa369af72efc80937c686e063c62d3f",
+      "sha256": "f462c41d8010f92adf937170d97ff7acde7a99f774c4e895dc5aad20dce0abd5",
       "id": "M02-RECT-FLUX",
       "detail": {
         "checkId": "M02-RECT-FLUX",
@@ -301,7 +301,7 @@
             }
           ]
         },
-        "sourceHash": "df49bda983a97bc14cecbf8209fab47da7b7ff4bf9d44a9a5216e43b9a02c7e6",
+        "sourceHash": "d6005863c79912d3c00a727a735fe66dc88d36fbe42e9bd47cf41d655c1b72f8",
         "runtimeVersion": "v24.19.0",
         "artifactPaths": [
           "validation/evidence/M02-RECT-FLUX.json"
@@ -312,7 +312,7 @@
       "name": "Boundary and magnetic axis",
       "status": "PASS",
       "evidence": "validation/evidence/M02-RECT-BOUNDARY-AXIS.json",
-      "sha256": "e9d8a35abd3a7224203ea03aa98e9f0f5b29700782261db5587e6bcbfe2e2ad3",
+      "sha256": "57e6d75eeb11fdb810b9560c35a13a28284eed02d541caa6f7939159ec6bcd86",
       "id": "M02-RECT-BOUNDARY-AXIS",
       "detail": {
         "checkId": "M02-RECT-BOUNDARY-AXIS",
@@ -397,7 +397,7 @@
             }
           ]
         },
-        "sourceHash": "df49bda983a97bc14cecbf8209fab47da7b7ff4bf9d44a9a5216e43b9a02c7e6",
+        "sourceHash": "d6005863c79912d3c00a727a735fe66dc88d36fbe42e9bd47cf41d655c1b72f8",
         "runtimeVersion": "v24.19.0",
         "artifactPaths": [
           "validation/evidence/M02-RECT-BOUNDARY-AXIS.json"
@@ -408,7 +408,7 @@
       "name": "Current and pressure reconstruction",
       "status": "PASS",
       "evidence": "validation/evidence/M02-RECT-CURRENT-PRESSURE.json",
-      "sha256": "37f5c4f1c121c5a6502b7cf844935caa3f1d89620fc12aae1891b53f68cc0ecd",
+      "sha256": "492bbdf3e5ef26f23e765399b6e7ab459f1aee4ff389c6b30a9c64b5a8043456",
       "id": "M02-RECT-CURRENT-PRESSURE",
       "detail": {
         "checkId": "M02-RECT-CURRENT-PRESSURE",
@@ -493,7 +493,7 @@
           ],
           "quadrature": "Independent complete-domain composite trapezoid of analytic current and numerical pressure; continuum polynomial/log reference integrals; no C/D or basis averages used."
         },
-        "sourceHash": "df49bda983a97bc14cecbf8209fab47da7b7ff4bf9d44a9a5216e43b9a02c7e6",
+        "sourceHash": "d6005863c79912d3c00a727a735fe66dc88d36fbe42e9bd47cf41d655c1b72f8",
         "runtimeVersion": "v24.19.0",
         "artifactPaths": [
           "validation/evidence/M02-RECT-CURRENT-PRESSURE.json"
@@ -504,7 +504,7 @@
       "name": "Shaped plasma grid refinement",
       "status": "PASS",
       "evidence": "validation/evidence/M02-SHAPED-CONVERGENCE.json",
-      "sha256": "0497201fccc0c6cb464bdae8a9e292de984f3d6d9a0d5dbbf7a4b9d307bbc814",
+      "sha256": "ec3af494fd012c8e6279d67192452f470348c51caa89d2f2f51b7487bbc85090",
       "id": "M02-SHAPED-CONVERGENCE",
       "detail": {
         "checkId": "M02-SHAPED-CONVERGENCE",
@@ -750,7 +750,7 @@
           ],
           "scope": "Staircase boundary distance and numerical refinement consistency. No global second-order or LCFS contour-accuracy claim."
         },
-        "sourceHash": "df49bda983a97bc14cecbf8209fab47da7b7ff4bf9d44a9a5216e43b9a02c7e6",
+        "sourceHash": "d6005863c79912d3c00a727a735fe66dc88d36fbe42e9bd47cf41d655c1b72f8",
         "runtimeVersion": "v24.19.0",
         "artifactPaths": [
           "validation/evidence/M02-SHAPED-CONVERGENCE.json"
@@ -761,7 +761,7 @@
       "name": "Independent particle and energy balances",
       "status": "PASS",
       "evidence": "validation/evidence/M02-LEDGERS-INDEPENDENT.json",
-      "sha256": "ca3264ff19e2dbed6ecc3ee9825824cf8c2f5f6ec20652e2f3a6a198ec055a44",
+      "sha256": "33441e4193903eb89ae3e8d672444561d6f0bc257b06154396cacc5ed5aae606",
       "id": "M02-LEDGERS-INDEPENDENT",
       "detail": {
         "checkId": "M02-LEDGERS-INDEPENDENT",
@@ -1286,7 +1286,7 @@
           },
           "oracle": "Independent literal constants and pre-state equations; production errors, net increments, rates and closure not used."
         },
-        "sourceHash": "df49bda983a97bc14cecbf8209fab47da7b7ff4bf9d44a9a5216e43b9a02c7e6",
+        "sourceHash": "d6005863c79912d3c00a727a735fe66dc88d36fbe42e9bd47cf41d655c1b72f8",
         "runtimeVersion": "v24.19.0",
         "artifactPaths": [
           "validation/evidence/M02-LEDGERS-INDEPENDENT.json"
@@ -1297,7 +1297,7 @@
       "name": "Deliberate balance errors detected",
       "status": "PASS",
       "evidence": "validation/evidence/M02-LEDGERS-NEGATIVE.json",
-      "sha256": "f17b943ed3ebd5ca5c5dc60b098a982e54e6abbbd20fa5978b99c2d0342d4d5d",
+      "sha256": "7d01682cae8e4e582e5c6f944c8edd984d88a7edef7f4a1a7d00495f4fadb6cd",
       "id": "M02-LEDGERS-NEGATIVE",
       "detail": {
         "checkId": "M02-LEDGERS-NEGATIVE",
@@ -1352,7 +1352,7 @@
           "mutantCopiesOnly": true,
           "continuityChecksDisabledForMutation": "Ensures independent rate balance itself rejects the copies, not just adjacent-state checks."
         },
-        "sourceHash": "df49bda983a97bc14cecbf8209fab47da7b7ff4bf9d44a9a5216e43b9a02c7e6",
+        "sourceHash": "d6005863c79912d3c00a727a735fe66dc88d36fbe42e9bd47cf41d655c1b72f8",
         "runtimeVersion": "v24.19.0",
         "artifactPaths": [
           "validation/evidence/M02-LEDGERS-NEGATIVE.json"
@@ -1363,7 +1363,7 @@
       "name": "Analytic particle evolution",
       "status": "PASS",
       "evidence": "validation/evidence/M02-PARTICLE-ANALYTIC.json",
-      "sha256": "57c8744260a03e73817828b7930f4d9ecbacd1d8df2d156b566196fbe78edc90",
+      "sha256": "067d6123c83b440d0981db5c4e602cf006662a3d27f5eef4cd80052858d671c7",
       "id": "M02-PARTICLE-ANALYTIC",
       "detail": {
         "checkId": "M02-PARTICLE-ANALYTIC",
@@ -1419,7 +1419,7 @@
           ],
           "observedOrder": 0.9998964428732606
         },
-        "sourceHash": "df49bda983a97bc14cecbf8209fab47da7b7ff4bf9d44a9a5216e43b9a02c7e6",
+        "sourceHash": "d6005863c79912d3c00a727a735fe66dc88d36fbe42e9bd47cf41d655c1b72f8",
         "runtimeVersion": "v24.19.0",
         "artifactPaths": [
           "validation/evidence/M02-PARTICLE-ANALYTIC.json"
@@ -1430,7 +1430,7 @@
       "name": "Time-step convergence",
       "status": "PASS",
       "evidence": "validation/evidence/M02-TIMESTEP-CONVERGENCE.json",
-      "sha256": "588990c9b6b1f2cf82d0edeb5f78bc2940bbfd260de1a5671bbc6e621b3fe904",
+      "sha256": "6705fe9b59f01b4da72a42a3c17b5b3a07441fbebbf9ce49574f871e8723310b",
       "id": "M02-TIMESTEP-CONVERGENCE",
       "detail": {
         "checkId": "M02-TIMESTEP-CONVERGENCE",
@@ -1709,7 +1709,7 @@
             }
           ]
         },
-        "sourceHash": "df49bda983a97bc14cecbf8209fab47da7b7ff4bf9d44a9a5216e43b9a02c7e6",
+        "sourceHash": "d6005863c79912d3c00a727a735fe66dc88d36fbe42e9bd47cf41d655c1b72f8",
         "runtimeVersion": "v24.19.0",
         "artifactPaths": [
           "validation/evidence/M02-TIMESTEP-CONVERGENCE.json"
@@ -1720,7 +1720,7 @@
       "name": "Numerical stability and invalid-state guards",
       "status": "PASS",
       "evidence": "validation/evidence/M02-STABILITY-GUARDS.json",
-      "sha256": "1115f730a0a7786a33d368d868ffe49661841e88a0034c7b52dc0578e343112d",
+      "sha256": "d68e3e43bc8fe04d9c442c90ed6284ba704ebacdad882ba74d61b59211d85546",
       "id": "M02-STABILITY-GUARDS",
       "detail": {
         "checkId": "M02-STABILITY-GUARDS",
@@ -1991,7 +1991,7 @@
           ],
           "scope": "Numerical state validity only; no plasma stability inference."
         },
-        "sourceHash": "df49bda983a97bc14cecbf8209fab47da7b7ff4bf9d44a9a5216e43b9a02c7e6",
+        "sourceHash": "d6005863c79912d3c00a727a735fe66dc88d36fbe42e9bd47cf41d655c1b72f8",
         "runtimeVersion": "v24.19.0",
         "artifactPaths": [
           "validation/evidence/M02-STABILITY-GUARDS.json"
@@ -2002,7 +2002,7 @@
       "name": "Existing regression tests",
       "status": "PASS",
       "evidence": "validation/evidence/M02-EXISTING-TESTS.json",
-      "sha256": "bf3a95d163d44c088d506a9db289a5b0bd0d4a29da25dfa1a772650ef95e5df3",
+      "sha256": "a0e593da7d2399cbee5eac35614b6b7eb8f8933695a127eaed927f683e2a2e25",
       "id": "M02-EXISTING-TESTS",
       "detail": {
         "checkId": "M02-EXISTING-TESTS",
@@ -2044,9 +2044,9 @@
         "measurements": {
           "unchangedTestSha256": "9e0d44e2e583951d475079a2dcfd9136314abac7465fe66b322fd2e4a390cccb",
           "exitCode": 0,
-          "output": "✔ five-second shot conserves tracked particles and thermal energy (0.793167ms)\n✔ baseline equilibrium meets current, pressure, and GS equation independently (26.182542ms)\n✔ time-step refinement changes flat-top temperatures by less than 1% (3.217167ms)\n✔ particle inventory agrees with analytic constant-source solution without NBI (3.028708ms)\n✔ doubling heating raises thermal energy; gas raises density (3.7325ms)\n✔ zero heating and zero fueling are supported for formed plasma (1.463709ms)\n✔ unphysical controls and unsolvable equilibrium fail explicitly (0.261ms)\n✔ elliptical geometry volume approaches analytic torus volume (1.273875ms)\n✔ grid refinement keeps volume and peak flux within 5% (218.232666ms)\nℹ tests 9\nℹ suites 0\nℹ pass 9\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 353.886542\n"
+          "output": "✔ five-second shot conserves tracked particles and thermal energy (0.728875ms)\n✔ baseline equilibrium meets current, pressure, and GS equation independently (29.843ms)\n✔ time-step refinement changes flat-top temperatures by less than 1% (3.710042ms)\n✔ particle inventory agrees with analytic constant-source solution without NBI (3.34775ms)\n✔ doubling heating raises thermal energy; gas raises density (4.049833ms)\n✔ zero heating and zero fueling are supported for formed plasma (1.45675ms)\n✔ unphysical controls and unsolvable equilibrium fail explicitly (0.323708ms)\n✔ elliptical geometry volume approaches analytic torus volume (1.63125ms)\n✔ grid refinement keeps volume and peak flux within 5% (235.384583ms)\nℹ tests 9\nℹ suites 0\nℹ pass 9\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 392.910541\n"
         },
-        "sourceHash": "df49bda983a97bc14cecbf8209fab47da7b7ff4bf9d44a9a5216e43b9a02c7e6",
+        "sourceHash": "d6005863c79912d3c00a727a735fe66dc88d36fbe42e9bd47cf41d655c1b72f8",
         "runtimeVersion": "v24.19.0",
         "artifactPaths": [
           "validation/evidence/M02-EXISTING-TESTS.json"
@@ -2057,7 +2057,7 @@
       "name": "Code consistency",
       "status": "PASS",
       "evidence": "validation/evidence/M02-TYPECHECK.json",
-      "sha256": "6d618c494ef5b51733895cbbd8d8d050ee435aa9549284904d27e1b3776cf7fa",
+      "sha256": "ffe5dcfa98527c3150bde65fcdea086a898e4abe05b9332007ca18b43c56bd12",
       "id": "M02-TYPECHECK",
       "detail": {
         "checkId": "M02-TYPECHECK",
@@ -2100,7 +2100,7 @@
           "exitCode": 0,
           "output": ""
         },
-        "sourceHash": "df49bda983a97bc14cecbf8209fab47da7b7ff4bf9d44a9a5216e43b9a02c7e6",
+        "sourceHash": "d6005863c79912d3c00a727a735fe66dc88d36fbe42e9bd47cf41d655c1b72f8",
         "runtimeVersion": "v24.19.0",
         "artifactPaths": [
           "validation/evidence/M02-TYPECHECK.json"
@@ -2111,7 +2111,7 @@
       "name": "Application build",
       "status": "PASS",
       "evidence": "validation/evidence/M02-BUILD.json",
-      "sha256": "d73a96af73f2efa9123ac122376f7889af93dcc8cc50277d6fdd12dd895599b1",
+      "sha256": "db9dce68e17d69d1e27d012a3bfd0f10f3111eac076a068b232194749fdea2d1",
       "id": "M02-BUILD",
       "detail": {
         "checkId": "M02-BUILD",
@@ -2152,9 +2152,9 @@
         },
         "measurements": {
           "exitCode": 0,
-          "output": "\n  vinext build  (Vite 8.0.13)\n\n[1/5] analyze client references...\n\u001b[2K\rtransforming...✓ 226 modules transformed.\nrendering chunks...\n✓ built in 409ms\n[2/5] analyze server references...\n\u001b[2K\rtransforming...✓ 198 modules transformed.\nrendering chunks...\n✓ built in 142ms\n[3/5] build rsc environment...\n\u001b[2K\rtransforming...✓ 223 modules transformed.\nrendering chunks...\ncomputing gzip size...\n✓ built in 357ms\n[4/5] build client environment...\n\u001b[2K\rtransforming...✓ 2010 modules transformed.\nrendering chunks...\ncomputing gzip size...\n✓ built in 929ms\n[5/5] build ssr environment...\n\u001b[2K\rtransforming...✓ 205 modules transformed.\nrendering chunks...\ncomputing gzip size...\n✓ built in 280ms\n\u001b[0m\n  Route (app)\n  ┌ ? /          \n  └ ? /validation\n\n  ? Unknown\n\n  ? Some routes could not be classified. vinext currently uses static analysis\n    and cannot detect dynamic API usage (headers(), cookies(), etc.) at build time.\n    Automatic classification will be improved in a future release.\n\n  Build complete. Run `vinext start` to start the production server.\n\n"
+          "output": "\n  vinext build  (Vite 8.0.13)\n\n[1/5] analyze client references...\n\u001b[2K\rtransforming...✓ 226 modules transformed.\nrendering chunks...\n✓ built in 532ms\n[2/5] analyze server references...\n\u001b[2K\rtransforming...✓ 198 modules transformed.\nrendering chunks...\n✓ built in 145ms\n[3/5] build rsc environment...\n\u001b[2K\rtransforming...✓ 223 modules transformed.\nrendering chunks...\ncomputing gzip size...\n✓ built in 403ms\n[4/5] build client environment...\n\u001b[2K\rtransforming...✓ 2010 modules transformed.\nrendering chunks...\ncomputing gzip size...\n✓ built in 868ms\n[5/5] build ssr environment...\n\u001b[2K\rtransforming...✓ 205 modules transformed.\nrendering chunks...\ncomputing gzip size...\n✓ built in 366ms\n\u001b[0m\n  Route (app)\n  ┌ ? /          \n  └ ? /validation\n\n  ? Unknown\n\n  ? Some routes could not be classified. vinext currently uses static analysis\n    and cannot detect dynamic API usage (headers(), cookies(), etc.) at build time.\n    Automatic classification will be improved in a future release.\n\n  Build complete. Run `vinext start` to start the production server.\n\n"
         },
-        "sourceHash": "df49bda983a97bc14cecbf8209fab47da7b7ff4bf9d44a9a5216e43b9a02c7e6",
+        "sourceHash": "d6005863c79912d3c00a727a735fe66dc88d36fbe42e9bd47cf41d655c1b72f8",
         "runtimeVersion": "v24.19.0",
         "artifactPaths": [
           "validation/evidence/M02-BUILD.json"
@@ -2165,7 +2165,7 @@
       "name": "Educational model and assumptions preserved",
       "status": "PASS",
       "evidence": "validation/evidence/M02-SCIENTIFIC-SCOPE.json",
-      "sha256": "2714b7ba89086c7b5d345f26124a23b1349bcf193cb5519c604b8ce0d024c4da",
+      "sha256": "508ec772501d37bfc2786e17086157264b1e403418fe099aca562e360ab607e6",
       "id": "M02-SCIENTIFIC-SCOPE",
       "detail": {
         "checkId": "M02-SCIENTIFIC-SCOPE",
@@ -2234,7 +2234,7 @@
             "Fine-grid quartic identity is cancellation-sensitive in double precision (about 9.20e-7 relative against the 1e-6 gate); endpoint construction and runtime are recorded."
           ]
         },
-        "sourceHash": "df49bda983a97bc14cecbf8209fab47da7b7ff4bf9d44a9a5216e43b9a02c7e6",
+        "sourceHash": "d6005863c79912d3c00a727a735fe66dc88d36fbe42e9bd47cf41d655c1b72f8",
         "runtimeVersion": "v24.19.0",
         "artifactPaths": [
           "validation/evidence/M02-SCIENTIFIC-SCOPE.json"

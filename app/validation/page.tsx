@@ -1,98 +1,68 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import {useEffect,useState} from 'react';
 import './validation.css';
 
-type Check = { name: string; status: string; detail?: unknown; [key: string]: unknown };
-type Report = {
-  status: string;
-  generatedAt?: string;
-  sourceVersion?: string;
-  sourceFingerprint?: unknown;
-  directorDecision?: unknown;
-  modelVersion?: string;
-  verificationVersion?: string;
-  checks: Check[];
-  gridConvergence?: unknown[];
-  limitations?: unknown[];
-  [key: string]: unknown;
-};
-type Evidence = { report: Report | null; results: unknown; downloadableReport: boolean; errors: string[] };
-
-function isRecord(value: unknown): value is Record<string, unknown> {
-  return typeof value === 'object' && value !== null && !Array.isArray(value);
+type Check={id?:string;name:string;status:string;detail?:unknown;[key:string]:unknown};
+type Report={status:string;generatedAt?:string;modelVersion?:string;verificationVersion?:string;sourceFingerprint?:string;directorDecision?:string;checks:Check[];gridConvergence?:unknown[];limitations?:unknown[];errors?:unknown[]};
+type Grid={n:number;Linf:number;L2:number;orderLinf?:number};
+const record=(x:unknown):x is Record<string,unknown>=>typeof x==='object'&&x!==null&&!Array.isArray(x);
+const descriptions:Record<string,string>={
+'M02-REGRESSION-EXACT':'Compares six saved cases with Milestone 01, including full shot output and magnetic equilibrium.',
+'M02-OPERATOR-PROVENANCE':'Confirms the benchmark uses the same numerical solver as the simulator.',
+'M02-ANALYTIC-IDENTITY':'Checks the known solution against the governing equation and expected discretization error.',
+'M02-RECT-FLUX':'Measures how closely the computed magnetic flux matches the analytic solution as the grid is refined.',
+'M02-RECT-BOUNDARY-AXIS':'Checks the prescribed boundary values and the location of the magnetic axis.',
+'M02-RECT-CURRENT-PRESSURE':'Compares reconstructed current and pressure with independently calculated reference values.',
+'M02-SHAPED-CONVERGENCE':'Checks grid refinement for the existing shaped plasma. Its stepped boundary has lower accuracy.',
+'M02-LEDGERS-INDEPENDENT':'Reconstructs particle, electron-energy and ion-energy balances independently at every time step.',
+'M02-LEDGERS-NEGATIVE':'Confirms deliberately corrupted test records are detected, including errors that cancel in total energy.',
+'M02-PARTICLE-ANALYTIC':'Compares particle evolution with a known continuous solution.',
+'M02-TIMESTEP-CONVERGENCE':'Checks whether smaller time steps produce increasingly consistent results.',
+'M02-STABILITY-GUARDS':'Tests selected control settings, time steps and explicit rejection of invalid numerical states.',
+'M02-EXISTING-TESTS':'Runs the original numerical tests without changing their expectations.',
+'M02-TYPECHECK':'Checks that the application code uses consistent interfaces and data types.',
+'M02-BUILD':'Checks that the complete application can be built successfully.',
+'M02-SCIENTIFIC-SCOPE':'Confirms the existing physics assumptions, model version and educational limitations are preserved.'};
+const groups=[{title:'Magnetic equilibrium',intro:'Known-solution comparisons and grid accuracy.',ids:['M02-OPERATOR-PROVENANCE','M02-ANALYTIC-IDENTITY','M02-RECT-FLUX','M02-RECT-BOUNDARY-AXIS','M02-RECT-CURRENT-PRESSURE','M02-SHAPED-CONVERGENCE']},{title:'Particle & energy balances',intro:'Independent checks of each conserved quantity.',ids:['M02-LEDGERS-INDEPENDENT','M02-LEDGERS-NEGATIVE','M02-PARTICLE-ANALYTIC']},{title:'Regression & reliability',intro:'Preserved behavior, time-step sensitivity and application checks.',ids:['M02-REGRESSION-EXACT','M02-TIMESTEP-CONVERGENCE','M02-STABILITY-GUARDS','M02-EXISTING-TESTS','M02-TYPECHECK','M02-BUILD','M02-SCIENTIFIC-SCOPE']}];
+function number(value:unknown,digits=3){if(typeof value!=='number'||!Number.isFinite(value))return 'Not recorded';return value.toLocaleString('en-US',{maximumSignificantDigits:digits});}
+function percent(value:unknown){return typeof value==='number'&&Number.isFinite(value)?`${number(value*100,4)}%`:'Not recorded';}
+function date(value?:string){if(!value)return 'Date not recorded';const d=new Date(value);return Number.isNaN(d.getTime())?'Date not recorded':d.toLocaleString(undefined,{dateStyle:'medium',timeStyle:'short'});}
+function status(value:string){return value==='PASS'?'Passed':value==='FAIL'?'Failed':value==='INCONCLUSIVE'?'Inconclusive':value.replaceAll('_',' ').toLowerCase();}
+function tone(value:string){return value==='PASS'?'pass':value==='FAIL'?'fail':'pending';}
+function MeasurementSummary({check}:{check:Check}){
+ const d=record(check.detail)?check.detail:{};const m=record(d.measurements)?d.measurements:{};
+ const rows=Array.isArray(m.rows)?m.rows.filter(record):[];
+ const id=check.id||check.name;
+ let text='The complete measurements, acceptance limits and provenance are available below.';
+ if(id==='M02-REGRESSION-EXACT')text=`${rows.length} baseline cases compared. Exact results are recorded for each case.`;
+ if(id==='M02-RECT-FLUX'&&Array.isArray(m.gridConvergence)){const r=m.gridConvergence.filter(record).at(-1);if(r)text=`Finest grid: ${r.n} × ${r.n}. Maximum normalized flux error: ${percent(r.Linf)}.`;}
+ if(id==='M02-ANALYTIC-IDENTITY'&&rows.length)text=`${rows.length} grid resolutions checked against the analytic identity.`;
+ if(id==='M02-LEDGERS-INDEPENDENT'&&rows.length){const errors=rows.flatMap(r=>record(r.worst)?Object.values(r.worst).filter((v):v is number=>typeof v==='number'&&Number.isFinite(v)):[]);if(errors.length)text=`${rows.length} recorded runs. Largest normalized balance error: ${Math.max(...errors).toExponential(2)}.`;}
+ if(id==='M02-TIMESTEP-CONVERGENCE'&&rows.length){const errors=rows.map(r=>Array.isArray(r.differences)?r.differences.at(-1):null).filter(record).map(r=>r.max).filter((v):v is number=>typeof v==='number'&&Number.isFinite(v));if(errors.length)text=`Largest change between the two finest time steps: ${percent(Math.max(...errors))}.`;}
+ if(typeof m.failure==='string')text=m.failure;
+ return <p className="check-measurement">{text}</p>;
 }
-function display(value: unknown): string {
-  if (value === null || value === undefined) return 'Not recorded';
-  if (typeof value === 'object') return JSON.stringify(value, null, 2);
-  return String(value);
-}
-function statusStyle(status: string) {
-  const normalized = status.toLowerCase();
-  if (normalized === 'pass' || normalized === 'passed') return 'is-pass';
-  if (normalized === 'fail' || normalized === 'failed') return 'is-fail';
-  return 'is-pending';
-}
-function Detail({ value }: { value: unknown }) {
-  if (value === undefined || value === null) return <p className="validation-muted">No detail recorded.</p>;
-  if (!isRecord(value)) return <pre className="validation-detail">{display(value)}</pre>;
-  return <dl className="validation-details">{Object.entries(value).map(([key, entry]) => <div key={key}><dt>{key}</dt><dd><pre>{display(entry)}</pre></dd></div>)}</dl>;
-}
-function GridTable({ rows }: { rows: unknown[] }) {
-  const records = rows.map(row => isRecord(row) ? row : { value: row });
-  const columns = [...new Set(records.flatMap(row => Object.keys(row)))];
-  return <div className="validation-table-wrap"><table><caption>Recorded grid convergence measurements</caption><thead><tr>{columns.map(column => <th scope="col" key={column}>{column}</th>)}</tr></thead><tbody>{records.map((row, i) => <tr key={i}>{columns.map(column => <td key={column}><pre>{display(row[column])}</pre></td>)}</tr>)}</tbody></table></div>;
-}
-
-export default function ValidationPage() {
-  const [evidence, setEvidence] = useState<Evidence | null>(null);
-  useEffect(() => {
-    const controller = new AbortController();
-    async function load(path: string) {
-      const response = await fetch(path, { signal: controller.signal, cache: 'no-store' });
-      if (!response.ok) throw new Error(`${path}: HTTP ${response.status}`);
-      return response.json() as Promise<unknown>;
-    }
-    Promise.allSettled([load('/validation-results.json'), load('/validation-report.json')]).then(([reportResult, rawResult]) => {
-      if (controller.signal.aborted) return;
-      const errors: string[] = [];
-      let report: Report | null = null;
-      if (reportResult.status === 'fulfilled') {
-        const value = reportResult.value;
-        if (isRecord(value) && typeof value.status === 'string' && Array.isArray(value.checks) && value.checks.every(check => isRecord(check) && typeof check.name === 'string' && typeof check.status === 'string')) {
-          report = value as Report;
-        } else errors.push('The report has an unsupported format. No verification status can be shown.');
-      } else errors.push('The verification report is unavailable. Run and export verification to populate this page.');
-      if (rawResult.status === 'rejected') errors.push('The full report download is unavailable.');
-      setEvidence({ report, results: reportResult.status === 'fulfilled' ? reportResult.value : null, downloadableReport: rawResult.status === 'fulfilled', errors });
-    });
-    return () => controller.abort();
-  }, []);
-  const report = evidence?.report;
-  const status = report?.status || (evidence ? 'Not run' : 'Loading');
-  const grids = Array.isArray(report?.gridConvergence) ? report.gridConvergence : [];
-  return <main className="validation-page">
-    <header className="validation-header"><a href="/" className="validation-back">← Back to virtual shot</a><span>PHYSICS EVIDENCE</span></header>
-    <section className="validation-intro"><div><p className="validation-eyebrow">DIII-D VIRTUAL SHOT</p><h1>Verification dashboard</h1><p>Recorded numerical checks, measured errors, and acceptance limits. These results describe the saved evidence, not the current shot controls.</p></div><a className={`validation-download ${evidence?.downloadableReport ? '' : 'is-disabled'}`} href={evidence?.downloadableReport ? '/validation-report.json' : undefined} download="diii-d-validation-report.json" aria-disabled={!evidence?.downloadableReport}>Download report ↓</a></section>
-    <section className="validation-summary" aria-label="Report provenance">
-      <div><span>Recorded status</span><strong className={`validation-badge ${statusStyle(status)}`} role="status">{status}</strong></div>
-      <div><span>Generated at</span><strong>{display(report?.generatedAt)}</strong></div>
-      <div><span>Model version</span><strong>{display(report?.modelVersion)}</strong></div>
-      <div><span>Verification version</span><strong>{display(report?.verificationVersion)}</strong></div>
-      <div><span>Source fingerprint / version</span><strong>{display(report?.sourceFingerprint ?? report?.sourceVersion)}</strong></div>
-      <div><span>Director decision</span><strong>{display(report?.directorDecision)}</strong></div>
-    </section>
-    {Array.isArray(report?.errors) && report.errors.length > 0 && <div className="validation-notice">{report.errors.map((error, i) => <p key={i}>{display(error)}</p>)}</div>}
-    {evidence?.errors.length ? <div className="validation-notice" role="status">{evidence.errors.map(error => <p key={error}>{error}</p>)}</div> : null}
-    <section className="validation-section"><div className="validation-section-heading"><h2>Numerical checks</h2><span>{report ? `${report.checks.length} recorded` : 'No report available'}</span></div>
-      {report?.checks.length ? <div className="validation-checks">{report.checks.map((check, index) => {
-        const extra = Object.fromEntries(Object.entries(check).filter(([key]) => !['name', 'status', 'detail'].includes(key)));
-        return <article className="validation-check" key={`${index}-${check.name}`}><div className="validation-check-heading"><h3>{check.name}</h3><span className={`validation-badge ${statusStyle(check.status)}`}>{check.status}</span></div><details><summary>Measurements, limits and evidence</summary><Detail value={check.detail}/>{Object.keys(extra).length > 0 && <Detail value={extra}/>}</details></article>;
-      })}</div> : <p className="validation-empty">{evidence ? 'No numerical checks have been recorded in an available report.' : 'Loading the saved verification evidence…'}</p>}
-    </section>
-    <section className="validation-section"><h2>Grid convergence</h2>{grids.length ? <GridTable rows={grids}/> : <p className="validation-empty">No grid convergence table recorded in the report.</p>}</section>
-    <section className="validation-section validation-limitations"><h2>Scope and limitations</h2><p>Numerical verification checks implementation against stated mathematical targets. It does not establish agreement with experimental DIII-D shots.</p>{Array.isArray(report?.limitations) && report.limitations.length > 0 ? <ul>{report.limitations.map((item, i) => <li key={i}>{display(item)}</li>)}</ul> : <p className="validation-muted">No additional limitations recorded in an available report.</p>}</section>
-    {evidence?.results !== null && evidence?.results !== undefined && <section className="validation-section"><div className="validation-section-heading"><h2>Supporting results</h2><a href="/validation-results.json" download="diii-d-validation-results.json">Download results ↓</a></div><details><summary>Inspect the saved results data</summary><pre className="validation-raw">{display(evidence.results)}</pre></details></section>}
-    <footer className="validation-footer">Independent educational project · Static evidence snapshot · No live agent decisions</footer>
-  </main>;
+function CheckRow({check}:{check:Check}){return <details className="check-row"><summary><span className={`check-icon ${tone(check.status)}`} aria-hidden="true">{check.status==='PASS'?'✓':check.status==='FAIL'?'!':'–'}</span><span className="check-title"><strong>{check.name}</strong><span>{descriptions[check.id||check.name]||'Recorded check with supporting evidence.'}</span></span><span className={`pill ${tone(check.status)}`}>{status(check.status)}</span><span className="expand-mark" aria-hidden="true">+</span></summary><div className="check-expanded"><MeasurementSummary check={check}/><details className="technical"><summary>Technical evidence and exact acceptance limits</summary><pre>{JSON.stringify(check.detail??check,null,2)}</pre></details></div></details>;}
+export default function ValidationPage(){
+ const [report,setReport]=useState<Report|null>(null),[loaded,setLoaded]=useState(false),[error,setError]=useState(''),[attention,setAttention]=useState(false);
+ useEffect(()=>{const controller=new AbortController();fetch('/validation-results.json',{signal:controller.signal,cache:'no-store'}).then(async r=>{if(!r.ok)throw Error('The saved report is unavailable.');return r.json();}).then(x=>{if(!record(x)||typeof x.status!=='string'||!Array.isArray(x.checks)||!x.checks.every(c=>record(c)&&typeof c.name==='string'&&typeof c.status==='string'))throw Error('The report format could not be read.');setReport(x as Report);setLoaded(true);}).catch(e=>{if(!controller.signal.aborted){setError(e.message);setLoaded(true);}});return()=>controller.abort();},[]);
+ const checks=report?.checks||[],passed=checks.filter(c=>c.status==='PASS').length,needsAttention=checks.filter(c=>c.status!=='PASS').length;
+ const accepted=report?.status==='PASS'&&report.directorDecision==='ACCEPTED'&&checks.length>0&&needsAttention===0;
+ const grids=(report?.gridConvergence||[]).filter((r):r is Grid=>record(r)&&typeof r.n==='number'&&typeof r.Linf==='number'&&Number.isFinite(r.Linf)&&typeof r.L2==='number'&&Number.isFinite(r.L2));
+ const finest=grids.at(-1),previous=grids.at(-2);const improvement=finest&&previous&&finest.Linf>0?previous.Linf/finest.Linf:undefined;
+ const known=groups.flatMap(g=>g.ids),extras=checks.filter(c=>!known.includes(c.id||c.name));
+ return <main className="validation-page">
+ <nav className="report-nav"><a href="/">← Virtual shot</a><span>DIII-D · SCIENCE RECORD</span></nav>
+ <header className="report-heading"><div><p className="eyebrow">PHYSICS VERIFICATION</p><h1>How well does the model check out?</h1><p className="lead">A readable summary of the recorded numerical tests. Open any check for its supporting evidence.</p></div>{report&&<a className="download" href="/validation-report.json" download="diii-d-validation-report.json">Download full report ↓</a>}</header>
+ <section className={`verdict ${accepted?'pass':report?.status==='FAIL'?'fail':'pending'}`} aria-live="polite"><div className="verdict-symbol" aria-hidden="true">{accepted?'✓':'i'}</div><div><p className="eyebrow">RECORDED MILESTONE 02 DECISION</p><h2>{accepted?'Accepted — numerical checks passed':!loaded?'Loading saved evidence…':!report?'No readable report':report.status==='FAIL'?'Review required':'Awaiting acceptance'}</h2><p>{report?`${passed} of ${checks.length} checks passed · ${date(report.generatedAt)}`:'No verification result is assumed without a report.'}</p></div><span className="snapshot-label">Saved snapshot</span></section>
+ {error&&<p className="report-error" role="alert">{error}</p>}{report?.errors?.length?<div className="report-error">{report.errors.map((e,i)=><p key={i}>{String(e)}</p>)}</div>:null}
+ <section className="metric-grid" aria-label="Key numerical results"><article><span>Checks passed</span><strong>{report?`${passed} / ${checks.length}`:'—'}</strong><p>Independent validation checks</p></article><article><span>Maximum flux error</span><strong>{finest?percent(finest.Linf):'—'}</strong><p>Normalized to the analytic peak, on the finest grid</p></article><article><span>Improvement with refinement</span><strong>{improvement?`${number(improvement)}×`:'—'}</strong><p>Smaller maximum error after the latest grid refinement</p></article></section>
+ <aside className="meaning"><div><h2>What this establishes</h2><p>Numerical verification tests whether the implementation follows its stated mathematical model.</p></div><div><h2>What remains unvalidated</h2><p>This educational model has not been validated against experimental DIII-D shots. These results do not establish plasma stability or predictive uncertainty.</p></div></aside>
+ <section className="report-section" aria-labelledby="grid-title"><div className="section-heading"><div><p className="eyebrow">ACCURACY</p><h2 id="grid-title">Finer grid, smaller flux error</h2></div></div><p className="section-description">For the analytic rectangular test, halving the grid spacing should reduce the error by roughly four times. An observed order near 2 indicates second-order convergence.</p>{grids.length?<div className="table-scroll"><table><caption>Analytic Solov’ev benchmark · errors are percentages of the reference peak flux</caption><thead><tr><th scope="col">Grid</th><th scope="col">Maximum error</th><th scope="col">Weighted RMS error</th><th scope="col">Observed order</th></tr></thead><tbody>{grids.map(g=><tr key={g.n}><th scope="row">{g.n} × {g.n}{g===finest&&<span className="table-tag">Finest</span>}</th><td>{percent(g.Linf)}</td><td>{percent(g.L2)}</td><td>{g.orderLinf===undefined?'—':number(g.orderLinf,3)}</td></tr>)}</tbody></table></div>:<p className="empty-state">No grid measurements recorded.</p>}<p className="table-note">The simulator’s shaped, stepped boundary is tested separately. This analytic result does not imply second-order accuracy for that boundary.</p></section>
+ <section className="report-section" aria-labelledby="checks-title"><div className="section-heading"><div><p className="eyebrow">EVIDENCE</p><h2 id="checks-title">Explore the checks</h2></div><div className="filters" aria-label="Check filter"><button aria-pressed={!attention} onClick={()=>setAttention(false)}>All checks ({checks.length})</button><button aria-pressed={attention} onClick={()=>setAttention(true)}>Needs attention ({needsAttention})</button></div></div>{attention&&needsAttention===0?<p className="empty-state">{report?'No recorded checks need attention.':'No checks are available to review.'}</p>:null}{[...groups,{title:'Additional checks',intro:'Other recorded evidence.',ids:extras.map(c=>c.id||c.name)}].map(g=>{const entries=checks.filter(c=>g.ids.includes(c.id||c.name)&&(!attention||c.status!=='PASS'));return entries.length?<section className="check-group" key={g.title}><header><h3>{g.title}</h3><p>{g.intro}</p></header><div>{entries.map(c=><CheckRow key={c.id||c.name} check={c}/>)}</div></section>:null;})}</section>
+ <section className="future-rule"><p className="eyebrow">STANDARD FOR NEW PHYSICS</p><h2>Every new capability needs a complete evidence package.</h2><ul><li>Verification test</li><li>Experimental validation plan</li><li>Uncertainty model</li><li>Documented validity limits</li><li>Established-code comparison pathway, where available</li></ul><p>These requirements apply to future capabilities. They do not retroactively establish experimental validation or uncertainty estimates for this model.</p></section>
+ <section className="report-section"><details className="technical"><summary>Model limitations and report provenance</summary><ul>{(report?.limitations||[]).map((v,i)=><li key={i}>{String(v)}</li>)}</ul><dl className="provenance"><dt>Physics model</dt><dd>{report?.modelVersion||'Not recorded'}</dd><dt>Verification version</dt><dd>{report?.verificationVersion||'Not recorded'}</dd><dt>Report recorded</dt><dd>{date(report?.generatedAt)}</dd><dt>Director decision</dt><dd>{report?.directorDecision||'Not recorded'}</dd><dt>Source fingerprint</dt><dd>{report?.sourceFingerprint||'Not recorded'}</dd></dl>{report&&<a href="/validation-results.json" download="diii-d-validation-results.json">Download complete measurements</a>}</details></section>
+ <footer className="report-footer">Educational DIII-D project · Recorded evidence, not a live test of the current shot controls</footer>
+ </main>;
 }

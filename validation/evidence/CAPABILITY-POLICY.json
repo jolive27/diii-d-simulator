@@ -1,0 +1,102 @@
+{
+  "name": "CAPABILITY-POLICY",
+  "status": "PASS",
+  "sourceFingerprint": "d6005863c79912d3c00a727a735fe66dc88d36fbe42e9bd47cf41d655c1b72f8",
+  "runtimeVersion": "v24.19.0",
+  "measurements": {
+    "historical": [
+      {
+        "milestone": "infrastructure",
+        "exactHash": "58e8ca3af1f0697b4f930a9610d247c1ca6a47725e0647f278e9ee270f62f09f",
+        "mutationRejected": true
+      },
+      {
+        "milestone": "m02",
+        "exactHash": "277885d3cd4468dbbcf532a2d3b48642ed5779a639f04bff94a0e826f6b819a7",
+        "mutationRejected": true
+      }
+    ],
+    "workflowIntegration": [
+      {
+        "label": "complete package accepted by workflow gate",
+        "status": "PASS",
+        "errors": [],
+        "sourceFingerprint": "e0f331d3369f608c9007ab43bb4544941ca80376d34b64acd02c80986c9c0b0c"
+      },
+      {
+        "label": "missing Director scientific review",
+        "status": "FAIL",
+        "errors": [
+          "Director capability artifact review is missing"
+        ],
+        "sourceFingerprint": "e0f331d3369f608c9007ab43bb4544941ca80376d34b64acd02c80986c9c0b0c"
+      },
+      {
+        "label": "missing verification",
+        "status": "FAIL",
+        "errors": [
+          "Capability future-fixture: verification requires testPath and checkName"
+        ],
+        "sourceFingerprint": "eecfbd965bf052ba286e0e3bb601a975e5b0539358bf32c0e6eb27aa334659ec"
+      },
+      {
+        "label": "missing experimentalValidationPlan",
+        "status": "FAIL",
+        "errors": [
+          "Capability future-fixture experimentalValidationPlan: requires path and SHA-256 binding"
+        ],
+        "sourceFingerprint": "774a94925fbfaabe851f2b9fce031571844f6012dce92ce5b952467455224466"
+      },
+      {
+        "label": "missing uncertaintyModel",
+        "status": "FAIL",
+        "errors": [
+          "Capability future-fixture uncertaintyModel: requires path and SHA-256 binding"
+        ],
+        "sourceFingerprint": "a1bbcdb9edeca844838f7c3dabac22fe36c23e5abdd6611252303604ffc37224"
+      },
+      {
+        "label": "missing domainOfValidity",
+        "status": "FAIL",
+        "errors": [
+          "Capability future-fixture domainOfValidity: requires path and SHA-256 binding"
+        ],
+        "sourceFingerprint": "9490373556db7ea50198e17b275ef4381c2d2390f556d5322c9fd885af75549d"
+      },
+      {
+        "label": "missing referenceComparison",
+        "status": "FAIL",
+        "errors": [
+          "Capability future-fixture referenceComparison: requires path and SHA-256 binding"
+        ],
+        "sourceFingerprint": "761678e2719581a9988cd52e2d2bf506ae99bfb6e76f355b6804e33639bf9e82"
+      },
+      {
+        "label": "wrong artifact digest",
+        "status": "FAIL",
+        "errors": [
+          "Capability future-fixture uncertaintyModel: artifact hash mismatch"
+        ],
+        "sourceFingerprint": "3507d09da85d8f0c11ff552272fcf24e163b54946980a1ab0270d888849ebf71"
+      },
+      {
+        "label": "planned test cannot be accepted before implementation",
+        "status": "FAIL",
+        "errors": [
+          "Capability future-fixture verification test: artifact missing or unreadable"
+        ],
+        "sourceFingerprint": "3e44b6a5f08f22d8b8a274cf4ba54a119ecf4e9cc27c0528f15fae2ab9eaaafb"
+      },
+      {
+        "label": "undocumented reference exception",
+        "status": "FAIL",
+        "errors": [
+          "Capability future-fixture: no-reference exception requires rationale and dated search records with query, source, and result"
+        ],
+        "sourceFingerprint": "2398d7173bc02481f86d8b4db6aa7125906b519c340172ccc3aa01f01b9568e2"
+      }
+    ],
+    "developerTests": "✔ complete new capability and explicit no-change specification pass structural review (3.461875ms)\n✔ every mandatory capability item, explicit flag, and required verification check are enforced (4.099ms)\n✔ hash binding detects changed or empty artifacts (2.194833ms)\n✔ unsafe paths and symlinks outside repository fail (3.172292ms)\n✔ reference route needs implementation details or a documented no-reference search (2.8895ms)\n✔ only exact approved historical hashes are grandfathered, never names (1.604708ms)\n✔ approval permits a safely planned test; acceptance requires the implemented file (1.875042ms)\nℹ tests 7\nℹ suites 0\nℹ pass 7\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 66.908\n",
+    "limitation": "Mechanical completeness and hash integrity are tested; scientific adequacy is explicitly delegated to Director review, not inferred from nonempty files."
+  }
+}

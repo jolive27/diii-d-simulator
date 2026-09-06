@@ -1,0 +1,14 @@
+{
+  "id": "REPLACE-WITH-CAPABILITY-ID",
+  "status": "DRAFT-NOT-APPROVED",
+  "physicsCapabilityChange": true,
+  "requiredChecks": ["REPLACE-WITH-VERIFICATION-CHECK"],
+  "physicsCapabilities": [{
+    "id": "REPLACE-WITH-CAPABILITY-ID",
+    "verification": {"testPath": "tests/REPLACE.test.mjs", "checkName": "REPLACE-WITH-VERIFICATION-CHECK"},
+    "experimentalValidationPlan": {"path": "specs/proposals/REPLACE-experimental.md", "sha256": "REPLACE-AFTER-ARTIFACT-IS-WRITTEN"},
+    "uncertaintyModel": {"path": "specs/proposals/REPLACE-uncertainty.md", "sha256": "REPLACE-AFTER-ARTIFACT-IS-WRITTEN"},
+    "domainOfValidity": {"path": "specs/proposals/REPLACE-validity.md", "sha256": "REPLACE-AFTER-ARTIFACT-IS-WRITTEN"},
+    "referenceComparison": {"path": "specs/proposals/REPLACE-reference.json", "sha256": "REPLACE-AFTER-ARTIFACT-IS-WRITTEN"}
+  }]
+}

@@ -38,9 +38,9 @@
   "measurements": {
     "unchangedTestSha256": "9e0d44e2e583951d475079a2dcfd9136314abac7465fe66b322fd2e4a390cccb",
     "exitCode": 0,
-    "output": "✔ five-second shot conserves tracked particles and thermal energy (0.793167ms)\n✔ baseline equilibrium meets current, pressure, and GS equation independently (26.182542ms)\n✔ time-step refinement changes flat-top temperatures by less than 1% (3.217167ms)\n✔ particle inventory agrees with analytic constant-source solution without NBI (3.028708ms)\n✔ doubling heating raises thermal energy; gas raises density (3.7325ms)\n✔ zero heating and zero fueling are supported for formed plasma (1.463709ms)\n✔ unphysical controls and unsolvable equilibrium fail explicitly (0.261ms)\n✔ elliptical geometry volume approaches analytic torus volume (1.273875ms)\n✔ grid refinement keeps volume and peak flux within 5% (218.232666ms)\nℹ tests 9\nℹ suites 0\nℹ pass 9\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 353.886542\n"
+    "output": "✔ five-second shot conserves tracked particles and thermal energy (0.728875ms)\n✔ baseline equilibrium meets current, pressure, and GS equation independently (29.843ms)\n✔ time-step refinement changes flat-top temperatures by less than 1% (3.710042ms)\n✔ particle inventory agrees with analytic constant-source solution without NBI (3.34775ms)\n✔ doubling heating raises thermal energy; gas raises density (4.049833ms)\n✔ zero heating and zero fueling are supported for formed plasma (1.45675ms)\n✔ unphysical controls and unsolvable equilibrium fail explicitly (0.323708ms)\n✔ elliptical geometry volume approaches analytic torus volume (1.63125ms)\n✔ grid refinement keeps volume and peak flux within 5% (235.384583ms)\nℹ tests 9\nℹ suites 0\nℹ pass 9\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 392.910541\n"
   },
-  "sourceHash": "df49bda983a97bc14cecbf8209fab47da7b7ff4bf9d44a9a5216e43b9a02c7e6",
+  "sourceHash": "d6005863c79912d3c00a727a735fe66dc88d36fbe42e9bd47cf41d655c1b72f8",
   "runtimeVersion": "v24.19.0",
   "artifactPaths": [
     "validation/evidence/M02-EXISTING-TESTS.json"
