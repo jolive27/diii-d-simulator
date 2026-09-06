@@ -2,6 +2,8 @@
 
 Your simulator project is saved in the **DIII-D-Simulator** folder on your Desktop.
 
+You can also double-click **Open Hosted Simulator.webloc** for the private hosted version.
+
 1. Open `Launch Simulator.command` to start the local simulator. Keep the Terminal window open.
 2. Use the sliders to set current, field, heating, fueling, elongation, and triangularity.
 3. Click **Run virtual shot**. Changed sliders do not affect an already completed shot until you run again.
