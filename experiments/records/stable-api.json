@@ -1,0 +1,19 @@
+{
+  "role": "software",
+  "agentId": "/root/software",
+  "task": "stable-api",
+  "files": [
+    "physics/api.ts",
+    "tests/api.test.mjs",
+    "docs/API.md",
+    "agents/software.md"
+  ],
+  "tests": "validation/evidence/software-api.tap",
+  "decision": "implemented-awaiting-independent-validation",
+  "model": "gpt-6-astra",
+  "reasoning": "medium",
+  "modelVersion": "0.1.0",
+  "physicsAssumptionChanges": [],
+  "baselineCommit": "b07537877cec168d20783a3cfc45366fccbd4538",
+  "time": "2026-09-06T18:05:59.874Z"
+}

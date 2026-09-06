@@ -1,0 +1,46 @@
+{
+  "role": "validation",
+  "agentId": "/root/validation",
+  "implementationAgentId": "/root/software",
+  "status": "PASS",
+  "sourceFingerprint": "9f1c0d2908e27f462a8dfcd6243825acea06fa2a679ddd200d87658a0148366c",
+  "checks": [
+    {
+      "name": "m01-regression",
+      "status": "PASS",
+      "evidence": "validation/evidence/m01-regression.json",
+      "sha256": "0d319301188e93eb13870c73c4b4f79caae8d2c1f20294d8434c68cc461f4e0a"
+    },
+    {
+      "name": "api-contract",
+      "status": "PASS",
+      "evidence": "validation/evidence/api-contract.json",
+      "sha256": "0898293b679f8224e66037e88831af2c6f20515dab6588b5096f0dee338587cb"
+    },
+    {
+      "name": "permission-boundaries",
+      "status": "PASS",
+      "evidence": "validation/evidence/permission-boundaries.json",
+      "sha256": "12ae665522fca5c612160b3eaeddb815e502833fa2e163de942d019ec70d357b"
+    },
+    {
+      "name": "acceptance-gates",
+      "status": "PASS",
+      "evidence": "validation/evidence/acceptance-gates.json",
+      "sha256": "4630dc4893fbf15abe91d3a43574645bfdd76c1cec553073686b0e94048ae9aa"
+    },
+    {
+      "name": "persistent-roles",
+      "status": "PASS",
+      "evidence": "validation/evidence/persistent-roles.json",
+      "sha256": "1ddb9a191d533547d2e55fe33fb2aac45660ec62debdf48394e6c16637a5fcfe"
+    }
+  ],
+  "findings": [],
+  "limitations": [
+    "Infrastructure review only; no M02 physics validation or experimental-accuracy claim.",
+    "Dispatcher rejection was exercised with a mock executor in an isolated temporary fixture; actual Codex CLI invocation was not independently run. Native agents share the filesystem and rely on role instructions; separate workspace output audit is not hostile-process isolation."
+  ],
+  "independentTest": "validation/independent/infrastructure.mjs",
+  "independentTestSha256": "d5ed4d03540af5fa47538b03510438a1c51560faf6693be2ebe0968b2dbe7a34"
+}

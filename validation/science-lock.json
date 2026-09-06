@@ -1,0 +1,10 @@
+{
+  "role": "director",
+  "modelVersion": "0.1.0",
+  "files": {
+    "science/assumptions.yaml": "685a131eae99f02adb4c90d3f249010277342316d572ac3bec94ee0874805e53",
+    "science/constants.json": "d081ad0cedb07092f59c78e024db1952ea3d04308e77c41057d4f5625e3d8888",
+    "science/models.json": "0114a41a9358d4d4b6253e2b3e046709e164c7d44cbde577bae20642b332dfa2",
+    "science/equations.md": "aff433e44714c9fe45e4845f97921845795cfe095a19b9ca30dc073c85fb7496"
+  }
+}

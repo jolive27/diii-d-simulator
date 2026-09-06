@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "milestone": "M01",
+  "physics_model_version": "0.1.0",
+  "provenance": {
+    "recorded_on": "2026-09-06",
+    "primary_source": "physics/engine.ts",
+    "primary_source_sha256": "9dde261db38c18469902fd7dc02c80978f417a824c2aa159b573282bf63b84c7",
+    "supporting_sources": [
+      "docs/PHYSICS.md",
+      "docs/ARCHITECTURE.md",
+      "docs/VERIFICATION.md"
+    ],
+    "method": "Source inspection only; existing numerical verification was not rerun for this infrastructure transcription. External references are inherited from docs/PHYSICS.md and were not independently verified."
+  },
+  "change_request_required": true,
+  "production_code_modified": false,
+  "components": [
+    {
+      "id": "M01-GEOMETRY",
+      "implementation": "boundary; geometry",
+      "description": "Fixed prescribed shaped boundary and toroidal cell-sum volume.",
+      "assumption_ids": [
+        "A-M01-002",
+        "A-M01-012",
+        "A-M01-015"
+      ]
+    },
+    {
+      "id": "M01-WAVEFORM",
+      "implementation": "waveform",
+      "description": "Five-second programmed current and rectangular auxiliary heating.",
+      "assumption_ids": [
+        "A-M01-003"
+      ]
+    },
+    {
+      "id": "M01-TRANSPORT",
+      "implementation": "educationalTransport",
+      "description": "Replaceable TransportClosure with heuristic tauE, fixed tauP, effective temperature-dependent resistivity.",
+      "assumption_ids": [
+        "A-M01-005",
+        "A-M01-009"
+      ]
+    },
+    {
+      "id": "M01-THERMAL",
+      "implementation": "runShot",
+      "description": "Explicit conservative-ledger Euler integration of N, We, Wi.",
+      "assumption_ids": [
+        "A-M01-001",
+        "A-M01-004",
+        "A-M01-006",
+        "A-M01-007",
+        "A-M01-008",
+        "A-M01-013",
+        "A-M01-014"
+      ]
+    },
+    {
+      "id": "M01-EQUILIBRIUM",
+      "implementation": "basis; equilibrium",
+      "description": "Two finite-difference SOR basis solves and algebraic current/mean-pressure closure.",
+      "assumption_ids": [
+        "A-M01-010",
+        "A-M01-011",
+        "A-M01-012",
+        "A-M01-014"
+      ]
+    }
+  ],
+  "interfaces": {
+    "inputs": "Controls plus computed Geometry; optional dt and TransportClosure to runShot. Selected-time equilibrium receives Basis, current in MA, field in T, mean pressure in Pa.",
+    "outputs": "Shot schemaVersion 1, modelVersion 0.1.0; separate equilibrium status/results.",
+    "coupling": "Controls -> fixed geometry/volume and waveforms -> thermal shot -> selected-time mean pressure/current -> equilibrium. No equilibrium feedback.",
+    "manifests": "These science files document existing code and are not loaded by production."
+  },
+  "validation_status": {
+    "current_pass": "Documentation/source inspection only; no newly executed numerical tests.",
+    "inherited_report": "docs/VERIFICATION.md reports nine passing numerical tests, typecheck and build on 2026-09-06. This inventory does not independently certify that report.",
+    "not_established": [
+      "experimental accuracy",
+      "global second-order boundary convergence",
+      "stability",
+      "hardware feasibility",
+      "whole-machine energy conservation"
+    ]
+  },
+  "future_work": "M02 and higher-fidelity development require a separate Director-authorized change request. No M02 implementation or milestone approval is included."
+}

@@ -1,0 +1,17 @@
+✔ five-second shot conserves tracked particles and thermal energy (0.733875ms)
+✔ baseline equilibrium meets current, pressure, and GS equation independently (25.493791ms)
+✔ time-step refinement changes flat-top temperatures by less than 1% (3.203541ms)
+✔ particle inventory agrees with analytic constant-source solution without NBI (2.775917ms)
+✔ doubling heating raises thermal energy; gas raises density (3.641542ms)
+✔ zero heating and zero fueling are supported for formed plasma (1.520125ms)
+✔ unphysical controls and unsolvable equilibrium fail explicitly (0.293375ms)
+✔ elliptical geometry volume approaches analytic torus volume (1.65625ms)
+✔ grid refinement keeps volume and peak flux within 5% (217.601917ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 379.591458

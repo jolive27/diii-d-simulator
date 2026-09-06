@@ -1,0 +1,71 @@
+{
+  "name": "permission-boundaries",
+  "status": "PASS",
+  "detail": {
+    "tested": [
+      {
+        "role": "physics",
+        "file": "specs/proposals/new.json",
+        "expected": true
+      },
+      {
+        "role": "physics",
+        "file": "science/constants.json",
+        "expected": false
+      },
+      {
+        "role": "software",
+        "file": "physics/api.ts",
+        "expected": true
+      },
+      {
+        "role": "software",
+        "file": "validation/m02-report.json",
+        "expected": false
+      },
+      {
+        "role": "validation",
+        "file": "validation/evidence/new.json",
+        "expected": true
+      },
+      {
+        "role": "validation",
+        "file": "physics/engine.ts",
+        "expected": false
+      },
+      {
+        "role": "validation",
+        "file": "validation/m02-decision.json",
+        "expected": false
+      },
+      {
+        "role": "validation",
+        "file": "validation/evidence/../../physics/engine.ts",
+        "expected": false
+      },
+      {
+        "role": "unknown",
+        "file": "physics/engine.ts",
+        "expected": false
+      }
+    ],
+    "dispatcherRecord": {
+      "task": "negative-test",
+      "role": "validation",
+      "model": "gpt-6-astra",
+      "reasoning": "medium",
+      "exitCode": 0,
+      "changed": [
+        "physics/engine.ts"
+      ],
+      "violations": [
+        "physics/engine.ts"
+      ],
+      "status": "REJECTED",
+      "workspace": "/private/var/folders/zt/60zlxwwx77b_p3vwp2bmgy0w0000gn/T/diiid-independent-JAz5ES/work/agents/negative-test"
+    },
+    "limitation": "Native agents share filesystem. Dispatcher provides separate working copy and rejects out-of-role outputs; it does not authenticate hostile same-user processes or automatically merge."
+  },
+  "sourceFingerprint": "9f1c0d2908e27f462a8dfcd6243825acea06fa2a679ddd200d87658a0148366c",
+  "time": "2026-09-06T18:07:07.126Z"
+}

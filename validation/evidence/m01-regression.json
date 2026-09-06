@@ -1,0 +1,12 @@
+{
+  "name": "m01-regression",
+  "status": "PASS",
+  "detail": {
+    "baseline": "b07537877cec168d20783a3cfc45366fccbd4538",
+    "engineSha256": "9dde261db38c18469902fd7dc02c80978f417a824c2aa159b573282bf63b84c7",
+    "sampleCount": 251,
+    "testOutput": "✔ five-second shot conserves tracked particles and thermal energy (0.591625ms)\n✔ baseline equilibrium meets current, pressure, and GS equation independently (26.007791ms)\n✔ time-step refinement changes flat-top temperatures by less than 1% (3.068167ms)\n✔ particle inventory agrees with analytic constant-source solution without NBI (2.821083ms)\n✔ doubling heating raises thermal energy; gas raises density (3.6225ms)\n✔ zero heating and zero fueling are supported for formed plasma (1.531ms)\n✔ unphysical controls and unsolvable equilibrium fail explicitly (0.293708ms)\n✔ elliptical geometry volume approaches analytic torus volume (1.291958ms)\n✔ grid refinement keeps volume and peak flux within 5% (217.566709ms)\nℹ tests 9\nℹ suites 0\nℹ pass 9\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 353.77975\n"
+  },
+  "sourceFingerprint": "9f1c0d2908e27f462a8dfcd6243825acea06fa2a679ddd200d87658a0148366c",
+  "time": "2026-09-06T18:07:07.085Z"
+}

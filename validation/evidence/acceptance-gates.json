@@ -1,0 +1,129 @@
+{
+  "name": "acceptance-gates",
+  "status": "PASS",
+  "detail": {
+    "fixtureIsolation": true,
+    "cases": [
+      {
+        "name": "missing report",
+        "status": "FAIL",
+        "errors": [
+          "Missing specification, approval, or independent report"
+        ]
+      },
+      {
+        "name": "valid positive control",
+        "status": "PASS",
+        "errors": [],
+        "sourceFingerprint": "b724b861ae733582b16afb29b23fd50fb45e95222db24fe4bf17277e83334ed6"
+      },
+      {
+        "name": "failing status",
+        "status": "FAIL",
+        "errors": [
+          "Independent validation is not PASS"
+        ],
+        "sourceFingerprint": "b724b861ae733582b16afb29b23fd50fb45e95222db24fe4bf17277e83334ed6"
+      },
+      {
+        "name": "inconclusive",
+        "status": "FAIL",
+        "errors": [
+          "Independent validation is not PASS"
+        ],
+        "sourceFingerprint": "b724b861ae733582b16afb29b23fd50fb45e95222db24fe4bf17277e83334ed6"
+      },
+      {
+        "name": "same agent",
+        "status": "FAIL",
+        "errors": [
+          "Independent agent identity missing or not independent"
+        ],
+        "sourceFingerprint": "b724b861ae733582b16afb29b23fd50fb45e95222db24fe4bf17277e83334ed6"
+      },
+      {
+        "name": "missing check",
+        "status": "FAIL",
+        "errors": [
+          "Required check failed/missing: independent"
+        ],
+        "sourceFingerprint": "b724b861ae733582b16afb29b23fd50fb45e95222db24fe4bf17277e83334ed6"
+      },
+      {
+        "name": "failing check",
+        "status": "FAIL",
+        "errors": [
+          "Required check failed/missing: independent"
+        ],
+        "sourceFingerprint": "b724b861ae733582b16afb29b23fd50fb45e95222db24fe4bf17277e83334ed6"
+      },
+      {
+        "name": "wrong hash",
+        "status": "FAIL",
+        "errors": [
+          "Evidence altered: independent"
+        ],
+        "sourceFingerprint": "b724b861ae733582b16afb29b23fd50fb45e95222db24fe4bf17277e83334ed6"
+      },
+      {
+        "name": "missing evidence",
+        "status": "FAIL",
+        "errors": [
+          "Evidence missing: independent"
+        ],
+        "sourceFingerprint": "b724b861ae733582b16afb29b23fd50fb45e95222db24fe4bf17277e83334ed6"
+      },
+      {
+        "name": "stale source",
+        "status": "FAIL",
+        "errors": [
+          "Validation evidence is stale for current source"
+        ],
+        "sourceFingerprint": "9d34f59c832de295cb0ba5a95bc844c9fe3a335801f6c19ffab0c11daddcdf50"
+      },
+      {
+        "name": "stale approval",
+        "status": "FAIL",
+        "errors": [
+          "Physics specification lacks current Director approval",
+          "Validation evidence is stale for current source"
+        ],
+        "sourceFingerprint": "ebafc71b5446839acb680dc2bef0e7eaea1f386310c8198891e2c0431c2ee188"
+      },
+      {
+        "name": "missing implementation agent identity",
+        "status": "FAIL",
+        "errors": [
+          "Independent agent identity missing or not independent"
+        ],
+        "sourceFingerprint": "9d34f59c832de295cb0ba5a95bc844c9fe3a335801f6c19ffab0c11daddcdf50"
+      },
+      {
+        "name": "empty required checks",
+        "status": "FAIL",
+        "errors": [
+          "Required checks cannot be empty"
+        ],
+        "sourceFingerprint": "b3e86ca0266ac1f37488428db0433685b81950eb211b4625ad5a0cf2ebdb5b8f"
+      },
+      {
+        "name": "unapproved science changes with fresh report",
+        "status": "FAIL",
+        "errors": [
+          "Unapproved science registry change: science/constants.json"
+        ],
+        "sourceFingerprint": "28a5f87dd7ed9abb9e750a20e33572bad392a5473c9ae6099f951a84e5f53d66"
+      },
+      {
+        "name": "M02 missing infrastructure acceptance",
+        "status": "FAIL",
+        "errors": [
+          "Infrastructure not accepted"
+        ],
+        "sourceFingerprint": "55c6e07b8a529276c422c9c0739da67b29dbf9e79bd92ece571af6621140cb5d"
+      }
+    ]
+  },
+  "sourceFingerprint": "9f1c0d2908e27f462a8dfcd6243825acea06fa2a679ddd200d87658a0148366c",
+  "time": "2026-09-06T18:07:07.112Z"
+}

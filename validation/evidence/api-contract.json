@@ -1,0 +1,18 @@
+{
+  "name": "api-contract",
+  "status": "PASS",
+  "detail": {
+    "verified": [
+      "baseline equivalence",
+      "numeric CSV round trip",
+      "JSON round trip",
+      "metrics independently reduced",
+      "ordered duplicate sweep",
+      "immutable inputs",
+      "invalid input rejection"
+    ],
+    "sampleCount": 251
+  },
+  "sourceFingerprint": "9f1c0d2908e27f462a8dfcd6243825acea06fa2a679ddd200d87658a0148366c",
+  "time": "2026-09-06T18:07:07.099Z"
+}

@@ -1,0 +1,1 @@
+{"id":"infrastructure","kind":"development-infrastructure","modelVersion":"0.1.0","authorRole":"director","requiredChecks":["m01-regression","api-contract","permission-boundaries","acceptance-gates","persistent-roles"]}

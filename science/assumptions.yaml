@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "milestone": "M01",
+  "physics_model_version": "0.1.0",
+  "status": "current_implementation_inventory",
+  "provenance": {
+    "recorded_on": "2026-09-06",
+    "primary_source": "physics/engine.ts",
+    "primary_source_sha256": "9dde261db38c18469902fd7dc02c80978f417a824c2aa159b573282bf63b84c7",
+    "supporting_sources": [
+      "docs/PHYSICS.md",
+      "docs/ARCHITECTURE.md",
+      "docs/VERIFICATION.md"
+    ],
+    "method": "Source inspection only; existing numerical verification was not rerun for this infrastructure transcription. External references are inherited from docs/PHYSICS.md and were not independently verified."
+  },
+  "change_policy": {
+    "stable_ids": true,
+    "rule": "Assumption IDs are durable references: retain retired IDs and do not repurpose them. Any change to an assumption, equation, numerical convention, constant, source interpretation, or model scope requires an explicit change request to the Director before implementation. Record affected IDs, rationale, source evidence, expected impact, validation plan and proposed version impact; the Physics Agent cannot approve it or a milestone.",
+    "runtime_binding": "Documentation manifest only. Existing production exports contain human-readable assumption strings, not these IDs. No runtime linkage is implied."
+  },
+  "assumptions": [
+    {
+      "id": "A-M01-001",
+      "key": "formed_deuterium",
+      "statement": "An already formed, fully ionized, quasineutral deuterium plasma has equal electron and ion populations N; breakdown and extinction are excluded.",
+      "implementation_ref": "runShot",
+      "status": "active",
+      "introduced_in": "0.1.0"
+    },
+    {
+      "id": "A-M01-002",
+      "key": "fixed_geometry",
+      "statement": "Axisymmetric, up/down symmetric, prescribed boundary is fixed during each shot; no X-point, coils, vessel or free-boundary solve. Volume is the masked toroidal cell sum.",
+      "implementation_ref": "boundary; geometry",
+      "status": "active",
+      "introduced_in": "0.1.0"
+    },
+    {
+      "id": "A-M01-003",
+      "key": "ideal_current_drive",
+      "statement": "Plasma current is programmed independently of thermal and equilibrium state. Inductive energy, current diffusion and actuator/circuit power are absent.",
+      "implementation_ref": "waveform; runShot",
+      "status": "active",
+      "introduced_in": "0.1.0"
+    },
+    {
+      "id": "A-M01-004",
+      "key": "zero_dimensional_thermal",
+      "statement": "Only total electron/ion thermal energies and common particle inventory evolve. No radial transport, density or temperature profile evolution is solved.",
+      "implementation_ref": "runShot",
+      "status": "active",
+      "introduced_in": "0.1.0"
+    },
+    {
+      "id": "A-M01-005",
+      "key": "heuristic_closure",
+      "statement": "Confinement, effective resistivity and fixed electron-ion energy exchange are author-selected illustrative closures, without experimental calibration.",
+      "implementation_ref": "educationalTransport; runShot",
+      "status": "active",
+      "introduced_in": "0.1.0"
+    },
+    {
+      "id": "A-M01-006",
+      "key": "fixed_heating",
+      "statement": "NBI absorption 0.8, electron/ion split 0.35/0.65, ECH absorption 0.9, and 80 keV beam source are fixed. No fast-ion inventory, deposition, resonance or orbit-loss solve.",
+      "implementation_ref": "runShot/rates",
+      "status": "active",
+      "introduced_in": "0.1.0"
+    },
+    {
+      "id": "A-M01-007",
+      "key": "cold_fueling",
+      "statement": "Gas source uses fixed 0.3 efficiency and prompt ionization at 13.6 eV per atom; incoming gas contributes no thermal energy. Neutral transport, molecular dissociation and recombination are omitted.",
+      "implementation_ref": "runShot",
+      "status": "active",
+      "introduced_in": "0.1.0"
+    },
+    {
+      "id": "A-M01-008",
+      "key": "radiation",
+      "statement": "Radiation is hydrogenic bremsstrahlung with implicit effective charge one. Impurity and line radiation are absent.",
+      "implementation_ref": "runShot/rates",
+      "status": "active",
+      "introduced_in": "0.1.0"
+    },
+    {
+      "id": "A-M01-009",
+      "key": "effective_losses",
+      "statement": "W/tauE includes effective thermal transport and particle-associated energy losses. No additional advective energy term is added. Fixed volume avoids a compression-work term.",
+      "implementation_ref": "runShot; docs/PHYSICS.md",
+      "status": "active",
+      "introduced_in": "0.1.0"
+    },
+    {
+      "id": "A-M01-010",
+      "key": "solovev_family",
+      "statement": "Equilibrium uses p=A psi and F squared=Fedge squared+2 B psi, zero edge flux, positive interior flux and toroidal-current magnitude convention. It is a restricted family, not an accessibility or stability assessment.",
+      "implementation_ref": "basis; equilibrium",
+      "status": "active",
+      "introduced_in": "0.1.0"
+    },
+    {
+      "id": "A-M01-011",
+      "key": "one_way_coupling",
+      "statement": "Selected-time mean thermal pressure feeds quasistatic equilibrium; equilibrium does not feed back into the transport integration.",
+      "implementation_ref": "runShot; equilibrium; docs/ARCHITECTURE.md",
+      "status": "active",
+      "introduced_in": "0.1.0"
+    },
+    {
+      "id": "A-M01-012",
+      "key": "numerical_boundary",
+      "statement": "Second-order interior finite differences operate on a staircase mask. Global second-order boundary accuracy is not established.",
+      "implementation_ref": "geometry; basis",
+      "status": "active",
+      "introduced_in": "0.1.0"
+    },
+    {
+      "id": "A-M01-013",
+      "key": "balance_scope",
+      "statement": "Discrete ledgers assess tracked thermal energy and particles using identical update terms. Small balance errors establish bookkeeping consistency, not whole-machine conservation or physical accuracy.",
+      "implementation_ref": "runShot",
+      "status": "active",
+      "introduced_in": "0.1.0"
+    },
+    {
+      "id": "A-M01-014",
+      "key": "unsupported_regime",
+      "statement": "Nonpositive/nonfinite thermal states stop the run. Negative equilibrium discriminant, sufficiently reversed flux or nonpositive F squared return unsupported status; these are model limitations, not predicted disruptions.",
+      "implementation_ref": "runShot; equilibrium",
+      "status": "active",
+      "introduced_in": "0.1.0"
+    },
+    {
+      "id": "A-M01-015",
+      "key": "educational_machine",
+      "statement": "R0 and a are DIII-D-inspired dimensions. Control limits are an educational domain, not a certified facility operating envelope.",
+      "implementation_ref": "MACHINE; LIMITS; docs/PHYSICS.md",
+      "status": "active",
+      "introduced_in": "0.1.0"
+    },
+    {
+      "id": "A-M01-016",
+      "key": "excluded_physics",
+      "statement": "No H-mode transitions, turbulence, MHD stability, disruptions, rotation, impurity transport, alpha heating or fusion yield is modeled.",
+      "implementation_ref": "docs/PHYSICS.md",
+      "status": "active",
+      "introduced_in": "0.1.0"
+    }
+  ]
+}

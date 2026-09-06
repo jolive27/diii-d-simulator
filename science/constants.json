@@ -1,0 +1,283 @@
+{
+  "schema_version": 1,
+  "physics_model_version": "0.1.0",
+  "provenance": {
+    "recorded_on": "2026-09-06",
+    "primary_source": "physics/engine.ts",
+    "primary_source_sha256": "9dde261db38c18469902fd7dc02c80978f417a824c2aa159b573282bf63b84c7",
+    "supporting_sources": [
+      "docs/PHYSICS.md",
+      "docs/ARCHITECTURE.md",
+      "docs/VERIFICATION.md"
+    ],
+    "method": "Source inspection only; existing numerical verification was not rerun for this infrastructure transcription. External references are inherited from docs/PHYSICS.md and were not independently verified."
+  },
+  "constants": [
+    {
+      "id": "C-M01-MU0",
+      "value": 1.2566370614359173e-06,
+      "units": "H/m",
+      "meaning": "Implemented fixed vacuum permeability convention; records code value, not a claim of current exact SI metrology.",
+      "implementation_ref": "MU0",
+      "provenance_kind": "implemented_physical_constant"
+    },
+    {
+      "id": "C-M01-KEV",
+      "value": 1.602176634e-16,
+      "units": "J/keV",
+      "meaning": "Energy conversion.",
+      "implementation_ref": "KEV",
+      "provenance_kind": "physical_unit_conversion"
+    },
+    {
+      "id": "C-M01-R0",
+      "value": 1.66,
+      "units": "m",
+      "meaning": "Major radius",
+      "implementation_ref": "MACHINE",
+      "provenance_kind": "inherited_machine_dimension_reference"
+    },
+    {
+      "id": "C-M01-a",
+      "value": 0.66,
+      "units": "m",
+      "meaning": "Minor radius",
+      "implementation_ref": "MACHINE",
+      "provenance_kind": "inherited_machine_dimension_reference"
+    },
+    {
+      "id": "C-M01-tauE_ref",
+      "value": 0.12,
+      "units": "s",
+      "meaning": "Reference energy confinement",
+      "implementation_ref": "educationalTransport",
+      "provenance_kind": "illustrative_model_parameter"
+    },
+    {
+      "id": "C-M01-tauP",
+      "value": 1.6,
+      "units": "s",
+      "meaning": "Particle confinement",
+      "implementation_ref": "educationalTransport",
+      "provenance_kind": "illustrative_model_parameter"
+    },
+    {
+      "id": "C-M01-eta_ref",
+      "value": 2.8e-08,
+      "units": "ohm m",
+      "meaning": "Resistivity coefficient for temperature in keV",
+      "implementation_ref": "educationalTransport",
+      "provenance_kind": "illustrative_model_parameter"
+    },
+    {
+      "id": "C-M01-Te_floor",
+      "value": 0.02,
+      "units": "keV",
+      "meaning": "Resistivity argument floor; not a state floor",
+      "implementation_ref": "educationalTransport",
+      "provenance_kind": "illustrative_model_parameter"
+    },
+    {
+      "id": "C-M01-ne_floor",
+      "value": 1e+18,
+      "units": "m^-3",
+      "meaning": "Confinement density argument floor",
+      "implementation_ref": "educationalTransport",
+      "provenance_kind": "illustrative_model_parameter"
+    },
+    {
+      "id": "C-M01-Paux_floor",
+      "value": 0.5,
+      "units": "MW",
+      "meaning": "Confinement auxiliary power argument floor",
+      "implementation_ref": "educationalTransport",
+      "provenance_kind": "illustrative_model_parameter"
+    },
+    {
+      "id": "C-M01-tau_exchange",
+      "value": 0.25,
+      "units": "s",
+      "meaning": "Exchange denominator; energy difference alone relaxes with half this time",
+      "implementation_ref": "runShot",
+      "provenance_kind": "illustrative_model_parameter"
+    },
+    {
+      "id": "C-M01-nbi_absorption",
+      "value": 0.8,
+      "units": "1",
+      "meaning": "NBI absorbed fraction",
+      "implementation_ref": "runShot",
+      "provenance_kind": "illustrative_model_parameter"
+    },
+    {
+      "id": "C-M01-nbi_electron_fraction",
+      "value": 0.35,
+      "units": "1",
+      "meaning": "Electron share of absorbed NBI",
+      "implementation_ref": "runShot",
+      "provenance_kind": "illustrative_model_parameter"
+    },
+    {
+      "id": "C-M01-nbi_ion_fraction",
+      "value": 0.65,
+      "units": "1",
+      "meaning": "Ion share of absorbed NBI",
+      "implementation_ref": "runShot",
+      "provenance_kind": "illustrative_model_parameter"
+    },
+    {
+      "id": "C-M01-ech_absorption",
+      "value": 0.9,
+      "units": "1",
+      "meaning": "ECH absorbed fraction",
+      "implementation_ref": "runShot",
+      "provenance_kind": "illustrative_model_parameter"
+    },
+    {
+      "id": "C-M01-beam_energy",
+      "value": 80,
+      "units": "keV",
+      "meaning": "Beam particle energy",
+      "implementation_ref": "runShot/rates",
+      "provenance_kind": "illustrative_model_parameter"
+    },
+    {
+      "id": "C-M01-gas_efficiency",
+      "value": 0.3,
+      "units": "1",
+      "meaning": "Gas fueling efficiency",
+      "implementation_ref": "runShot/rates",
+      "provenance_kind": "illustrative_model_parameter"
+    },
+    {
+      "id": "C-M01-gas_scale",
+      "value": 1e+21,
+      "units": "s^-1 per gas control unit",
+      "meaning": "Gas control conversion",
+      "implementation_ref": "runShot/rates",
+      "provenance_kind": "illustrative_model_parameter"
+    },
+    {
+      "id": "C-M01-ionization_energy",
+      "value": 0.0136,
+      "units": "keV",
+      "meaning": "Gas ionization cost",
+      "implementation_ref": "runShot",
+      "provenance_kind": "illustrative_model_parameter"
+    },
+    {
+      "id": "C-M01-bremsstrahlung_coefficient",
+      "value": 1.69e-38,
+      "units": "W m^3 eV^-1/2",
+      "meaning": "Coefficient multiplying ne squared sqrt(Te in eV) V",
+      "implementation_ref": "runShot/rates",
+      "provenance_kind": "illustrative_model_parameter"
+    },
+    {
+      "id": "C-M01-initial_ne",
+      "value": 3e+19,
+      "units": "m^-3",
+      "meaning": "Initial common density",
+      "implementation_ref": "runShot",
+      "provenance_kind": "illustrative_model_parameter"
+    },
+    {
+      "id": "C-M01-initial_Te_Ti",
+      "value": 0.5,
+      "units": "keV",
+      "meaning": "Initial electron and ion temperatures",
+      "implementation_ref": "runShot",
+      "provenance_kind": "illustrative_model_parameter"
+    },
+    {
+      "id": "C-M01-endpoint_current",
+      "value": 0.4,
+      "units": "MA",
+      "meaning": "Current at 0 and 5 seconds",
+      "implementation_ref": "waveform",
+      "provenance_kind": "illustrative_model_parameter"
+    }
+  ],
+  "confinement_scaling": {
+    "Ip_reference_MA": 1.2,
+    "Ip_exponent": 0.7,
+    "Bt_reference_T": 2,
+    "Bt_exponent": 0.2,
+    "ne_reference_m_minus3": 4e+19,
+    "ne_exponent": 0.2,
+    "Paux_reference_MW": 5,
+    "Paux_exponent": -0.35,
+    "resistivity_Te_exponent": -1.5
+  },
+  "control_domain": {
+    "ip": {
+      "default": 1.2,
+      "minimum": 0.6,
+      "maximum": 2,
+      "ui_step": 0.05,
+      "units": "MA"
+    },
+    "bt": {
+      "default": 2,
+      "minimum": 1,
+      "maximum": 2.1,
+      "ui_step": 0.05,
+      "units": "T"
+    },
+    "nbi": {
+      "default": 4,
+      "minimum": 0,
+      "maximum": 12,
+      "ui_step": 0.25,
+      "units": "MW"
+    },
+    "ech": {
+      "default": 1,
+      "minimum": 0,
+      "maximum": 3,
+      "ui_step": 0.1,
+      "units": "MW"
+    },
+    "gas": {
+      "default": 2.5,
+      "minimum": 0,
+      "maximum": 8,
+      "ui_step": 0.1,
+      "units": "control unit (1e21 atoms/s before efficiency)"
+    },
+    "kappa": {
+      "default": 1.7,
+      "minimum": 1,
+      "maximum": 1.95,
+      "ui_step": 0.05,
+      "units": "1"
+    },
+    "delta": {
+      "default": 0.35,
+      "minimum": -0.3,
+      "maximum": 0.6,
+      "ui_step": 0.05,
+      "units": "1"
+    }
+  },
+  "numerics": {
+    "default_grid_size": 49,
+    "grid_min": 17,
+    "grid_max": 129,
+    "grid_constraint": "odd",
+    "geometry_extent_factor": 1.04,
+    "boundary_default_intervals": 160,
+    "SOR_omega": 1.7,
+    "basis_max_iterations": 12000,
+    "basis_residual_check_stride": 20,
+    "basis_relative_residual_threshold": 1e-08,
+    "flux_reversal_threshold": -1e-10,
+    "shot_duration_s": 5,
+    "default_dt_s": 0.002,
+    "maximum_dt_s": 0.01,
+    "nominal_sample_interval_s": 0.02,
+    "aux_on_s": 1,
+    "aux_off_s": 4
+  },
+  "external_reference_status": "Geometry citation inherited from docs/PHYSICS.md: GA-A24059 section 2, https://fusion.gat.com/pubs-ext/SOFT02/A24059.pdf . No independent source verification in this pass. Remaining heuristic parameter values are implementation provenance, not experimentally fitted constants."
+}

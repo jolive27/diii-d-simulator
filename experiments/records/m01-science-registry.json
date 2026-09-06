@@ -1,0 +1,16 @@
+{
+  "role": "physics",
+  "agentId": "/root/physics",
+  "task": "m01-science-registry",
+  "files": [
+    "science/",
+    "agents/physics.md"
+  ],
+  "decision": "delegated",
+  "model": "gpt-6-astra",
+  "reasoning": "medium",
+  "modelVersion": "0.1.0",
+  "physicsAssumptionChanges": [],
+  "baselineCommit": "b07537877cec168d20783a3cfc45366fccbd4538",
+  "time": "2026-09-06T18:05:59.873Z"
+}

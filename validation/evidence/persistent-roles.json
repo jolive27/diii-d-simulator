@@ -1,0 +1,29 @@
+{
+  "name": "persistent-roles",
+  "status": "PASS",
+  "detail": {
+    "docs": [
+      {
+        "role": "director",
+        "sha256": "c3cc0eee261cb37744b6d31834ef58d9047771e6f308e25936bcd3960c25ee72"
+      },
+      {
+        "role": "physics",
+        "sha256": "fe6953d54c183fa455226baecb445cbc2711a93575f9cf5fb4cf88a0adea51e8"
+      },
+      {
+        "role": "software",
+        "sha256": "b43a7a3eb9afa2f14b6960f4e9a7606c3bf3410815449ae237421359660339bf"
+      },
+      {
+        "role": "validation",
+        "sha256": "e1e5acf344b6843fc03921fd9295e18ceef537de78728f8a0a80b5ae213135dc"
+      }
+    ],
+    "independentAgentId": "/root/validation",
+    "implementationAgentId": "/root/software",
+    "scope": "Persistent role documents and contract; live role dispatch identity confirmed by Director coordination records."
+  },
+  "sourceFingerprint": "9f1c0d2908e27f462a8dfcd6243825acea06fa2a679ddd200d87658a0148366c",
+  "time": "2026-09-06T18:07:07.139Z"
+}
