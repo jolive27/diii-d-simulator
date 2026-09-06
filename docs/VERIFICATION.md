@@ -14,7 +14,7 @@ Nine numerical tests passed:
 8. A 129-point elliptical mesh gives torus volume within 0.5% of the analytic value.
 9. Refining 49→97 points changes baseline peak flux by less than 5% and volume by less than 2%.
 
-Type checking and the production build passed. The development route returned HTTP 200 and was opened in Codex. Browser visual/interaction testing was not requested and has not been performed. The optional WebMCP run tool is feature-detected but unverified in a supported WebMCP browser context; this does not affect manual controls.
+Type checking and the production build passed. The development route returned HTTP 200 and was opened in Codex. Browser visual/interaction testing was not requested and has not been performed. The optional WebMCP tool registered with the expected schema and annotations. A baseline request returned the expected sample and updated visible results; a zero-field request failed with Invalid bt, and the previous 0.87 keV result remained visible. This focused contract check did not include broader visual or manual interaction testing.
 
 Baseline at 2.5 s: Te ≈0.8723 keV, Ti ≈0.8464 keV, mean ne ≈5.7854e19 m^-3, stored thermal energy ≈0.55224 MJ. These are synthetic model results, not measured DIII-D values.
 
