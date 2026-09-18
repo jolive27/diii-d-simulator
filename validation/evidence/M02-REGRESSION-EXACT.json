@@ -36,7 +36,7 @@
     "stabilityCoarseDifferenceRelative": 0.1
   },
   "measurements": {
-    "fixtureSha256": "7a3e96558b79b4be772958dd357a8f42dd4ee7d4cc27d2292893a2ed13c7b241",
+    "fixtureSha256": "971f5803da3dfa6fd11377e25b6d71a415a173b7d2de08062b57b16313fd5a17",
     "sourceBeforeM02": "9dde261db38c18469902fd7dc02c80978f417a824c2aa159b573282bf63b84c7",
     "rows": [
       {
@@ -72,7 +72,7 @@
     ]
   },
   "sourceHash": "d6005863c79912d3c00a727a735fe66dc88d36fbe42e9bd47cf41d655c1b72f8",
-  "runtimeVersion": "v24.19.0",
+  "runtimeVersion": "v24.20.0",
   "artifactPaths": [
     "validation/evidence/M02-REGRESSION-EXACT.json"
   ]

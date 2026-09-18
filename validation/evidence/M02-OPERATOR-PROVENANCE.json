@@ -43,7 +43,7 @@
     "note": "Source inspected: same SOR sweep and residual loop; only inactive-node initialization differs. Exact old arrays and iteration count checked by regression."
   },
   "sourceHash": "d6005863c79912d3c00a727a735fe66dc88d36fbe42e9bd47cf41d655c1b72f8",
-  "runtimeVersion": "v24.19.0",
+  "runtimeVersion": "v24.20.0",
   "artifactPaths": [
     "validation/evidence/M02-OPERATOR-PROVENANCE.json"
   ]

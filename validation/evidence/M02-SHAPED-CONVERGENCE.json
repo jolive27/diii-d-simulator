@@ -243,7 +243,7 @@
     "scope": "Staircase boundary distance and numerical refinement consistency. No global second-order or LCFS contour-accuracy claim."
   },
   "sourceHash": "d6005863c79912d3c00a727a735fe66dc88d36fbe42e9bd47cf41d655c1b72f8",
-  "runtimeVersion": "v24.19.0",
+  "runtimeVersion": "v24.20.0",
   "artifactPaths": [
     "validation/evidence/M02-SHAPED-CONVERGENCE.json"
   ]
