@@ -1,0 +1,41 @@
+test_baseline_metrics_match (test_pyengine.PyEngineChecks.test_baseline_metrics_match) ... 
+[PYENGINE-BASELINE-METRICS]
+ok
+test_conservation_match (test_pyengine.PyEngineChecks.test_conservation_match) ...     aggregate budget 1e-9 satisfied; worst rel diff across 10 metrics: 0.00e+00
+
+[PYENGINE-CONSERVATION]
+ok
+test_determinism (test_pyengine.PyEngineChecks.test_determinism) ...     max |ΔenergyError|=0.00e+00 max |ΔparticleError|=0.00e+00; aggregate 1e-9 held
+
+[PYENGINE-DETERMINISM]
+ok
+test_equilibrium_match (test_pyengine.PyEngineChecks.test_equilibrium_match) ...     repeated runs and benchmark('baseline') bitwise-identical (JSON fingerprints equal)
+
+[PYENGINE-EQUILIBRIUM-MATCH]
+ok
+test_legacy_ts_tests_pass (test_pyengine.PyEngineChecks.test_legacy_ts_tests_pass) ...     grids 33/49/65/129, pbar 30/250 kPa; basis arrays bitwise-identical; worst psi rel 0.00e+00, meanPressure rel 0.00e+00, current rel 0.00e+00
+
+[PYENGINE-LEGACY-TESTS]
+ok
+test_lint_pycompile (test_pyengine.PyEngineChecks.test_lint_pycompile) ...     existing TypeScript physics test suite passes unchanged
+
+[PYENGINE-LINT]
+ok
+test_scope_constants_match (test_pyengine.PyEngineChecks.test_scope_constants_match) ...     python/d3gate/*.py compile cleanly
+
+[PYENGINE-SCIENTIFIC-SCOPE]
+ok
+test_sweep_match (test_pyengine.PyEngineChecks.test_sweep_match) ...     DEFAULT/LIMITS/MACHINE/MU0/KEV and model version + assumptions identical to the reference engine
+
+[PYENGINE-SWEEP-MATCH]
+ok
+test_timeseries_match (test_pyengine.PyEngineChecks.test_timeseries_match) ...     full LIMITS step grid (252 shots) compared; worst rel diff across all metrics: 0.00e+00
+
+[PYENGINE-TIMESERIES-MATCH]
+ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 57.575s
+
+OK
+    pointwise budget 1e-6 satisfied over 251 samples x 17 fields; worst rel diff: 0.00e+00

@@ -1,0 +1,73 @@
+{
+  "name": "jev-gate",
+  "displayName": "Jev Gate",
+  "description": "Evaluate any selection, file, or saved file against typed TypeSafe Jev questions (noul/choice/score) straight from VS Code. Same API and batch semantics as the opencode jev tool.",
+  "version": "0.1.0",
+  "publisher": "jevgate",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.84.0"
+  },
+  "categories": ["Other", "Testing"],
+  "activationEvents": ["onCommand:jev-gate.evaluate", "onStartupFinished"],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "jev-gate.evaluate",
+        "title": "Jev: Evaluate",
+        "category": "Jev"
+      }
+    ],
+    "configuration": {
+      "title": "Jev Gate",
+      "properties": {
+        "jev.apiUrl": {
+          "type": "string",
+          "default": "https://api.typesafe.ai/v1/systemone",
+          "description": "Jev (TypeSafe System One) API endpoint."
+        },
+        "jev.model": {
+          "type": "string",
+          "default": "jev-latest",
+          "description": "Model id. Available: jev-latest, jev-preview."
+        },
+        "jev.keyFile": {
+          "type": "string",
+          "default": "",
+          "description": "Optional override path to the Jev API key file (default: ~/.config/opencode/.secrets/jev.key). JEV_API_KEY env takes precedence."
+        },
+        "jev.questions": {
+          "type": "object",
+          "default": {},
+          "description": "Inline typed questions map {id:{type,instructions,criteria}}. Leave empty to use .jevgate/questions.json in the workspace."
+        },
+        "jev.state": {
+          "type": "string",
+          "default": "",
+          "description": "Optional fallback state text when there is no active editor/selection."
+        },
+        "jev.runOnSave.enabled": {
+          "type": "boolean",
+          "default": false,
+          "description": "Automatically evaluate files on save (matching jev.runOnSave.extensions) against the current questions."
+        },
+        "jev.runOnSave.extensions": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": [],
+          "description": "File extensions (e.g. [\"json\",\"py\"]) whose saves trigger a Jev evaluation."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "package": "npm run compile && npx @vscode/vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@types/vscode": "^1.84.0",
+    "typescript": "^5.6.0"
+  }
+}

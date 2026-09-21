@@ -1,0 +1,46 @@
+$ node --experimental-strip-types --test tests/*.test.mjs
+✔ default API and named baseline preserve every M01 output field and sample (27.81675ms)
+✔ custom controls, mesh, and time step delegate exactly to the unchanged engine (6.760792ms)
+✔ API rejects malformed inputs and unsupported operations explicitly (6.158ms)
+✔ sweep preserves requested order and duplicates without mutating inputs or sharing results (17.026334ms)
+✔ metrics summarize known stored samples including absolute conservation errors (2.864583ms)
+✔ exports preserve complete JSON and all numeric CSV samples without mutation (6.347167ms)
+✔ complete new capability and explicit no-change specification pass structural review (6.172292ms)
+✔ every mandatory capability item, explicit flag, and required verification check are enforced (9.186125ms)
+✔ hash binding detects changed or empty artifacts (2.823166ms)
+✔ unsafe paths and symlinks outside repository fail (3.809792ms)
+✔ reference route needs implementation details or a documented no-reference search (8.191667ms)
+✔ only exact approved historical hashes are grandfathered, never names (10.938209ms)
+✔ approval permits a safely planned test; acceptance requires the implemented file (11.547166ms)
+$ python3 tools/jev-gate.py --dry
+✔ d3gate dry run emits Jev state and all typed questions without calling the API (304.106084ms)
+✔ d3gate dry run is deterministic for the default baseline shot (301.28275ms)
+✔ d3gate honors an explicit gates script command (163.103583ms)
+✔ M02 exact frozen original M01 regression and observer equivalence (209.789ms)
+✔ M02 boundary arrays reject dimensions/nonfinite values, and inactive values alone are prescribed (0.8485ms)
+✔ M02 rectangular analytic gates with production operator and independent measurements (1473.9755ms)
+✔ M02 fixed-pressure shaped and ellipse consistency without second-order claims (1708.529792ms)
+✔ M02 observer is frozen, continuous and does not suppress callback errors (2.103ms)
+✔ M02 independent per-step and cumulative species/thermal budgets for twelve cases (133.811209ms)
+✔ M02 independent ledger rejects particle corruption and opposite species corruption (27.81475ms)
+✔ M02 continuous constant-source particle oracle converges under halving (3.513125ms)
+✔ M02 aligned timestep convergence for baseline and no heating/fueling (11.471708ms)
+✔ M02 stability sweep, stiff closure rejection and nonaligned coverage (34.246625ms)
+✔ M02 source units and absorbed heating partitions have explicit independent expectations (11.183958ms)
+✔ five-second shot conserves tracked particles and thermal energy (1.804583ms)
+✔ baseline equilibrium meets current, pressure, and GS equation independently (42.6825ms)
+✔ time-step refinement changes flat-top temperatures by less than 1% (3.789875ms)
+✔ particle inventory agrees with analytic constant-source solution without NBI (3.719875ms)
+✔ doubling heating raises thermal energy; gas raises density (5.156417ms)
+✔ zero heating and zero fueling are supported for formed plasma (1.654917ms)
+✔ unphysical controls and unsolvable equilibrium fail explicitly (0.414ms)
+✔ elliptical geometry volume approaches analytic torus volume (1.833167ms)
+✔ grid refinement keeps volume and peak flux within 5% (247.2395ms)
+ℹ tests 36
+ℹ suites 0
+ℹ pass 36
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3764.772083

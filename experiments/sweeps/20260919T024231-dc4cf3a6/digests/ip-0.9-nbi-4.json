@@ -1,0 +1,32 @@
+{
+  "config": {
+    "controls": {
+      "ip": 0.9,
+      "nbi": 4
+    },
+    "dt": 0.002,
+    "gridSize": 49
+  },
+  "engine": "python/d3gate",
+  "metrics": {
+    "endTimeSeconds": 5.0,
+    "maxAbsEnergyError": 2.8791238853932785e-15,
+    "maxAbsParticleError": 5.150839521639982e-14,
+    "peakBetaPercent": 0.8335584720063732,
+    "peakDensity1e19PerM3": 6.476612456838747,
+    "peakElectronTemperatureKeV": 0.8211858289351683,
+    "peakIonTemperatureKeV": 0.8068523255671901,
+    "peakThermalEnergyMJ": 0.45988213322679816,
+    "sampleCount": 251,
+    "startTimeSeconds": 0.0
+  },
+  "modelVersion": "0.1.0",
+  "regression": {
+    "firstFailure": null,
+    "maxRelativeError": 0.0,
+    "status": "PASS"
+  },
+  "schemaVersion": 1,
+  "shotId": "ip-0.9-nbi-4",
+  "sourceFingerprint": "2d106c1e8c37e3a06bbe16fa481d679c4d0f22a6395149fc4c6ca3089e92bafb"
+}

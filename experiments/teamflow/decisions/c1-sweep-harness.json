@@ -1,0 +1,13 @@
+{
+  "unit": "c1-sweep-harness",
+  "status": "ACCEPTED",
+  "role": "director",
+  "agentId": "big-pickle",
+  "time": "2026-09-19T03:19:08.347Z",
+  "gate": {
+    "status": "PASS",
+    "errors": [],
+    "sourceFingerprint": "6aa67d99f545323f315811396e5bfe9752b374a21f04fa1b6b015aec08e7ce03"
+  },
+  "stagedBy": "big-pickle"
+}

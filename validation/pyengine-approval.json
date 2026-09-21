@@ -1,0 +1,11 @@
+{
+  "role": "director",
+  "agentId": "/root",
+  "specHash": "71787da902190d6038460bbb2d46a0dc810a8a4e91a12ced9b38fe7ea9f1fd54",
+  "time": "2026-09-18T19:02:21.644Z",
+  "capabilityPolicyReview": {
+    "status": "REVIEWED",
+    "legacyExemption": false,
+    "scope": "Director approval covers scientific adequacy of declared capability artifacts and reference availability rationale; automated checks establish completeness and integrity only."
+  }
+}

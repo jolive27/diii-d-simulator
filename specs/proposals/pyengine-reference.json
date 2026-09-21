@@ -1,0 +1,17 @@
+{
+  "time": "2026-09-18",
+  "availability": "available",
+  "implementations": [
+    {
+      "name": "DIII-D Virtual Shot TypeScript engine (M01/M02)",
+      "versionOrRevision": "physics model 0.1.0, verification 0.2.0; source revision b07537877cec168d20783a3cfc45366fccbd4538",
+      "source": "Repository physics/engine.ts and physics/api.ts; authoritative equations transcription in science/equations.md (inspected 2026-09-06).",
+      "comparisonPlan": "Run both engines on identical inputs and compare aggregates, sample time series, and equilibrium diagnostics. Cases: (1) default baseline shot; (2) analytic-solovev and shaped-convergence benchmark fixtures; (3) ordered single-control parameter sweep across every control's LIMITS step grid (parameter_sweep); (4) the M02 verification suite where measurable. Equate units and conventions per science/equations.md (SI internally; MA/MW/MJ/10^19 m^-3 external). Metrics and tolerances: aggregate scalars (peak Te, Ti, ne, thermal energy MJ, beta %, final tauE, volume m^3) within 1e-9 relative; sample fields pointwise within 1e-6 relative; equilibrium psi / mean-pressure / integrated-current diagnostics within 1e-6 relative on shared grids and comparable convergence paths; conservation residuals within budget. Each engine runs the same control-flow order; any exceeded tolerance is recorded as a discrepancy with cause analysis and requires a Director-approved change request before acceptance. Expected differences are restricted to binary64 roundoff, sum-nesting and libm elementary-function differences; no physics difference is expected or tolerated."
+    }
+  ],
+  "limitations": [
+    "The reference is the same reduced educational model, so this pathway establishes numerical equivalence, not experimental validity.",
+    "M02 shaped-convergence and staircase mask truncation are grid-dependent and not claimed second order; comparisons use shared grids.",
+    "Cross-runtime determinism is defined per runtime; the two engines may differ at the 1e-12..1e-9 relative level in aggregates due to sum order and libm."
+  ]
+}

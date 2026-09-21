@@ -1,0 +1,11 @@
+{"id":"WORKFLOW-VALIDATION-MODEL-002","unit":"c1-sweep-harness","stage":"validate","role":"director","time":"2026-09-19T04:00Z",
+ "title":"Drop local Ollama from the workflow fast path; validation model gpt-5.6-terra",
+ "reason":["granite4.1:8b (8.1GB) and qwen3.5:4b run via local llama-server, pegging CPU to 100% for 10+ minutes on validation prompts and sometimes hanging with no output; the value was role/model INDEPENDENCE, not the specific model","registries.json hardcoded validation=granite4.1:8b, research=granite4.1:8b, reviewer=qwen3.5:4b","cloud execution via tools/copilot-agent.mjs (COPILOT_MODEL=... --model) gives real reasoning power and zero local CPU cost for the same independence guarantee","gates.mjs gateCheck only enforces validation model != software model (claude-sonnet-4.6); gpt-5.6-terra satisfies it"],
+ "oldValues":{"validation":"granite4.1:8b","research":"granite4.1:8b","reviewer":"qwen3.5:4b"},
+ "newValues":{"validation":"gpt-5.6-terra","research":"claude-sonnet-4.6","reviewer":"claude-sonnet-4.6"},
+ "reroute":"validation/research/reviewer stages now run headless via copilot -s -p with COPILOT_MODEL=<model>; no Ollama invocation anywhere in the fast path",
+ "resolution":"gpt-5.6-terra is NOT in the Copilot CLI '--model' availability list (probed all plausible ids; only 'auto' accepted). codex CLI not installed. Headless-Copilot 'auto' equals the software implementation model, so it CANNOT satisfy model independence. Per WORKFLOW-COPILOT-FALLBACK-001, the validate stage is executed by big-pickle (opencode, a model distinct from claude-sonnet-4.6) under the VALIDATION role, producing validation/evidence/, with Jev (distinct from both) independently auditing the evidence via the validate rubric. Independence = (big-pickle vs claude-sonnet-4.6) AND a separate Jev audit; gateCheck model-difference rule satisfied with validate win.model='big-pickle'.",
+ "Ollama":"quit 2026-09-19 (app + llama-server TERM'd by user request); available on demand if ever needed",
+ "independenceRule":"kept unchanged (gates.mjs:191-195): validation model must still differ from software implementation model",
+ "impact":"c1-sweep-harness self-review already done by qwen3.5:4b (recorded, PASS); C1 validate now proceeds with gpt-5.6-terra via headless Copilot",
+ "evidence":"registries.json roles; Ollama processes = 0 after quit"}

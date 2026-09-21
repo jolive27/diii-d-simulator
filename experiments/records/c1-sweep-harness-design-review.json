@@ -1,0 +1,25 @@
+{"id":"c1-sweep-harness-design-review","unit":"c1-sweep-harness","stage":"design-review","role":"director","kind":"engineering/tooling — physics frozen at 0.1.0",
+"implementationSpecBinder":{
+ "digestSchema":"JSON exactly: schemaVersion(int=1), shotId(string), config(object passed to run_shot), metrics(get_metrics output), modelVersion('0.1.0'), sourceFingerprint, engine('python/d3gate'), regression{status PASS|FAIL, maxRelativeError, firstFailure|null}",
+ "manifestSchema":"JSON exactly: schemaVersion(int=2), batchId(experiments/sweeps/<id>), createdAt, config(pinned), cases[{shotId,config}], runtimeVersions{python,node}, pyengineApprovalHash('71787da902190d6038460bbb2d46a0dc810a8a4e91a12ced9b38fe7ea9f1fd54'), engineFingerprint(sha256 of python/d3gate/engine.py bytes read at batch start), modelVersion('0.1.0'), sourceFingerprint, digests[{shotId,path,sha256}], regressionSummary, jevResult{callCount=1, model, scores, status}, go(boolean)",
+ "tsReferenceInvocation":"REUSE d3gate.engine._node + _API_URL/_ENGINE_URL (existing node --input-type=module bridge importing physics/api.ts / engine.ts, cwd=REPO, JSON round-trip) for the reference comparison; no new subprocess design. Per-batch: run_shot via node per case, compare against python run_shot.",
+ "engineFingerprintMethod":"sha256 of python/d3gate/engine.py bytes at batch start; mismatch vs approval binding = hard no-go",
+ "configValidation":"REUSE engine._normalize for every case (grid int 17-129 odd, dt>0 and <=0.01, controls whitelisted to LIMITS keys + bounds); invalid case => fail the batch. Sweep reuse engine.parameter_sweep(config, control, values) where applicable.",
+ "digestFields":"REUSE engine.get_metrics output + SAMPLE_FIELDS (t,ip,ne,te,ti,we,wi,nbi,ech,pOhm,pLoss,pRad,tauE,pressure,beta,energyError,particleError) as the regression field list; MODEL_VERSION asserted 0.1.0.",
+ "comparisonBudget":"pointwise 1e-6 over 251x17 fields (t,ip,ne,te,ti,we,wi,nbi,ech,pOhm,pLoss,pRad,tauE,pressure,beta,energyError,particleError); aggregates 1e-9; conservation/equilibrium as specs/proposals/pyengine.md; record max error + first failing case/field/sample",
+ "cliContract":"python -m d3gate.sweep [--config PATH] [--limit N]; --limit N expands+prints first N ordered cases, exits with zero engine/network/writes; default run writes experiments/sweeps/<id>/{manifest.json,digests/<id>.json} plus flagged full shots only; any invalid case or engine exception fails the batch (no partial pass)"
+},
+"acceptanceCriteria":{
+ "regression":"TS-reference pointwise 1e-6 over 251 samples x 17 fields; 1e-9 aggregates; budgets as pyengine.md",
+ "integrity":"manifest sha256 matches every digest; deterministic case order; invalid case/engine exception fails whole batch",
+ "jev":"exactly ONE jaV call to tools/teamflow/jev.mjs per sweep, jev-latest, min 0.75, state = manifest+digests (never full shots, never per-call/per-question); unavailable/malformed/below-threshold => no-go, no success fallback",
+ "storage":"full shot JSON only when regression failed/non-finite or retain_full_shot=true; never for clean passes"
+},
+"openConcernDispositions":[
+ {"concern":"accepted-pyengine hash","disposition":"APPROVED-BIND","decision":"bind validation/pyengine-approval.json specHash 71787da9...; manifest records it + engine fingerprint; mismatch = hard no-go"},
+ {"concern":"default sweep config","disposition":"APPROVED-BIND","decision":"baseline + ip in {0.9,1.2,1.5} x nbi in {2,4,6} = 10 ordered cases, gridSize 49, dt 0.002, inside LIMITS; ~1-2s laptop"},
+ {"concern":"C1 Jev template + manifest schema","disposition":"APPROVED-BIND","decision":"experiments/teamflow/units/c1-sweep-harness.rubric.json is the C1 template binding; manifest schema as binder above"},
+ {"concern":"large LIMITS vs one-call Jev","disposition":"APPROVED-WITH-CAP","decision":"naive cartesian forbidden; opt-in stratified sweep capped at <=512 digest cases; must fit ONE Jev call over digest-only state; else no-go"}
+],
+"softwareScopeGrant":{"role":"software","granted":["python/"],"rationale":"Software owns approved implementation of the accepted pyengine (python/d3gate); workers cannot self-grant","permissionsChanged":["agents/permissions.json"]},
+"recommendation":"APPROVED FOR IMPLEMENTATION — implement (software/claude-sonnet-4.6 headless), self-review (qwen3.5:4b), independent validation (granite4.1:8b)."}

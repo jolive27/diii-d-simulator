@@ -1,0 +1,278 @@
+{
+  "unit": "ide-workflow",
+  "title": "Copilot + Cline integration into TeamFlow",
+  "kind": "engineering",
+  "director": "big-pickle",
+  "created": "2026-09-18T20:50:57.246Z",
+  "updated": "2026-09-18T20:53:51.611Z",
+  "modelVersion": "teamflow/0.1.0",
+  "stages": {
+    "intake": {
+      "status": "pending",
+      "owner": "director",
+      "role": null
+    },
+    "research": {
+      "status": "done",
+      "owner": "physics",
+      "role": "research"
+    },
+    "spec": {
+      "status": "pending",
+      "owner": "physics",
+      "role": null
+    },
+    "design-review": {
+      "status": "pending",
+      "owner": "director",
+      "role": "reviewer"
+    },
+    "implement": {
+      "status": "pending",
+      "owner": "software",
+      "role": null
+    },
+    "self-review": {
+      "status": "pending",
+      "owner": "software",
+      "role": "reviewer"
+    },
+    "validate": {
+      "status": "pending",
+      "owner": "validation",
+      "role": null
+    },
+    "gate": {
+      "status": "pending",
+      "owner": "director",
+      "role": "auditor"
+    },
+    "accept": {
+      "status": "pending",
+      "owner": "director",
+      "role": "auditor"
+    },
+    "release": {
+      "status": "pending",
+      "owner": "director",
+      "role": null
+    },
+    "retro": {
+      "status": "pending",
+      "owner": "director",
+      "role": null
+    }
+  },
+  "tasks": {
+    "research": {
+      "task": "Document the exact steps a human takes to run TeamFlow role tasks (physics/software/validation) inside Copilot and Cline, including which model to pick in each tool and how to report the handoff back.",
+      "model": "claude-sonnet-4.6",
+      "role": "research",
+      "time": "2026-09-18T20:51:24.991Z"
+    }
+  },
+  "artifactWindows": {
+    "research": {
+      "role": "physics",
+      "files": [
+        "specs/proposals/teamflow-integration.md"
+      ],
+      "model": "big-pickle",
+      "time": "2026-09-18T20:53:00.545Z"
+    }
+  },
+  "handoffs": {
+    "research": "Drafted TeamFlow integration proposal: role-to-model mapping, manual round-trip commands, handoff format, guardrails. Artifact: specs/proposals/teamflow-integration.md. Model claude-sonnet-4.6 planned but not executed; draft produced by Director for demonstration."
+  },
+  "evals": {
+    "research": {
+      "time": "2026-09-18T20:53:51.610Z",
+      "stage": "research",
+      "questionCount": 1,
+      "batch": "batch:intake+research+spec+design-review+implement+self-review+validate+gate+accept",
+      "model": "jev-1.13.0",
+      "questions": {
+        "reference_found": {
+          "value": 0.94,
+          "min": 0.6,
+          "pass": true
+        }
+      },
+      "status": "PASS",
+      "below": []
+    },
+    "intake": {
+      "time": "2026-09-18T20:53:51.610Z",
+      "stage": "intake",
+      "questionCount": 2,
+      "batch": "batch:intake+research+spec+design-review+implement+self-review+validate+gate+accept",
+      "model": "jev-1.13.0",
+      "questions": {
+        "scope_bound": {
+          "value": 0.16,
+          "min": 0.6,
+          "pass": false
+        },
+        "owner_assigned": {
+          "value": 0.69,
+          "min": 0.6,
+          "pass": true
+        }
+      },
+      "status": "FAIL",
+      "below": [
+        "scope_bound"
+      ]
+    },
+    "spec": {
+      "time": "2026-09-18T20:53:51.610Z",
+      "stage": "spec",
+      "questionCount": 2,
+      "batch": "batch:intake+research+spec+design-review+implement+self-review+validate+gate+accept",
+      "model": "jev-1.13.0",
+      "questions": {
+        "capability_complete": {
+          "value": 0.06,
+          "min": 0.75,
+          "pass": false
+        },
+        "no_silent_change": {
+          "value": 0.4,
+          "min": 0.75,
+          "pass": false
+        }
+      },
+      "status": "FAIL",
+      "below": [
+        "capability_complete",
+        "no_silent_change"
+      ]
+    },
+    "design-review": {
+      "time": "2026-09-18T20:53:51.610Z",
+      "stage": "design-review",
+      "questionCount": 1,
+      "batch": "batch:intake+research+spec+design-review+implement+self-review+validate+gate+accept",
+      "model": "jev-1.13.0",
+      "questions": {
+        "criteria_quantified": {
+          "value": 0.08,
+          "min": 0.6,
+          "pass": false
+        }
+      },
+      "status": "FAIL",
+      "below": [
+        "criteria_quantified"
+      ]
+    },
+    "implement": {
+      "time": "2026-09-18T20:53:51.610Z",
+      "stage": "implement",
+      "questionCount": 2,
+      "batch": "batch:intake+research+spec+design-review+implement+self-review+validate+gate+accept",
+      "model": "jev-1.13.0",
+      "questions": {
+        "scope_respected": {
+          "value": 0.43,
+          "min": 0.75,
+          "pass": false
+        },
+        "tests_evidence": {
+          "value": 0.06,
+          "min": 0.6,
+          "pass": false
+        }
+      },
+      "status": "FAIL",
+      "below": [
+        "scope_respected",
+        "tests_evidence"
+      ]
+    },
+    "self-review": {
+      "time": "2026-09-18T20:53:51.610Z",
+      "stage": "self-review",
+      "questionCount": 1,
+      "batch": "batch:intake+research+spec+design-review+implement+self-review+validate+gate+accept",
+      "model": "jev-1.13.0",
+      "questions": {
+        "drift_checked": {
+          "value": 0.1,
+          "min": 0.6,
+          "pass": false
+        }
+      },
+      "status": "FAIL",
+      "below": [
+        "drift_checked"
+      ]
+    },
+    "validate": {
+      "time": "2026-09-18T20:53:51.610Z",
+      "stage": "validate",
+      "questionCount": 3,
+      "batch": "batch:intake+research+spec+design-review+implement+self-review+validate+gate+accept",
+      "model": "jev-1.13.0",
+      "questions": {
+        "falsification_attempted": {
+          "value": 0.06,
+          "min": 0.6,
+          "pass": false
+        },
+        "independence": {
+          "value": 0.3,
+          "min": 0.75,
+          "pass": false
+        },
+        "evidence_bound": {
+          "value": 0.45,
+          "min": 0.75,
+          "pass": false
+        }
+      },
+      "status": "FAIL",
+      "below": [
+        "falsification_attempted",
+        "independence",
+        "evidence_bound"
+      ]
+    },
+    "gate": {
+      "time": "2026-09-18T20:53:51.610Z",
+      "stage": "gate",
+      "questionCount": 1,
+      "batch": "batch:intake+research+spec+design-review+implement+self-review+validate+gate+accept",
+      "model": "jev-1.13.0",
+      "questions": {
+        "gate_ready": {
+          "value": 0.03,
+          "min": 0.75,
+          "pass": false
+        }
+      },
+      "status": "FAIL",
+      "below": [
+        "gate_ready"
+      ]
+    },
+    "accept": {
+      "time": "2026-09-18T20:53:51.611Z",
+      "stage": "accept",
+      "questionCount": 1,
+      "batch": "batch:intake+research+spec+design-review+implement+self-review+validate+gate+accept",
+      "model": "jev-1.13.0",
+      "questions": {
+        "signoff_authorized": {
+          "value": 0.96,
+          "min": 0.9,
+          "pass": true
+        }
+      },
+      "status": "PASS",
+      "below": []
+    }
+  },
+  "compact": null,
+  "decision": null
+}

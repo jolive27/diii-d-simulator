@@ -1,0 +1,20 @@
+[project]
+name = "d3gate"
+version = "0.1.0"
+description = "Python tooling for the DIII-D Virtual Shot simulator: Jev-driven sanity gate and future Python engine host"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.scripts]
+d3gate = "d3gate.gate:main"
+
+[project.optional-dependencies]
+engine = ["numpy>=1.26"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["d3gate*"]

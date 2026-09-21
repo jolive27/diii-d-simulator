@@ -13,7 +13,10 @@
     "format": "oxfmt",
     "test": "node --experimental-strip-types --test tests/*.test.mjs",
     "workflow:gate": "node tools/workflow.mjs gate",
-    "agent:dispatch": "node tools/dispatch-agent.mjs"
+    "agent:dispatch": "node tools/dispatch-agent.mjs",
+    "jev:gate": "python3 tools/jev-gate.py",
+    "pyengine:test": "python3 -m unittest discover -s python/tests -v",
+    "pyengine:sweep": "PYTHONPATH=python python3 -m d3gate.sweep"
   },
   "dependencies": {
     "react": "19.2.6",

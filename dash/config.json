@@ -1,0 +1,11 @@
+{
+  "label": "Local workstation aggregates",
+  "opencode_db": "~/.local/share/opencode/opencode.db",
+  "jev_usage_ledger": "~/.local/share/opencode/jev-usage.jsonl",
+  "console_ledger": "~/.local/share/opencode/console.jsonl",
+  "watch_roots": [
+    "~/Documents/Default Project",
+    "~/Documents/GitHub",
+    "~/Documents/python"
+  ]
+}

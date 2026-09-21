@@ -1,0 +1,138 @@
+{
+  "design-review": [
+    {
+      "id": "criteria_quantified",
+      "type": "noul",
+      "min": 0.6,
+      "instructions": "Are numeric acceptance criteria and tolerances agreed between physics and software, bound to the C1 spec (specs/proposals/c1-sweep-harness.md)?",
+      "criteria": {
+        "true": "The design names the 1e-6 pointwise budget over 251 samples x 17 fields against the TypeScript reference, the 1e-9 aggregate budget, the Jev min 0.75 thresholds, and the SHA-256 manifest integrity requirement as measurable go/no-go gates.",
+        "false": "Acceptance is qualitative, missing budgets, or a pass/fail has no numeric bound."
+      }
+    },
+    {
+      "id": "implementable_as_written",
+      "type": "noul",
+      "min": 0.75,
+      "instructions": "Can Software implement the harness directly from the spec without making new design decisions?",
+      "criteria": {
+        "true": "The CLI is pinned (python -m d3gate.sweep), the digest schema and manifest schema are unambiguous, batch-on-exception fails the batch, --limit N performs no engine/network/write, and storage triage (full shot only when regression or retain_full_shot) is explicit.",
+        "false": "A required interface, schema field, failure mode, or artifact path is ambiguous or left for Software to decide."
+      }
+    },
+    {
+      "id": "jev_one_call_rule",
+      "type": "noul",
+      "min": 0.75,
+      "instructions": "Does the design preserve exactly one batched Jev call per sweep, with no per-shot calls and no success-shaped fallback when Jev is unavailable?",
+      "criteria": {
+        "true": "All expanded questions ride in a single tools/teamflow/jev.mjs call over one state (manifest + digests, not full shots); Jev unavailable/malformed/below-threshold makes the sweep explicitly no-go.",
+        "false": "Per-shot Jev calls, per-question calls, or a fallback that passes without Jev are present."
+      }
+    },
+    {
+      "id": "physics_contract_frozen",
+      "type": "noul",
+      "min": 0.75,
+      "instructions": "Does the design leave all physics assumptions, equations, constants, model version, and validity limits unchanged, exercising only the accepted 0.1.0 pyengine?",
+      "criteria": {
+        "true": "The harness only varies control/config inputs; modelVersion stays 0.1.0; no constant or assumption change is proposed; any apparent need is routed to a change-request.",
+        "false": "The design implies or performs a silent physics, constant, or tolerance change."
+      }
+    },
+    {
+      "id": "open_concerns_gated",
+      "type": "noul",
+      "min": 0.6,
+      "instructions": "Are the spec's open concerns gated as pre-implementation Director decisions rather than silently resolved by Software?",
+      "criteria": {
+        "true": "The accepted-pyengine approval/hash binding, the exact default three-value sweep config, the C1 Jev template + manifest schema binding, and large-LIMITS one-call availability are recorded as explicit Director dispositions before implement.",
+        "false": "An open concern is quietly defaulted during implementation without a decision record."
+      }
+    }
+  ],
+  "implement": [
+    {
+      "id": "scope_respected",
+      "type": "noul",
+      "min": 0.75,
+      "instructions": "Did implementation touch only the approved spec area and the Director-granted software scope (python/ for the accepted pyengine harness, plus tests/ and package.json wiring)?",
+      "criteria": {
+        "true": "Changed files are within software scope; no science/constant/spec/validation evidence changed; any out-of-scope need is reported, not edited.",
+        "false": "Implementation wrote outside its lane or altered unapproved science/constants/evidence."
+      }
+    },
+    {
+      "id": "digest_manifest_integrity",
+      "type": "noul",
+      "min": 0.75,
+      "instructions": "Did implementation build the digest + manifest with sha256 integrity, deterministic case ordering, and fail-the-batch semantics on invalid cases or engine exceptions?",
+      "criteria": {
+        "true": "Every listed digest exists with matching hash, ordering is deterministic, and any invalid/failed case makes the batch fail rather than partial-pass.",
+        "false": "Integrity checks, determinism, or batch-failure semantics are missing."
+      }
+    },
+    {
+      "id": "regression_budgets",
+      "type": "noul",
+      "min": 0.75,
+      "instructions": "Does the harness compare each Python shot against the TypeScript reference on the accepted budgets (1e-6 pointwise over 251x17, 1e-9 aggregates)?",
+      "criteria": {
+        "true": "The comparison fixture runs on the mandated budgets, records max errors + first failing case/field/sample, and the regression only PASSes when all cases pass.", 
+        "false": "Comparison is skipped, budget numbers differ, or failures are tolerated/not recorded."
+      }
+    },
+    {
+      "id": "batch_jev",
+      "type": "noul",
+      "min": 0.75,
+      "instructions": "Did implementation honor the one batched Jev call per sweep with no per-shot calls and no success fallback?",
+      "criteria": {
+        "true": "The sweep issues one jev.mjs call over the manifest + digests, stores the normalized score, flags retained shots via retain_full_shot, and no-goes on any below-threshold or unavailable Jev.",
+        "false": "Per-call or fallback behavior exists in the implemented harness."
+      }
+    },
+    {
+      "id": "physics_frozen",
+      "type": "noul",
+      "min": 0.75,
+      "instructions": "Did implementation keep physics frozen at modelVersion 0.1.0 with no constant, assumption, equation, or tolerance edits?",
+      "criteria": {
+        "true": "modelVersion stays 0.1.0, science/ registries and constants are untouched, and engine.py shows no physics edit.",
+        "false": "A physics or constant change slipped into the implementation diff."
+      }
+    }
+  ],
+  "validate": [
+    {
+      "id": "falsification_attempted",
+      "type": "noul",
+      "min": 0.6,
+      "instructions": "Did independent validation actively try to break the harness: edge-of-domain and failure cases, dry-run boundedness, digest/manifest hash tampering, and a check that no full shot is retained for clean passes?",
+      "criteria": {
+        "true": "Adversarial checks beyond happy-path reproduction are described with concrete outcomes.",
+        "false": "Validation is only a reproduction run of the provided fixture."
+      }
+    },
+    {
+      "id": "independence",
+      "type": "noul",
+      "min": 0.75,
+      "instructions": "Was validation executed by a separate model distinct from the software implementation model?",
+      "criteria": {
+        "true": "Validation model id differs from the claude-sonnet-4.6 software model (granite4.1:8b or an explicitly different Copilot model), and the roles differ.",
+        "false": "The same model or role performed implementation and validation."
+      }
+    },
+    {
+      "id": "evidence_bound",
+      "type": "noul",
+      "min": 0.75,
+      "instructions": "Are evidence artifacts hash-bound and linked to a source fingerprint on the one-call Jev gate and the regression budget checks?",
+      "criteria": {
+        "true": "Sweep evidence has sha256 hashes, the manifest records the source fingerprint, and Jev integration is attested to a single batched call.",
+        "false": "Hashes, fingerprint binding, or batch attestation is missing."
+      }
+    }
+  ]
+}

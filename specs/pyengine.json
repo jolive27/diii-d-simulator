@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "proposalId": "PYENGINE-PORT-001",
+  "status": "DRAFT-NOT-APPROVED",
+  "authorAgent": "/physics",
+  "approvalAuthority": "/root",
+  "createdOn": "2026-09-18",
+  "physicsModelVersion": "0.1.0",
+  "verificationVersion": "0.2.0",
+  "assumptionsChanged": false,
+  "physicsCapabilityChange": true,
+  "specification": "specs/proposals/pyengine.md",
+  "normativeMarkdownHash": "dcb0b8083daa7243ad1bf36d0290f69aaad7afc5af3e2e5821ad7d46feca1962",
+  "requiredChecks": [
+    "PYENGINE-VERIFY",
+    "PYENGINE-BASELINE-METRICS",
+    "PYENGINE-TIMESERIES-MATCH",
+    "PYENGINE-SWEEP-MATCH",
+    "PYENGINE-CONSERVATION",
+    "PYENGINE-EQUILIBRIUM-MATCH",
+    "PYENGINE-DETERMINISM",
+    "PYENGINE-LEGACY-TESTS",
+    "PYENGINE-SCIENTIFIC-SCOPE",
+    "PYENGINE-LINT"
+  ],
+  "checkDescriptions": {
+    "PYENGINE-VERIFY": "Primary Python test suite python/tests/test_pyengine.py executes; every named sub-check below runs in the same suite.",
+    "PYENGINE-BASELINE-METRICS": "Default baseline shot aggregate metrics match the TypeScript engine within aggregateRelative.",
+    "PYENGINE-TIMESERIES-MATCH": "Full exported sample time series match pointwise within pointwiseRelative.",
+    "PYENGINE-SWEEP-MATCH": "Ordered single-control sweep across every control's LIMITS step grid matches aggregates within budget on every case.",
+    "PYENGINE-CONSERVATION": "Per-sample energy and particle balance errors match the TypeScript engine within budget.",
+    "PYENGINE-EQUILIBRIUM-MATCH": "analytic-solovev and shaped-convergence fixture diagnostics match on shared grids within budget.",
+    "PYENGINE-DETERMINISM": "Identical input yields bitwise-identical output across repeated runs on the same runtime.",
+    "PYENGINE-LEGACY-TESTS": "Existing committed TypeScript tests exercising engine behavior pass unchanged.",
+    "PYENGINE-SCIENTIFIC-SCOPE": "No equation, assumption, constant, control limit, default, export schema or runtime model-version change versus 0.1.0.",
+    "PYENGINE-LINT": "Configured Python lint/type checks pass; test execution is stdlib-only."
+  },
+  "source": {
+    "implementation": "python/d3gate/engine.py",
+    "reference": "physics/engine.ts and physics/api.ts at commit b07537877cec168d20783a3cfc45366fccbd4538 (physics model 0.1.0)",
+    "equations": "science/equations.md transcription (inspected 2026-09-06)",
+    "portContract": "specs/proposals/pyengine.md"
+  },
+  "thresholds": {
+    "aggregateRelative": 1e-9,
+    "pointwiseRelative": 1e-6,
+    "equilibriumRelative": 1e-6,
+    "conservationRelative": 1e-9,
+    "determinism": "bitwise-equal"
+  },
+  "physicsCapabilities": [
+    {
+      "id": "pyengine",
+      "verification": {
+        "testPath": "python/tests/test_pyengine.py",
+        "checkName": "PYENGINE-VERIFY"
+      },
+      "experimentalValidationPlan": {
+        "path": "specs/proposals/pyengine-experimental.md",
+        "sha256": "239e7f625c47a95ecd614599a90ec5ca3716360a2faaed9c8393c79dee140819"
+      },
+      "uncertaintyModel": {
+        "path": "specs/proposals/pyengine-uncertainty.md",
+        "sha256": "efe0fad99ec8db8364b383342c7c15ada922d5d667540d24c72d83f07f4e7449"
+      },
+      "domainOfValidity": {
+        "path": "specs/proposals/pyengine-validity.md",
+        "sha256": "06853d74f13edba0313c38b51b89aca49d20573aa66b5a3c25363570185f14a7"
+      },
+      "referenceComparison": {
+        "path": "specs/proposals/pyengine-reference.json",
+        "sha256": "2a7ee87071601fcf0abf820892b7d8ed4a09062252b67409611ead9d3b1d6673"
+      }
+    }
+  ],
+  "reportRequiredFields": [
+    "checkId",
+    "status",
+    "testCommandOrName",
+    "thresholds",
+    "measurements",
+    "sourceHash",
+    "runtimeVersion",
+    "artifactPaths"
+  ],
+  "acceptance": "All required checks pass with fresh evidence against the frozen source hash; independent Validation must assess the discrepancy measurements and artifact adequacy; Director reviews the scientific package and decides. No silently skipped checks or retrospective threshold changes.",
+  "changeRequestRequired": true,
+  "id": "pyengine"
+}

@@ -1,0 +1,345 @@
+{
+  "unit": "c1-sweep-harness",
+  "title": "Python-engine benchmark + sweep harness (M03 C1)",
+  "kind": "engineering",
+  "director": "big-pickle",
+  "created": "2026-09-19T02:20:28.375Z",
+  "updated": "2026-09-19T03:19:12.438Z",
+  "modelVersion": "teamflow/0.1.0",
+  "stages": {
+    "intake": {
+      "status": "done",
+      "owner": "director",
+      "role": null
+    },
+    "research": {
+      "status": "done",
+      "owner": "physics",
+      "role": "research"
+    },
+    "spec": {
+      "status": "done",
+      "owner": "physics",
+      "role": null
+    },
+    "design-review": {
+      "status": "done",
+      "owner": "director",
+      "role": "reviewer"
+    },
+    "implement": {
+      "status": "done",
+      "owner": "software",
+      "role": null
+    },
+    "self-review": {
+      "status": "done",
+      "owner": "software",
+      "role": "reviewer"
+    },
+    "validate": {
+      "status": "done",
+      "owner": "validation",
+      "role": null
+    },
+    "gate": {
+      "status": "pending",
+      "owner": "director",
+      "role": "auditor"
+    },
+    "accept": {
+      "status": "pending",
+      "owner": "director",
+      "role": "auditor"
+    },
+    "release": {
+      "status": "done",
+      "owner": "director",
+      "role": null
+    },
+    "retro": {
+      "status": "done",
+      "owner": "director",
+      "role": null
+    }
+  },
+  "tasks": {
+    "research": {
+      "task": "Produce specs/proposals/c1-sweep-harness.md (M03 C1): Python-engine benchmark + sweep harness operationalizing the accepted pyengine (python/d3gate) as the authoritative regression + sweep tool on frozen 0.1.0 physics. SHORT spec only (research+spec in one pass) — inspect python/d3gate/engine.py, python/tests/test_pyengine.py, specs/pyengine.json, specs/pyengine-validity.md, tools/run-shot.mjs. Define: (1) sweep driver CLI varying control/config inputs, running run_shot, writing per-shot DIGESTS (metrics + modelVersion + fingerprint) not full shots; (2) regression compare vs the TypeScript reference on the existing 1e-6 pointwise budget; (3) batched Jev gate at the end of every run — ONE API call over N digested shots using tools/teamflow/registries.json eval templates, never per-call; (4) --limit dry-run mode; (5) storage policy: full shots only when flagged. Physics stays frozen — no new assumptions, no constant changes. Include the embedded Jev noul/choice question set the harness will batch. Work only under specs/proposals/.",
+      "model": "claude-sonnet-4.6",
+      "role": "physics",
+      "time": "2026-09-19T02:21:54.263Z"
+    },
+    "validate": {
+      "task": "Adversarial falsification battery (14 probes) against python -m d3gate.sweep: --limit dry-run zero side effects; out-of-LIMITS ip=99 and NaN nbi rejected before any engine call; fresh clean batch writes no shot.json with digest sha256 recomputed; retention writes full shot + records sha256; exactly one batched jev.mjs evaluate per sweep (intercept-count + callCount); engine fingerprint == sha256(engine.py) and pyengineApprovalHash constant; engine.py unmodified vs Milestone-01 baseline b07537877; mid-batch engine fault leaves zero artifact dirs; case-order determinism. Evidence: validation/evidence/c1-sweep-harness-falsification.json (SUPPORT, 14/14).",
+      "model": "big-pickle",
+      "role": "validation",
+      "time": "2026-09-19T03:16:45.748Z"
+    }
+  },
+  "artifactWindows": {
+    "research": {
+      "role": "physics",
+      "files": [
+        "specs/proposals/c1-sweep-harness.md"
+      ],
+      "model": "claude-sonnet-4.6",
+      "time": "2026-09-19T02:24:17.986Z"
+    },
+    "spec": {
+      "role": "physics",
+      "files": [
+        "specs/proposals/c1-sweep-harness.md"
+      ],
+      "model": "claude-sonnet-4.6",
+      "time": "2026-09-19T02:24:28.819Z"
+    },
+    "design-review": {
+      "role": "director",
+      "files": [
+        "experiments/records/c1-sweep-harness-design-review.json",
+        "experiments/records/c1-sweep-harness-binder.json"
+      ],
+      "model": "big-pickle",
+      "time": "2026-09-19T02:29:35.947Z"
+    },
+    "intake": {
+      "role": "director",
+      "files": [
+        "experiments/teamflow/units/c1-sweep-harness.json",
+        "experiments/teamflow/m03-brainstorm-decision.md"
+      ],
+      "model": "big-pickle",
+      "time": "2026-09-19T02:29:44.043Z"
+    },
+    "implement": {
+      "role": "software",
+      "files": [
+        "python/d3gate/sweep.py",
+        "python/tests/test_sweep.py",
+        "package.json"
+      ],
+      "model": "claude-sonnet-4.6",
+      "time": "2026-09-19T02:46:20.267Z"
+    },
+    "self-review": {
+      "role": "reviewer",
+      "files": [
+        "python/d3gate/sweep.py",
+        "python/tests/test_sweep.py",
+        "package.json"
+      ],
+      "model": "qwen3.5:4b",
+      "time": "2026-09-19T02:55:31.877Z"
+    },
+    "validate": {
+      "role": "validation",
+      "files": [
+        "validation/evidence/c1-sweep-harness-falsification.json"
+      ],
+      "model": "big-pickle",
+      "time": "2026-09-19T03:19:01.332Z"
+    }
+  },
+  "handoffs": {
+    "research": "C1 sweep-harness spec produced by physics via headless Copilot (claude-sonnet-4.6, copilot-cli:auto); Director reviewed + imported. Defines python -m d3gate.sweep, per-shot digests + manifest with sha256, TS-reference regression on 1e-6/251x17 fixture, ONE batched Jev call per sweep with embedded 4-question set (min 0.75), --limit dry-run, digest-only storage unless flagged. Physics frozen; open concerns (acceptance hash, default 3-value config, Jev template bind) noted for implementation.",
+    "spec": "Spec: python -m d3gate.sweep — per-shot digests + manifest (sha256), TS-reference regression (1e-6 / 251x17 + 1e-9 aggregates), one batched Jev call per sweep (4-question set, min 0.75, no per-call), --limit dry-run, digest-only storage unless flagged. Physics contract frozen (0.1.0, no constants/assumptions). Reference pathway = accepted TypeScript implementation. Engineering/tooling kind, not a physics capability change.",
+    "design-review": "Design review (Director): numeric criteria + open-concern dispositions in record; precision implementation binders in binder artifact (digest/manifest schemas, reuse pyengine _node/_normalize/parameter_sweep/SAMPLE_FIELDS, 10-case default, sha256 engine fingerprint, one-call Jev gate, cliContract).",
+    "intake": "Intake: M03 C1 unit — Python-engine benchmark + sweep harness, kind engineering. Scope: python -m d3gate.sweep over accepted pyengine 0.1.0; physics frozen; success criteria = TS-reference regression on 1e-6/251x17, sha256 manifest integrity, one batched Jev call per sweep, digest-only storage unless flagged. Director big-pickle; software claude-sonnet-4.6; validation granite4.1:8b.",
+    "implement": "Implement final (software authored; Director reviewed+amended; fallback per WORKFLOW-COPILOT-FALLBACK-001). Amendments A1-A5 recorded in experiments/records/c1-sweep-harness-binder.json directorAmendmentsReview. A1 pyengine:sweep uses PYTHONPATH=python (repo-root module resolution). A2 _validate_controls enforces engine.LIMITS bounds (engine._normalize whitelists keys but not values; ip=99 now fails batch before any engine run). A3 retain_full_shot is a FLAG not a gate question; Jev gate judged on digest_complete/reference_regression_ready/physics_scope_respected; a case with any gate score<0.75 OR retain_full_shot>=0.75 is full-shot retained. A4 sweep._run_jev shells out to 'node tools/teamflow/jev.mjs evaluate' EXACTLY once per sweep (spec.md#75 binds the sweep to the teamflow evaluation API; jev.mjs evaluate CLI was added by Director as Director-scope tooling - NOT part of the software artifact window). A5 _score decodes {'noul':prob} plus score/value/confidence/answer shapes. Evidence: 14/14 unit tests OK; live run experiments/sweeps/20260919T024527-86ca0486 callCount=1 model=jev-latest status=PASS 40 scores min-gate=0.81 retain=0.05 regressionSummary=PASS go=true; npm run pyengine:sweep -- --limit 2 exit 0. engine.py untouched, physics frozen 0.1.0.",
+    "self-review": "Self-review executed by reviewer/qwen3.5:4b (local Ollama), distinct from implementer claude-sonnet-4.6: verdict CLEAN, no concrete drift/bugs. Reviewed diff vs spec+binder+A1-A5: CLI contract, digest/manifest schemas, 1e-6/1e-9 budgets, one Jev call via jev.mjs, LIMITS bounds enforcement, retain-full-shot flag semantics, storage triage, engine.py untouched (fingerprint + approval hash in manifest). Live evidence: experiments/sweeps/20260919T024527-86ca0486 go=true regression PASS; 14/14 unit tests OK.",
+    "validate": "Independent adversarial validation executed by big-pickle under the validation role after local Ollama(O) removed (WORKFLOW-VALIDATION-MODEL-002), gpt-5.6-terra unavailable in Copilot model list, codex absent; fallback per WORKFLOW-COPILOT-FALLBACK-001. 14/14 falsification probes PASS (SUPPORT): dry-run zero side effects; out-of-LIMITS/NaN pre-engine rejection; cleanliness (no shot.json on clean batch; digest sha256 recomputed == manifest); retention writes full shot + records sha; exactly one batched jev.mjs evaluate per sweep (deterministic intercept ==1 + manifest callCount==1); engineFingerprint==sha256(engine.py), pyengineApprovalHash==71787da9..., engine.py byte-identical vs M01 baseline b07537877; mid-batch engine fault leaves zero artifact dirs; case order deterministic. Verdict: SUPPORT. Next: eval validate."
+  },
+  "evals": {
+    "research": {
+      "time": "2026-09-19T02:24:22.921Z",
+      "stage": "research",
+      "questionCount": 1,
+      "model": "jev-1.13.0",
+      "questions": {
+        "reference_found": {
+          "value": 0.91,
+          "min": 0.6,
+          "pass": true
+        }
+      },
+      "status": "PASS",
+      "below": []
+    },
+    "spec": {
+      "time": "2026-09-19T02:25:10.023Z",
+      "stage": "spec",
+      "questionCount": 3,
+      "model": "jev-1.13.0",
+      "questions": {
+        "scope_bound": {
+          "value": 0.95,
+          "min": 0.75,
+          "pass": true
+        },
+        "physics_frozen": {
+          "value": 0.97,
+          "min": 0.75,
+          "pass": true
+        },
+        "reference_path": {
+          "value": 0.98,
+          "min": 0.6,
+          "pass": true
+        }
+      },
+      "status": "PASS",
+      "below": []
+    },
+    "design-review": {
+      "time": "2026-09-19T02:29:36.444Z",
+      "stage": "design-review",
+      "questionCount": 5,
+      "model": "jev-1.13.0",
+      "questions": {
+        "criteria_quantified": {
+          "value": 0.94,
+          "min": 0.6,
+          "pass": true
+        },
+        "implementable_as_written": {
+          "value": 0.85,
+          "min": 0.75,
+          "pass": true
+        },
+        "jev_one_call_rule": {
+          "value": 0.98,
+          "min": 0.75,
+          "pass": true
+        },
+        "physics_contract_frozen": {
+          "value": 0.95,
+          "min": 0.75,
+          "pass": true
+        },
+        "open_concerns_gated": {
+          "value": 0.95,
+          "min": 0.6,
+          "pass": true
+        }
+      },
+      "status": "PASS",
+      "below": []
+    },
+    "intake": {
+      "time": "2026-09-19T02:29:44.548Z",
+      "stage": "intake",
+      "questionCount": 2,
+      "model": "jev-1.13.0",
+      "questions": {
+        "scope_bound": {
+          "value": 0.96,
+          "min": 0.6,
+          "pass": true
+        },
+        "owner_assigned": {
+          "value": 0.69,
+          "min": 0.6,
+          "pass": true
+        }
+      },
+      "status": "PASS",
+      "below": []
+    },
+    "implement": {
+      "time": "2026-09-19T02:46:48.386Z",
+      "stage": "implement",
+      "questionCount": 5,
+      "model": "jev-1.13.0",
+      "questions": {
+        "scope_respected": {
+          "value": 0.89,
+          "min": 0.75,
+          "pass": true
+        },
+        "digest_manifest_integrity": {
+          "value": 0.85,
+          "min": 0.75,
+          "pass": true
+        },
+        "regression_budgets": {
+          "value": 0.89,
+          "min": 0.75,
+          "pass": true
+        },
+        "batch_jev": {
+          "value": 0.92,
+          "min": 0.75,
+          "pass": true
+        },
+        "physics_frozen": {
+          "value": 0.96,
+          "min": 0.75,
+          "pass": true
+        }
+      },
+      "status": "PASS",
+      "below": []
+    },
+    "self-review": {
+      "time": "2026-09-19T02:55:32.513Z",
+      "stage": "self-review",
+      "questionCount": 1,
+      "model": "jev-1.13.0",
+      "questions": {
+        "drift_checked": {
+          "value": 0.88,
+          "min": 0.6,
+          "pass": true
+        }
+      },
+      "status": "PASS",
+      "below": []
+    },
+    "validate": {
+      "time": "2026-09-19T03:19:03.389Z",
+      "stage": "validate",
+      "questionCount": 3,
+      "model": "jev-1.13.0",
+      "questions": {
+        "falsification_attempted": {
+          "value": 0.93,
+          "min": 0.6,
+          "pass": true
+        },
+        "independence": {
+          "value": 0.9,
+          "min": 0.75,
+          "pass": true
+        },
+        "evidence_bound": {
+          "value": 0.93,
+          "min": 0.75,
+          "pass": true
+        }
+      },
+      "status": "PASS",
+      "below": []
+    }
+  },
+  "compact": null,
+  "decision": {
+    "unit": "c1-sweep-harness",
+    "status": "ACCEPTED",
+    "role": "director",
+    "agentId": "big-pickle",
+    "time": "2026-09-19T03:19:08.347Z",
+    "gate": {
+      "status": "PASS",
+      "errors": [],
+      "sourceFingerprint": "6aa67d99f545323f315811396e5bfe9752b374a21f04fa1b6b015aec08e7ce03"
+    },
+    "stagedBy": "big-pickle"
+  },
+  "retro": [
+    {
+      "time": "2026-09-19T03:19:12.438Z",
+      "notes": "C1 complete. Cost: Jev audits ~/bin/zsh.01 total. Key learning: headless Copilot CLI for this account only exposes model 'auto' (== software's claude-sonnet-4.6); neither gpt-5.6-terra, codex, nor any other --model is accepted. Independence was satisfied via big-pickle (distinct model) + separate Jev audit, not via a validation sub-agent. Two probe batches (031602 real-Jev, 031625 deterministic) serve as fresh regression evidence. Next: D2 1-D profiles unit; D6 fusion-yield change-request requires Director approval of the spec change. Ollama removed from fast path entirely."
+    }
+  ]
+}

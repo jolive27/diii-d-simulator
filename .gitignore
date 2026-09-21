@@ -104,3 +104,11 @@ yarn-error.log*
 # Keep source, dependency lockfiles, science/spec registries, synthetic fixtures,
 # experiments/baseline, experiments/records and validation/evidence versioned.
 # Ignore rules are NOT a secret scanner or a file-size limit; review every commit.
+
+# Local Streamlit dashboard environment
+.venv-dash/
+
+# TeamFlow/agent render caches, build output and packaged artifacts
+tools/teamflow/.mmd-cache/
+vscode-exts/**/out/
+*.vsix

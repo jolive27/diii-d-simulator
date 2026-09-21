@@ -1,0 +1,133 @@
+{
+  "artifacts": {
+    "freshBatch": "20260919T031602-20c434cc",
+    "freshBatchDeterministic": "20260919T031625-bec92ad0",
+    "freshBatchRealJev": "20260919T031602-20c434cc"
+  },
+  "evidenceLinkage": "fresh batch + live batch: digest sha256 per manifest recomputed and match; engineFingerprint==sha256(python/d3gate/engine.py) at run time; exactly one batched Jev call per sweep (callCount==1, intercept count==1); retention/cleanliness/order attrs independently verified",
+  "executedUtc": "2026-09-19T04:20Z",
+  "findings": [
+    "_validate_controls runs AFTER engine._normalize; an unknown out-of-domain control key is silently whitelisted-away by the engine contract and so cannot be flagged by the harness (documented engine behavior, worth a note, not an objection)",
+    "the two abandoned smell-free runs (20260919T024314-2d37ef93 JevClient-based) and (20260919T024231-dc4cf3a6 pre-fix) are superseded; only jev.mjs-based batches are authoritative"
+  ],
+  "independenceModelClaim": "executed under validation role by big-pickle model; distinct from software implementation model claude-sonnet-4.6",
+  "model": "big-pickle",
+  "probes": [
+    {
+      "action": "expand_cases called twice",
+      "actual": "True",
+      "expected": "identical ordered shotIds",
+      "id": "P17",
+      "note": "",
+      "pass": true
+    },
+    {
+      "action": "_compare with 2-sample shot",
+      "actual": "{'status': 'FAIL', 'maxRelativeError': inf, 'firstFailure': {'reason': 'sampleCount', 'python': 1, 'reference': 1}}",
+      "expected": "FAIL, firstFailure sampleCount",
+      "id": "P18",
+      "note": "",
+      "pass": true
+    },
+    {
+      "action": "run() with ip=99",
+      "actual": "ValueError(Control ip=99 outside [0.6, 2]), engineCalls=0",
+      "expected": "ValueError, no engine call",
+      "id": "P12",
+      "note": "",
+      "pass": true
+    },
+    {
+      "action": "run() with nbi=NaN",
+      "actual": "ValueError(Control nbi=nan outside [0, 12])",
+      "expected": "ValueError",
+      "id": "P13",
+      "note": "",
+      "pass": true
+    },
+    {
+      "action": "--limit 3 run",
+      "actual": "code=0, subprocessCalls=0, engineCalls=0, jevSpawns=0",
+      "expected": "0 subprocess calls, 0 engine calls, exit 0",
+      "id": "P10",
+      "note": "",
+      "pass": true
+    },
+    {
+      "action": "fresh clean batch digests sha256 match",
+      "actual": "digestShaMatch=True (batch 20260919T031602-20c434cc)",
+      "expected": "all match",
+      "id": "P14a",
+      "note": "",
+      "pass": true
+    },
+    {
+      "action": "fresh clean batch writes NO shot.json",
+      "actual": "shotFiles=[]",
+      "expected": "0 shot files",
+      "id": "P14b",
+      "note": "",
+      "pass": true
+    },
+    {
+      "action": "fresh clean batch Jev callCount",
+      "actual": "intercepts=1 (corrected predicate: 'evaluate' argv + jev.mjs argv), manifest.callCount=1, go=true (batch 20260919T031625-bec92ad0)",
+      "expected": "exactly 1",
+      "id": "P15",
+      "note": "initial probe predicate matched 'jev.mjs' and 'evaluate' only if in the SAME argv element (impossible); that run REAL-calls Jev once (batch 20260919T031602-20c434cc, genuine audit, go=true). Corrected deterministic run: exactly one intercepted jev.mjs evaluate invocation.",
+      "pass": true
+    },
+    {
+      "action": "fresh clean batch go",
+      "actual": "go=True, jStatus=PASS, rStatus=PASS",
+      "expected": "true (regression PASS and jev PASS)",
+      "id": "P20",
+      "note": "",
+      "pass": true
+    },
+    {
+      "action": "fresh batch retention==0 => no retain flag, no shots, digest list complete",
+      "actual": "cases=10, digests=10",
+      "expected": "digest records == cases",
+      "id": "P21",
+      "note": "",
+      "pass": true
+    },
+    {
+      "action": "manifest pyengineApprovalHash + engineFingerprint",
+      "actual": "approvalOk=True, fprOk=True",
+      "expected": "approval=71787da902190d6038460bbb2d46a0dc810a8a4e91a12ced9b38fe7ea9f1fd54, fpr=sha256(engine.py)",
+      "id": "P22",
+      "note": "",
+      "pass": true
+    },
+    {
+      "action": "fresh batch case order determinism in manifest",
+      "actual": "['baseline', 'ip-0.9-nbi-2', 'ip-0.9-nbi-4']",
+      "expected": "baseline then 9 ordered",
+      "id": "P23",
+      "note": "",
+      "pass": true
+    },
+    {
+      "action": "inject engine fault mid-batch",
+      "actual": "RuntimeError, newDirs=0",
+      "expected": "exception, no artifact dir",
+      "id": "P16",
+      "note": "RuntimeError injected into engine.run_shot mid-batch: no experiments/sweeps/<new> dir, no partial artifacts, exception propagates to main->parser.error.",
+      "pass": true
+    },
+    {
+      "action": "engine.py unchanged vs M01 baseline",
+      "actual": "diffBytes=0",
+      "expected": "empty diff",
+      "id": "P19",
+      "note": "",
+      "pass": true
+    }
+  ],
+  "probesRan": 14,
+  "role": "validation",
+  "task": "c1-sweep-harness-validate",
+  "verdict": "SUPPORT"
+}

@@ -1,0 +1,178 @@
+{
+  "version": "0.1.0",
+  "states": {
+    "pending": 0,
+    "in_progress": 1,
+    "done": 2,
+    "blocked": 3
+  },
+  "thresholds": {
+    "block": 0.75,
+    "warn": 0.6
+  },
+  "roles": {
+    "director": {
+      "model": "claude-opus",
+      "responsibility": "brainstorming, scope, sign-off; never executes specialist work; via Claude Code lane"
+    },
+    "physics": {
+      "model": "claude-sonnet",
+      "responsibility": "spec proposals, change requests, five-part scientific package; via Claude Code lane"
+    },
+    "software": {
+      "model": "claude-sonnet",
+      "responsibility": "approved-spec implementation, tests, evidence; via Claude Code lane"
+    },
+    "validation": {
+      "model": "claude-opus",
+      "responsibility": "independent falsification attempt and evidence; must differ from software model (opus vs sonnet)"
+    },
+    "research": {
+      "model": "claude-haiku",
+      "responsibility": "cheap domain research subagent, reference comparison pathway"
+    },
+    "reviewer": {
+      "model": "claude-haiku",
+      "responsibility": "lightweight self-review / drift check subagent"
+    },
+    "auditor": {
+      "model": "jev-latest",
+      "responsibility": "batched evaluation gates and compaction faithfulness audit"
+    }
+  },
+  "models": {
+    "big-pickle": {
+      "backend": "opencode",
+      "model": "opencode/big-pickle",
+      "roles": [],
+      "reachable": true,
+      "note": "session orchestrator model (assistant); Director role moved to claude-opus per WORKFLOW-EXECUTOR-CLAUDE-003"
+    },
+    "claude-opus": {
+      "backend": "claude",
+      "model": "opus",
+      "roles": ["director", "validation"],
+      "reachable": true,
+      "note": "Claude Code subscription lane (Claude Max 20x); strongest reasoning; validation uses opus (distinct from sonnet)"
+    },
+    "claude-sonnet": {
+      "backend": "claude",
+      "model": "sonnet",
+      "roles": ["physics", "software"],
+      "reachable": true,
+      "note": "Claude Code subscription lane; bulk implementation/spec"
+    },
+    "claude-haiku": {
+      "backend": "claude",
+      "model": "haiku",
+      "roles": ["research", "reviewer"],
+      "reachable": true,
+      "note": "Claude Code subscription lane; cheap subagent passes"
+    },
+    "deepseek-v4.1": {
+      "backend": "manual",
+      "model": "deepseek-v4.1",
+      "roles": [],
+      "reachable": false,
+      "note": "EXCLUDED by Director — Cline route (free-tier origin lock, 403 headless); not assigned"
+    },
+    "claude-sonnet-4.6": {
+      "backend": "manual",
+      "model": "claude-sonnet-4.6",
+      "roles": [],
+      "reachable": false,
+      "note": "Copilot free-tier lane SUPERSEDED by Claude Code lane (WORKFLOW-EXECUTOR-CLAUDE-003)"
+    },
+    "gpt-5.6-terra": {
+      "backend": "manual",
+      "model": "gpt-5.6-terra",
+      "roles": [],
+      "reachable": false,
+      "note": "never exposed by Copilot CLI --model (probed); SUPERSEDED by Claude Code lane (WORKFLOW-EXECUTOR-CLAUDE-003)"
+    },
+    "granite4.1:8b": {
+      "backend": "ollama",
+      "model": "granite4.1:8b",
+      "roles": [],
+      "reachable": false,
+      "note": "REMOVED from pipeline (WORKFLOW-EXECUTOR-CLAUDE-003); no local Ollama"
+    },
+    "qwen3.5:4b": {
+      "backend": "ollama",
+      "model": "qwen3.5:4b",
+      "roles": [],
+      "reachable": false,
+      "note": "REMOVED from pipeline (WORKFLOW-EXECUTOR-CLAUDE-003); no local Ollama"
+    },
+    "jev-latest": {
+      "backend": "jev",
+      "model": "jev-latest",
+      "roles": ["auditor"],
+      "reachable": true,
+      "note": "evaluation API; never used as a conversational agent"
+    },
+    "jev-preview": {
+      "backend": "jev",
+      "model": "jev-preview",
+      "roles": ["auditor"],
+      "reachable": true
+    }
+  },
+  "stages": [
+    { "id": "intake", "owner": "director", "artifacts": "experiments/records" },
+    { "id": "research", "owner": "physics", "role": "research" },
+    { "id": "spec", "owner": "physics" },
+    { "id": "design-review", "owner": "director", "role": "reviewer" },
+    { "id": "implement", "owner": "software" },
+    { "id": "self-review", "owner": "software", "role": "reviewer" },
+    { "id": "validate", "owner": "validation" },
+    { "id": "gate", "owner": "director", "role": "auditor" },
+    { "id": "accept", "owner": "director", "role": "auditor" },
+    { "id": "release", "owner": "director" },
+    { "id": "retro", "owner": "director" }
+  ],
+  "kind_overrides": {
+    "engineering": {
+      "spec": "engineering_spec"
+    }
+  },
+  "eval_templates": {
+    "intake": [
+      { "id": "scope_bound", "type": "noul", "min": 0.6, "instructions": "Does the recorded intake state a bounded scope, explicit success criteria, and file/role limits?", "criteria": { "true": "Intake names the unit, its scope of work, measurable success criteria, and which roles/files are in play.", "false": "Intake is vague, missing success criteria, or has no documented bounds." } },
+      { "id": "owner_assigned", "type": "noul", "min": 0.6, "instructions": "Is a responsible owner model assigned to every stage, with director sign-off separate?", "criteria": { "true": "Each stage has an explicit owning role and model; the sign-off stage is not owned by any worker role.", "false": "Ownership is missing or the sign-off authority is assigned to a worker." } }
+    ],
+    "research": [
+      { "id": "reference_found", "type": "noul", "min": 0.6, "instructions": "Did research either identify an established reference implementation or explicitly document a search/rationale for none?", "criteria": { "true": "A reference comparison pathway is named with limits, or a documented search and rationale explains why none exists.", "false": "Reference handling is silent or omitted." } }
+    ],
+    "spec": [
+      { "id": "capability_complete", "type": "noul", "min": 0.75, "instructions": "Is the five-part scientific package complete: verification test, validation plan, uncertainty model, domain of validity, reference pathway?", "criteria": { "true": "All five required parts are present, versioned, and bound to the proposal.", "false": "One or more of the five parts is missing or unbound." } },
+      { "id": "no_silent_change", "type": "noul", "min": 0.75, "instructions": "Are changes to existing physics or constants routed through change-requests with old/new values and rationale?", "criteria": { "true": "Assumption/constant changes identify affected IDs, old and new behavior, evidence, and Director disposition.", "false": "A change is asserted without a recorded change request." } }
+    ],
+    "engineering_spec": [
+      { "id": "scope_bound", "type": "noul", "min": 0.75, "instructions": "Does the engineering spec bound the tooling scope, the frozen physics contract, and the artifacts it will produce?", "criteria": { "true": "The spec names the CLI, the accepted engine it exercises, explicit frozen-physics limits, and the deliverable artifact paths.", "false": "Scope, frozen-physics contract, or deliverables are open-ended or unstated." } },
+      { "id": "physics_frozen", "type": "noul", "min": 0.75, "instructions": "Does the engineering spec leave all physics assumptions, equations, constants, and tolerances unchanged, routing any apparent need for change to a change-request?", "criteria": { "true": "Spec declares no physics change and funnels any needed change to a documented change-request.", "false": "Spec proposes or implies a silent physics or constant change." } },
+      { "id": "reference_path", "type": "noul", "min": 0.6, "instructions": "Does the engineering spec name a concrete reference path (accepted implementation, fixture, or numerical budget) to compare against?", "criteria": { "true": "A named reference implementation or numerical budget is bound to the verification.", "false": "No comparison basis is named." } }
+    ],
+    "design-review": [
+      { "id": "criteria_quantified", "type": "noul", "min": 0.6, "instructions": "Are numeric acceptance criteria and tolerances agreed between physics and software?", "criteria": { "true": "Acceptance criteria are numeric and measurable with stated tolerances.", "false": "Acceptance is described in qualitative terms." } }
+    ],
+    "implement": [
+      { "id": "scope_respected", "type": "noul", "min": 0.75, "instructions": "Did implementation touch only approved files, and decline out-of-scope work?", "criteria": { "true": "Changed paths stay within the role's permitted scope and the approved spec area.", "false": "Implementation wrote outside its lane or changed unapproved science/constants." } },
+      { "id": "tests_evidence", "type": "noul", "min": 0.6, "instructions": "Did implementation report executed tests, commands, and output evidence in the handoff?", "criteria": { "true": "Handoff lists concrete commands, outputs, pass/fail outcomes and changed paths.", "false": "Handoff asserts completion without runnable evidence." } }
+    ],
+    "self-review": [
+      { "id": "drift_checked", "type": "noul", "min": 0.6, "instructions": "Did a reviewer other than the implementer check the diff against the approved spec hash?", "criteria": { "true": "A distinct reviewer compared the diff to the spec and stated any drift or rejection.", "false": "Review was skipped or performed by the implementer." } }
+    ],
+    "validate": [
+      { "id": "falsification_attempted", "type": "noul", "min": 0.6, "instructions": "Did independent validation actively try to falsify with sweeps, dimension checks, edge cases, or convergence?", "criteria": { "true": "Report describes concrete falsification attempts and their outcomes, not just successful reproduction.", "false": "Validation is a reproduction run with no adversarial checks." } },
+      { "id": "independence", "type": "noul", "min": 0.75, "instructions": "Was validation executed by a separate model instance distinct from software implementation?", "criteria": { "true": "Validation model id differs from the implementation model id and the roles are distinct.", "false": "Same model or same role performed both implementation and validation." } },
+      { "id": "evidence_bound", "type": "noul", "min": 0.75, "instructions": "Are evidence artifacts hash-bound and the report linked to a source fingerprint?", "criteria": { "true": "Evidence has a sha256 and the report records the source fingerprint at execution time.", "false": "Evidence or fingerprint binding is missing." } }
+    ],
+    "gate": [
+      { "id": "gate_ready", "type": "noul", "min": 0.75, "instructions": "Is every prior stage done, audited by Jev, evidence-bound, and free of resolved blockers?", "criteria": { "true": "All prior stages done, Jev audits recorded above block threshold, evidence hashes match.", "false": "A stage is incomplete, unaudited, or evidence is stale or missing." } }
+    ],
+    "accept": [
+      { "id": "signoff_authorized", "type": "noul", "min": 0.9, "instructions": "Is the Director (big-pickle) the only sign-off authority, with no worker agent authorized to approve?", "criteria": { "true": "Acceptance is recorded by the director role only, on top of a passing gate.", "false": "A worker or payload claims the right to accept a milestone." } }
+    ]
+  }
+}

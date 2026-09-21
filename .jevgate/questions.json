@@ -1,0 +1,19 @@
+{
+  "is_breaking": {
+    "type": "noul",
+    "instructions": "Does this change introduce a regression, break existing interfaces/contracts, or degrade output quality?",
+    "criteria": {
+      "true": "Breaking change introduced",
+      "false": "Non-breaking change"
+    }
+  },
+  "gate_decision": {
+    "type": "choice",
+    "instructions": "How should this change be handled in the workflow?",
+    "criteria": {
+      "approve": "Ready: meets spec, evidence present, no blockers",
+      "revise": "Needs revision: correctable issues remain",
+      "reject": "Reject: wrong scope, missing evidence, or flawed reasoning"
+    }
+  }
+}

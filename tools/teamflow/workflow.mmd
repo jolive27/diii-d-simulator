@@ -1,0 +1,45 @@
+flowchart TD
+    subgraph INT["1 · Intake — Director (claude-opus)"]
+        I["init #lt;unit#gt; · scope, success criteria, owner+model per stage"]:::dir
+    end
+
+    subgraph PHYS["2 · Research & Spec — Physics lane (claude-sonnet)"]
+        RS["research — claude-haiku · Claude Code · reference pathway"]:::auto
+        SP["spec — five-part package · change-requests for constants"]:::manual
+        RS --> SP
+    end
+
+    subgraph REV["3 · Design Review — Director (claude-opus)"]
+        DR["criteria quantified · spec frozen &amp; hash-bound"]:::dir
+    end
+
+    subgraph DEV["4 · Implement & Self-review — Software lane (claude-sonnet)"]
+        IM["implement — approved files only · tests + evidence"]:::manual
+        SR["self-review — claude-haiku · Claude Code · drift vs spec"]:::auto
+        IM --> SR
+    end
+
+    subgraph QA["5 · Validate — Validation lane (claude-opus; must differ from sonnet)"]
+        VA["falsification attempt · pass/fail/inconclusive · evidence hash"]:::manual
+    end
+
+    subgraph AUD["6 · Gate & Accept — Jev auditor + Director sign-off"]
+        EV["eval #lt;stage#124;all#gt; — ONE batched Jev call over ONE state"]:::jev
+        G["gate — permissions · audits PASS · independence"]:::dir
+        A["accept — Director only · decision recorded"]:::dir
+        EV --> G --> A
+    end
+
+    subgraph CLOSE["7 · Release & Retro"]
+        R["release"]:::dir
+        RT["retro — lessons → next intake"]:::dir
+    end
+
+    INT --> PHYS --> REV --> DEV --> QA --> AUD --> CLOSE
+    REV -->|no_silent_change gate| SP
+    AUD -.->|compact — Jev faithfulness audit| INT
+
+    classDef dir fill:#1f2a44,stroke:#7aa2f7,color:#e8eefc,stroke-width:2px
+    classDef manual fill:#33241a,stroke:#ffb86c,color:#ffd9a8,stroke-width:2px
+    classDef auto fill:#0f2a1e,stroke:#50fa7b,color:#ccffdd,stroke-width:2px
+    classDef jev fill:#3a1040,stroke:#bd93f9,color:#ecd9ff,stroke-width:2px

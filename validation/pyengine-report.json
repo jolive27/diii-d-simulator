@@ -1,0 +1,72 @@
+{
+  "role": "validation",
+  "agentId": "independent-validation-v2",
+  "implementationAgentId": "software-impl-agent-python-engine",
+  "status": "PASS",
+  "sourceFingerprint": "b4f22d76f8efcb95cd465ed1adb60f4f8a479c7b078df080fa37ad6498903447",
+  "change": "specs/pyengine.json",
+  "time": "2026-09-18T19:05:16Z",
+  "summary": "Independently executed the Python engine verification suite (9 tests, all pass, worst relative discrepancies 0.00e+00 against the TypeScript reference well inside the 1e-9/1e-6 budgets) and the legacy TypeScript suite (36 tests, 0 failures); determinism bitwise-equal, equilibrium diagnostics bitwise-consistent, and scientific scope unchanged.",
+  "checks": [
+    {
+      "name": "PYENGINE-VERIFY",
+      "status": "PASS",
+      "evidence": "validation/evidence/pyengine-suite.txt",
+      "sha256": "b984d6780a5a303f2ad3e164cf72390ab33319dd3eb77240bbebdff6957d5b34"
+    },
+    {
+      "name": "PYENGINE-BASELINE-METRICS",
+      "status": "PASS",
+      "evidence": "validation/evidence/pyengine-suite.txt",
+      "sha256": "b984d6780a5a303f2ad3e164cf72390ab33319dd3eb77240bbebdff6957d5b34"
+    },
+    {
+      "name": "PYENGINE-TIMESERIES-MATCH",
+      "status": "PASS",
+      "evidence": "validation/evidence/pyengine-suite.txt",
+      "sha256": "b984d6780a5a303f2ad3e164cf72390ab33319dd3eb77240bbebdff6957d5b34"
+    },
+    {
+      "name": "PYENGINE-SWEEP-MATCH",
+      "status": "PASS",
+      "evidence": "validation/evidence/pyengine-suite.txt",
+      "sha256": "b984d6780a5a303f2ad3e164cf72390ab33319dd3eb77240bbebdff6957d5b34"
+    },
+    {
+      "name": "PYENGINE-CONSERVATION",
+      "status": "PASS",
+      "evidence": "validation/evidence/pyengine-suite.txt",
+      "sha256": "b984d6780a5a303f2ad3e164cf72390ab33319dd3eb77240bbebdff6957d5b34"
+    },
+    {
+      "name": "PYENGINE-EQUILIBRIUM-MATCH",
+      "status": "PASS",
+      "evidence": "validation/evidence/pyengine-suite.txt",
+      "sha256": "b984d6780a5a303f2ad3e164cf72390ab33319dd3eb77240bbebdff6957d5b34"
+    },
+    {
+      "name": "PYENGINE-DETERMINISM",
+      "status": "PASS",
+      "evidence": "validation/evidence/pyengine-suite.txt",
+      "sha256": "b984d6780a5a303f2ad3e164cf72390ab33319dd3eb77240bbebdff6957d5b34"
+    },
+    {
+      "name": "PYENGINE-LEGACY-TESTS",
+      "status": "PASS",
+      "evidence": "validation/evidence/pyengine-legacy-tests.txt",
+      "sha256": "b213edcd1c9952ca7955a000d0ad33481b5acabf01a0fda59a40fc36c86a50f7"
+    },
+    {
+      "name": "PYENGINE-SCIENTIFIC-SCOPE",
+      "status": "PASS",
+      "evidence": "validation/evidence/pyengine-suite.txt",
+      "sha256": "b984d6780a5a303f2ad3e164cf72390ab33319dd3eb77240bbebdff6957d5b34"
+    },
+    {
+      "name": "PYENGINE-LINT",
+      "status": "PASS",
+      "evidence": "validation/evidence/pyengine-suite.txt",
+      "sha256": "b984d6780a5a303f2ad3e164cf72390ab33319dd3eb77240bbebdff6957d5b34"
+    }
+  ]
+}

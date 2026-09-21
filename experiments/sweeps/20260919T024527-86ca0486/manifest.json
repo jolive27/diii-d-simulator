@@ -1,0 +1,401 @@
+{
+  "batchId": "experiments/sweeps/20260919T024527-86ca0486",
+  "cases": [
+    {
+      "config": {
+        "controls": {},
+        "dt": 0.002,
+        "gridSize": 49
+      },
+      "shotId": "baseline"
+    },
+    {
+      "config": {
+        "controls": {
+          "ip": 0.9,
+          "nbi": 2
+        },
+        "dt": 0.002,
+        "gridSize": 49
+      },
+      "shotId": "ip-0.9-nbi-2"
+    },
+    {
+      "config": {
+        "controls": {
+          "ip": 0.9,
+          "nbi": 4
+        },
+        "dt": 0.002,
+        "gridSize": 49
+      },
+      "shotId": "ip-0.9-nbi-4"
+    },
+    {
+      "config": {
+        "controls": {
+          "ip": 0.9,
+          "nbi": 6
+        },
+        "dt": 0.002,
+        "gridSize": 49
+      },
+      "shotId": "ip-0.9-nbi-6"
+    },
+    {
+      "config": {
+        "controls": {
+          "ip": 1.2,
+          "nbi": 2
+        },
+        "dt": 0.002,
+        "gridSize": 49
+      },
+      "shotId": "ip-1.2-nbi-2"
+    },
+    {
+      "config": {
+        "controls": {
+          "ip": 1.2,
+          "nbi": 4
+        },
+        "dt": 0.002,
+        "gridSize": 49
+      },
+      "shotId": "ip-1.2-nbi-4"
+    },
+    {
+      "config": {
+        "controls": {
+          "ip": 1.2,
+          "nbi": 6
+        },
+        "dt": 0.002,
+        "gridSize": 49
+      },
+      "shotId": "ip-1.2-nbi-6"
+    },
+    {
+      "config": {
+        "controls": {
+          "ip": 1.5,
+          "nbi": 2
+        },
+        "dt": 0.002,
+        "gridSize": 49
+      },
+      "shotId": "ip-1.5-nbi-2"
+    },
+    {
+      "config": {
+        "controls": {
+          "ip": 1.5,
+          "nbi": 4
+        },
+        "dt": 0.002,
+        "gridSize": 49
+      },
+      "shotId": "ip-1.5-nbi-4"
+    },
+    {
+      "config": {
+        "controls": {
+          "ip": 1.5,
+          "nbi": 6
+        },
+        "dt": 0.002,
+        "gridSize": 49
+      },
+      "shotId": "ip-1.5-nbi-6"
+    }
+  ],
+  "config": {
+    "controls": {},
+    "dt": 0.002,
+    "gridSize": 49
+  },
+  "createdAt": "2026-09-19T02:45:27.600616+00:00",
+  "digests": [
+    {
+      "path": "experiments/sweeps/20260919T024527-86ca0486/digests/baseline.json",
+      "sha256": "0c880fb51d5e4665fe3e9424a425efc02bcf2bf68c1c03928c77e98244d93d54",
+      "shotId": "baseline"
+    },
+    {
+      "path": "experiments/sweeps/20260919T024527-86ca0486/digests/ip-0.9-nbi-2.json",
+      "sha256": "c70dc64d61e0ee14ffc92edb72e9ded0e0e340ae1952bad7d66f14218a594f49",
+      "shotId": "ip-0.9-nbi-2"
+    },
+    {
+      "path": "experiments/sweeps/20260919T024527-86ca0486/digests/ip-0.9-nbi-4.json",
+      "sha256": "c00d28a06c493b5db4a5b56cf2842de5dceec11bf0974d2b21dd12ce8b127220",
+      "shotId": "ip-0.9-nbi-4"
+    },
+    {
+      "path": "experiments/sweeps/20260919T024527-86ca0486/digests/ip-0.9-nbi-6.json",
+      "sha256": "9742e47319372f400b7e33af399b531793d9cc92a12835c7536c3c015de548b2",
+      "shotId": "ip-0.9-nbi-6"
+    },
+    {
+      "path": "experiments/sweeps/20260919T024527-86ca0486/digests/ip-1.2-nbi-2.json",
+      "sha256": "88658d0c83d93cd3ca648ce3112e7547acad471abb96b510631296abf28cf6b3",
+      "shotId": "ip-1.2-nbi-2"
+    },
+    {
+      "path": "experiments/sweeps/20260919T024527-86ca0486/digests/ip-1.2-nbi-4.json",
+      "sha256": "86a910dfe7e26c2ab0805b6beee844d659956f160b80647bacb0cd66d3f79285",
+      "shotId": "ip-1.2-nbi-4"
+    },
+    {
+      "path": "experiments/sweeps/20260919T024527-86ca0486/digests/ip-1.2-nbi-6.json",
+      "sha256": "ad0a7fd8a62b9e218d92f837a7067e01b16b18b301c254392e2a45af4410f854",
+      "shotId": "ip-1.2-nbi-6"
+    },
+    {
+      "path": "experiments/sweeps/20260919T024527-86ca0486/digests/ip-1.5-nbi-2.json",
+      "sha256": "d8537d376e5adab67a097039afc012a5c77a7f403dbaadc5d1a158cc2f12a130",
+      "shotId": "ip-1.5-nbi-2"
+    },
+    {
+      "path": "experiments/sweeps/20260919T024527-86ca0486/digests/ip-1.5-nbi-4.json",
+      "sha256": "aba982575f675510ecaa2c198caa677c9cf54d2ed55792298bb27db13ca061f5",
+      "shotId": "ip-1.5-nbi-4"
+    },
+    {
+      "path": "experiments/sweeps/20260919T024527-86ca0486/digests/ip-1.5-nbi-6.json",
+      "sha256": "7bb0cbbc795ee02a144cdcb8fbccdbfc6451dd3a708f4aa914a32120b644cc37",
+      "shotId": "ip-1.5-nbi-6"
+    }
+  ],
+  "engineFingerprint": "6124ef4106b889c373ef14830bd1636110734fb97949cb98588c064c43df1a88",
+  "go": true,
+  "jevResult": {
+    "callCount": 1,
+    "model": "jev-latest",
+    "response": {
+      "answers": {
+        "baseline.digest_complete": {
+          "noul": 0.82,
+          "type": "noul"
+        },
+        "baseline.physics_scope_respected": {
+          "noul": 0.89,
+          "type": "noul"
+        },
+        "baseline.reference_regression_ready": {
+          "noul": 0.85,
+          "type": "noul"
+        },
+        "baseline.retain_full_shot": {
+          "noul": 0.05,
+          "type": "noul"
+        },
+        "ip-0.9-nbi-2.digest_complete": {
+          "noul": 0.81,
+          "type": "noul"
+        },
+        "ip-0.9-nbi-2.physics_scope_respected": {
+          "noul": 0.89,
+          "type": "noul"
+        },
+        "ip-0.9-nbi-2.reference_regression_ready": {
+          "noul": 0.87,
+          "type": "noul"
+        },
+        "ip-0.9-nbi-2.retain_full_shot": {
+          "noul": 0.05,
+          "type": "noul"
+        },
+        "ip-0.9-nbi-4.digest_complete": {
+          "noul": 0.83,
+          "type": "noul"
+        },
+        "ip-0.9-nbi-4.physics_scope_respected": {
+          "noul": 0.89,
+          "type": "noul"
+        },
+        "ip-0.9-nbi-4.reference_regression_ready": {
+          "noul": 0.87,
+          "type": "noul"
+        },
+        "ip-0.9-nbi-4.retain_full_shot": {
+          "noul": 0.05,
+          "type": "noul"
+        },
+        "ip-0.9-nbi-6.digest_complete": {
+          "noul": 0.82,
+          "type": "noul"
+        },
+        "ip-0.9-nbi-6.physics_scope_respected": {
+          "noul": 0.9,
+          "type": "noul"
+        },
+        "ip-0.9-nbi-6.reference_regression_ready": {
+          "noul": 0.86,
+          "type": "noul"
+        },
+        "ip-0.9-nbi-6.retain_full_shot": {
+          "noul": 0.05,
+          "type": "noul"
+        },
+        "ip-1.2-nbi-2.digest_complete": {
+          "noul": 0.82,
+          "type": "noul"
+        },
+        "ip-1.2-nbi-2.physics_scope_respected": {
+          "noul": 0.9,
+          "type": "noul"
+        },
+        "ip-1.2-nbi-2.reference_regression_ready": {
+          "noul": 0.85,
+          "type": "noul"
+        },
+        "ip-1.2-nbi-2.retain_full_shot": {
+          "noul": 0.05,
+          "type": "noul"
+        },
+        "ip-1.2-nbi-4.digest_complete": {
+          "noul": 0.82,
+          "type": "noul"
+        },
+        "ip-1.2-nbi-4.physics_scope_respected": {
+          "noul": 0.89,
+          "type": "noul"
+        },
+        "ip-1.2-nbi-4.reference_regression_ready": {
+          "noul": 0.87,
+          "type": "noul"
+        },
+        "ip-1.2-nbi-4.retain_full_shot": {
+          "noul": 0.05,
+          "type": "noul"
+        },
+        "ip-1.2-nbi-6.digest_complete": {
+          "noul": 0.81,
+          "type": "noul"
+        },
+        "ip-1.2-nbi-6.physics_scope_respected": {
+          "noul": 0.89,
+          "type": "noul"
+        },
+        "ip-1.2-nbi-6.reference_regression_ready": {
+          "noul": 0.86,
+          "type": "noul"
+        },
+        "ip-1.2-nbi-6.retain_full_shot": {
+          "noul": 0.05,
+          "type": "noul"
+        },
+        "ip-1.5-nbi-2.digest_complete": {
+          "noul": 0.83,
+          "type": "noul"
+        },
+        "ip-1.5-nbi-2.physics_scope_respected": {
+          "noul": 0.89,
+          "type": "noul"
+        },
+        "ip-1.5-nbi-2.reference_regression_ready": {
+          "noul": 0.87,
+          "type": "noul"
+        },
+        "ip-1.5-nbi-2.retain_full_shot": {
+          "noul": 0.05,
+          "type": "noul"
+        },
+        "ip-1.5-nbi-4.digest_complete": {
+          "noul": 0.83,
+          "type": "noul"
+        },
+        "ip-1.5-nbi-4.physics_scope_respected": {
+          "noul": 0.89,
+          "type": "noul"
+        },
+        "ip-1.5-nbi-4.reference_regression_ready": {
+          "noul": 0.87,
+          "type": "noul"
+        },
+        "ip-1.5-nbi-4.retain_full_shot": {
+          "noul": 0.05,
+          "type": "noul"
+        },
+        "ip-1.5-nbi-6.digest_complete": {
+          "noul": 0.82,
+          "type": "noul"
+        },
+        "ip-1.5-nbi-6.physics_scope_respected": {
+          "noul": 0.89,
+          "type": "noul"
+        },
+        "ip-1.5-nbi-6.reference_regression_ready": {
+          "noul": 0.85,
+          "type": "noul"
+        },
+        "ip-1.5-nbi-6.retain_full_shot": {
+          "noul": 0.05,
+          "type": "noul"
+        }
+      },
+      "model": "jev-1.13.0",
+      "usage": {
+        "input_tokens": 8989,
+        "output_tokens": 1102
+      }
+    },
+    "scores": {
+      "baseline.digest_complete": 0.82,
+      "baseline.physics_scope_respected": 0.89,
+      "baseline.reference_regression_ready": 0.85,
+      "baseline.retain_full_shot": 0.05,
+      "ip-0.9-nbi-2.digest_complete": 0.81,
+      "ip-0.9-nbi-2.physics_scope_respected": 0.89,
+      "ip-0.9-nbi-2.reference_regression_ready": 0.87,
+      "ip-0.9-nbi-2.retain_full_shot": 0.05,
+      "ip-0.9-nbi-4.digest_complete": 0.83,
+      "ip-0.9-nbi-4.physics_scope_respected": 0.89,
+      "ip-0.9-nbi-4.reference_regression_ready": 0.87,
+      "ip-0.9-nbi-4.retain_full_shot": 0.05,
+      "ip-0.9-nbi-6.digest_complete": 0.82,
+      "ip-0.9-nbi-6.physics_scope_respected": 0.9,
+      "ip-0.9-nbi-6.reference_regression_ready": 0.86,
+      "ip-0.9-nbi-6.retain_full_shot": 0.05,
+      "ip-1.2-nbi-2.digest_complete": 0.82,
+      "ip-1.2-nbi-2.physics_scope_respected": 0.9,
+      "ip-1.2-nbi-2.reference_regression_ready": 0.85,
+      "ip-1.2-nbi-2.retain_full_shot": 0.05,
+      "ip-1.2-nbi-4.digest_complete": 0.82,
+      "ip-1.2-nbi-4.physics_scope_respected": 0.89,
+      "ip-1.2-nbi-4.reference_regression_ready": 0.87,
+      "ip-1.2-nbi-4.retain_full_shot": 0.05,
+      "ip-1.2-nbi-6.digest_complete": 0.81,
+      "ip-1.2-nbi-6.physics_scope_respected": 0.89,
+      "ip-1.2-nbi-6.reference_regression_ready": 0.86,
+      "ip-1.2-nbi-6.retain_full_shot": 0.05,
+      "ip-1.5-nbi-2.digest_complete": 0.83,
+      "ip-1.5-nbi-2.physics_scope_respected": 0.89,
+      "ip-1.5-nbi-2.reference_regression_ready": 0.87,
+      "ip-1.5-nbi-2.retain_full_shot": 0.05,
+      "ip-1.5-nbi-4.digest_complete": 0.83,
+      "ip-1.5-nbi-4.physics_scope_respected": 0.89,
+      "ip-1.5-nbi-4.reference_regression_ready": 0.87,
+      "ip-1.5-nbi-4.retain_full_shot": 0.05,
+      "ip-1.5-nbi-6.digest_complete": 0.82,
+      "ip-1.5-nbi-6.physics_scope_respected": 0.89,
+      "ip-1.5-nbi-6.reference_regression_ready": 0.85,
+      "ip-1.5-nbi-6.retain_full_shot": 0.05
+    },
+    "status": "PASS"
+  },
+  "modelVersion": "0.1.0",
+  "pyengineApprovalHash": "71787da902190d6038460bbb2d46a0dc810a8a4e91a12ced9b38fe7ea9f1fd54",
+  "regressionSummary": {
+    "firstFailure": null,
+    "maxRelativeError": 0.0,
+    "status": "PASS"
+  },
+  "runtimeVersions": {
+    "node": "v24.20.0",
+    "python": "3.11.16"
+  },
+  "schemaVersion": 2,
+  "sourceFingerprint": "4ddf347313aee9a15e924a69cfa6ebfc5adb8676650c5ea37f9612024be1225a"
+}

@@ -14,6 +14,13 @@
       "kind": "verification",
       "spec": "specs/m02.json",
       "description": "Analytic boundary fixture, observational step snapshots, numerical verification dashboard; no changed physical assumptions"
+    },
+    {
+      "version": "0.1.0",
+      "kind": "implementation",
+      "spec": "specs/pyengine.json",
+      "approval": "validation/pyengine-approval.json",
+      "description": "Python port of the numerical engine (python/d3gate/engine.py) reproducing the reference TypeScript engine bit-for-bit on the shot path and the fixed-boundary equilibrium basis; no changed physical assumptions or constants"
     }
   ],
   "acceptanceRecord": "validation/m02-decision.json"

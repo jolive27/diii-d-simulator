@@ -1,0 +1,11 @@
+{
+  "task": "c1-sweep-harness-validate",
+  "role": "validation",
+  "model": "copilot-cli:gpt-5.6-terra",
+  "reasoning": "auto",
+  "exitCode": 1,
+  "changed": [],
+  "violations": [],
+  "status": "REJECTED",
+  "workspace": "/Users/johnoliver/Documents/Default Project/diii-d-simulator/work/agents/c1-sweep-harness-validate"
+}

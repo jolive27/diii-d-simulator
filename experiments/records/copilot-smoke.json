@@ -1,0 +1,13 @@
+{
+  "task": "copilot-smoke",
+  "role": "software",
+  "model": "copilot-cli:auto",
+  "reasoning": "auto",
+  "exitCode": 0,
+  "changed": [
+    "docs/copilot-agent-smoke.md"
+  ],
+  "violations": [],
+  "status": "READY_FOR_DIRECTOR_REVIEW",
+  "workspace": "/Users/johnoliver/Documents/Default Project/diii-d-simulator/work/agents/copilot-smoke"
+}

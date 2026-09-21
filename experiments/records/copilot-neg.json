@@ -1,0 +1,15 @@
+{
+  "task": "copilot-neg",
+  "role": "validation",
+  "model": "copilot-cli:auto",
+  "reasoning": "auto",
+  "exitCode": 0,
+  "changed": [
+    "docs/copilot-agent-neg.md"
+  ],
+  "violations": [
+    "docs/copilot-agent-neg.md"
+  ],
+  "status": "REJECTED",
+  "workspace": "/Users/johnoliver/Documents/Default Project/diii-d-simulator/work/agents/copilot-neg"
+}

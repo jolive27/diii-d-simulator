@@ -1,0 +1,11 @@
+{
+ "id": "WORKFLOW-COPILOT-FALLBACK-001",
+ "kind": "workflow-execution-policy",
+ "director": "big-pickle",
+ "status": "APPROVED",
+ "date": "2026-09-18",
+ "policy": "If the headless Copilot backend (tools/copilot-agent.mjs) runs out of usage/credits, the Director (big-pickle) completes the assigned task directly, keeping Jev (jev-latest) in the process as the required batched auditor. Fallback does not skip the Jev eval gate; it changes only the executing model, never the audit or sign-off chain.",
+ "affectedUnits": ["c1-sweep-harness"],
+ "successor": null,
+ "rationale": "Copilot free tier is finite; C1 must not block on backend outage. Jev independence is preserved because the audit question set, thresholds, and batched one-call rule are unchanged."
+}
