@@ -70,8 +70,14 @@ async function run() {
     const state = loadUnit(unit);
     const st = state.stages[stage];
     if (!st) return fail(`unknown stage '${stage}'`);
-    const idx = words.findIndex(w => w.startsWith('--'));
-    const task = (idx === -1 ? words : words.slice(0, idx)).join(' ');
+    // Strip `--flag value` pairs wherever they appear so flag order never truncates the task.
+    const taskWords = [];
+    for (let i = 0; i < words.length; i++) {
+      if (words[i].startsWith('--')) { i++; continue; }
+      taskWords.push(words[i]);
+    }
+    const task = taskWords.join(' ');
+    if (!task) return fail('assign: task text is empty');
     const model = flag('model') || (state.tasks[stage]?.model) || reg.roles[role]?.model;
     st.status = 'in_progress';
     state.tasks[stage] = { task, model, role, time: new Date().toISOString() };
@@ -82,7 +88,9 @@ async function run() {
       console.log(`MANUAL — brief written to ${res.briefPath}`);
       console.log(`Run the task with ${model} in your IDE, then: node tools/teamflow.mjs complete ${unit} ${stage} --files ... --report "..."`);
     } else if (res.ok) {
-      const outDir = path.join(root, `experiments/teamflow/runs`, `${unit}-${stage}-${role}.out.txt`);
+      // Timestamped so re-dispatching a stage never overwrites earlier lane evidence.
+      const stamp = new Date().toISOString().replace(/[:.]/g, '-');
+      const outDir = path.join(root, `experiments/teamflow/runs`, `${unit}-${stage}-${role}-${stamp}.out.txt`);
       fs.mkdirSync(path.dirname(outDir), { recursive: true });
       fs.writeFileSync(outDir, res.output);
       console.log(`dispatched to ${res.backend}/${res.model}; output saved to ${outDir}`);

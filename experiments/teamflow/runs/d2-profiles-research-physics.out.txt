@@ -1,0 +1,23 @@
+Perfect. I've completed the provenance verification for the TORAX claims. Here's my handoff:
+
+## Verification Results
+
+**Files changed:** None. Both quoted claims are verified as accurate.
+
+**WebFetch URLs called and status:**
+1. `https://github.com/google-deepmind/torax` — **SUCCESS**
+2. `https://torax.readthedocs.io/` — **SUCCESS**
+
+**Verified sentences:**
+
+1. **README quotation (line 10):** The document quotes:
+   > "Coupled PDEs of ion and electron heat transport, electron particle transport, and current diffusion"
+   
+   **Verification:** CONFIRMED. The GitHub README explicitly contains this exact phrase describing TORAX's physics model.
+
+2. **Licensing claim (line 10):** The document states:
+   > "Licensing details not confirmed in README; full specification deferred."
+   
+   **Verification:** CONFIRMED. The GitHub README references a LICENSE file in the main directory and notes "This is not an officially supported Google product," but does not specify the actual license type in the README prose itself. Full license details would require reading the LICENSE file directly, which the document correctly defers.
+
+**Conclusion:** Both quoted claims in the TORAX section are accurate. No edits required to specs/proposals/d2-profiles-research.md.

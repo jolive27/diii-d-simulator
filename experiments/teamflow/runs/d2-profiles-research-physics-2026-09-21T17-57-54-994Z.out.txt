@@ -1,0 +1,14 @@
+**Handoff:**
+
+**File changed:** `specs/proposals/d2-profiles-research.md` (line 42)
+
+**Exact new line (section 2a, Source bullet):**
+```
+- **Source:** Standard cylindrical diffusion problem. Haberman *APDE* and Evans *PDE* are known-of textbook references (not read in this session); derivation is done inline (elementary integration).
+```
+
+**Changes:** Replaced vague "standard reference" attribution with explicit provenance: identifies Haberman and Evans as known textbook references, states they were not read in this session, clarifies that derivation is done inline via elementary integration. No other edits.
+
+**Output path:** Within allowed `specs/proposals/` boundary. ✓
+
+**Open concerns:** None. The edit clarifies the source status for physics review accuracy.

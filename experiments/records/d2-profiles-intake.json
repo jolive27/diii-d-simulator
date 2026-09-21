@@ -1,0 +1,56 @@
+{
+  "id": "d2-profiles-intake",
+  "unit": "d2-profiles",
+  "stage": "intake",
+  "role": "director",
+  "model": "claude-fable-5-1 (Claude Code Director session)",
+  "time": "2026-09-21",
+  "title": "D2 — 1-D radial transport + profile evolution (M03 headline physics)",
+  "origin": "experiments/teamflow/m03-brainstorm-decision.md: D2 ranked #1 (BaselineAdvance 0.89, EduHelpfulness 0.67); dependency C1 sweep harness ACCEPTED 2026-09-19.",
+  "physicsCapabilityChange": true,
+  "scope": {
+    "goal": "Add a 1-D radial (rho) transport model that evolves ne(rho,t), Te(rho,t), Ti(rho,t) inside the existing 0-D shot framework, producing core-vs-edge profiles as a new observable.",
+    "in": [
+      "Flux-surface-averaged 1-D diffusion equations for particles and electron/ion energy with prescribed (parameterized) transport coefficients D, chi_e, chi_i and the existing 0-D sources (NBI, ECH, gas, ohmic, bremsstrahlung) distributed radially by documented deposition shapes.",
+      "Fixed boundary at the existing shaped Solov'ev boundary; rho grid on the reconstructed flux-surface volume from the 0.1.0 equilibrium.",
+      "Volume integrals of the profiles must reproduce the 0-D N, We, Wi balances to a stated tolerance (the 0-D model becomes the integral constraint, not a competitor).",
+      "Verification fixtures with analytic solutions; conservation ledger; grid/time-step convergence; sweep coverage via the C1 harness (python/d3gate/sweep.py).",
+      "Full five-part package per science/NEW-PHYSICS-REQUIREMENTS.md, versioned and hash-bound to the spec; physics model version bump 0.1.0 -> 0.2.0 via change-request."
+    ],
+    "out": [
+      "Free-boundary equilibrium, MHD/stability limits, impurities, fusion yield (D6, separate unit), sawteeth, pedestal/H-mode transition physics, neoclassical or turbulent transport closures (coefficients are prescribed, not derived).",
+      "Any change to 0.1.0 constants, assumptions, or the accepted M01/M02 baseline outputs when the profile model is disabled; the 0-D path must remain bit-for-bit identical.",
+      "Web-app changes (display work is a later, separate unit; no LLM/orchestration in the app)."
+    ]
+  },
+  "successCriteria": [
+    "Analytic verification: steady-state uniform-source diffusion reproduces the closed-form profile to <=1e-6 relative L2 on a converged grid; transient decay matches the eigenmode solution to <=1e-4.",
+    "Conservation: radially integrated particle and energy ledgers close to <=1e-8 relative per step against the applied sources/sinks.",
+    "Convergence: profile observables converge at the expected order under grid and dt refinement, documented with rates.",
+    "0-D parity: with the profile model disabled, all existing tests (tests/, python/tests/) and the M01 baseline experiments/baseline/m01-shot.json are unchanged; with it enabled, volume-integrated N, We, Wi agree with the 0-D balances within a stated budget.",
+    "Reference pathway: at least one established 1-D transport code named with version/source and an equation/unit/boundary mapping and matched benchmark, or a documented search and rationale if none is reachable.",
+    "Independent validation (claude-opus, distinct from implementation on claude-sonnet) attempts falsification: sweeps, edge cases, convergence, conservation. Jev audits every stage; batched."
+  ],
+  "roles": {
+    "director": "claude-opus / Fable Director session — scope, design review, sign-off only",
+    "research": "claude-haiku (via physics role scope) — reference survey + analytic fixtures",
+    "physics": "claude-sonnet — spec proposal + five-part package + change-request draft",
+    "software": "claude-sonnet — implementation in physics/, tests/, python/, docs/",
+    "validation": "claude-opus — validation/evidence/, validation/independent/",
+    "auditor": "jev-latest — every stage, one batched call over one state"
+  },
+  "allowedPaths": "agents/permissions.json (enforced at complete/gate)",
+  "artifacts": {
+    "research": "specs/proposals/d2-profiles-research.md",
+    "spec": "specs/proposals/d2-profiles.md + d2-profiles-{verification,validation-plan,uncertainty,validity,reference}.md + specs/change-requests/D2-PROFILES-001.json (draft, Director approves)",
+    "implement": "physics/ (new transport module, engine opt-in), tests/, python/d3gate/, docs/PHYSICS.md",
+    "validate": "validation/evidence/d2-profiles-*.json, validation/d2-profiles-report.json"
+  },
+  "risks": [
+    "Coefficient choice is a modeling choice, not physics: must be declared illustrative with ranges, never presented as calibrated.",
+    "Source deposition shapes need primary-source citations; inherited numbers must be flagged as unread if not verified.",
+    "0-D/1-D consistency could tempt silent tuning of 0.1.0 constants — forbidden without a change-request."
+  ],
+  "director": "claude-opus",
+  "status": "INTAKE_RECORDED"
+}
