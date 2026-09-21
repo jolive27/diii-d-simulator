@@ -21,7 +21,7 @@ import path from 'node:path';
 import { root, audit } from '../workflow.mjs';
 import { readRegistry, dispatch } from './backends.mjs';
 import { initUnit, loadUnit, writeUnit, listUnits, decisionPath, allStagesThrough } from './state.mjs';
-import { runEval, runEvalBatch, compactAudit, gateCheck, stageFor, evalTemplate } from './gates.mjs';
+import { runEval, runEvalBatch, compactAudit, gateCheck, stageFor, evalTemplate, roleModel } from './gates.mjs';
 import { allowed } from '../dispatch-agent.mjs';
 
 const [cmd, ...args] = process.argv.slice(2);
@@ -144,7 +144,7 @@ async function run() {
     if (!state) return fail('evals <unit>');
     for (const [stage, e] of Object.entries(state.evals || {})) {
       console.log(`${stage.padEnd(16)} ${e.status.padEnd(5)} ${e.time} model=${e.model}`);
-      for (const [q, s] of Object.entries(e.questions || {})) console.log(`   ${q.padEnd(24)} ${s.pass ? 'OK ' : 'PASS' in state._ ? '' : ''}value=${s.value?.toFixed(3)} min=${s.min}`);
+      for (const [q, s] of Object.entries(e.questions || {})) console.log(`   ${q.padEnd(24)} ${s.pass ? 'OK  ' : 'FAIL'} value=${s.value?.toFixed(3)} min=${s.min}`);
     }
     if (!Object.keys(state.evals || {}).length) console.log('no audits recorded yet');
     return;
@@ -196,9 +196,12 @@ async function run() {
       return fail('gate not passed; acceptance blocked');
     }
     const decision = {
-      unit, status: 'ACCEPTED', role: 'director', agentId: 'big-pickle',
+      unit, status: 'ACCEPTED', role: 'director', agentId: roleModel('director'),
       time: new Date().toISOString(), gate: g, stagedBy: state.director,
     };
+    // A passing gate plus Director sign-off completes both stages.
+    state.stages.gate.status = 'done';
+    state.stages.accept.status = 'done';
     fs.mkdirSync(path.dirname(decisionPath(unit)), { recursive: true });
     fs.writeFileSync(decisionPath(unit), JSON.stringify(decision, null, 2) + '\n');
     state.decision = decision;
@@ -293,11 +296,11 @@ async function selftest() {
 
     // Positive path: distinct validation model.
     await phase([
-      ['intake', 'director', [['experiments/records/selftest.json']], 'bounded scope, success criteria recorded', 'big-pickle'],
-      ['research', 'physics', [['specs/proposals/infra-ref.md']], 'reference pathway documented', 'deepseek-v4.1'],
-      ['spec', 'physics', [['specs/proposals/selftest-spec.md']], 'five-part package complete', 'deepseek-v4.1'],
-      ['design-review', 'director', [['tools/teamflow/registries.json']], 'criteria quantified', 'big-pickle'],
-      ['implement', 'software', [['physics/selftest.ts']], 'tests ran', 'deepseek-v4.1'],
+      ['intake', 'director', [['experiments/records/selftest.json']], 'bounded scope, success criteria recorded', 'claude-opus'],
+      ['research', 'physics', [['specs/proposals/infra-ref.md']], 'reference pathway documented', 'claude-sonnet'],
+      ['spec', 'physics', [['specs/proposals/selftest-spec.md']], 'five-part package complete', 'claude-sonnet'],
+      ['design-review', 'director', [['tools/teamflow/registries.json']], 'criteria quantified', 'claude-opus'],
+      ['implement', 'software', [['physics/selftest.ts']], 'tests ran', 'claude-sonnet'],
       ['self-review', 'software', [['tests/selftest.test.mjs']], 'drift checked by reviewer', 'claude-haiku'],
       ['validate', 'validation', [['validation/evidence/selftest.json']], 'falsification attempts recorded', 'claude-opus'],
     ]);
@@ -309,7 +312,7 @@ async function selftest() {
 
     // Negative: validation reuse of software model must block at gate.
     let s = loadUnit(unit);
-    s.artifactWindows.validate.model = 'deepseek-v4.1';
+    s.artifactWindows.validate.model = 'claude-sonnet';
     writeUnit(s);
     const g2 = gateCheck(loadUnit(unit));
     if (g2.status === 'FAIL' && g2.errors.some(e => e.includes('must differ'))) ok('independence guard blocks same-model validation');

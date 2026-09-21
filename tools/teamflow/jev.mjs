@@ -80,13 +80,17 @@ export function numeric(answer) {
   if (typeof answer.value === 'number') return answer.value;
   if (typeof answer.score === 'number') return answer.score;
   if (answer.score && typeof answer.score === 'object' && typeof answer.score.value === 'number') return answer.score.value;
+  // Live shape: { choice: "opt", confidence, probabilities: { opt: p } }.
+  if (typeof answer.choice === 'string') {
+    return typeof answer.confidence === 'number' ? answer.confidence : answer.probabilities?.[answer.choice] ?? null;
+  }
   if (answer.choice && typeof answer.choice === 'object') {
     return Math.max(0, ...Object.values(answer.choice).filter(v => typeof v === 'number'));
   }
   return null;
 }
 
-if (import.meta.url === pathToFileURL(process.argv[1]).href) {
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   const cmd = process.argv[2];
   if (cmd !== 'evaluate') {
     console.error('Use: node tools/teamflow/jev.mjs evaluate');

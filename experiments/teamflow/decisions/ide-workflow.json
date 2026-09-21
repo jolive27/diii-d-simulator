@@ -1,0 +1,21 @@
+{
+  "unit": "ide-workflow",
+  "status": "CLOSED",
+  "role": "director",
+  "agentId": "claude-opus",
+  "time": "2026-09-21T16:39:21.780Z",
+  "reason": "Copilot + Cline integration no longer needed: owner dropped Copilot/Cline lanes; all execution lanes run on Claude Code (WORKFLOW-EXECUTOR-CLAUDE-003). Research artifact specs/proposals/teamflow-integration.md retained as history.",
+  "stagesAtClose": {
+    "intake": "pending",
+    "research": "done",
+    "spec": "pending",
+    "design-review": "pending",
+    "implement": "pending",
+    "self-review": "pending",
+    "validate": "pending",
+    "gate": "pending",
+    "accept": "pending",
+    "release": "pending",
+    "retro": "pending"
+  }
+}

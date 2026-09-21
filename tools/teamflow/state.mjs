@@ -8,7 +8,7 @@ const UNITS = path.join(DATA, 'units');
 const DECISIONS = path.join(DATA, 'decisions');
 const LEDGER = path.join(DATA, 'teamflow.jsonl');
 
-export function initUnit(unit, { title = unit, kind = 'engineering', director = 'big-pickle' } = {}) {
+export function initUnit(unit, { title = unit, kind = 'engineering', director = 'claude-opus' } = {}) {
   const p = path.join(UNITS, `${unit}.json`);
   if (fs.existsSync(p)) return loadUnit(unit);
   const reg = JSON.parse(fs.readFileSync(path.join(import.meta.dirname, 'registries.json'), 'utf8'));
@@ -42,7 +42,8 @@ export function loadUnit(unit) {
 
 export function listUnits() {
   if (!fs.existsSync(UNITS)) return [];
-  return fs.readdirSync(UNITS).filter(f => f.endsWith('.json')).map(f => f.replace(/\.json$/, ''));
+  // Skip sidecar files such as <unit>.rubric.json.
+  return fs.readdirSync(UNITS).filter(f => f.endsWith('.json') && !f.endsWith('.rubric.json')).map(f => f.replace(/\.json$/, ''));
 }
 
 export function writeUnit(state) {
