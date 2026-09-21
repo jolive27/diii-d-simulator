@@ -133,6 +133,27 @@
       "question": "Verification doc s1 left the evidence directory '<evidence-dir>' as 'assigned by the Director'",
       "decision": "Software writes the ten d2-ver-<check>.json artifacts to tests/d2/evidence/ (Software scope); Validation writes its independent copies and validation/evidence/d2-profiles-falsification.json under validation/evidence/d2-profiles/ (Validation scope).",
       "rationale": "Last unassigned structural item; paths follow agents/permissions.json scopes."
+    },
+    {
+      "id": "DD-20",
+      "stage": "implement (Part A review)",
+      "question": "AC-4 shape perturbations: DD-16 set a 1e-8 residual bar; verification doc said >1e-10; Part A evidence (tests/d2/evidence/d2-ver-ledger.json): gas 5.3e-9, Ohmic 2.4e-9, bremsstrahlung 2.1e-10 at step 750, clean residual 3.6e-14; state perturbations 3.5e-8..1.2e-2",
+      "decision": "Shape perturbations (c) rejected iff residual >= max(1e-10, 100 x clean residual at the same step); state perturbations (a),(b) keep >= 1e-8. Spec AC-4, verification LEDGER and change request approvedTolerances amended; hashes rebound.",
+      "rationale": "The 1e-8 bar was set without evidence and is unreachable for terms that are physically tiny per step; detectability against closure noise (100x) is the honest anti-tautology criterion. Not a loosening of any closure tolerance."
+    },
+    {
+      "id": "DD-21",
+      "stage": "implement (Part A review)",
+      "question": "AC-7(d) 'no value below -1e-14 M' cannot hold for the reflecting eigenmode J0(b1 rho), which is negative for rho > 0.63",
+      "decision": "AC-7(d) restated as the discrete maximum principle: values stay within [min u(0) - 1e-14 M, max u(0) + 1e-14 M]. Constraint check may be disabled on signed verification fixtures via the verification-only entry (enforceConstraint:false).",
+      "rationale": "The intended property of the M-matrix scheme is no new extrema; positivity is its special case for non-negative data."
+    },
+    {
+      "id": "DD-22",
+      "stage": "implement (Part A review)",
+      "question": "Software interpretations and design choices reported in the Part A handoff",
+      "decision": "ACCEPTED as stated: all ten fields required when enabled ({enabled:true} alone and unknown fields throw); non-object profiles throws; <t> in the error is the start time of the rejected step; 0-D guard runs before the profile step, observer sees only steps accepted by both; sample edgeFlux is the prescribed 0-D loss at the sample time; profiles block layout is Software's and is documented in docs/D2-PROFILES.md (the spec fixes content, not layout); withProfileStepObserver is a verification-only hook. Restated 0-D literals (0.8, 0.35, 0.65, 0.9, 80 keV, 0.3, 0.25 s) in the passenger call and eta constants in profiles.ts are accepted as the price of bit-for-bit off-path (any refactor of the 0-D lines would change floating-point association); D2-VER-PARITY is the cross-check that the restated totals equal the 0-D ones. The git stash incident left experiments/ intact (verified by git status).",
+      "rationale": "None of these is a scientific choice; they are interface details consistent with the spec."
     }
   ],
   "status": "DESIGN_REVIEW_PASS",
@@ -207,5 +228,13 @@
       "scope_creep": 0.21,
       "tests_evidence": 0.12
     }
+  },
+  "jevAuditImplementPartA_laneSelfCheck": {
+    "offpath_untouched": 0.88,
+    "scheme_as_specified": 0.85,
+    "sources_as_specified": 0.9,
+    "tests_evidence_real": 0.95,
+    "no_constant_change": 0.67,
+    "note": "0.67 attributed to restated literals; Director reviewed the engine.ts diff: no existing line changed, constants duplicated not altered (DD-22)."
   }
 }

@@ -1,0 +1,69 @@
+**Handoff: d2-profiles IMPLEMENT Part A (software, claude-sonnet)**
+
+D2-VER-LEDGER fails on its AC-4 criterion, so `npm test` is 39 of 40 with that one test red. I did not relax the threshold. The details are under Open concerns.
+
+**Files created**
+- `physics/profiles.ts`: the 1-D kernel (spec s7/s8/s6, DD-10/12/17), the option validator, the verification-only entries, and the passenger.
+- `tests/d2-profiles.test.mjs`: OFFPATH, PARITY, LEDGER, FAILSAFE (i) and (ii).
+- `tests/d2/util.mjs`, `tests/d2/ledger.mjs` (independent oracle).
+- `tests/d2/evidence/d2-ver-{offpath,parity,ledger,failsafe}.json`
+- `docs/D2-PROFILES.md`
+
+**File changed:** `physics/engine.ts`
+- The diff adds one import, `profiles?` as the sixth and last parameter of `runShot`, the optional `Shot.profiles` field, and passenger hook calls.
+- It also adds a `shot` local so `modelVersion` and `profiles` can be set only when enabled.
+- Off path: one `resolveProfiles(undefined)` call that returns immediately. No existing line changed, so no floating-point or control-flow change.
+- `engine.ts` has a new SHA. Anything bound to the old hash, such as `science/constants.json`, is for the Director.
+
+**Commands and results**
+- `npm test`: 40 tests, 39 pass, 1 fail. The 36 existing tests are untouched and pass.
+- `npm run pyengine:test`: 14 tests, OK.
+- `tsc --strict` on `engine.ts` and `profiles.ts`: clean.
+- Smoke checks on the default shot (scratch, not evidence):
+  - Parity is 1.5e-12.
+  - C_br is 1.036 and C_ohm is 1.104 at 3 s, in line with the spec's prototype values.
+  - The all-zero controls stop at about 4.9 s, as the prototype predicted.
+- Scratch checks of the Dirichlet closure (not evidence):
+  - Steady state is exact to about 1e-14.
+  - The eigenmode and MMS fixtures have first-order time error, as expected.
+
+**Per-check results (measured vs tolerance)**
+
+| Check | Result |
+|---|---|
+| OFFPATH | Passes. 90 runs, 0 differences against the frozen 0.1.0 outputs, for the six control sets (`m01-regression.json`) and `m01-shot.json`. This covers absent, `undefined`, `{enabled:false}` and `{enabled:false, N_rho:-1, chi_e:NaN}`. Every invalid option throws with 0 observer calls; the passenger comparison shows 0 differing original fields. |
+| PARITY | Passes. 63 runs, max 7.2e-11 vs 1e-9. 54 completed; the 9 all-zero runs at chi=3 threw at 4.88–4.93 s, and the all-zero case at chi=5 completes. |
+| LEDGER, clean traces | Passes. Max cell residual 6.3e-13 vs 1e-10. Total closure 3.2e-14. Delivered against prescribed edge flux 1.3e-13 vs 1e-12. Shape normalisation 2e-15 vs 1e-13. |
+| LEDGER, mutations | Fails. See Open concerns. |
+| FAILSAFE (i) | Passes. Profile-on throws `profile constraint violated at t=4.902000 s in cell 64: T_i <= 0`, and profile-off completes. |
+| FAILSAFE (ii-a/b/c) | Pass. Each throws at step 0 in cell 10 with `T_e <= 0`, `n <= 0` and `T_e nonfinite` respectively, with 0 observer calls. |
+
+FAILSAFE part (iii) is Part B, so the evidence file carries `complete:false`.
+
+**Jev (one batched call): 4 of 5 pass**
+- `offpath_untouched` 0.88
+- `scheme_as_specified` 0.85
+- `sources_as_specified` 0.90
+- `tests_evidence_real` 0.95
+- `no_constant_change` 0.67, below the 0.75 bar.
+- I found no constant, `Controls`, `LIMITS`, `validate()` or observer change in the diff. My guess is that Jev is reacting to the restated literals in the profile call and `profiles.ts` (0.8, 0.35, 0.9, 80, 0.25, 0.3, 2.8e-8, 0.02). I did not re-ask.
+
+**Open concerns for the Director**
+1. **LEDGER mutation criterion conflict.** The spec's AC-4 amended by DD-16 and the change request say each perturbation must give a residual of at least 1e-8. Verification doc s3 says above 1e-10.
+   - I gated on 1e-8, and the test fails.
+   - Shape mutation (c) gives gas 5.3e-9, bremsstrahlung 2.1e-10 and Ohmic 2.4e-9, so all three fall below 1e-8; the bremsstrahlung one clears only the 1e-10 bar.
+   - The other five mutations give 3.5e-8 up to 1.2e-2.
+   - The bremsstrahlung and gas terms are physically tiny per step at step 750, so the 1e-8 bar looks unreachable with this normaliser.
+   - I need a ruling: the 1e-10 bar, a larger mutation, or a different normaliser.
+2. **AC-7(d) monotonicity cannot hold for the reflecting eigenmode.** J0(b1·rho) is negative for rho above 0.63, so a "no value below −1e-14" rule fails on F3 from the initial condition. I added `enforceConstraint:false` to the verification kernel for that fixture.
+3. **Interpretations, listed for confirmation:**
+   - With `enabled:true`, all ten fields are required. `{enabled:true}` alone throws, and unknown fields throw.
+   - A non-object `profiles` value such as `null` throws.
+   - `t` in the error message is the start time of the rejected step.
+   - The 0-D guard runs before the profile step. The M02 observer only sees steps accepted by both.
+   - Sample `edgeFlux` is the prescribed loss of the 0-D state at the sample time. The per-step delivered flux is available through the observer.
+   - The shape of the `profiles` block is my own layout, since the spec does not fix it.
+   - The verification hook is `withProfileStepObserver`, because the spec says the kernel entry is not reachable through `runShot`, yet PARITY needs per-step profiles from shot runs.
+4. **Git incident.** I ran `git stash` and `git stash pop` once, which briefly moved the pre-existing modified experiments files. `git status` afterwards matches the start plus my files. I made no changes under `experiments/`, `specs/`, `science/`, `python/` or `app/`.
+
+Part B remains: STEADY, EIGEN-DIRICHLET, EIGEN-REFLECT, MMS-CONDUCTION, REFINEMENT, DIAGNOSTICS and the FAILSAFE (iii) sweep.

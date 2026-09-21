@@ -4,7 +4,7 @@
   "kind": "physics",
   "director": "claude-opus",
   "created": "2026-09-21T17:42:04.206Z",
-  "updated": "2026-09-21T20:26:43.879Z",
+  "updated": "2026-09-21T20:53:38.530Z",
   "modelVersion": "teamflow/0.1.0",
   "stages": {
     "intake": {
@@ -28,7 +28,7 @@
       "role": "reviewer"
     },
     "implement": {
-      "status": "pending",
+      "status": "in_progress",
       "owner": "software",
       "role": null
     },
@@ -81,6 +81,12 @@
       "model": "claude-haiku",
       "role": "reviewer",
       "time": "2026-09-21T20:09:51.547Z"
+    },
+    "implement": {
+      "task": "IMPLEMENT stage, unit d2-profiles, PART B (software role, claude-sonnet). Part A is done (physics/profiles.ts, engine.ts hook, tests/d2-profiles.test.mjs with OFFPATH/PARITY/LEDGER/FAILSAFE i-ii, tests/d2/ledger.mjs, util.mjs, docs/D2-PROFILES.md). Read first: your Part A transcript experiments/teamflow/runs/d2-profiles-implement-software-2026-09-21T20-51-15-362Z.out.txt, experiments/records/d2-profiles-design-decisions.json decisions DD-20, DD-21, DD-22 (Director rulings on your open concerns: binding), specs/proposals/d2-profiles.md section 12 (AC-4 and AC-7 as amended) and specs/proposals/d2-profiles-verification.md (all ten checks, as amended). WRITE ONLY under physics/, tests/, docs/. Never touch python/, app/, specs/, science/, experiments/. DELIVER: (1) LEDGER: apply DD-20 (state perturbations >= 1e-8; shape perturbations >= max(1e-10, 100 x clean residual at step 750)); the test must now pass with ratios reported. (2) AC-7(d) per DD-21: discrete maximum principle on diffusion-only fixtures. (3) Implement the remaining checks exactly per the verification doc: D2-VER-STEADY (F1 normalised plus SI runs b, c), D2-VER-EIGEN-DIRICHLET (F2), D2-VER-EIGEN-REFLECT (F3, 1e-3 plus mandatory five rates in bands [1.6,2.4] spatial, [0.8,1.2] temporal; never roundoff-exempt), D2-VER-MMS-CONDUCTION (F4), D2-VER-REFINEMENT (31 rates: spatial N_rho 32..256 with Richardson time-error removal at dt=1e-5, temporal dt 4e-5..5e-6 on fixtures, default-shot dt 0.004..0.0005 on first/last-cell T_e at 0.5,2,3,4.5 s), D2-VER-DIAGNOSTICS (A1-A6 including the DD-10 edge-value hand cases and the C_br/C_ohm analytic anchors at N_rho 256 and 64), D2-VER-FAILSAFE part (iii): the TypeScript sweep driver tests/d2/sweep-driver.mjs over DEFAULT + the nine-case C1 grid (baseline plus ip in {0.9,1.2,1.5} x nbi in {2,4,6}) + the 128 LIMITS corners, 138 runs, per-run status completed|threw with error text/time/cell and parity/ledger maxima for completions. Analytic comparisons always against cell averages (Gauss-Legendre >= 8 nodes per cell); J0 by your own series to 1e-15; constants a1, b1 as stated. AC-7 sub-checks (a)-(d) and AC-8 (independent recomputation at t=0.5,2,3,4.5 s to 1e-9) must be exercised and reported. Each check writes tests/d2/evidence/d2-ver-<check>.json in the s1 format; the failsafe file must become complete:true with 138 runs. Long-running refinement cases: keep total npm test time reasonable (aim under 3 minutes; if a case is inherently slow, say so with its timing rather than shrinking it). (4) Update docs/D2-PROFILES.md and docs/VERIFICATION.md with the profiles option, the ten checks and how to run them; no claims of experimental validation. RULES unchanged: no 0.1.0 constant/assumption/schema change, all existing tests and python tests pass, no scientific choice of your own (report ambiguities instead). BEFORE HANDOFF: run npm test (all must pass) and npm run pyengine:test, paste summaries; self-verify with ONE batched jev CLI call (state = evidence JSON summaries + test output + diff stat; questions: all_ten_checks_pass_with_numbers, rates_in_bands, sweep_138_runs_no_silent_violation, offpath_still_bitforbit, no_constant_change, tests_evidence_real) and include verdicts. HANDOFF (under 800 words): files changed, commands and outputs, per-check measured values vs tolerance including all 31 refinement rates and the five F3 rates, sweep summary (which control sets threw and when), Jev verdicts, anything unresolved.",
+      "model": "claude-sonnet",
+      "role": "software",
+      "time": "2026-09-21T20:53:38.524Z"
     }
   },
   "artifactWindows": {

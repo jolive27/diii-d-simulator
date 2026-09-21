@@ -174,5 +174,121 @@
         "false": "An open marker remains on a decided item."
       }
     }
+  ],
+  "implement": [
+    {
+      "id": "offpath_untouched",
+      "type": "noul",
+      "min": 0.75,
+      "instructions": "Given the diff of physics/engine.ts and the test evidence, is the profile-off path unchanged: no new reads of state, no changed control flow or floating-point operation order when the profiles option is absent, undefined or {enabled:false}, with D2-VER-OFFPATH and the frozen M02/M01 regression tests passing bit-for-bit?",
+      "criteria": {
+        "true": "Off path provably untouched with passing regression evidence.",
+        "false": "A change on the off path, or no passing off-path evidence."
+      }
+    },
+    {
+      "id": "scheme_as_specified",
+      "type": "noul",
+      "min": 0.75,
+      "instructions": "Does the kernel implement spec section 8: finite volume on rho with cell volumes V(2i-1)/N_rho^2 and face areas 2 V rho_j, backward Euler for diffusion with explicit left-endpoint sources and edge fluxes, density first then w_e and w_i with face n as the mean of adjacent n^{k+1}, one tridiagonal solve each, zero axis flux, prescribed edge flux equal to the 0-D losses, and a verification-only entry with Dirichlet closure exact for quadratics?",
+      "criteria": {
+        "true": "Scheme matches section 8 in every listed respect.",
+        "false": "A listed element of the scheme is missing or different."
+      }
+    },
+    {
+      "id": "sources_as_specified",
+      "type": "noul",
+      "min": 0.75,
+      "instructions": "Are the source and sink distributions of spec section 6 implemented with shapes evaluated at cell centres (DD-12), normalised on discrete cell volumes to 1e-13, totals taken from the unchanged 0-D code, bremsstrahlung and Ohmic renormalised each step, exchange applied locally, and option fields validated per section 10 (throw before stepping, no silent defaults)?",
+      "criteria": {
+        "true": "Sources and option validation match sections 6 and 10.",
+        "false": "A shape, normalisation, total or validation rule differs."
+      }
+    },
+    {
+      "id": "no_constant_change",
+      "type": "noul",
+      "min": 0.75,
+      "instructions": "Does the implementation leave every C-M01-* constant, A-M01-* assumption, Controls, LIMITS, validate() and the export schema (schemaVersion 1, modelVersion '0.1.0' off / '0.2.0' on) unchanged, and touch only physics/, tests/ and docs/?",
+      "criteria": {
+        "true": "No constant, assumption or scope violation.",
+        "false": "A constant, assumption, schema or scope change is present."
+      }
+    },
+    {
+      "id": "tests_evidence_real",
+      "type": "noul",
+      "min": 0.75,
+      "instructions": "Does the handoff cite actual commands and outputs (npm test totals, per-check measured values with tolerances and ratios, evidence JSON files under tests/d2/evidence/) rather than claims, with every tolerance reported as a number?",
+      "criteria": {
+        "true": "Real measured evidence is present for the checks claimed.",
+        "false": "Claims without numbers or outputs, or fabricated evidence."
+      }
+    }
+  ],
+  "self-review": [
+    {
+      "id": "review_independent",
+      "type": "noul",
+      "min": 0.75,
+      "instructions": "Did the self-review re-run the tests and recompute at least parity, ledger and off-path evidence from the artifacts rather than restating the implementer's handoff?",
+      "criteria": {
+        "true": "Independent re-execution with outputs.",
+        "false": "Restated claims only."
+      }
+    },
+    {
+      "id": "review_findings_actionable",
+      "type": "noul",
+      "min": 0.75,
+      "instructions": "Does the review list concrete defects or explicitly confirm none, each with file:line evidence, and check the no-constant-change and scope rules?",
+      "criteria": {
+        "true": "Findings are specific and evidenced.",
+        "false": "Vague or missing findings."
+      }
+    }
+  ],
+  "validate": [
+    {
+      "id": "ac10_reexecution",
+      "type": "noul",
+      "min": 0.75,
+      "instructions": "Per AC-10: did Validation re-execute every AC-1..AC-9 check from its own code (not Software's tests) on claude-opus, recording per check the command, measured values, tolerance and verdict in validation/evidence/d2-profiles-falsification.json?",
+      "criteria": {
+        "true": "All nine re-executed with numbers and verdicts.",
+        "false": "A check is missing, restated from Software, or lacks numbers."
+      }
+    },
+    {
+      "id": "adversarial_cases",
+      "type": "noul",
+      "min": 0.75,
+      "instructions": "Are at least three adversarial cases beyond AC-4 recorded with input, expected, observed and verdict, and do they genuinely probe failure modes (edge cases, conservation, convergence)?",
+      "criteria": {
+        "true": "Three or more substantive adversarial cases.",
+        "false": "Fewer than three, or trivial cases."
+      }
+    },
+    {
+      "id": "falsification_honest",
+      "type": "noul",
+      "min": 0.75,
+      "instructions": "Are failures, marginal passes and limitations reported as such, with no tolerance loosened and no result hidden?",
+      "criteria": {
+        "true": "Honest reporting of every outcome.",
+        "false": "A failure is hidden or a tolerance relaxed."
+      }
+    },
+    {
+      "id": "model_independence",
+      "type": "noul",
+      "min": 0.75,
+      "instructions": "Is the validation model (claude-opus) distinct from the implementation model (claude-sonnet) and stated in the evidence file?",
+      "criteria": {
+        "true": "Distinct and stated.",
+        "false": "Same model or not stated."
+      }
+    }
   ]
 }
