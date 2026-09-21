@@ -1,0 +1,617 @@
+{
+  "checkId": "AC-8 / D2-VER-DIAGNOSTICS (validation re-execution)",
+  "validationModel": "claude-opus",
+  "role": "validation",
+  "physicsModelVersion": "0.2.0",
+  "verificationVersion": "0.3.0",
+  "node": "v24.20.0",
+  "physicsSha256": {
+    "physics/engine.ts": "c57ea711b0ad722cfc51128df76d5a1efcb670a924ce097f00eca61a8154ddfb",
+    "physics/profiles.ts": "e5f3497f59098b7d391c30ece9818dc7a697cd17e259f0f0d9177e750b22cce4"
+  },
+  "harness": "validation/independent/d2-profiles.mjs",
+  "harnessSha256": "915a12943a781a3942d4a5c4b03d5bb50847770356423c32ac5992b5e0b52b28",
+  "generated": "2026-09-21T21:51:40.362Z",
+  "command": "node --experimental-strip-types validation/independent/d2-profiles.mjs sweep",
+  "gridOk": true,
+  "samples": [
+    {
+      "t": 0.5,
+      "sampleT": 0.5,
+      "teAvg": 0.29577501419880525,
+      "measurements": [
+        {
+          "name": "C_br",
+          "exported": 0.9985862529539273,
+          "own": 0.9985862529539272,
+          "relDiff": 1.1117948212695654e-16,
+          "tolerance": 1e-9,
+          "ratio": 1.1117948212695653e-7
+        },
+        {
+          "name": "C_ohm",
+          "exported": 1.1030271238101435,
+          "own": 1.1030271238101435,
+          "relDiff": 0,
+          "tolerance": 1e-9,
+          "ratio": 0
+        },
+        {
+          "name": "n(1) [1e19]",
+          "exported": 3.0842082162184985,
+          "own": 3.0842082162184985,
+          "relDiff": 0,
+          "tolerance": 1e-9,
+          "ratio": 0
+        },
+        {
+          "name": "T_e(1)",
+          "exported": 0.22384465820347796,
+          "own": 0.22384465820347796,
+          "relDiff": 0,
+          "tolerance": 1e-9,
+          "ratio": 0
+        },
+        {
+          "name": "T_i(1)",
+          "exported": 0.09427129468249495,
+          "own": 0.09427129468249495,
+          "relDiff": 0,
+          "tolerance": 1e-9,
+          "ratio": 0
+        },
+        {
+          "name": "edgeFlux n (exported vs own prescribed)",
+          "exported": 518351127378469260000,
+          "own": 518351127378469260000,
+          "relDiff": 0,
+          "tolerance": 1e-9,
+          "ratio": 0
+        },
+        {
+          "name": "edgeFlux we",
+          "exported": 297860.4282839832,
+          "own": 297860.4282839832,
+          "relDiff": 0,
+          "tolerance": 1e-9,
+          "ratio": 0
+        },
+        {
+          "name": "edgeFlux wi",
+          "exported": 113890.3072755132,
+          "own": 113890.3072755132,
+          "relDiff": 0,
+          "tolerance": 1e-9,
+          "ratio": 0
+        },
+        {
+          "name": "edgeFlux n (exported vs own delivered)",
+          "exported": 518351127378469260000,
+          "own": 518351127378469300000,
+          "relDiff": 1.2643167254491085e-16,
+          "tolerance": 1e-9,
+          "ratio": 1.2643167254491083e-7
+        },
+        {
+          "name": "edgeFlux we (vs delivered)",
+          "exported": 297860.4282839832,
+          "own": 297860.42828398396,
+          "relDiff": 2.540450224403858e-15,
+          "tolerance": 1e-9,
+          "ratio": 0.0000025404502244038576
+        },
+        {
+          "name": "edgeFlux wi (vs delivered)",
+          "exported": 113890.3072755132,
+          "own": 113890.30727551336,
+          "relDiff": 1.4054845521208895e-15,
+          "tolerance": 1e-9,
+          "ratio": 0.0000014054845521208894
+        }
+      ],
+      "clipFlags": {
+        "n": [
+          false,
+          false
+        ],
+        "te": [
+          false,
+          false
+        ],
+        "ti": [
+          false,
+          false
+        ]
+      },
+      "clipOk": true
+    },
+    {
+      "t": 2,
+      "sampleT": 2,
+      "teAvg": 0.9200444821280703,
+      "measurements": [
+        {
+          "name": "C_br",
+          "exported": 1.0221667546552202,
+          "own": 1.0221667546552202,
+          "relDiff": 0,
+          "tolerance": 1e-9,
+          "ratio": 0
+        },
+        {
+          "name": "C_ohm",
+          "exported": 1.0878216509514818,
+          "own": 1.0878216509514818,
+          "relDiff": 0,
+          "tolerance": 1e-9,
+          "ratio": 0
+        },
+        {
+          "name": "n(1) [1e19]",
+          "exported": 3.6989580557509663,
+          "own": 3.6989580557509663,
+          "relDiff": 0,
+          "tolerance": 1e-9,
+          "ratio": 0
+        },
+        {
+          "name": "T_e(1)",
+          "exported": 0.5498921481716528,
+          "own": 0.5498921481716528,
+          "relDiff": 0,
+          "tolerance": 1e-9,
+          "ratio": 0
+        },
+        {
+          "name": "T_i(1)",
+          "exported": 0.5671310148453547,
+          "own": 0.5671310148453547,
+          "relDiff": 0,
+          "tolerance": 1e-9,
+          "ratio": 0
+        },
+        {
+          "name": "edgeFlux n (exported vs own prescribed)",
+          "exported": 775417214516922300000,
+          "own": 775417214516922300000,
+          "relDiff": 0,
+          "tolerance": 1e-9,
+          "ratio": 0
+        },
+        {
+          "name": "edgeFlux we",
+          "exported": 2155387.6103463257,
+          "own": 2155387.6103463257,
+          "relDiff": 0,
+          "tolerance": 1e-9,
+          "ratio": 0
+        },
+        {
+          "name": "edgeFlux wi",
+          "exported": 2097354.1960523343,
+          "own": 2097354.1960523343,
+          "relDiff": 0,
+          "tolerance": 1e-9,
+          "ratio": 0
+        },
+        {
+          "name": "edgeFlux n (exported vs own delivered)",
+          "exported": 775417214516922300000,
+          "own": 775417214516921100000,
+          "relDiff": 1.5213074689538735e-15,
+          "tolerance": 1e-9,
+          "ratio": 0.0000015213074689538734
+        },
+        {
+          "name": "edgeFlux we (vs delivered)",
+          "exported": 2155387.6103463257,
+          "own": 2155387.610346332,
+          "relDiff": 3.024633709043554e-15,
+          "tolerance": 1e-9,
+          "ratio": 0.000003024633709043554
+        },
+        {
+          "name": "edgeFlux wi (vs delivered)",
+          "exported": 2097354.1960523343,
+          "own": 2097354.1960523343,
+          "relDiff": 0,
+          "tolerance": 1e-9,
+          "ratio": 0
+        }
+      ],
+      "clipFlags": {
+        "n": [
+          false,
+          false
+        ],
+        "te": [
+          false,
+          false
+        ],
+        "ti": [
+          false,
+          false
+        ]
+      },
+      "clipOk": true
+    },
+    {
+      "t": 3,
+      "sampleT": 3,
+      "teAvg": 0.8409756031966134,
+      "measurements": [
+        {
+          "name": "C_br",
+          "exported": 1.0359351431753847,
+          "own": 1.0359351431753847,
+          "relDiff": 0,
+          "tolerance": 1e-9,
+          "ratio": 0
+        },
+        {
+          "name": "C_ohm",
+          "exported": 1.1042490857725067,
+          "own": 1.1042490857725067,
+          "relDiff": 0,
+          "tolerance": 1e-9,
+          "ratio": 0
+        },
+        {
+          "name": "n(1) [1e19]",
+          "exported": 3.9247053312091293,
+          "own": 3.9247053312091293,
+          "relDiff": 0,
+          "tolerance": 1e-9,
+          "ratio": 0
+        },
+        {
+          "name": "T_e(1)",
+          "exported": 0.49561960968914476,
+          "own": 0.49561960968914476,
+          "relDiff": 0,
+          "tolerance": 1e-9,
+          "ratio": 0
+        },
+        {
+          "name": "T_i(1)",
+          "exported": 0.508888602285186,
+          "own": 0.508888602285186,
+          "relDiff": 0,
+          "tolerance": 1e-9,
+          "ratio": 0
+        },
+        {
+          "name": "edgeFlux n (exported vs own prescribed)",
+          "exported": 879678571148342500000,
+          "own": 879678571148342500000,
+          "relDiff": 0,
+          "tolerance": 1e-9,
+          "ratio": 0
+        },
+        {
+          "name": "edgeFlux we",
+          "exported": 2179369.2239805404,
+          "own": 2179369.2239805404,
+          "relDiff": 0,
+          "tolerance": 1e-9,
+          "ratio": 0
+        },
+        {
+          "name": "edgeFlux wi",
+          "exported": 2110254.5026023756,
+          "own": 2110254.5026023756,
+          "relDiff": 0,
+          "tolerance": 1e-9,
+          "ratio": 0
+        },
+        {
+          "name": "edgeFlux n (exported vs own delivered)",
+          "exported": 879678571148342500000,
+          "own": 879678571148340800000,
+          "relDiff": 1.9369984172465015e-15,
+          "tolerance": 1e-9,
+          "ratio": 0.0000019369984172465013
+        },
+        {
+          "name": "edgeFlux we (vs delivered)",
+          "exported": 2179369.2239805404,
+          "own": 2179369.2239805325,
+          "relDiff": 3.632354626800162e-15,
+          "tolerance": 1e-9,
+          "ratio": 0.000003632354626800162
+        },
+        {
+          "name": "edgeFlux wi (vs delivered)",
+          "exported": 2110254.5026023756,
+          "own": 2110254.502602367,
+          "relDiff": 3.971986867556846e-15,
+          "tolerance": 1e-9,
+          "ratio": 0.000003971986867556846
+        }
+      ],
+      "clipFlags": {
+        "n": [
+          false,
+          false
+        ],
+        "te": [
+          false,
+          false
+        ],
+        "ti": [
+          false,
+          false
+        ]
+      },
+      "clipOk": true
+    },
+    {
+      "t": 4.5,
+      "sampleT": 4.5,
+      "teAvg": 0.30425529948765256,
+      "measurements": [
+        {
+          "name": "C_br",
+          "exported": 1.030372021278609,
+          "own": 1.0303720212786087,
+          "relDiff": 2.1549945101332608e-16,
+          "tolerance": 1e-9,
+          "ratio": 2.1549945101332606e-7
+        },
+        {
+          "name": "C_ohm",
+          "exported": 1.1835140422960702,
+          "own": 1.1835140422960704,
+          "relDiff": 1.8761467713070374e-16,
+          "tolerance": 1e-9,
+          "ratio": 1.8761467713070372e-7
+        },
+        {
+          "name": "n(1) [1e19]",
+          "exported": 4.041753071064135,
+          "own": 4.041753071064135,
+          "relDiff": 0,
+          "tolerance": 1e-9,
+          "ratio": 0
+        },
+        {
+          "name": "T_e(1)",
+          "exported": 0.2348642560493701,
+          "own": 0.2348642560493701,
+          "relDiff": 0,
+          "tolerance": 1e-9,
+          "ratio": 0
+        },
+        {
+          "name": "T_i(1)",
+          "exported": 0.15813891077413333,
+          "own": 0.15813891077413333,
+          "relDiff": 0,
+          "tolerance": 1e-9,
+          "ratio": 0
+        },
+        {
+          "name": "edgeFlux n (exported vs own prescribed)",
+          "exported": 885661723028025900000,
+          "own": 885661723028025900000,
+          "relDiff": 0,
+          "tolerance": 1e-9,
+          "ratio": 0
+        },
+        {
+          "name": "edgeFlux we",
+          "exported": 470332.0128037388,
+          "own": 470332.0128037388,
+          "relDiff": 0,
+          "tolerance": 1e-9,
+          "ratio": 0
+        },
+        {
+          "name": "edgeFlux wi",
+          "exported": 300282.95640328916,
+          "own": 300282.95640328916,
+          "relDiff": 0,
+          "tolerance": 1e-9,
+          "ratio": 0
+        },
+        {
+          "name": "edgeFlux n (exported vs own delivered)",
+          "exported": 885661723028025900000,
+          "own": 885661723028020300000,
+          "relDiff": 6.3637118478266755e-15,
+          "tolerance": 1e-9,
+          "ratio": 0.000006363711847826675
+        },
+        {
+          "name": "edgeFlux we (vs delivered)",
+          "exported": 470332.0128037388,
+          "own": 470332.01280373894,
+          "relDiff": 2.475173253314416e-16,
+          "tolerance": 1e-9,
+          "ratio": 2.475173253314416e-7
+        },
+        {
+          "name": "edgeFlux wi (vs delivered)",
+          "exported": 300282.95640328916,
+          "own": 300282.956403287,
+          "relDiff": 7.17218013168169e-15,
+          "tolerance": 1e-9,
+          "ratio": 0.00000717218013168169
+        }
+      ],
+      "clipFlags": {
+        "n": [
+          false,
+          false
+        ],
+        "te": [
+          false,
+          false
+        ],
+        "ti": [
+          false,
+          false
+        ]
+      },
+      "clipOk": true
+    }
+  ],
+  "maxRel": 7.17218013168169e-15,
+  "a6Pass": true,
+  "anchors": [
+    {
+      "id": "A1",
+      "N_rho": 64,
+      "cBr": 1,
+      "cOhm": 1.0000000000000002,
+      "errBr": 0,
+      "errOhm": 2.220446049250313e-16,
+      "tolerance": 1e-12,
+      "pass": true
+    },
+    {
+      "id": "A2",
+      "expected": 0.9428090415820635,
+      "runs": {
+        "64": {
+          "cBr": 0.9432292751227616,
+          "relErr": 0.00044572497946447805,
+          "teAvg": 1.0000000000000004
+        },
+        "256": {
+          "cBr": 0.9428649719888774,
+          "relErr": 0.00005932315489900291,
+          "teAvg": 1.000000000000001
+        }
+      },
+      "tolerance": "2e-4 relative at N_rho=256; error ratio 64/256 >= 4",
+      "errorRatio": 7.5135076720602685,
+      "pass": true
+    },
+    {
+      "id": "A3 gamma=1",
+      "expected": 1.3333333333333333,
+      "runs": {
+        "64": {
+          "cOhm": 1.3331705927848818,
+          "relErr": 0.00012205541133858411
+        },
+        "256": {
+          "cOhm": 1.3333231608849025,
+          "relErr": 0.000007629336323033975
+        }
+      },
+      "tolerance": "2e-4 relative at N_rho=256; error ratio >= 4",
+      "errorRatio": 15.99816893247748,
+      "pass": true
+    },
+    {
+      "id": "A3 gamma=2",
+      "expected": 1.8,
+      "runs": {
+        "64": {
+          "cOhm": 1.7997559030608243,
+          "relErr": 0.00013560941065317146
+        },
+        "256": {
+          "cOhm": 1.7999847413816767,
+          "relErr": 0.000008477010179610801
+        }
+      },
+      "tolerance": "2e-4 relative at N_rho=256; error ratio >= 4",
+      "errorRatio": 15.997316008814511,
+      "pass": true
+    },
+    {
+      "id": "A4",
+      "hand": [
+        {
+          "input": {
+            "x_Nm1": 2,
+            "x_N": 1
+          },
+          "expected": 0.5,
+          "expectedRaw": 0.5,
+          "expectedClip": false,
+          "value": 0.5,
+          "raw": 0.5,
+          "clipped": false,
+          "pass": true
+        },
+        {
+          "input": {
+            "x_Nm1": 1,
+            "x_N": 0.4
+          },
+          "expected": 0.1,
+          "expectedRaw": 0.1,
+          "expectedClip": false,
+          "value": 0.10000000000000009,
+          "raw": 0.10000000000000009,
+          "clipped": false,
+          "pass": true
+        },
+        {
+          "input": {
+            "x_Nm1": 1,
+            "x_N": 0.2
+          },
+          "expected": 0,
+          "expectedRaw": -0.2,
+          "expectedClip": true,
+          "value": 0,
+          "raw": -0.19999999999999996,
+          "clipped": true,
+          "pass": true
+        }
+      ],
+      "evaluatorPath": {
+        "n": [
+          0.5,
+          0.5
+        ],
+        "te": [
+          0.10000000000000009,
+          0.1
+        ],
+        "ti": [
+          0,
+          0,
+          true
+        ]
+      },
+      "linearProfile": {
+        "32": {
+          "rule": 0.4999593416601614,
+          "evaluator": 0.4999593416601614,
+          "relDiff": 0,
+          "offsetFromAnalytic0p5": -0.00004065833983857292
+        },
+        "64": {
+          "rule": 0.49998982939632564,
+          "evaluator": 0.49998982939632564,
+          "relDiff": 0,
+          "offsetFromAnalytic0p5": -0.000010170603674364287
+        },
+        "128": {
+          "rule": 0.4999974569867476,
+          "evaluator": 0.4999974569867476,
+          "relDiff": 0,
+          "offsetFromAnalytic0p5": -0.0000025430132524206783
+        }
+      },
+      "linearOffsetRate_32_64": 1.9991459956147517,
+      "linearOffsetRate_64_128": 1.9997944271574266,
+      "tolerance": "1e-12 relative (1e-15 absolute at 0); clip flag exact",
+      "pass": true
+    },
+    {
+      "id": "A5",
+      "samplesCompared": 1255,
+      "maxRel": 3.2188138948105588e-12,
+      "tolerance": 1e-9,
+      "pass": true
+    }
+  ],
+  "pass": true
+}

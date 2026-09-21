@@ -1,0 +1,786 @@
+{
+  "checkId": "AC-7 structure (validation re-execution)",
+  "validationModel": "claude-opus",
+  "role": "validation",
+  "physicsModelVersion": "0.2.0",
+  "verificationVersion": "0.3.0",
+  "node": "v24.20.0",
+  "physicsSha256": {
+    "physics/engine.ts": "c57ea711b0ad722cfc51128df76d5a1efcb670a924ce097f00eca61a8154ddfb",
+    "physics/profiles.ts": "e5f3497f59098b7d391c30ece9818dc7a697cd17e259f0f0d9177e750b22cce4"
+  },
+  "harness": "validation/independent/d2-profiles.mjs",
+  "harnessSha256": "c7d9497ac35bd491e73df10cc5163e4ebe78fe3c3b079134fbc2e1397175f654",
+  "generated": "2026-09-21T21:52:25.464Z",
+  "command": "node --experimental-strip-types validation/independent/d2-profiles.mjs fixtures",
+  "default": {
+    "axisNonZero": 0,
+    "edgeDeliveredMaxRel": 4.286676570686111e-14,
+    "edgeDeliveredAt": [
+      434,
+      "wi"
+    ],
+    "edgeTol": 1e-12,
+    "prescribedOwnVsExportedMaxRel": 0,
+    "shapeNormProdMaxDev": 1.1102230246251565e-15,
+    "shapeNormOwnMaxDev": 1.1102230246251565e-15,
+    "shapeTol": 1e-13,
+    "steps": 2500
+  },
+  "fixtures": [
+    {
+      "name": "F1 STEADY (a) N=16",
+      "inputs": {
+        "N_rho": 16,
+        "dt": 0.05,
+        "steps": 2000,
+        "edge": {
+          "n": {
+            "type": "dirichlet",
+            "value": 0
+          },
+          "we": {
+            "type": "flux",
+            "value": 0
+          },
+          "wi": {
+            "type": "flux",
+            "value": 0
+          }
+        },
+        "freezeN": false,
+        "enforceConstraint": false
+      },
+      "stoppedEarly": true,
+      "stepsRun": 123,
+      "seconds": 0.022222375,
+      "axisNonZero": 0,
+      "edgeFlux": {
+        "maxRatio": 0.000666133818027399,
+        "worst": {
+          "step": 73,
+          "species": "n",
+          "delivered": 0.9999999951176406,
+          "prescribed": 0.9999999951176399,
+          "fluxScale": 0.9999999951176399,
+          "absDiff": 6.661338147750939e-16,
+          "relToScale": 6.661338180273991e-16
+        }
+      },
+      "edgeFluxDD25": {
+        "maxRatio": 0.0006573140770758701,
+        "worst": {
+          "step": 73,
+          "species": "n",
+          "absDiff": 6.661338147750939e-16,
+          "relTerm": 9.9999999511764e-13,
+          "roundoffFloor": 1.3417848812402445e-14,
+          "M": 0.24951171679648745,
+          "dV_N": 0.12109375,
+          "dt": 0.05,
+          "oldRatio": 0.000666133818027399
+        }
+      },
+      "productionZeroFlux": {
+        "checked": 0,
+        "nonExactZero": 0,
+        "maxAbsProdDelivered": 0
+      },
+      "dmp": null,
+      "negatives": 0,
+      "informationalL2rel": 2.611282778817781e-14,
+      "nonNegativityPass": true
+    },
+    {
+      "name": "F1 STEADY (a) N=64",
+      "inputs": {
+        "N_rho": 64,
+        "dt": 0.05,
+        "steps": 2000,
+        "edge": {
+          "n": {
+            "type": "dirichlet",
+            "value": 0
+          },
+          "we": {
+            "type": "flux",
+            "value": 0
+          },
+          "wi": {
+            "type": "flux",
+            "value": 0
+          }
+        },
+        "freezeN": false,
+        "enforceConstraint": false
+      },
+      "stoppedEarly": true,
+      "stepsRun": 123,
+      "seconds": 0.019719875,
+      "axisNonZero": 0,
+      "edgeFlux": {
+        "maxRatio": 0.0006835430875624193,
+        "worst": {
+          "step": 12,
+          "species": "n",
+          "delivered": 0.9745308333825613,
+          "prescribed": 0.974530833382562,
+          "fluxScale": 0.974530833382562,
+          "absDiff": 6.661338147750939e-16,
+          "relToScale": 6.835430875624192e-16
+        }
+      },
+      "edgeFluxDD25": {
+        "maxRatio": 0.0006812352193494208,
+        "worst": {
+          "step": 12,
+          "species": "n",
+          "absDiff": 6.661338147750939e-16,
+          "relTerm": 9.745308333825619e-13,
+          "roundoffFloor": 3.3014862841333016e-15,
+          "M": 0.23977036435539115,
+          "dV_N": 0.031005859375,
+          "dt": 0.05,
+          "oldRatio": 0.0006835430875624193
+        }
+      },
+      "productionZeroFlux": {
+        "checked": 0,
+        "nonExactZero": 0,
+        "maxAbsProdDelivered": 0
+      },
+      "dmp": null,
+      "negatives": 0,
+      "informationalL2rel": 8.390142015739565e-15,
+      "nonNegativityPass": true
+    },
+    {
+      "name": "F1 STEADY (a) N=256",
+      "inputs": {
+        "N_rho": 256,
+        "dt": 0.05,
+        "steps": 2000,
+        "edge": {
+          "n": {
+            "type": "dirichlet",
+            "value": 0
+          },
+          "we": {
+            "type": "flux",
+            "value": 0
+          },
+          "wi": {
+            "type": "flux",
+            "value": 0
+          }
+        },
+        "freezeN": false,
+        "enforceConstraint": false
+      },
+      "stoppedEarly": true,
+      "stepsRun": 123,
+      "seconds": 0.024551500000000004,
+      "axisNonZero": 0,
+      "edgeFlux": {
+        "maxRatio": 0.0004440947588246095,
+        "worst": {
+          "step": 42,
+          "species": "n",
+          "delivered": 0.9999875049762764,
+          "prescribed": 0.9999875049762769,
+          "fluxScale": 0.9999875049762769,
+          "absDiff": 4.440892098500626e-16,
+          "relToScale": 4.440947588246095e-16
+        }
+      },
+      "edgeFluxDD25": {
+        "maxRatio": 0.00044371065867130006,
+        "worst": {
+          "step": 42,
+          "species": "n",
+          "absDiff": 4.440892098500626e-16,
+          "relTerm": 9.999875049762768e-13,
+          "roundoffFloor": 8.656437398170603e-16,
+          "M": 0.24999308849180638,
+          "dV_N": 0.0077972412109375,
+          "dt": 0.05,
+          "oldRatio": 0.0004440947588246095
+        }
+      },
+      "productionZeroFlux": {
+        "checked": 0,
+        "nonExactZero": 0,
+        "maxAbsProdDelivered": 0
+      },
+      "dmp": null,
+      "negatives": 0,
+      "informationalL2rel": 2.256671594930391e-14,
+      "nonNegativityPass": true
+    },
+    {
+      "name": "F1 diffusion-only companion N=64 (DMP)",
+      "inputs": {
+        "N_rho": 64,
+        "dt": 0.05,
+        "steps": 200,
+        "edge": {
+          "n": {
+            "type": "dirichlet",
+            "value": 0
+          },
+          "we": {
+            "type": "flux",
+            "value": 0
+          },
+          "wi": {
+            "type": "flux",
+            "value": 0
+          }
+        },
+        "freezeN": false,
+        "enforceConstraint": false
+      },
+      "stoppedEarly": false,
+      "stepsRun": 200,
+      "seconds": 0.009803541999999993,
+      "axisNonZero": 0,
+      "edgeFlux": {
+        "maxRatio": 0.0009090188747526713,
+        "worst": {
+          "step": 196,
+          "species": "n",
+          "delivered": 1.293146251932468e-22,
+          "prescribed": 1.2931462519324692e-22,
+          "fluxScale": 1.2931462519324692e-22,
+          "absDiff": 1.1754943508222875e-37,
+          "relToScale": 9.090188747526713e-16
+        }
+      },
+      "edgeFluxDD25": {
+        "maxRatio": 0.0009040338331379523,
+        "worst": {
+          "step": 196,
+          "species": "n",
+          "absDiff": 1.1754943508222875e-37,
+          "relTerm": 1.2931462519324692e-34,
+          "roundoffFloor": 7.130693170437406e-37,
+          "M": 5.178664251307378e-23,
+          "dV_N": 0.031005859375,
+          "dt": 0.05,
+          "oldRatio": 0.0009090188747526713
+        }
+      },
+      "productionZeroFlux": {
+        "checked": 0,
+        "nonExactZero": 0,
+        "maxAbsProdDelivered": 0
+      },
+      "dmp": {
+        "bounds": {
+          "n": {
+            "lo": -2.49969482421875e-15,
+            "hi": 0.2499694824218775,
+            "M": 0.249969482421875
+          }
+        },
+        "maxViolationOverM": 0,
+        "observedMin": 2.363590666578002e-25,
+        "observedMax": 0.20290476798557464,
+        "pass": true
+      },
+      "negatives": 0
+    },
+    {
+      "name": "F2 EIGEN-DIRICHLET N=256 dt=2e-6 t=1",
+      "inputs": {
+        "N_rho": 256,
+        "dt": 0.000002,
+        "steps": 500000,
+        "edge": {
+          "n": {
+            "type": "flux",
+            "value": 0
+          },
+          "we": {
+            "type": "dirichlet",
+            "value": 0
+          },
+          "wi": {
+            "type": "dirichlet",
+            "value": 0
+          }
+        },
+        "freezeN": true,
+        "enforceConstraint": true
+      },
+      "stoppedEarly": false,
+      "stepsRun": 500000,
+      "seconds": 39.881817625000004,
+      "axisNonZero": 0,
+      "edgeFlux": {
+        "maxRatio": 0.001995230490841121,
+        "worst": {
+          "step": 353746,
+          "species": "we",
+          "delivered": 0.04173288611471859,
+          "prescribed": 0.041732886114718676,
+          "fluxScale": 0.041732886114718676,
+          "absDiff": 8.326672684688674e-17,
+          "relToScale": 1.9952304908411208e-15
+        }
+      },
+      "edgeFluxDD25": {
+        "maxRatio": 0.00005593688805435045,
+        "worst": {
+          "step": 353746,
+          "species": "we",
+          "absDiff": 8.326672684688674e-17,
+          "relTerm": 4.173288611471868e-14,
+          "roundoffFloor": 1.4468505825612927e-12,
+          "M": 0.016713695442289307,
+          "dV_N": 0.0077972412109375,
+          "dt": 0.000002,
+          "oldRatio": 0.001995230490841121
+        }
+      },
+      "productionZeroFlux": {
+        "checked": 0,
+        "nonExactZero": 0,
+        "maxAbsProdDelivered": 0
+      },
+      "dmp": {
+        "bounds": {
+          "we": {
+            "lo": -9.999889694887185e-15,
+            "hi": 0.9999889694887285,
+            "M": 0.9999889694887185
+          },
+          "wi": {
+            "lo": -9.999889694887185e-15,
+            "hi": 0.9999889694887285,
+            "M": 0.9999889694887185
+          }
+        },
+        "maxViolationOverM": 0,
+        "observedMin": 0.000007512873315374195,
+        "observedMax": 0.9999774034632061,
+        "pass": true
+      },
+      "negatives": 0,
+      "informationalL2rel": 0.0000757191852176904
+    },
+    {
+      "name": "F3 EIGEN-REFLECT N=256 dt=0.000001 t=1",
+      "inputs": {
+        "N_rho": 256,
+        "dt": 0.000001,
+        "steps": 1000000,
+        "edge": {
+          "type": "flux",
+          "value": 0
+        },
+        "freezeN": true,
+        "enforceConstraint": false
+      },
+      "stoppedEarly": false,
+      "stepsRun": 1000000,
+      "seconds": 74.43254749999998,
+      "axisNonZero": 0,
+      "edgeFlux": {
+        "maxRatio": 0.5694522839292319,
+        "worst": {
+          "step": 787584,
+          "species": "we",
+          "delivered": -1.352388685453977e-17,
+          "prescribed": 0,
+          "fluxScale": 0.00002374893777091328,
+          "absDiff": 1.352388685453977e-17,
+          "relToScale": 5.694522839292319e-13
+        }
+      },
+      "edgeFluxDD25": {
+        "maxRatio": 0.0080958151466834,
+        "worst": {
+          "step": 787584,
+          "species": "we",
+          "absDiff": 1.352388685453977e-17,
+          "relTerm": 2.3748937770913282e-17,
+          "roundoffFloor": 1.6467297737001703e-15,
+          "M": 0.000009511327653700097,
+          "dV_N": 0.0077972412109375,
+          "dt": 0.000001,
+          "oldRatio": 0.5694522839292319
+        }
+      },
+      "productionZeroFlux": {
+        "checked": 2000000,
+        "nonExactZero": 0,
+        "maxAbsProdDelivered": 1.0127731986386834e-12
+      },
+      "dmp": {
+        "bounds": {
+          "we": {
+            "lo": -0.4027443575788418,
+            "hi": 0.9999719966247792,
+            "M": 0.9999719966247692
+          },
+          "wi": {
+            "lo": -0.4027443575788418,
+            "hi": 0.9999719966247792,
+            "M": 0.9999719966247692
+          }
+        },
+        "maxViolationOverM": 0,
+        "observedMin": -0.40273844469520526,
+        "observedMax": 0.9999573155549043,
+        "pass": true
+      },
+      "negatives": 190000000,
+      "informationalL2rel": 0.000381945594237114
+    },
+    {
+      "name": "F3 EIGEN-REFLECT N=256 dt=5e-7 t=1",
+      "inputs": {
+        "N_rho": 256,
+        "dt": 5e-7,
+        "steps": 2000000,
+        "edge": {
+          "type": "flux",
+          "value": 0
+        },
+        "freezeN": true,
+        "enforceConstraint": false
+      },
+      "stoppedEarly": false,
+      "stepsRun": 2000000,
+      "seconds": 125.190291625,
+      "axisNonZero": 0,
+      "edgeFlux": {
+        "maxRatio": 0.957647051814772,
+        "worst": {
+          "step": 252435,
+          "species": "we",
+          "delivered": -3.7480955838997687e-13,
+          "prescribed": 0,
+          "fluxScale": 0.3913859053601227,
+          "absDiff": 3.7480955838997687e-13,
+          "relToScale": 9.57647051814772e-13
+        }
+      },
+      "edgeFluxDD25": {
+        "maxRatio": 0.006856096192785871,
+        "worst": {
+          "step": 252435,
+          "species": "we",
+          "absDiff": 3.7480955838997687e-13,
+          "relTerm": 3.9138590536012266e-13,
+          "roundoffFloor": 5.427668581515619e-11,
+          "M": 0.15674804421155814,
+          "dV_N": 0.0077972412109375,
+          "dt": 5e-7,
+          "oldRatio": 0.957647051814772
+        }
+      },
+      "productionZeroFlux": {
+        "checked": 4000000,
+        "nonExactZero": 0,
+        "maxAbsProdDelivered": 1.567856955375646e-12
+      },
+      "dmp": {
+        "bounds": {
+          "we": {
+            "lo": -0.4027443575788418,
+            "hi": 0.9999719966247792,
+            "M": 0.9999719966247692
+          },
+          "wi": {
+            "lo": -0.4027443575788418,
+            "hi": 0.9999719966247792,
+            "M": 0.9999719966247692
+          }
+        },
+        "maxViolationOverM": 0,
+        "observedMin": -0.402741401115316,
+        "observedMax": 0.9999646560359514,
+        "pass": true
+      },
+      "negatives": 380000000,
+      "informationalL2rel": 0.0003280399672100347
+    },
+    {
+      "name": "F4 MMS-CONDUCTION N=128 dt=1e-5 t=1",
+      "inputs": {
+        "N_rho": 128,
+        "dt": 0.00001,
+        "steps": 100000,
+        "edge": {
+          "n": {
+            "type": "flux",
+            "value": 0
+          },
+          "we": {
+            "type": "dirichlet",
+            "value": 0
+          },
+          "wi": {
+            "type": "dirichlet",
+            "value": 0
+          }
+        },
+        "freezeN": true,
+        "enforceConstraint": true
+      },
+      "stoppedEarly": false,
+      "stepsRun": 100000,
+      "seconds": 2.9349373750000085,
+      "axisNonZero": 0,
+      "edgeFlux": {
+        "maxRatio": 0.0019848180594394956,
+        "worst": {
+          "step": 3093,
+          "species": "we",
+          "delivered": 5.817318822341952,
+          "prescribed": 5.817318822341964,
+          "fluxScale": 5.817318822341964,
+          "absDiff": 1.1546319456101628e-14,
+          "relToScale": 1.9848180594394955e-15
+        }
+      },
+      "edgeFluxDD25": {
+        "maxRatio": 0.0002059085452985203,
+        "worst": {
+          "step": 3093,
+          "species": "we",
+          "absDiff": 1.1546319456101628e-14,
+          "relTerm": 5.817318822341963e-12,
+          "roundoffFloor": 5.025767038882509e-11,
+          "M": 1.454259424946678,
+          "dV_N": 0.01556396484375,
+          "dt": 0.00001,
+          "oldRatio": 0.0019848180594394956
+        }
+      },
+      "productionZeroFlux": {
+        "checked": 0,
+        "nonExactZero": 0,
+        "maxAbsProdDelivered": 0
+      },
+      "dmp": null,
+      "negatives": 0,
+      "informationalL2rel": 0.000021516878831260632
+    }
+  ],
+  "tolerances": {
+    "a": "Object.is(axisFlux, 0) every species every step",
+    "b": "DD-25: |delivered - prescribed| <= 1e-12 * max(|prescribed|, flux scale) + 100 eps M dV_N/dt (reconstructed); production-reported face flux for a prescribed 0 is Object.is 0",
+    "c": "|sum h_i dV_i - 1| <= 1e-13",
+    "d": "values within [min u0 - 1e-14 M, max u0 + 1e-14 M] incl. Dirichlet boundary value"
+  },
+  "sub": {
+    "a": true,
+    "b_default": true,
+    "b_fixtures": [
+      {
+        "name": "F1 STEADY (a) N=16",
+        "ratioDD25": 0.0006573140770758701,
+        "ratioPreDD25": 0.000666133818027399,
+        "worstDD25": {
+          "step": 73,
+          "species": "n",
+          "absDiff": 6.661338147750939e-16,
+          "relTerm": 9.9999999511764e-13,
+          "roundoffFloor": 1.3417848812402445e-14,
+          "M": 0.24951171679648745,
+          "dV_N": 0.12109375,
+          "dt": 0.05,
+          "oldRatio": 0.000666133818027399
+        },
+        "productionZeroFlux": {
+          "checked": 0,
+          "nonExactZero": 0,
+          "maxAbsProdDelivered": 0
+        },
+        "pass": true
+      },
+      {
+        "name": "F1 STEADY (a) N=64",
+        "ratioDD25": 0.0006812352193494208,
+        "ratioPreDD25": 0.0006835430875624193,
+        "worstDD25": {
+          "step": 12,
+          "species": "n",
+          "absDiff": 6.661338147750939e-16,
+          "relTerm": 9.745308333825619e-13,
+          "roundoffFloor": 3.3014862841333016e-15,
+          "M": 0.23977036435539115,
+          "dV_N": 0.031005859375,
+          "dt": 0.05,
+          "oldRatio": 0.0006835430875624193
+        },
+        "productionZeroFlux": {
+          "checked": 0,
+          "nonExactZero": 0,
+          "maxAbsProdDelivered": 0
+        },
+        "pass": true
+      },
+      {
+        "name": "F1 STEADY (a) N=256",
+        "ratioDD25": 0.00044371065867130006,
+        "ratioPreDD25": 0.0004440947588246095,
+        "worstDD25": {
+          "step": 42,
+          "species": "n",
+          "absDiff": 4.440892098500626e-16,
+          "relTerm": 9.999875049762768e-13,
+          "roundoffFloor": 8.656437398170603e-16,
+          "M": 0.24999308849180638,
+          "dV_N": 0.0077972412109375,
+          "dt": 0.05,
+          "oldRatio": 0.0004440947588246095
+        },
+        "productionZeroFlux": {
+          "checked": 0,
+          "nonExactZero": 0,
+          "maxAbsProdDelivered": 0
+        },
+        "pass": true
+      },
+      {
+        "name": "F1 diffusion-only companion N=64 (DMP)",
+        "ratioDD25": 0.0009040338331379523,
+        "ratioPreDD25": 0.0009090188747526713,
+        "worstDD25": {
+          "step": 196,
+          "species": "n",
+          "absDiff": 1.1754943508222875e-37,
+          "relTerm": 1.2931462519324692e-34,
+          "roundoffFloor": 7.130693170437406e-37,
+          "M": 5.178664251307378e-23,
+          "dV_N": 0.031005859375,
+          "dt": 0.05,
+          "oldRatio": 0.0009090188747526713
+        },
+        "productionZeroFlux": {
+          "checked": 0,
+          "nonExactZero": 0,
+          "maxAbsProdDelivered": 0
+        },
+        "pass": true
+      },
+      {
+        "name": "F2 EIGEN-DIRICHLET N=256 dt=2e-6 t=1",
+        "ratioDD25": 0.00005593688805435045,
+        "ratioPreDD25": 0.001995230490841121,
+        "worstDD25": {
+          "step": 353746,
+          "species": "we",
+          "absDiff": 8.326672684688674e-17,
+          "relTerm": 4.173288611471868e-14,
+          "roundoffFloor": 1.4468505825612927e-12,
+          "M": 0.016713695442289307,
+          "dV_N": 0.0077972412109375,
+          "dt": 0.000002,
+          "oldRatio": 0.001995230490841121
+        },
+        "productionZeroFlux": {
+          "checked": 0,
+          "nonExactZero": 0,
+          "maxAbsProdDelivered": 0
+        },
+        "pass": true
+      },
+      {
+        "name": "F3 EIGEN-REFLECT N=256 dt=0.000001 t=1",
+        "ratioDD25": 0.0080958151466834,
+        "ratioPreDD25": 0.5694522839292319,
+        "worstDD25": {
+          "step": 787584,
+          "species": "we",
+          "absDiff": 1.352388685453977e-17,
+          "relTerm": 2.3748937770913282e-17,
+          "roundoffFloor": 1.6467297737001703e-15,
+          "M": 0.000009511327653700097,
+          "dV_N": 0.0077972412109375,
+          "dt": 0.000001,
+          "oldRatio": 0.5694522839292319
+        },
+        "productionZeroFlux": {
+          "checked": 2000000,
+          "nonExactZero": 0,
+          "maxAbsProdDelivered": 1.0127731986386834e-12
+        },
+        "pass": true
+      },
+      {
+        "name": "F3 EIGEN-REFLECT N=256 dt=5e-7 t=1",
+        "ratioDD25": 0.006856096192785871,
+        "ratioPreDD25": 0.957647051814772,
+        "worstDD25": {
+          "step": 252435,
+          "species": "we",
+          "absDiff": 3.7480955838997687e-13,
+          "relTerm": 3.9138590536012266e-13,
+          "roundoffFloor": 5.427668581515619e-11,
+          "M": 0.15674804421155814,
+          "dV_N": 0.0077972412109375,
+          "dt": 5e-7,
+          "oldRatio": 0.957647051814772
+        },
+        "productionZeroFlux": {
+          "checked": 4000000,
+          "nonExactZero": 0,
+          "maxAbsProdDelivered": 1.567856955375646e-12
+        },
+        "pass": true
+      },
+      {
+        "name": "F4 MMS-CONDUCTION N=128 dt=1e-5 t=1",
+        "ratioDD25": 0.0002059085452985203,
+        "ratioPreDD25": 0.0019848180594394956,
+        "worstDD25": {
+          "step": 3093,
+          "species": "we",
+          "absDiff": 1.1546319456101628e-14,
+          "relTerm": 5.817318822341963e-12,
+          "roundoffFloor": 5.025767038882509e-11,
+          "M": 1.454259424946678,
+          "dV_N": 0.01556396484375,
+          "dt": 0.00001,
+          "oldRatio": 0.0019848180594394956
+        },
+        "productionZeroFlux": {
+          "checked": 0,
+          "nonExactZero": 0,
+          "maxAbsProdDelivered": 0
+        },
+        "pass": true
+      }
+    ],
+    "c": true,
+    "d": [
+      {
+        "name": "F1 diffusion-only companion N=64 (DMP)",
+        "maxViolationOverM": 0,
+        "pass": true
+      },
+      {
+        "name": "F2 EIGEN-DIRICHLET N=256 dt=2e-6 t=1",
+        "maxViolationOverM": 0,
+        "pass": true
+      },
+      {
+        "name": "F3 EIGEN-REFLECT N=256 dt=0.000001 t=1",
+        "maxViolationOverM": 0,
+        "pass": true
+      },
+      {
+        "name": "F3 EIGEN-REFLECT N=256 dt=5e-7 t=1",
+        "maxViolationOverM": 0,
+        "pass": true
+      }
+    ],
+    "nonNegativitySourceDrivenF1": true
+  },
+  "pass": true
+}

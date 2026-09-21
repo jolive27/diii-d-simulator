@@ -1,0 +1,7224 @@
+{
+  "checkId": "AC-9 / D2-VER-FAILSAFE (iii) sweep, own driver",
+  "validationModel": "claude-opus",
+  "role": "validation",
+  "physicsModelVersion": "0.2.0",
+  "verificationVersion": "0.3.0",
+  "node": "v24.20.0",
+  "physicsSha256": {
+    "physics/engine.ts": "c57ea711b0ad722cfc51128df76d5a1efcb670a924ce097f00eca61a8154ddfb",
+    "physics/profiles.ts": "e5f3497f59098b7d391c30ece9818dc7a697cd17e259f0f0d9177e750b22cce4"
+  },
+  "harness": "validation/independent/d2-profiles.mjs",
+  "harnessSha256": "915a12943a781a3942d4a5c4b03d5bb50847770356423c32ac5992b5e0b52b28",
+  "generated": "2026-09-21T21:51:40.204Z",
+  "command": "node --experimental-strip-types validation/independent/d2-profiles.mjs sweep",
+  "driver": "sweepCases() in validation/independent/d2-profiles.mjs: DEFAULT; ip {0.9,1.2,1.5} x nbi {2,4,6} (expand_cases order, ip outer); 128 LIMITS corners (bit b of the corner index selects max of LIMITS key b in order ip,bt,nbi,ech,gas,kappa,delta)",
+  "settings": {
+    "N_rho": 64,
+    "dt": 0.002,
+    "coefficients": "defaults"
+  },
+  "regex": "^profile constraint violated at t=\\d+\\.\\d{6} s in cell \\d+: (n|T_e|T_i) (<= 0|nonfinite)$",
+  "runs": [
+    {
+      "id": "DEFAULT",
+      "group": "default",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 1.542204128220087e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 4.1039647037949257e-13,
+      "parityFlooredAt": [
+        2498,
+        "we"
+      ],
+      "parityAbsOverX0": 4.1039647037949257e-13,
+      "parityStep0": 1.8905562125804005e-16,
+      "ledgerMax": 4.836985656860237e-14,
+      "ledgerAt": [
+        1844,
+        "we",
+        21
+      ],
+      "speciesTotalMax": 3.730899260418751e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 1.2,
+        "bt": 2,
+        "nbi": 4,
+        "ech": 1,
+        "gas": 2.5,
+        "kappa": 1.7,
+        "delta": 0.35
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 27749890653681220000,
+        "Te": 0.09505144823503199,
+        "Ti": 0.04730563293548447
+      },
+      "reportedMaxParity": 1.542204128220087e-12,
+      "reportedMaxLedger": 4.2018465372208063e-14
+    },
+    {
+      "id": "grid-ip-0.9-nbi-2",
+      "group": "grid",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 1.4965656470513972e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 3.2297215310988797e-13,
+      "parityFlooredAt": [
+        2363,
+        "we"
+      ],
+      "parityAbsOverX0": 3.2297215310988797e-13,
+      "parityStep0": 1.8905562125804005e-16,
+      "ledgerMax": 4.422714972667223e-14,
+      "ledgerAt": [
+        587,
+        "wi",
+        11
+      ],
+      "speciesTotalMax": 3.68519266600332e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 0.9,
+        "bt": 2,
+        "nbi": 2,
+        "ech": 1,
+        "gas": 2.5,
+        "kappa": 1.7,
+        "delta": 0.35
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 27749890653681220000,
+        "Te": 0.09252954243612876,
+        "Ti": 0.041473560423129524
+      },
+      "reportedMaxParity": 1.4965656470513972e-12,
+      "reportedMaxLedger": 4.4421211778458725e-14
+    },
+    {
+      "id": "grid-ip-0.9-nbi-4",
+      "group": "grid",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 1.4701701296909843e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 3.3956617936485786e-13,
+      "parityFlooredAt": [
+        2494,
+        "we"
+      ],
+      "parityAbsOverX0": 3.3956617936485786e-13,
+      "parityStep0": 1.8905562125804005e-16,
+      "ledgerMax": 4.7117811795020623e-14,
+      "ledgerAt": [
+        2138,
+        "we",
+        26
+      ],
+      "speciesTotalMax": 3.68519266600332e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 0.9,
+        "bt": 2,
+        "nbi": 4,
+        "ech": 1,
+        "gas": 2.5,
+        "kappa": 1.7,
+        "delta": 0.35
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 27749890653681220000,
+        "Te": 0.08994345998439084,
+        "Ti": 0.04082923809840896
+      },
+      "reportedMaxParity": 1.4701701296909843e-12,
+      "reportedMaxLedger": 4.4824639798634724e-14
+    },
+    {
+      "id": "grid-ip-0.9-nbi-6",
+      "group": "grid",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 2.3301658835804233e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 5.668170020776562e-13,
+      "parityFlooredAt": [
+        2470,
+        "we"
+      ],
+      "parityAbsOverX0": 5.668170020776562e-13,
+      "parityStep0": 1.8905562125804005e-16,
+      "ledgerMax": 5.420569563940808e-14,
+      "ledgerAt": [
+        1309,
+        "we",
+        21
+      ],
+      "speciesTotalMax": 3.68519266600332e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 0.9,
+        "bt": 2,
+        "nbi": 6,
+        "ech": 1,
+        "gas": 2.5,
+        "kappa": 1.7,
+        "delta": 0.35
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 27749890653681220000,
+        "Te": 0.08763366986887244,
+        "Ti": 0.04025699271037702
+      },
+      "reportedMaxParity": 2.3301658835804233e-12,
+      "reportedMaxLedger": 4.803054935682001e-14
+    },
+    {
+      "id": "grid-ip-1.2-nbi-2",
+      "group": "grid",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 1.5746220055522212e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 3.90570975853818e-13,
+      "parityFlooredAt": [
+        2452,
+        "we"
+      ],
+      "parityAbsOverX0": 3.90570975853818e-13,
+      "parityStep0": 1.8905562125804005e-16,
+      "ledgerMax": 4.701145471778202e-14,
+      "ledgerAt": [
+        1169,
+        "wi",
+        42
+      ],
+      "speciesTotalMax": 3.5329427868231945e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 1.2,
+        "bt": 2,
+        "nbi": 2,
+        "ech": 1,
+        "gas": 2.5,
+        "kappa": 1.7,
+        "delta": 0.35
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 27749890653681220000,
+        "Te": 0.09764782346578658,
+        "Ti": 0.04784182506206042
+      },
+      "reportedMaxParity": 1.5746220055522212e-12,
+      "reportedMaxLedger": 4.515589867078941e-14
+    },
+    {
+      "id": "grid-ip-1.2-nbi-4",
+      "group": "grid",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 1.542204128220087e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 4.1039647037949257e-13,
+      "parityFlooredAt": [
+        2498,
+        "we"
+      ],
+      "parityAbsOverX0": 4.1039647037949257e-13,
+      "parityStep0": 1.8905562125804005e-16,
+      "ledgerMax": 4.836985656860237e-14,
+      "ledgerAt": [
+        1844,
+        "we",
+        21
+      ],
+      "speciesTotalMax": 3.730899260418751e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 1.2,
+        "bt": 2,
+        "nbi": 4,
+        "ech": 1,
+        "gas": 2.5,
+        "kappa": 1.7,
+        "delta": 0.35
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 27749890653681220000,
+        "Te": 0.09505144823503199,
+        "Ti": 0.04730563293548447
+      },
+      "reportedMaxParity": 1.542204128220087e-12,
+      "reportedMaxLedger": 4.2018465372208063e-14
+    },
+    {
+      "id": "grid-ip-1.2-nbi-6",
+      "group": "grid",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 2.4738648540883516e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 6.959883959255536e-13,
+      "parityFlooredAt": [
+        2470,
+        "we"
+      ],
+      "parityAbsOverX0": 6.959883959255536e-13,
+      "parityStep0": 1.8905562125804005e-16,
+      "ledgerMax": 4.613500686343651e-14,
+      "ledgerAt": [
+        156,
+        "we",
+        44
+      ],
+      "speciesTotalMax": 3.735563484087929e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 1.2,
+        "bt": 2,
+        "nbi": 6,
+        "ech": 1,
+        "gas": 2.5,
+        "kappa": 1.7,
+        "delta": 0.35
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 27749890653681220000,
+        "Te": 0.09273889951407034,
+        "Ti": 0.046846914158325814
+      },
+      "reportedMaxParity": 2.4738648540883516e-12,
+      "reportedMaxLedger": 4.2469041517386046e-14
+    },
+    {
+      "id": "grid-ip-1.5-nbi-2",
+      "group": "grid",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 1.6669744537140236e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 4.749384988132966e-13,
+      "parityFlooredAt": [
+        2452,
+        "we"
+      ],
+      "parityAbsOverX0": 4.749384988132966e-13,
+      "parityStep0": 1.8905562125804005e-16,
+      "ledgerMax": 4.6630843639495904e-14,
+      "ledgerAt": [
+        1169,
+        "we",
+        42
+      ],
+      "speciesTotalMax": 3.696398173647412e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 1.5,
+        "bt": 2,
+        "nbi": 2,
+        "ech": 1,
+        "gas": 2.5,
+        "kappa": 1.7,
+        "delta": 0.35
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 27749890653681220000,
+        "Te": 0.10349930214381314,
+        "Ti": 0.05523202996316984
+      },
+      "reportedMaxParity": 1.6669744537140236e-12,
+      "reportedMaxLedger": 4.3346024202256757e-14
+    },
+    {
+      "id": "grid-ip-1.5-nbi-4",
+      "group": "grid",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 1.5150112062583507e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 4.644580611785788e-13,
+      "parityFlooredAt": [
+        2498,
+        "we"
+      ],
+      "parityAbsOverX0": 4.644580611785788e-13,
+      "parityStep0": 1.8905562125804005e-16,
+      "ledgerMax": 5.0678743642474843e-14,
+      "ledgerAt": [
+        1844,
+        "we",
+        21
+      ],
+      "speciesTotalMax": 3.7726797782327374e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 1.5,
+        "bt": 2,
+        "nbi": 4,
+        "ech": 1,
+        "gas": 2.5,
+        "kappa": 1.7,
+        "delta": 0.35
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 27749890653681220000,
+        "Te": 0.10095300727556245,
+        "Ti": 0.054913840803806166
+      },
+      "reportedMaxParity": 1.5150112062583507e-12,
+      "reportedMaxLedger": 4.865059304136565e-14
+    },
+    {
+      "id": "grid-ip-1.5-nbi-6",
+      "group": "grid",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 2.417320596016681e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 7.912730414211966e-13,
+      "parityFlooredAt": [
+        2470,
+        "we"
+      ],
+      "parityAbsOverX0": 7.912730414211966e-13,
+      "parityStep0": 1.8905562125804005e-16,
+      "ledgerMax": 4.8816750545751725e-14,
+      "ledgerAt": [
+        1265,
+        "we",
+        22
+      ],
+      "speciesTotalMax": 3.696398173647412e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 1.5,
+        "bt": 2,
+        "nbi": 6,
+        "ech": 1,
+        "gas": 2.5,
+        "kappa": 1.7,
+        "delta": 0.35
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 27749890653681220000,
+        "Te": 0.09870155707476379,
+        "Ti": 0.054682580551840325
+      },
+      "reportedMaxParity": 2.417320596016681e-12,
+      "reportedMaxLedger": 4.742366258486777e-14
+    },
+    {
+      "id": "corner-0000000",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 1.1816548004142479e-11,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 1.3265875087340844e-13,
+      "parityFlooredAt": [
+        2461,
+        "we"
+      ],
+      "parityAbsOverX0": 1.3265875087340844e-13,
+      "parityStep0": 1.3920120763211798e-16,
+      "ledgerMax": 7.411215136370318e-14,
+      "ledgerAt": [
+        618,
+        "we",
+        22
+      ],
+      "speciesTotalMax": 7.040657354417308e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 0.6,
+        "bt": 1,
+        "nbi": 0,
+        "ech": 0,
+        "gas": 0,
+        "kappa": 1,
+        "delta": -0.3
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 810623340386829300,
+        "Te": 0.19826271453935865,
+        "Ti": 0.054567390641528955
+      },
+      "reportedMaxParity": 1.1816548004142479e-11,
+      "reportedMaxLedger": 6.922897901401538e-14
+    },
+    {
+      "id": "corner-0000001",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 2.4364616368849014e-11,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 3.884931703502873e-13,
+      "parityFlooredAt": [
+        2459,
+        "we"
+      ],
+      "parityAbsOverX0": 3.884931703502873e-13,
+      "parityStep0": 1.3920120763211798e-16,
+      "ledgerMax": 7.810620211465997e-14,
+      "ledgerAt": [
+        1475,
+        "we",
+        42
+      ],
+      "speciesTotalMax": 7.158998887028676e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 2,
+        "bt": 1,
+        "nbi": 0,
+        "ech": 0,
+        "gas": 0,
+        "kappa": 1,
+        "delta": -0.3
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 810623340386829300,
+        "Te": 0.27737562269057175,
+        "Ti": 0.07964572832940711
+      },
+      "reportedMaxParity": 2.4364616368849014e-11,
+      "reportedMaxLedger": 7.148255132745902e-14
+    },
+    {
+      "id": "corner-0000010",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 1.054915956501538e-11,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 1.4208963269048442e-13,
+      "parityFlooredAt": [
+        2459,
+        "we"
+      ],
+      "parityAbsOverX0": 1.4208963269048442e-13,
+      "parityStep0": 1.3920120763211798e-16,
+      "ledgerMax": 7.578872007149505e-14,
+      "ledgerAt": [
+        1098,
+        "we",
+        21
+      ],
+      "speciesTotalMax": 7.167049881354956e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 0.6,
+        "bt": 2.1,
+        "nbi": 0,
+        "ech": 0,
+        "gas": 0,
+        "kappa": 1,
+        "delta": -0.3
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 810623340386829300,
+        "Te": 0.22213787086483602,
+        "Ti": 0.07838082405635441
+      },
+      "reportedMaxParity": 1.054915956501538e-11,
+      "reportedMaxLedger": 7.341719225854889e-14
+    },
+    {
+      "id": "corner-0000011",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 2.0905987610654887e-11,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 4.186476319535948e-13,
+      "parityFlooredAt": [
+        2461,
+        "we"
+      ],
+      "parityAbsOverX0": 4.186476319535948e-13,
+      "parityStep0": 1.3920120763211798e-16,
+      "ledgerMax": 7.969986426036963e-14,
+      "ledgerAt": [
+        827,
+        "wi",
+        49
+      ],
+      "speciesTotalMax": 7.223228114421096e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 2,
+        "bt": 2.1,
+        "nbi": 0,
+        "ech": 0,
+        "gas": 0,
+        "kappa": 1,
+        "delta": -0.3
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 810623340386829300,
+        "Te": 0.30657109208727557,
+        "Ti": 0.11930410509225184
+      },
+      "reportedMaxParity": 2.0905987610654887e-11,
+      "reportedMaxLedger": 7.757780858348354e-14
+    },
+    {
+      "id": "corner-0000100",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 1.2957924941192059e-11,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 2.4428419927360384e-12,
+      "parityFlooredAt": [
+        2416,
+        "we"
+      ],
+      "parityAbsOverX0": 2.4428419927360384e-12,
+      "parityStep0": 1.3920120763211798e-16,
+      "ledgerMax": 7.53490206917452e-14,
+      "ledgerAt": [
+        1232,
+        "wi",
+        21
+      ],
+      "speciesTotalMax": 7.040657354417308e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 0.6,
+        "bt": 1,
+        "nbi": 12,
+        "ech": 0,
+        "gas": 0,
+        "kappa": 1,
+        "delta": -0.3
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 9685144844038330000,
+        "Te": 0.14314390169208102,
+        "Ti": 0.05259104459577449
+      },
+      "reportedMaxParity": 1.2957924941192059e-11,
+      "reportedMaxLedger": 7.080428887151736e-14
+    },
+    {
+      "id": "corner-0000101",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 1.4257244213182947e-11,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 5.1910914350169434e-12,
+      "parityFlooredAt": [
+        2459,
+        "we"
+      ],
+      "parityAbsOverX0": 5.195267471245907e-12,
+      "parityStep0": 1.3920120763211798e-16,
+      "ledgerMax": 7.235184714614879e-14,
+      "ledgerAt": [
+        1453,
+        "wi",
+        24
+      ],
+      "speciesTotalMax": 7.158998887028676e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 2,
+        "bt": 1,
+        "nbi": 12,
+        "ech": 0,
+        "gas": 0,
+        "kappa": 1,
+        "delta": -0.3
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 9685144844038330000,
+        "Te": 0.18534132378867443,
+        "Ti": 0.10276088961963308
+      },
+      "reportedMaxParity": 1.4257244213182947e-11,
+      "reportedMaxLedger": 7.163685177346117e-14
+    },
+    {
+      "id": "corner-0000110",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 1.2314417484686538e-11,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 2.7461614241664234e-12,
+      "parityFlooredAt": [
+        2416,
+        "we"
+      ],
+      "parityAbsOverX0": 2.7461614241664234e-12,
+      "parityStep0": 1.3920120763211798e-16,
+      "ledgerMax": 7.256469567154872e-14,
+      "ledgerAt": [
+        592,
+        "wi",
+        28
+      ],
+      "speciesTotalMax": 7.167049881354956e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 0.6,
+        "bt": 2.1,
+        "nbi": 12,
+        "ech": 0,
+        "gas": 0,
+        "kappa": 1,
+        "delta": -0.3
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 9685144844038330000,
+        "Te": 0.16554419965194098,
+        "Ti": 0.06569608106471087
+      },
+      "reportedMaxParity": 1.2314417484686538e-11,
+      "reportedMaxLedger": 7.341719225854889e-14
+    },
+    {
+      "id": "corner-0000111",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 1.2003560176081388e-11,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 5.95001641902725e-12,
+      "parityFlooredAt": [
+        2496,
+        "we"
+      ],
+      "parityAbsOverX0": 5.9558628697478e-12,
+      "parityStep0": 1.3920120763211798e-16,
+      "ledgerMax": 7.540593693359476e-14,
+      "ledgerAt": [
+        1186,
+        "wi",
+        22
+      ],
+      "speciesTotalMax": 7.223228114421096e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 2,
+        "bt": 2.1,
+        "nbi": 12,
+        "ech": 0,
+        "gas": 0,
+        "kappa": 1,
+        "delta": -0.3
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 9685144844038330000,
+        "Te": 0.22377241225883734,
+        "Ti": 0.14752956725347574
+      },
+      "reportedMaxParity": 1.2003560176081388e-11,
+      "reportedMaxLedger": 7.757780858348354e-14
+    },
+    {
+      "id": "corner-0001000",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 7.037476892799572e-11,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 8.006853462999426e-13,
+      "parityFlooredAt": [
+        2023,
+        "we"
+      ],
+      "parityAbsOverX0": 8.082022115120769e-13,
+      "parityStep0": 1.3920120763211798e-16,
+      "ledgerMax": 7.02952161397926e-14,
+      "ledgerAt": [
+        1812,
+        "wi",
+        1
+      ],
+      "speciesTotalMax": 7.040657354417308e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 0.6,
+        "bt": 1,
+        "nbi": 0,
+        "ech": 3,
+        "gas": 0,
+        "kappa": 1,
+        "delta": -0.3
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 810623340386829300,
+        "Te": 0.19349182797812403,
+        "Ti": 0.054567449200244554
+      },
+      "reportedMaxParity": 7.037476892799572e-11,
+      "reportedMaxLedger": 6.710736474692036e-14
+    },
+    {
+      "id": "corner-0001001",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 9.55533120304223e-11,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 1.5200771873427284e-12,
+      "parityFlooredAt": [
+        2459,
+        "we"
+      ],
+      "parityAbsOverX0": 1.547917428869152e-12,
+      "parityStep0": 1.3920120763211798e-16,
+      "ledgerMax": 7.191551323551447e-14,
+      "ledgerAt": [
+        1576,
+        "wi",
+        22
+      ],
+      "speciesTotalMax": 7.158998887028676e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 2,
+        "bt": 1,
+        "nbi": 0,
+        "ech": 3,
+        "gas": 0,
+        "kappa": 1,
+        "delta": -0.3
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 810623340386829300,
+        "Te": 0.27737562269057175,
+        "Ti": 0.0797931653603274
+      },
+      "reportedMaxParity": 9.55533120304223e-11,
+      "reportedMaxLedger": 6.431928481847429e-14
+    },
+    {
+      "id": "corner-0001010",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 6.412892376492574e-11,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 8.652747066412453e-13,
+      "parityFlooredAt": [
+        2030,
+        "we"
+      ],
+      "parityAbsOverX0": 8.825356563876279e-13,
+      "parityStep0": 1.3920120763211798e-16,
+      "ledgerMax": 7.573038808224049e-14,
+      "ledgerAt": [
+        1092,
+        "we",
+        2
+      ],
+      "speciesTotalMax": 7.167049881354956e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 0.6,
+        "bt": 2.1,
+        "nbi": 0,
+        "ech": 3,
+        "gas": 0,
+        "kappa": 1,
+        "delta": -0.3
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 810623340386829300,
+        "Te": 0.22213787086483602,
+        "Ti": 0.07838170732937852
+      },
+      "reportedMaxParity": 6.412892376492574e-11,
+      "reportedMaxLedger": 7.341719225854889e-14
+    },
+    {
+      "id": "corner-0001011",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 8.506499351951446e-11,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 1.7114788478368904e-12,
+      "parityFlooredAt": [
+        2459,
+        "we"
+      ],
+      "parityAbsOverX0": 1.7283221939603768e-12,
+      "parityStep0": 1.3920120763211798e-16,
+      "ledgerMax": 7.603012260548334e-14,
+      "ledgerAt": [
+        1722,
+        "wi",
+        24
+      ],
+      "speciesTotalMax": 7.223228114421096e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 2,
+        "bt": 2.1,
+        "nbi": 0,
+        "ech": 3,
+        "gas": 0,
+        "kappa": 1,
+        "delta": -0.3
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 810623340386829300,
+        "Te": 0.30657109208727557,
+        "Ti": 0.12031092277578113
+      },
+      "reportedMaxParity": 8.506499351951446e-11,
+      "reportedMaxLedger": 7.757780858348354e-14
+    },
+    {
+      "id": "corner-0001100",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "threw",
+      "steps": 508,
+      "parityMax": 3.9984965561177014e-13,
+      "parityAt": [
+        499,
+        "wi"
+      ],
+      "parityFloored": 6.97398050236911e-14,
+      "parityFlooredAt": [
+        501,
+        "we"
+      ],
+      "parityAbsOverX0": 7.572545695187218e-14,
+      "parityStep0": 1.3920120763211798e-16,
+      "ledgerMax": 6.296442155413567e-14,
+      "ledgerAt": [
+        331,
+        "we",
+        33
+      ],
+      "speciesTotalMax": 7.040657354417308e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "error": "profile constraint violated at t=1.016000 s in cell 64: T_e <= 0",
+      "grammarOk": true,
+      "errorTime": 1.016,
+      "errorCell": 64,
+      "acceptedStepsConsistent": true,
+      "controls": {
+        "ip": 0.6,
+        "bt": 1,
+        "nbi": 12,
+        "ech": 3,
+        "gas": 0,
+        "kappa": 1,
+        "delta": -0.3
+      },
+      "minCell": {
+        "n": 10019623686425584000,
+        "Te": 0.006068373068267894,
+        "Ti": 0.07285714832407485
+      },
+      "profileOffStatus": "completed"
+    },
+    {
+      "id": "corner-0001101",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 1.681496143921074e-11,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 6.232177266897554e-12,
+      "parityFlooredAt": [
+        2459,
+        "we"
+      ],
+      "parityAbsOverX0": 6.236214101918885e-12,
+      "parityStep0": 1.3920120763211798e-16,
+      "ledgerMax": 7.350426155186062e-14,
+      "ledgerAt": [
+        2071,
+        "wi",
+        38
+      ],
+      "speciesTotalMax": 7.158998887028676e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 2,
+        "bt": 1,
+        "nbi": 12,
+        "ech": 3,
+        "gas": 0,
+        "kappa": 1,
+        "delta": -0.3
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 9685144844038330000,
+        "Te": 0.18612404178107392,
+        "Ti": 0.10462172420629658
+      },
+      "reportedMaxParity": 1.681496143921074e-11,
+      "reportedMaxLedger": 7.238604495926789e-14
+    },
+    {
+      "id": "corner-0001110",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 1.5000299555198526e-11,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 3.345283421815059e-12,
+      "parityFlooredAt": [
+        2416,
+        "we"
+      ],
+      "parityAbsOverX0": 3.345283421815059e-12,
+      "parityStep0": 1.3920120763211798e-16,
+      "ledgerMax": 7.261397436709386e-14,
+      "ledgerAt": [
+        1251,
+        "wi",
+        15
+      ],
+      "speciesTotalMax": 7.167049881354956e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 0.6,
+        "bt": 2.1,
+        "nbi": 12,
+        "ech": 3,
+        "gas": 0,
+        "kappa": 1,
+        "delta": -0.3
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 9685144844038330000,
+        "Te": 0.1651262648800686,
+        "Ti": 0.06575301840134759
+      },
+      "reportedMaxParity": 1.5000299555198526e-11,
+      "reportedMaxLedger": 7.341719225854889e-14
+    },
+    {
+      "id": "corner-0001111",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 1.3551184065652961e-11,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 6.9994543233657885e-12,
+      "parityFlooredAt": [
+        2496,
+        "we"
+      ],
+      "parityAbsOverX0": 7.004326365632912e-12,
+      "parityStep0": 1.3920120763211798e-16,
+      "ledgerMax": 7.251539926365697e-14,
+      "ledgerAt": [
+        616,
+        "wi",
+        25
+      ],
+      "speciesTotalMax": 7.223228114421096e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 2,
+        "bt": 2.1,
+        "nbi": 12,
+        "ech": 3,
+        "gas": 0,
+        "kappa": 1,
+        "delta": -0.3
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 9685144844038330000,
+        "Te": 0.22710142911946637,
+        "Ti": 0.1537391866753514
+      },
+      "reportedMaxParity": 1.3551184065652961e-11,
+      "reportedMaxLedger": 7.757780858348354e-14
+    },
+    {
+      "id": "corner-0010000",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 1.02054775909936e-12,
+      "parityAt": [
+        2498,
+        "wi"
+      ],
+      "parityFloored": 7.725667023582548e-13,
+      "parityFlooredAt": [
+        2488,
+        "wi"
+      ],
+      "parityAbsOverX0": 7.990149318083572e-13,
+      "parityStep0": 1.3920120763211798e-16,
+      "ledgerMax": 7.706449965138615e-14,
+      "ledgerAt": [
+        393,
+        "wi",
+        30
+      ],
+      "speciesTotalMax": 6.2292217180724385e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 0.6,
+        "bt": 1,
+        "nbi": 0,
+        "ech": 0,
+        "gas": 8,
+        "kappa": 1,
+        "delta": -0.3
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 30000014088081314000,
+        "Te": 0.08631838542200203,
+        "Ti": 0.038366578455819374
+      },
+      "reportedMaxParity": 1.02054775909936e-12,
+      "reportedMaxLedger": 6.846777682066994e-14
+    },
+    {
+      "id": "corner-0010001",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 1.7868671363391118e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 1.7868671363391118e-12,
+      "parityFlooredAt": [
+        2499,
+        "wi"
+      ],
+      "parityAbsOverX0": 2.6565158464513395e-12,
+      "parityStep0": 1.3920120763211798e-16,
+      "ledgerMax": 7.904985321534229e-14,
+      "ledgerAt": [
+        355,
+        "wi",
+        2
+      ],
+      "speciesTotalMax": 6.337001004787372e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 2,
+        "bt": 1,
+        "nbi": 0,
+        "ech": 0,
+        "gas": 8,
+        "kappa": 1,
+        "delta": -0.3
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 30000014088081314000,
+        "Te": 0.11194284133830552,
+        "Ti": 0.07455343723725419
+      },
+      "reportedMaxParity": 1.7868671363391118e-12,
+      "reportedMaxLedger": 7.595114975050147e-14
+    },
+    {
+      "id": "corner-0010010",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 9.302675344958218e-13,
+      "parityAt": [
+        2498,
+        "wi"
+      ],
+      "parityFloored": 8.095942235883981e-13,
+      "parityFlooredAt": [
+        2486,
+        "wi"
+      ],
+      "parityAbsOverX0": 8.371560626995575e-13,
+      "parityStep0": 1.3920120763211798e-16,
+      "ledgerMax": 7.930400618193534e-14,
+      "ledgerAt": [
+        2499,
+        "we",
+        48
+      ],
+      "speciesTotalMax": 6.3961724456247916e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 0.6,
+        "bt": 2.1,
+        "nbi": 0,
+        "ech": 0,
+        "gas": 8,
+        "kappa": 1,
+        "delta": -0.3
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 30000014088081314000,
+        "Te": 0.09304071499492432,
+        "Ti": 0.04507556710237069
+      },
+      "reportedMaxParity": 9.302675344958218e-13,
+      "reportedMaxLedger": 7.187246943822873e-14
+    },
+    {
+      "id": "corner-0010011",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 1.5749280743523226e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 1.5749280743523226e-12,
+      "parityFlooredAt": [
+        2499,
+        "wi"
+      ],
+      "parityAbsOverX0": 2.8346933922204506e-12,
+      "parityStep0": 1.3920120763211798e-16,
+      "ledgerMax": 7.1985155166193e-14,
+      "ledgerAt": [
+        566,
+        "we",
+        24
+      ],
+      "speciesTotalMax": 6.396302244981019e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 2,
+        "bt": 2.1,
+        "nbi": 0,
+        "ech": 0,
+        "gas": 8,
+        "kappa": 1,
+        "delta": -0.3
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 30000014088081314000,
+        "Te": 0.12599380986605307,
+        "Ti": 0.09215808886078995
+      },
+      "reportedMaxParity": 1.5749280743523226e-12,
+      "reportedMaxLedger": 6.680721015468804e-14
+    },
+    {
+      "id": "corner-0010100",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 4.393354707946717e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 3.68187194186952e-12,
+      "parityFlooredAt": [
+        2499,
+        "wi"
+      ],
+      "parityAbsOverX0": 3.712217805133322e-12,
+      "parityStep0": 1.3920120763211798e-16,
+      "ledgerMax": 7.873167768726263e-14,
+      "ledgerAt": [
+        1272,
+        "wi",
+        2
+      ],
+      "speciesTotalMax": 6.996843955464795e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 0.6,
+        "bt": 1,
+        "nbi": 12,
+        "ech": 0,
+        "gas": 8,
+        "kappa": 1,
+        "delta": -0.3
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 30000014088081314000,
+        "Te": 0.0814753664744278,
+        "Ti": 0.03714805990482493
+      },
+      "reportedMaxParity": 4.393354707946717e-12,
+      "reportedMaxLedger": 7.267991874775888e-14
+    },
+    {
+      "id": "corner-0010101",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 5.3577612337356895e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 5.3577612337356895e-12,
+      "parityFlooredAt": [
+        2499,
+        "wi"
+      ],
+      "parityAbsOverX0": 9.114338270920556e-12,
+      "parityStep0": 1.3920120763211798e-16,
+      "ledgerMax": 7.904985321534229e-14,
+      "ledgerAt": [
+        355,
+        "wi",
+        2
+      ],
+      "speciesTotalMax": 7.043053669389478e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 2,
+        "bt": 1,
+        "nbi": 12,
+        "ech": 0,
+        "gas": 8,
+        "kappa": 1,
+        "delta": -0.3
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 30000014088081314000,
+        "Te": 0.1072946072686777,
+        "Ti": 0.07565842577935153
+      },
+      "reportedMaxParity": 5.3577612337356895e-12,
+      "reportedMaxLedger": 6.592959734945826e-14
+    },
+    {
+      "id": "corner-0010110",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 4.361495079009265e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 4.207495701888398e-12,
+      "parityFlooredAt": [
+        2499,
+        "wi"
+      ],
+      "parityAbsOverX0": 4.234500736169029e-12,
+      "parityStep0": 1.3920120763211798e-16,
+      "ledgerMax": 7.491584770051142e-14,
+      "ledgerAt": [
+        645,
+        "we",
+        2
+      ],
+      "speciesTotalMax": 7.03326805272639e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 0.6,
+        "bt": 2.1,
+        "nbi": 12,
+        "ech": 0,
+        "gas": 8,
+        "kappa": 1,
+        "delta": -0.3
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 30000014088081314000,
+        "Te": 0.08779607990023905,
+        "Ti": 0.04373439902110943
+      },
+      "reportedMaxParity": 4.361495079009265e-12,
+      "reportedMaxLedger": 6.665909928699181e-14
+    },
+    {
+      "id": "corner-0010111",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 4.84251119054306e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 4.84251119054306e-12,
+      "parityFlooredAt": [
+        2499,
+        "wi"
+      ],
+      "parityAbsOverX0": 1.0262469831470265e-11,
+      "parityStep0": 1.3920120763211798e-16,
+      "ledgerMax": 7.631616663371586e-14,
+      "ledgerAt": [
+        2394,
+        "we",
+        41
+      ],
+      "speciesTotalMax": 7.093149530833163e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 2,
+        "bt": 2.1,
+        "nbi": 12,
+        "ech": 0,
+        "gas": 8,
+        "kappa": 1,
+        "delta": -0.3
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 30000014088081314000,
+        "Te": 0.12255179916063554,
+        "Ti": 0.09637563561581158
+      },
+      "reportedMaxParity": 4.84251119054306e-12,
+      "reportedMaxLedger": 6.91104638395227e-14
+    },
+    {
+      "id": "corner-0011000",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 1.6704367778443089e-12,
+      "parityAt": [
+        2498,
+        "wi"
+      ],
+      "parityFloored": 1.2626941544309421e-12,
+      "parityFlooredAt": [
+        2488,
+        "wi"
+      ],
+      "parityAbsOverX0": 1.2890031826734125e-12,
+      "parityStep0": 1.3920120763211798e-16,
+      "ledgerMax": 7.706449965138615e-14,
+      "ledgerAt": [
+        393,
+        "wi",
+        30
+      ],
+      "speciesTotalMax": 6.1110089213486375e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 0.6,
+        "bt": 1,
+        "nbi": 0,
+        "ech": 3,
+        "gas": 8,
+        "kappa": 1,
+        "delta": -0.3
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 30000014088081314000,
+        "Te": 0.08632105825541246,
+        "Ti": 0.03837656067702635
+      },
+      "reportedMaxParity": 1.6704367778443089e-12,
+      "reportedMaxLedger": 7.038774828801994e-14
+    },
+    {
+      "id": "corner-0011001",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 2.238332921292421e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 2.238332921292421e-12,
+      "parityFlooredAt": [
+        2499,
+        "wi"
+      ],
+      "parityAbsOverX0": 3.327465667238148e-12,
+      "parityStep0": 1.3920120763211798e-16,
+      "ledgerMax": 7.904985321534229e-14,
+      "ledgerAt": [
+        355,
+        "wi",
+        2
+      ],
+      "speciesTotalMax": 6.238602737636313e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 2,
+        "bt": 1,
+        "nbi": 0,
+        "ech": 3,
+        "gas": 8,
+        "kappa": 1,
+        "delta": -0.3
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 30000014088081314000,
+        "Te": 0.11206215496971057,
+        "Ti": 0.07483433664459171
+      },
+      "reportedMaxParity": 2.238332921292421e-12,
+      "reportedMaxLedger": 6.946667012396906e-14
+    },
+    {
+      "id": "corner-0011010",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 1.6290160097442044e-12,
+      "parityAt": [
+        2498,
+        "wi"
+      ],
+      "parityFloored": 1.4159546840339041e-12,
+      "parityFlooredAt": [
+        2488,
+        "wi"
+      ],
+      "parityAbsOverX0": 1.4432381207297992e-12,
+      "parityStep0": 1.3920120763211798e-16,
+      "ledgerMax": 7.364664986098869e-14,
+      "ledgerAt": [
+        355,
+        "we",
+        2
+      ],
+      "speciesTotalMax": 6.296475757614642e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 0.6,
+        "bt": 2.1,
+        "nbi": 0,
+        "ech": 3,
+        "gas": 8,
+        "kappa": 1,
+        "delta": -0.3
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 30000014088081314000,
+        "Te": 0.09305064876083154,
+        "Ti": 0.04510955553021007
+      },
+      "reportedMaxParity": 1.6290160097442044e-12,
+      "reportedMaxLedger": 6.724801998825103e-14
+    },
+    {
+      "id": "corner-0011011",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 1.958310008652706e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 1.958310008652706e-12,
+      "parityFlooredAt": [
+        2499,
+        "wi"
+      ],
+      "parityAbsOverX0": 3.533483454533683e-12,
+      "parityStep0": 1.3920120763211798e-16,
+      "ledgerMax": 7.258938501658393e-14,
+      "ledgerAt": [
+        1977,
+        "we",
+        25
+      ],
+      "speciesTotalMax": 6.308057395212934e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 2,
+        "bt": 2.1,
+        "nbi": 0,
+        "ech": 3,
+        "gas": 8,
+        "kappa": 1,
+        "delta": -0.3
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 30000014088081314000,
+        "Te": 0.1263902668783985,
+        "Ti": 0.09298005183583095
+      },
+      "reportedMaxParity": 1.958310008652706e-12,
+      "reportedMaxLedger": 6.520985947250987e-14
+    },
+    {
+      "id": "corner-0011100",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 5.1686956763409316e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 4.3331943923802006e-12,
+      "parityFlooredAt": [
+        2499,
+        "wi"
+      ],
+      "parityAbsOverX0": 4.363957859266898e-12,
+      "parityStep0": 1.3920120763211798e-16,
+      "ledgerMax": 7.706449965138615e-14,
+      "ledgerAt": [
+        393,
+        "wi",
+        30
+      ],
+      "speciesTotalMax": 7.090386933073711e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 0.6,
+        "bt": 1,
+        "nbi": 12,
+        "ech": 3,
+        "gas": 8,
+        "kappa": 1,
+        "delta": -0.3
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 30000014088081314000,
+        "Te": 0.08147888547255461,
+        "Ti": 0.03716136641134511
+      },
+      "reportedMaxParity": 5.1686956763409316e-12,
+      "reportedMaxLedger": 6.704244160915034e-14
+    },
+    {
+      "id": "corner-0011101",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 6.073517955337952e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 6.073517955337952e-12,
+      "parityFlooredAt": [
+        2499,
+        "wi"
+      ],
+      "parityAbsOverX0": 1.042839767096775e-11,
+      "parityStep0": 1.3920120763211798e-16,
+      "ledgerMax": 7.904985321534229e-14,
+      "ledgerAt": [
+        355,
+        "wi",
+        2
+      ],
+      "speciesTotalMax": 7.086126168436354e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 2,
+        "bt": 1,
+        "nbi": 12,
+        "ech": 3,
+        "gas": 8,
+        "kappa": 1,
+        "delta": -0.3
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 30000014088081314000,
+        "Te": 0.10760575558089203,
+        "Ti": 0.07637409617625393
+      },
+      "reportedMaxParity": 6.073517955337952e-12,
+      "reportedMaxLedger": 7.107412116936915e-14
+    },
+    {
+      "id": "corner-0011110",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 5.112689796370829e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 4.9373276335035926e-12,
+      "parityFlooredAt": [
+        2499,
+        "wi"
+      ],
+      "parityAbsOverX0": 4.9602958327628915e-12,
+      "parityStep0": 1.3920120763211798e-16,
+      "ledgerMax": 7.364664986098869e-14,
+      "ledgerAt": [
+        355,
+        "we",
+        2
+      ],
+      "speciesTotalMax": 6.979394819494486e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 0.6,
+        "bt": 2.1,
+        "nbi": 12,
+        "ech": 3,
+        "gas": 8,
+        "kappa": 1,
+        "delta": -0.3
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 30000014088081314000,
+        "Te": 0.08780934052136054,
+        "Ti": 0.04378036059651773
+      },
+      "reportedMaxParity": 5.112689796370829e-12,
+      "reportedMaxLedger": 7.401965261622683e-14
+    },
+    {
+      "id": "corner-0011111",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 5.378644166803962e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 5.378644166803962e-12,
+      "parityFlooredAt": [
+        2499,
+        "wi"
+      ],
+      "parityAbsOverX0": 1.1613278350332339e-11,
+      "parityStep0": 1.3920120763211798e-16,
+      "ledgerMax": 8.240239857128314e-14,
+      "ledgerAt": [
+        1427,
+        "we",
+        49
+      ],
+      "speciesTotalMax": 7.056180992228856e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 2,
+        "bt": 2.1,
+        "nbi": 12,
+        "ech": 3,
+        "gas": 8,
+        "kappa": 1,
+        "delta": -0.3
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 30000014088081314000,
+        "Te": 0.12350499928504136,
+        "Ti": 0.09825677305300398
+      },
+      "reportedMaxParity": 5.378644166803962e-12,
+      "reportedMaxLedger": 7.314323101562946e-14
+    },
+    {
+      "id": "corner-0100000",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "threw",
+      "steps": 947,
+      "parityMax": 6.9464428759402e-13,
+      "parityAt": [
+        946,
+        "wi"
+      ],
+      "parityFloored": 4.368776362607977e-14,
+      "parityFlooredAt": [
+        914,
+        "we"
+      ],
+      "parityAbsOverX0": 4.368776362607977e-14,
+      "parityStep0": 2.8554093873254757e-16,
+      "ledgerMax": 3.6464827333968965e-14,
+      "ledgerAt": [
+        866,
+        "we",
+        22
+      ],
+      "speciesTotalMax": 3.0550875883817912e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "error": "profile constraint violated at t=1.894000 s in cell 64: T_i <= 0",
+      "grammarOk": true,
+      "errorTime": 1.894,
+      "errorCell": 64,
+      "acceptedStepsConsistent": true,
+      "controls": {
+        "ip": 0.6,
+        "bt": 1,
+        "nbi": 0,
+        "ech": 0,
+        "gas": 0,
+        "kappa": 1.95,
+        "delta": -0.3
+      },
+      "minCell": {
+        "n": 1744022411790025500,
+        "Te": 0.014928246500702118,
+        "Ti": 0.00004896867781597968
+      },
+      "profileOffStatus": "completed"
+    },
+    {
+      "id": "corner-0100001",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "threw",
+      "steps": 2236,
+      "parityMax": 2.995797419505783e-12,
+      "parityAt": [
+        2235,
+        "wi"
+      ],
+      "parityFloored": 1.8881394573689708e-13,
+      "parityFlooredAt": [
+        2227,
+        "we"
+      ],
+      "parityAbsOverX0": 1.8881394573689708e-13,
+      "parityStep0": 2.8554093873254757e-16,
+      "ledgerMax": 4.156966261595385e-14,
+      "ledgerAt": [
+        1021,
+        "we",
+        42
+      ],
+      "speciesTotalMax": 2.9554112458410356e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "error": "profile constraint violated at t=4.472000 s in cell 64: T_i <= 0",
+      "grammarOk": true,
+      "errorTime": 4.472,
+      "errorCell": 64,
+      "acceptedStepsConsistent": true,
+      "controls": {
+        "ip": 2,
+        "bt": 1,
+        "nbi": 0,
+        "ech": 0,
+        "gas": 0,
+        "kappa": 1.95,
+        "delta": -0.3
+      },
+      "minCell": {
+        "n": 217055893266390000,
+        "Te": 0.04291365704989824,
+        "Ti": 0.0005438695056436375
+      },
+      "profileOffStatus": "completed"
+    },
+    {
+      "id": "corner-0100010",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "threw",
+      "steps": 1214,
+      "parityMax": 9.445288013052897e-13,
+      "parityAt": [
+        1213,
+        "wi"
+      ],
+      "parityFloored": 5.154013944122483e-14,
+      "parityFlooredAt": [
+        1202,
+        "we"
+      ],
+      "parityAbsOverX0": 5.154013944122483e-14,
+      "parityStep0": 2.8554093873254757e-16,
+      "ledgerMax": 3.780780557815473e-14,
+      "ledgerAt": [
+        210,
+        "wi",
+        22
+      ],
+      "speciesTotalMax": 3.0907590579164226e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "error": "profile constraint violated at t=2.428000 s in cell 64: T_i <= 0",
+      "grammarOk": true,
+      "errorTime": 2.428,
+      "errorCell": 64,
+      "acceptedStepsConsistent": true,
+      "controls": {
+        "ip": 0.6,
+        "bt": 2.1,
+        "nbi": 0,
+        "ech": 0,
+        "gas": 0,
+        "kappa": 1.95,
+        "delta": -0.3
+      },
+      "minCell": {
+        "n": 1030339099647490200,
+        "Te": 0.016176363283180423,
+        "Ti": 9.905400563625232e-7
+      },
+      "profileOffStatus": "completed"
+    },
+    {
+      "id": "corner-0100011",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "threw",
+      "steps": 2302,
+      "parityMax": 3.738983151774355e-12,
+      "parityAt": [
+        2301,
+        "wi"
+      ],
+      "parityFloored": 2.0460792891054112e-13,
+      "parityFlooredAt": [
+        2301,
+        "we"
+      ],
+      "parityAbsOverX0": 2.0460792891054112e-13,
+      "parityStep0": 2.8554093873254757e-16,
+      "ledgerMax": 4.0916694304615943e-14,
+      "ledgerAt": [
+        1326,
+        "we",
+        26
+      ],
+      "speciesTotalMax": 3.068859572624932e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "error": "profile constraint violated at t=4.604000 s in cell 64: T_i <= 0",
+      "grammarOk": true,
+      "errorTime": 4.604,
+      "errorCell": 64,
+      "acceptedStepsConsistent": true,
+      "controls": {
+        "ip": 2,
+        "bt": 2.1,
+        "nbi": 0,
+        "ech": 0,
+        "gas": 0,
+        "kappa": 1.95,
+        "delta": -0.3
+      },
+      "minCell": {
+        "n": 198789476932039600,
+        "Te": 0.03794215244136049,
+        "Ti": 0.0007332778968029132
+      },
+      "profileOffStatus": "completed"
+    },
+    {
+      "id": "corner-0100100",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "threw",
+      "steps": 500,
+      "parityMax": 2.6225999670569014e-13,
+      "parityAt": [
+        492,
+        "wi"
+      ],
+      "parityFloored": 2.5091909991122617e-14,
+      "parityFlooredAt": [
+        471,
+        "we"
+      ],
+      "parityAbsOverX0": 2.5091909991122617e-14,
+      "parityStep0": 2.8554093873254757e-16,
+      "ledgerMax": 3.357057145038371e-14,
+      "ledgerAt": [
+        335,
+        "wi",
+        42
+      ],
+      "speciesTotalMax": 3.0550875883817912e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "error": "profile constraint violated at t=1.000000 s in cell 64: T_e <= 0",
+      "grammarOk": true,
+      "errorTime": 1,
+      "errorCell": 64,
+      "acceptedStepsConsistent": true,
+      "controls": {
+        "ip": 0.6,
+        "bt": 1,
+        "nbi": 12,
+        "ech": 0,
+        "gas": 0,
+        "kappa": 1.95,
+        "delta": -0.3
+      },
+      "minCell": {
+        "n": 5032235615869974000,
+        "Te": 0.07463997084071483,
+        "Ti": 0.0257059910540464
+      },
+      "profileOffStatus": "completed"
+    },
+    {
+      "id": "corner-0100101",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "threw",
+      "steps": 545,
+      "parityMax": 1.0698800740626537e-13,
+      "parityAt": [
+        471,
+        "wi"
+      ],
+      "parityFloored": 5.0540746155660915e-14,
+      "parityFlooredAt": [
+        471,
+        "we"
+      ],
+      "parityAbsOverX0": 6.396117027609065e-14,
+      "parityStep0": 2.8554093873254757e-16,
+      "ledgerMax": 3.948967379711195e-14,
+      "ledgerAt": [
+        400,
+        "wi",
+        50
+      ],
+      "speciesTotalMax": 2.9554112458410356e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "error": "profile constraint violated at t=1.090000 s in cell 64: T_i <= 0",
+      "grammarOk": true,
+      "errorTime": 1.09,
+      "errorCell": 64,
+      "acceptedStepsConsistent": true,
+      "controls": {
+        "ip": 2,
+        "bt": 1,
+        "nbi": 12,
+        "ech": 0,
+        "gas": 0,
+        "kappa": 1.95,
+        "delta": -0.3
+      },
+      "minCell": {
+        "n": 4217162221769901600,
+        "Te": 0.010868986459914826,
+        "Ti": 0.007864532410436312
+      },
+      "profileOffStatus": "completed"
+    },
+    {
+      "id": "corner-0100110",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "threw",
+      "steps": 501,
+      "parityMax": 2.418006807560635e-13,
+      "parityAt": [
+        492,
+        "wi"
+      ],
+      "parityFloored": 2.662669253681006e-14,
+      "parityFlooredAt": [
+        471,
+        "we"
+      ],
+      "parityAbsOverX0": 2.662669253681006e-14,
+      "parityStep0": 2.8554093873254757e-16,
+      "ledgerMax": 3.780780557815473e-14,
+      "ledgerAt": [
+        210,
+        "wi",
+        22
+      ],
+      "speciesTotalMax": 3.0907590579164226e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "error": "profile constraint violated at t=1.002000 s in cell 63: T_e <= 0",
+      "grammarOk": true,
+      "errorTime": 1.002,
+      "errorCell": 63,
+      "acceptedStepsConsistent": true,
+      "controls": {
+        "ip": 0.6,
+        "bt": 2.1,
+        "nbi": 12,
+        "ech": 0,
+        "gas": 0,
+        "kappa": 1.95,
+        "delta": -0.3
+      },
+      "minCell": {
+        "n": 5019455602600986000,
+        "Te": 0.004206618353676856,
+        "Ti": 0.020163804867408583
+      },
+      "profileOffStatus": "completed"
+    },
+    {
+      "id": "corner-0100111",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "threw",
+      "steps": 624,
+      "parityMax": 1.0174858551735422e-13,
+      "parityAt": [
+        471,
+        "wi"
+      ],
+      "parityFloored": 5.211122131868993e-14,
+      "parityFlooredAt": [
+        471,
+        "we"
+      ],
+      "parityAbsOverX0": 1.050790654535775e-13,
+      "parityStep0": 2.8554093873254757e-16,
+      "ledgerMax": 3.702578648500764e-14,
+      "ledgerAt": [
+        210,
+        "wi",
+        22
+      ],
+      "speciesTotalMax": 2.9748392703434765e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "error": "profile constraint violated at t=1.248000 s in cell 64: T_i <= 0",
+      "grammarOk": true,
+      "errorTime": 1.248,
+      "errorCell": 64,
+      "acceptedStepsConsistent": true,
+      "controls": {
+        "ip": 2,
+        "bt": 2.1,
+        "nbi": 12,
+        "ech": 0,
+        "gas": 0,
+        "kappa": 1.95,
+        "delta": -0.3
+      },
+      "minCell": {
+        "n": 3149544737926024000,
+        "Te": 0.0114816228102946,
+        "Ti": 0.0030952274240547196
+      },
+      "profileOffStatus": "completed"
+    },
+    {
+      "id": "corner-0101000",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "threw",
+      "steps": 501,
+      "parityMax": 2.658268077451908e-13,
+      "parityAt": [
+        500,
+        "wi"
+      ],
+      "parityFloored": 2.5091909991122617e-14,
+      "parityFlooredAt": [
+        471,
+        "we"
+      ],
+      "parityAbsOverX0": 2.5091909991122617e-14,
+      "parityStep0": 2.8554093873254757e-16,
+      "ledgerMax": 3.357057145038371e-14,
+      "ledgerAt": [
+        335,
+        "wi",
+        42
+      ],
+      "speciesTotalMax": 3.0550875883817912e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "error": "profile constraint violated at t=1.002000 s in cell 64: T_e <= 0",
+      "grammarOk": true,
+      "errorTime": 1.002,
+      "errorCell": 64,
+      "acceptedStepsConsistent": true,
+      "controls": {
+        "ip": 0.6,
+        "bt": 1,
+        "nbi": 0,
+        "ech": 3,
+        "gas": 0,
+        "kappa": 1.95,
+        "delta": -0.3
+      },
+      "minCell": {
+        "n": 5018982903382851000,
+        "Te": 0.025282845589152583,
+        "Ti": 0.00901379382322394
+      },
+      "profileOffStatus": "completed"
+    },
+    {
+      "id": "corner-0101001",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "threw",
+      "steps": 1024,
+      "parityMax": 3.0126582549403963e-13,
+      "parityAt": [
+        1022,
+        "wi"
+      ],
+      "parityFloored": 2.784024152642339e-13,
+      "parityFlooredAt": [
+        1022,
+        "wi"
+      ],
+      "parityAbsOverX0": 3.0381555881143057e-13,
+      "parityStep0": 2.8554093873254757e-16,
+      "ledgerMax": 3.948967379711195e-14,
+      "ledgerAt": [
+        400,
+        "wi",
+        50
+      ],
+      "speciesTotalMax": 2.9554112458410356e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "error": "profile constraint violated at t=2.048000 s in cell 64: T_e <= 0",
+      "grammarOk": true,
+      "errorTime": 2.048,
+      "errorCell": 64,
+      "acceptedStepsConsistent": true,
+      "controls": {
+        "ip": 2,
+        "bt": 1,
+        "nbi": 0,
+        "ech": 3,
+        "gas": 0,
+        "kappa": 1.95,
+        "delta": -0.3
+      },
+      "minCell": {
+        "n": 1487095527220708000,
+        "Te": 0.0011374694943875638,
+        "Ti": 0.08672870900783214
+      },
+      "profileOffStatus": "completed"
+    },
+    {
+      "id": "corner-0101010",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "threw",
+      "steps": 502,
+      "parityMax": 2.47735904490474e-13,
+      "parityAt": [
+        501,
+        "wi"
+      ],
+      "parityFloored": 2.662669253681006e-14,
+      "parityFlooredAt": [
+        471,
+        "we"
+      ],
+      "parityAbsOverX0": 2.662669253681006e-14,
+      "parityStep0": 2.8554093873254757e-16,
+      "ledgerMax": 3.780780557815473e-14,
+      "ledgerAt": [
+        210,
+        "wi",
+        22
+      ],
+      "speciesTotalMax": 3.0907590579164226e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "error": "profile constraint violated at t=1.004000 s in cell 64: T_e <= 0",
+      "grammarOk": true,
+      "errorTime": 1.004,
+      "errorCell": 64,
+      "acceptedStepsConsistent": true,
+      "controls": {
+        "ip": 0.6,
+        "bt": 2.1,
+        "nbi": 0,
+        "ech": 3,
+        "gas": 0,
+        "kappa": 1.95,
+        "delta": -0.3
+      },
+      "minCell": {
+        "n": 5005771375926784000,
+        "Te": 0.018971117868369927,
+        "Ti": 0.01514093878515931
+      },
+      "profileOffStatus": "completed"
+    },
+    {
+      "id": "corner-0101011",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "threw",
+      "steps": 1331,
+      "parityMax": 4.307830295788734e-13,
+      "parityAt": [
+        1329,
+        "wi"
+      ],
+      "parityFloored": 4.307830295788734e-13,
+      "parityFlooredAt": [
+        1329,
+        "wi"
+      ],
+      "parityAbsOverX0": 4.757112039284242e-13,
+      "parityStep0": 2.8554093873254757e-16,
+      "ledgerMax": 3.9338537713154414e-14,
+      "ledgerAt": [
+        1141,
+        "wi",
+        22
+      ],
+      "speciesTotalMax": 3.3153015089386265e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "error": "profile constraint violated at t=2.662000 s in cell 64: T_e <= 0",
+      "grammarOk": true,
+      "errorTime": 2.662,
+      "errorCell": 64,
+      "acceptedStepsConsistent": true,
+      "controls": {
+        "ip": 2,
+        "bt": 2.1,
+        "nbi": 0,
+        "ech": 3,
+        "gas": 0,
+        "kappa": 1.95,
+        "delta": -0.3
+      },
+      "minCell": {
+        "n": 835889331413723300,
+        "Te": 0.0014186209097711829,
+        "Ti": 0.11011018508903077
+      },
+      "profileOffStatus": "completed"
+    },
+    {
+      "id": "corner-0101100",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "threw",
+      "steps": 500,
+      "parityMax": 2.6225999670569014e-13,
+      "parityAt": [
+        492,
+        "wi"
+      ],
+      "parityFloored": 2.5091909991122617e-14,
+      "parityFlooredAt": [
+        471,
+        "we"
+      ],
+      "parityAbsOverX0": 2.5091909991122617e-14,
+      "parityStep0": 2.8554093873254757e-16,
+      "ledgerMax": 3.357057145038371e-14,
+      "ledgerAt": [
+        335,
+        "wi",
+        42
+      ],
+      "speciesTotalMax": 3.0550875883817912e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "error": "profile constraint violated at t=1.000000 s in cell 63: T_e <= 0",
+      "grammarOk": true,
+      "errorTime": 1,
+      "errorCell": 63,
+      "acceptedStepsConsistent": true,
+      "controls": {
+        "ip": 0.6,
+        "bt": 1,
+        "nbi": 12,
+        "ech": 3,
+        "gas": 0,
+        "kappa": 1.95,
+        "delta": -0.3
+      },
+      "minCell": {
+        "n": 5032235615869974000,
+        "Te": 0.07463997084071483,
+        "Ti": 0.0257059910540464
+      },
+      "profileOffStatus": "completed"
+    },
+    {
+      "id": "corner-0101101",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "threw",
+      "steps": 507,
+      "parityMax": 1.0698800740626537e-13,
+      "parityAt": [
+        471,
+        "wi"
+      ],
+      "parityFloored": 5.0540746155660915e-14,
+      "parityFlooredAt": [
+        471,
+        "we"
+      ],
+      "parityAbsOverX0": 5.0540746155660915e-14,
+      "parityStep0": 2.8554093873254757e-16,
+      "ledgerMax": 3.948967379711195e-14,
+      "ledgerAt": [
+        400,
+        "wi",
+        50
+      ],
+      "speciesTotalMax": 2.9554112458410356e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "error": "profile constraint violated at t=1.014000 s in cell 64: T_e <= 0",
+      "grammarOk": true,
+      "errorTime": 1.014,
+      "errorCell": 64,
+      "acceptedStepsConsistent": true,
+      "controls": {
+        "ip": 2,
+        "bt": 1,
+        "nbi": 12,
+        "ech": 3,
+        "gas": 0,
+        "kappa": 1.95,
+        "delta": -0.3
+      },
+      "minCell": {
+        "n": 4926143592097391000,
+        "Te": 0.005695238311641829,
+        "Ti": 0.08672870900783214
+      },
+      "profileOffStatus": "completed"
+    },
+    {
+      "id": "corner-0101110",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "threw",
+      "steps": 500,
+      "parityMax": 2.418006807560635e-13,
+      "parityAt": [
+        492,
+        "wi"
+      ],
+      "parityFloored": 2.662669253681006e-14,
+      "parityFlooredAt": [
+        471,
+        "we"
+      ],
+      "parityAbsOverX0": 2.662669253681006e-14,
+      "parityStep0": 2.8554093873254757e-16,
+      "ledgerMax": 3.780780557815473e-14,
+      "ledgerAt": [
+        210,
+        "wi",
+        22
+      ],
+      "speciesTotalMax": 3.0907590579164226e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "error": "profile constraint violated at t=1.000000 s in cell 64: T_e <= 0",
+      "grammarOk": true,
+      "errorTime": 1,
+      "errorCell": 64,
+      "acceptedStepsConsistent": true,
+      "controls": {
+        "ip": 0.6,
+        "bt": 2.1,
+        "nbi": 12,
+        "ech": 3,
+        "gas": 0,
+        "kappa": 1.95,
+        "delta": -0.3
+      },
+      "minCell": {
+        "n": 5032235615869974000,
+        "Te": 0.09233883966265108,
+        "Ti": 0.036323254407946176
+      },
+      "profileOffStatus": "completed"
+    },
+    {
+      "id": "corner-0101111",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "threw",
+      "steps": 521,
+      "parityMax": 1.0174858551735422e-13,
+      "parityAt": [
+        471,
+        "wi"
+      ],
+      "parityFloored": 5.211122131868993e-14,
+      "parityFlooredAt": [
+        471,
+        "we"
+      ],
+      "parityAbsOverX0": 6.567441590848594e-14,
+      "parityStep0": 2.8554093873254757e-16,
+      "ledgerMax": 3.702578648500764e-14,
+      "ledgerAt": [
+        210,
+        "wi",
+        22
+      ],
+      "speciesTotalMax": 2.9628928706656505e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "error": "profile constraint violated at t=1.042000 s in cell 64: T_e <= 0",
+      "grammarOk": true,
+      "errorTime": 1.042,
+      "errorCell": 64,
+      "acceptedStepsConsistent": true,
+      "controls": {
+        "ip": 2,
+        "bt": 2.1,
+        "nbi": 12,
+        "ech": 3,
+        "gas": 0,
+        "kappa": 1.95,
+        "delta": -0.3
+      },
+      "minCell": {
+        "n": 4669829154463532000,
+        "Te": 0.0007559489186395084,
+        "Ti": 0.11011018508903077
+      },
+      "profileOffStatus": "completed"
+    },
+    {
+      "id": "corner-0110000",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 6.697049764360881e-13,
+      "parityAt": [
+        2498,
+        "wi"
+      ],
+      "parityFloored": 1.8488775782932455e-13,
+      "parityFlooredAt": [
+        2479,
+        "we"
+      ],
+      "parityAbsOverX0": 1.8488775782932455e-13,
+      "parityStep0": 2.8554093873254757e-16,
+      "ledgerMax": 4.18993351403088e-14,
+      "ledgerAt": [
+        340,
+        "we",
+        6
+      ],
+      "speciesTotalMax": 2.961485567935621e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 0.6,
+        "bt": 1,
+        "nbi": 0,
+        "ech": 0,
+        "gas": 8,
+        "kappa": 1.95,
+        "delta": -0.3
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 29617649549435306000,
+        "Te": 0.04722630892868622,
+        "Ti": 0.02012308101676939
+      },
+      "reportedMaxParity": 6.697049764360881e-13,
+      "reportedMaxLedger": 3.67433152516404e-14
+    },
+    {
+      "id": "corner-0110001",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 1.1128290357459416e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 5.627480974613483e-13,
+      "parityFlooredAt": [
+        2479,
+        "we"
+      ],
+      "parityAbsOverX0": 5.632295016499501e-13,
+      "parityStep0": 2.8554093873254757e-16,
+      "ledgerMax": 3.920721709283109e-14,
+      "ledgerAt": [
+        290,
+        "wi",
+        11
+      ],
+      "speciesTotalMax": 3.119895918362191e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 2,
+        "bt": 1,
+        "nbi": 0,
+        "ech": 0,
+        "gas": 8,
+        "kappa": 1.95,
+        "delta": -0.3
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 29617649549435306000,
+        "Te": 0.06174348746794758,
+        "Ti": 0.03853903755316576
+      },
+      "reportedMaxParity": 1.1128290357459416e-12,
+      "reportedMaxLedger": 3.530138179490787e-14
+    },
+    {
+      "id": "corner-0110010",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 5.862968869932519e-13,
+      "parityAt": [
+        2498,
+        "wi"
+      ],
+      "parityFloored": 1.867437739310861e-13,
+      "parityFlooredAt": [
+        2479,
+        "we"
+      ],
+      "parityAbsOverX0": 1.867437739310861e-13,
+      "parityStep0": 2.8554093873254757e-16,
+      "ledgerMax": 4.044716218369033e-14,
+      "ledgerAt": [
+        905,
+        "wi",
+        33
+      ],
+      "speciesTotalMax": 3.0689590271748468e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 0.6,
+        "bt": 2.1,
+        "nbi": 0,
+        "ech": 0,
+        "gas": 8,
+        "kappa": 1.95,
+        "delta": -0.3
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 29617649549435306000,
+        "Te": 0.05387689737626185,
+        "Ti": 0.025086934895937555
+      },
+      "reportedMaxParity": 5.862968869932519e-13,
+      "reportedMaxLedger": 3.6465754516690844e-14
+    },
+    {
+      "id": "corner-0110011",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 9.481032363294942e-13,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 5.826462854837632e-13,
+      "parityFlooredAt": [
+        2498,
+        "we"
+      ],
+      "parityAbsOverX0": 5.863583176872864e-13,
+      "parityStep0": 2.8554093873254757e-16,
+      "ledgerMax": 4.255161932999076e-14,
+      "ledgerAt": [
+        630,
+        "wi",
+        22
+      ],
+      "speciesTotalMax": 3.1150319135483343e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 2,
+        "bt": 2.1,
+        "nbi": 0,
+        "ech": 0,
+        "gas": 8,
+        "kappa": 1.95,
+        "delta": -0.3
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 29617649549435306000,
+        "Te": 0.07342264101809384,
+        "Ti": 0.05050716505912064
+      },
+      "reportedMaxParity": 9.481032363294942e-13,
+      "reportedMaxLedger": 3.505535791689012e-14
+    },
+    {
+      "id": "corner-0110100",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 2.7092528259687e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 8.189314122849464e-13,
+      "parityFlooredAt": [
+        2479,
+        "we"
+      ],
+      "parityAbsOverX0": 8.189314122849464e-13,
+      "parityStep0": 2.8554093873254757e-16,
+      "ledgerMax": 4.18993351403088e-14,
+      "ledgerAt": [
+        340,
+        "we",
+        6
+      ],
+      "speciesTotalMax": 3.155664324668633e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 0.6,
+        "bt": 1,
+        "nbi": 12,
+        "ech": 0,
+        "gas": 8,
+        "kappa": 1.95,
+        "delta": -0.3
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 2,
+      "minCell": {
+        "n": 29617649549435306000,
+        "Te": 0.008624474809237618,
+        "Ti": 0.009712244714437287
+      },
+      "reportedMaxParity": 2.7092528259687e-12,
+      "reportedMaxLedger": 3.6504098815260006e-14
+    },
+    {
+      "id": "corner-0110101",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 2.7110852720195548e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 1.5996003387797314e-12,
+      "parityFlooredAt": [
+        2498,
+        "we"
+      ],
+      "parityAbsOverX0": 1.601028043473394e-12,
+      "parityStep0": 2.8554093873254757e-16,
+      "ledgerMax": 3.920721709283109e-14,
+      "ledgerAt": [
+        290,
+        "wi",
+        11
+      ],
+      "speciesTotalMax": 3.2805674687738645e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 2,
+        "bt": 1,
+        "nbi": 12,
+        "ech": 0,
+        "gas": 8,
+        "kappa": 1.95,
+        "delta": -0.3
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 29617649549435306000,
+        "Te": 0.057816531215259606,
+        "Ti": 0.038006518046533114
+      },
+      "reportedMaxParity": 2.7110852720195548e-12,
+      "reportedMaxLedger": 3.9351817456328586e-14
+    },
+    {
+      "id": "corner-0110110",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 2.5828484310090874e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 9.051647757821758e-13,
+      "parityFlooredAt": [
+        2479,
+        "we"
+      ],
+      "parityAbsOverX0": 9.051647757821758e-13,
+      "parityStep0": 2.8554093873254757e-16,
+      "ledgerMax": 3.832492047508962e-14,
+      "ledgerAt": [
+        340,
+        "we",
+        6
+      ],
+      "speciesTotalMax": 3.292157760619271e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 0.6,
+        "bt": 2.1,
+        "nbi": 12,
+        "ech": 0,
+        "gas": 8,
+        "kappa": 1.95,
+        "delta": -0.3
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 29617649549435306000,
+        "Te": 0.043813055446227454,
+        "Ti": 0.023751761908993103
+      },
+      "reportedMaxParity": 2.5828484310090874e-12,
+      "reportedMaxLedger": 3.6465754516690844e-14
+    },
+    {
+      "id": "corner-0110111",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 2.3984241431414947e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 1.7872007355270152e-12,
+      "parityFlooredAt": [
+        2498,
+        "wi"
+      ],
+      "parityAbsOverX0": 1.793339865709765e-12,
+      "parityStep0": 2.8554093873254757e-16,
+      "ledgerMax": 4.198952664142653e-14,
+      "ledgerAt": [
+        1375,
+        "wi",
+        11
+      ],
+      "speciesTotalMax": 3.2717157189879623e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 2,
+        "bt": 2.1,
+        "nbi": 12,
+        "ech": 0,
+        "gas": 8,
+        "kappa": 1.95,
+        "delta": -0.3
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 29617649549435306000,
+        "Te": 0.0704503138286707,
+        "Ti": 0.0520404434941292
+      },
+      "reportedMaxParity": 2.3984241431414947e-12,
+      "reportedMaxLedger": 3.505535791689012e-14
+    },
+    {
+      "id": "corner-0111000",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 1.4063165345293232e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 3.8148269414668354e-13,
+      "parityFlooredAt": [
+        2479,
+        "we"
+      ],
+      "parityAbsOverX0": 3.8148269414668354e-13,
+      "parityStep0": 2.8554093873254757e-16,
+      "ledgerMax": 4.5868065903695424e-14,
+      "ledgerAt": [
+        822,
+        "wi",
+        22
+      ],
+      "speciesTotalMax": 3.0003552492304537e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 0.6,
+        "bt": 1,
+        "nbi": 0,
+        "ech": 3,
+        "gas": 8,
+        "kappa": 1.95,
+        "delta": -0.3
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 29617649549435306000,
+        "Te": 0.04722740518998204,
+        "Ti": 0.020126984157930777
+      },
+      "reportedMaxParity": 1.4063165345293232e-12,
+      "reportedMaxLedger": 4.132055551886255e-14
+    },
+    {
+      "id": "corner-0111001",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 1.5708795201820177e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 7.953742848395112e-13,
+      "parityFlooredAt": [
+        2480,
+        "we"
+      ],
+      "parityAbsOverX0": 7.968019895331739e-13,
+      "parityStep0": 2.8554093873254757e-16,
+      "ledgerMax": 3.920721709283109e-14,
+      "ledgerAt": [
+        290,
+        "wi",
+        11
+      ],
+      "speciesTotalMax": 2.9972996467789138e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 2,
+        "bt": 1,
+        "nbi": 0,
+        "ech": 3,
+        "gas": 8,
+        "kappa": 1.95,
+        "delta": -0.3
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 29617649549435306000,
+        "Te": 0.0618237138088668,
+        "Ti": 0.03872401256706213
+      },
+      "reportedMaxParity": 1.5708795201820177e-12,
+      "reportedMaxLedger": 3.754390182642153e-14
+    },
+    {
+      "id": "corner-0111010",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 1.2834425716363828e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 4.040404283065548e-13,
+      "parityFlooredAt": [
+        2479,
+        "we"
+      ],
+      "parityAbsOverX0": 4.040404283065548e-13,
+      "parityStep0": 2.8554093873254757e-16,
+      "ledgerMax": 4.238179129093287e-14,
+      "ledgerAt": [
+        1422,
+        "wi",
+        14
+      ],
+      "speciesTotalMax": 2.8469787848808388e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 0.6,
+        "bt": 2.1,
+        "nbi": 0,
+        "ech": 3,
+        "gas": 8,
+        "kappa": 1.95,
+        "delta": -0.3
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 29617649549435306000,
+        "Te": 0.0538816878410975,
+        "Ti": 0.025102454055511137
+      },
+      "reportedMaxParity": 1.2834425716363828e-12,
+      "reportedMaxLedger": 3.6465754516690844e-14
+    },
+    {
+      "id": "corner-0111011",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 1.3889635091024588e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 8.62048094033561e-13,
+      "parityFlooredAt": [
+        2498,
+        "we"
+      ],
+      "parityAbsOverX0": 8.650462738902528e-13,
+      "parityStep0": 2.8554093873254757e-16,
+      "ledgerMax": 3.9434363133172165e-14,
+      "ledgerAt": [
+        2245,
+        "we",
+        48
+      ],
+      "speciesTotalMax": 2.9723318401154052e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 2,
+        "bt": 2.1,
+        "nbi": 0,
+        "ech": 3,
+        "gas": 8,
+        "kappa": 1.95,
+        "delta": -0.3
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 29617649549435306000,
+        "Te": 0.07370329805790526,
+        "Ti": 0.05107492399354869
+      },
+      "reportedMaxParity": 1.3889635091024588e-12,
+      "reportedMaxLedger": 3.532554146923779e-14
+    },
+    {
+      "id": "corner-0111100",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "threw",
+      "steps": 703,
+      "parityMax": 1.1330102099452435e-13,
+      "parityAt": [
+        176,
+        "wi"
+      ],
+      "parityFloored": 3.1508127378546693e-14,
+      "parityFlooredAt": [
+        700,
+        "we"
+      ],
+      "parityAbsOverX0": 9.879716480146145e-14,
+      "parityStep0": 2.8554093873254757e-16,
+      "ledgerMax": 4.18993351403088e-14,
+      "ledgerAt": [
+        340,
+        "we",
+        6
+      ],
+      "speciesTotalMax": 2.7568682191536454e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "error": "profile constraint violated at t=1.406000 s in cell 64: T_e <= 0",
+      "grammarOk": true,
+      "errorTime": 1.406,
+      "errorCell": 64,
+      "acceptedStepsConsistent": true,
+      "controls": {
+        "ip": 0.6,
+        "bt": 1,
+        "nbi": 12,
+        "ech": 3,
+        "gas": 8,
+        "kappa": 1.95,
+        "delta": -0.3
+      },
+      "minCell": {
+        "n": 29617649549435306000,
+        "Te": 0.00007255852356144191,
+        "Ti": 0.025617785504143533
+      },
+      "profileOffStatus": "completed"
+    },
+    {
+      "id": "corner-0111101",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 3.164652088878761e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 1.885569588920378e-12,
+      "parityFlooredAt": [
+        2498,
+        "we"
+      ],
+      "parityAbsOverX0": 1.8874256050221395e-12,
+      "parityStep0": 2.8554093873254757e-16,
+      "ledgerMax": 3.920721709283109e-14,
+      "ledgerAt": [
+        290,
+        "wi",
+        11
+      ],
+      "speciesTotalMax": 3.2923057214713578e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 2,
+        "bt": 1,
+        "nbi": 12,
+        "ech": 3,
+        "gas": 8,
+        "kappa": 1.95,
+        "delta": -0.3
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 29617649549435306000,
+        "Te": 0.0579849904190088,
+        "Ti": 0.03838024537654376
+      },
+      "reportedMaxParity": 3.164652088878761e-12,
+      "reportedMaxLedger": 3.4074059674508034e-14
+    },
+    {
+      "id": "corner-0111110",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 3.116664863193713e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 1.0906236154889654e-12,
+      "parityFlooredAt": [
+        2479,
+        "we"
+      ],
+      "parityAbsOverX0": 1.0906236154889654e-12,
+      "parityStep0": 2.8554093873254757e-16,
+      "ledgerMax": 3.832492047508962e-14,
+      "ledgerAt": [
+        340,
+        "we",
+        6
+      ],
+      "speciesTotalMax": 3.118804674792117e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 0.6,
+        "bt": 2.1,
+        "nbi": 12,
+        "ech": 3,
+        "gas": 8,
+        "kappa": 1.95,
+        "delta": -0.3
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 45,
+      "minCell": {
+        "n": 29617649549435306000,
+        "Te": 0.002549710061640785,
+        "Ti": 0.02377135726870976
+      },
+      "reportedMaxParity": 3.116664863193713e-12,
+      "reportedMaxLedger": 3.660218774926086e-14
+    },
+    {
+      "id": "corner-0111111",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 2.781779285726958e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 2.1177143721099388e-12,
+      "parityFlooredAt": [
+        2479,
+        "wi"
+      ],
+      "parityAbsOverX0": 2.1209980929053632e-12,
+      "parityStep0": 2.8554093873254757e-16,
+      "ledgerMax": 4.34790002219255e-14,
+      "ledgerAt": [
+        1129,
+        "wi",
+        44
+      ],
+      "speciesTotalMax": 3.2340917640164136e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 2,
+        "bt": 2.1,
+        "nbi": 12,
+        "ech": 3,
+        "gas": 8,
+        "kappa": 1.95,
+        "delta": -0.3
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 29617649549435306000,
+        "Te": 0.07104218731228365,
+        "Ti": 0.05315683084811201
+      },
+      "reportedMaxParity": 2.781779285726958e-12,
+      "reportedMaxLedger": 3.5631514545435836e-14
+    },
+    {
+      "id": "corner-1000000",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 7.644341187218238e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 9.481383523367633e-14,
+      "parityFlooredAt": [
+        2421,
+        "we"
+      ],
+      "parityAbsOverX0": 9.481383523367633e-14,
+      "parityStep0": 0,
+      "ledgerMax": 8.89105044264008e-14,
+      "ledgerAt": [
+        492,
+        "we",
+        21
+      ],
+      "speciesTotalMax": 6.541009359144339e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 0.6,
+        "bt": 1,
+        "nbi": 0,
+        "ech": 0,
+        "gas": 0,
+        "kappa": 1,
+        "delta": 0.6
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 877646517572292000,
+        "Te": 0.22719920305247546,
+        "Ti": 0.07417997509248618
+      },
+      "reportedMaxParity": 7.644341187218238e-12,
+      "reportedMaxLedger": 8.393511173262312e-14
+    },
+    {
+      "id": "corner-1000001",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 1.743301665908458e-11,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 3.074057714073144e-13,
+      "parityFlooredAt": [
+        2421,
+        "we"
+      ],
+      "parityAbsOverX0": 3.074057714073144e-13,
+      "parityStep0": 0,
+      "ledgerMax": 8.298298532236573e-14,
+      "ledgerAt": [
+        2250,
+        "we",
+        22
+      ],
+      "speciesTotalMax": 6.5542376996070725e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 2,
+        "bt": 1,
+        "nbi": 0,
+        "ech": 0,
+        "gas": 0,
+        "kappa": 1,
+        "delta": 0.6
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 877646517572292000,
+        "Te": 0.3043383365810397,
+        "Ti": 0.10754319763980875
+      },
+      "reportedMaxParity": 1.743301665908458e-11,
+      "reportedMaxLedger": 9.036268280992823e-14
+    },
+    {
+      "id": "corner-1000010",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 6.89069638810149e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 1.0258029076009389e-13,
+      "parityFlooredAt": [
+        2421,
+        "we"
+      ],
+      "parityAbsOverX0": 1.0258029076009389e-13,
+      "parityStep0": 0,
+      "ledgerMax": 8.797126541398497e-14,
+      "ledgerAt": [
+        2421,
+        "we",
+        13
+      ],
+      "speciesTotalMax": 6.468570809376632e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 0.6,
+        "bt": 2.1,
+        "nbi": 0,
+        "ech": 0,
+        "gas": 0,
+        "kappa": 1,
+        "delta": 0.6
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 877646517572292000,
+        "Te": 0.25244504032395193,
+        "Ti": 0.10074816411116144
+      },
+      "reportedMaxParity": 6.89069638810149e-12,
+      "reportedMaxLedger": 7.671351921943952e-14
+    },
+    {
+      "id": "corner-1000011",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 1.478964995151369e-11,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 3.2766951831380493e-13,
+      "parityFlooredAt": [
+        2421,
+        "we"
+      ],
+      "parityAbsOverX0": 3.2766951831380493e-13,
+      "parityStep0": 0,
+      "ledgerMax": 8.769432433784961e-14,
+      "ledgerAt": [
+        492,
+        "wi",
+        21
+      ],
+      "speciesTotalMax": 6.678555844379178e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 2,
+        "bt": 2.1,
+        "nbi": 0,
+        "ech": 0,
+        "gas": 0,
+        "kappa": 1,
+        "delta": 0.6
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 877646517572292000,
+        "Te": 0.3331759414847806,
+        "Ti": 0.15259915632340298
+      },
+      "reportedMaxParity": 1.478964995151369e-11,
+      "reportedMaxLedger": 7.944202436901336e-14
+    },
+    {
+      "id": "corner-1000100",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 8.04777299359021e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 1.8502299023646144e-12,
+      "parityFlooredAt": [
+        2457,
+        "we"
+      ],
+      "parityAbsOverX0": 1.8607954357711114e-12,
+      "parityStep0": 0,
+      "ledgerMax": 8.89105044264008e-14,
+      "ledgerAt": [
+        492,
+        "we",
+        21
+      ],
+      "speciesTotalMax": 7.18223861851371e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 0.6,
+        "bt": 1,
+        "nbi": 12,
+        "ech": 0,
+        "gas": 0,
+        "kappa": 1,
+        "delta": 0.6
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 10499212509959487000,
+        "Te": 0.16893673568156056,
+        "Ti": 0.06111012270080049
+      },
+      "reportedMaxParity": 8.04777299359021e-12,
+      "reportedMaxLedger": 7.957690229677541e-14
+    },
+    {
+      "id": "corner-1000101",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 9.70516982556269e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 4.369242299907642e-12,
+      "parityFlooredAt": [
+        2493,
+        "we"
+      ],
+      "parityAbsOverX0": 4.4179699092002925e-12,
+      "parityStep0": 0,
+      "ledgerMax": 8.86677347893977e-14,
+      "ledgerAt": [
+        1552,
+        "we",
+        21
+      ],
+      "speciesTotalMax": 7.268932602450265e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 2,
+        "bt": 1,
+        "nbi": 12,
+        "ech": 0,
+        "gas": 0,
+        "kappa": 1,
+        "delta": 0.6
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 10499212509959487000,
+        "Te": 0.2133251127262116,
+        "Ti": 0.120749686699718
+      },
+      "reportedMaxParity": 9.70516982556269e-12,
+      "reportedMaxLedger": 7.602232599109149e-14
+    },
+    {
+      "id": "corner-1000110",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 7.830198979907249e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 2.1290338286733706e-12,
+      "parityFlooredAt": [
+        2459,
+        "we"
+      ],
+      "parityAbsOverX0": 2.1471686994457164e-12,
+      "parityStep0": 0,
+      "ledgerMax": 8.386060265949333e-14,
+      "ledgerAt": [
+        2414,
+        "we",
+        27
+      ],
+      "speciesTotalMax": 7.32409759378577e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 0.6,
+        "bt": 2.1,
+        "nbi": 12,
+        "ech": 0,
+        "gas": 0,
+        "kappa": 1,
+        "delta": 0.6
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 10499212509959487000,
+        "Te": 0.1872044023310287,
+        "Ti": 0.07529009744050336
+      },
+      "reportedMaxParity": 7.830198979907249e-12,
+      "reportedMaxLedger": 7.457741912639171e-14
+    },
+    {
+      "id": "corner-1000111",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 7.909110324749283e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 4.857306865476421e-12,
+      "parityFlooredAt": [
+        2493,
+        "we"
+      ],
+      "parityAbsOverX0": 4.918807731573941e-12,
+      "parityStep0": 0,
+      "ledgerMax": 8.769432433784961e-14,
+      "ledgerAt": [
+        492,
+        "wi",
+        21
+      ],
+      "speciesTotalMax": 7.133377138519144e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 2,
+        "bt": 2.1,
+        "nbi": 12,
+        "ech": 0,
+        "gas": 0,
+        "kappa": 1,
+        "delta": 0.6
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 10499212509959487000,
+        "Te": 0.25511240838537463,
+        "Ti": 0.17140806851049553
+      },
+      "reportedMaxParity": 7.909110324749283e-12,
+      "reportedMaxLedger": 8.01869697834133e-14
+    },
+    {
+      "id": "corner-1001000",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 3.014834617094755e-11,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 3.844592603737262e-13,
+      "parityFlooredAt": [
+        2027,
+        "we"
+      ],
+      "parityAbsOverX0": 4.0590571624363056e-13,
+      "parityStep0": 0,
+      "ledgerMax": 8.89105044264008e-14,
+      "ledgerAt": [
+        492,
+        "we",
+        21
+      ],
+      "speciesTotalMax": 6.541009359144339e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 0.6,
+        "bt": 1,
+        "nbi": 0,
+        "ech": 3,
+        "gas": 0,
+        "kappa": 1,
+        "delta": 0.6
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 877646517572292000,
+        "Te": 0.22719920305247546,
+        "Ti": 0.07418005969552041
+      },
+      "reportedMaxParity": 3.014834617094755e-11,
+      "reportedMaxLedger": 7.599606122020083e-14
+    },
+    {
+      "id": "corner-1001001",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 5.487712061469486e-11,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 9.653467677544347e-13,
+      "parityFlooredAt": [
+        2421,
+        "we"
+      ],
+      "parityAbsOverX0": 1.025014434958663e-12,
+      "parityStep0": 0,
+      "ledgerMax": 8.291384878431352e-14,
+      "ledgerAt": [
+        2299,
+        "we",
+        12
+      ],
+      "speciesTotalMax": 6.5542376996070725e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 2,
+        "bt": 1,
+        "nbi": 0,
+        "ech": 3,
+        "gas": 0,
+        "kappa": 1,
+        "delta": 0.6
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 877646517572292000,
+        "Te": 0.3043383365810397,
+        "Ti": 0.10775362131189405
+      },
+      "reportedMaxParity": 5.487712061469486e-11,
+      "reportedMaxLedger": 7.669401826610034e-14
+    },
+    {
+      "id": "corner-1001010",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 2.9975719735233516e-11,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 4.4564473741433563e-13,
+      "parityFlooredAt": [
+        2035,
+        "we"
+      ],
+      "parityAbsOverX0": 4.825452570728475e-13,
+      "parityStep0": 0,
+      "ledgerMax": 8.195813046026413e-14,
+      "ledgerAt": [
+        601,
+        "we",
+        3
+      ],
+      "speciesTotalMax": 6.468570809376632e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 0.6,
+        "bt": 2.1,
+        "nbi": 0,
+        "ech": 3,
+        "gas": 0,
+        "kappa": 1,
+        "delta": 0.6
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 877646517572292000,
+        "Te": 0.25244504032395193,
+        "Ti": 0.1007493541697932
+      },
+      "reportedMaxParity": 2.9975719735233516e-11,
+      "reportedMaxLedger": 7.479372252840737e-14
+    },
+    {
+      "id": "corner-1001011",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 5.0374940072813845e-11,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 1.1209124200754688e-12,
+      "parityFlooredAt": [
+        2421,
+        "we"
+      ],
+      "parityAbsOverX0": 1.187124410210587e-12,
+      "parityStep0": 0,
+      "ledgerMax": 8.769432433784961e-14,
+      "ledgerAt": [
+        492,
+        "wi",
+        21
+      ],
+      "speciesTotalMax": 6.678555844379178e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 2,
+        "bt": 2.1,
+        "nbi": 0,
+        "ech": 3,
+        "gas": 0,
+        "kappa": 1,
+        "delta": 0.6
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 877646517572292000,
+        "Te": 0.3331759414847806,
+        "Ti": 0.15394917192174182
+      },
+      "reportedMaxParity": 5.0374940072813845e-11,
+      "reportedMaxLedger": 7.696489066106084e-14
+    },
+    {
+      "id": "corner-1001100",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 9.097556853761694e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 2.0907140582587623e-12,
+      "parityFlooredAt": [
+        2459,
+        "we"
+      ],
+      "parityAbsOverX0": 2.0944987269416866e-12,
+      "parityStep0": 0,
+      "ledgerMax": 8.89105044264008e-14,
+      "ledgerAt": [
+        492,
+        "we",
+        21
+      ],
+      "speciesTotalMax": 7.305039369293216e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 0.6,
+        "bt": 1,
+        "nbi": 12,
+        "ech": 3,
+        "gas": 0,
+        "kappa": 1,
+        "delta": 0.6
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 10499212509959487000,
+        "Te": 0.16894071621943407,
+        "Ti": 0.06112561262248462
+      },
+      "reportedMaxParity": 9.097556853761694e-12,
+      "reportedMaxLedger": 7.613578626630857e-14
+    },
+    {
+      "id": "corner-1001101",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 1.0797606386951428e-11,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 4.954604389533267e-12,
+      "parityFlooredAt": [
+        2493,
+        "we"
+      ],
+      "parityAbsOverX0": 5.007116667508841e-12,
+      "parityStep0": 0,
+      "ledgerMax": 8.5186721073795e-14,
+      "ledgerAt": [
+        2399,
+        "we",
+        12
+      ],
+      "speciesTotalMax": 7.0853630481992205e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 2,
+        "bt": 1,
+        "nbi": 12,
+        "ech": 3,
+        "gas": 0,
+        "kappa": 1,
+        "delta": 0.6
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 10499212509959487000,
+        "Te": 0.2143232463898532,
+        "Ti": 0.12306647752308723
+      },
+      "reportedMaxParity": 1.0797606386951428e-11,
+      "reportedMaxLedger": 7.785598675678739e-14
+    },
+    {
+      "id": "corner-1001110",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 8.911402008385773e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 2.423607207827645e-12,
+      "parityFlooredAt": [
+        2493,
+        "we"
+      ],
+      "parityAbsOverX0": 2.430072683494307e-12,
+      "parityStep0": 0,
+      "ledgerMax": 8.65706036123594e-14,
+      "ledgerAt": [
+        652,
+        "wi",
+        4
+      ],
+      "speciesTotalMax": 7.272500618545031e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 0.6,
+        "bt": 2.1,
+        "nbi": 12,
+        "ech": 3,
+        "gas": 0,
+        "kappa": 1,
+        "delta": 0.6
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 10499212509959487000,
+        "Te": 0.1872256798945916,
+        "Ti": 0.0753638924871519
+      },
+      "reportedMaxParity": 8.911402008385773e-12,
+      "reportedMaxLedger": 7.29304167275587e-14
+    },
+    {
+      "id": "corner-1001111",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 9.06571709516517e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 5.8091510392318815e-12,
+      "parityFlooredAt": [
+        2495,
+        "we"
+      ],
+      "parityAbsOverX0": 5.866236458532656e-12,
+      "parityStep0": 0,
+      "ledgerMax": 8.769432433784961e-14,
+      "ledgerAt": [
+        492,
+        "wi",
+        21
+      ],
+      "speciesTotalMax": 7.145700427712328e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 2,
+        "bt": 2.1,
+        "nbi": 12,
+        "ech": 3,
+        "gas": 0,
+        "kappa": 1,
+        "delta": 0.6
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 10499212509959487000,
+        "Te": 0.25922753817947236,
+        "Ti": 0.17890432579345336
+      },
+      "reportedMaxParity": 9.06571709516517e-12,
+      "reportedMaxLedger": 7.900507611669586e-14
+    },
+    {
+      "id": "corner-1010000",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 1.1917213985096127e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 1.0865153010561828e-12,
+      "parityFlooredAt": [
+        2497,
+        "wi"
+      ],
+      "parityAbsOverX0": 1.1287774346821708e-12,
+      "parityStep0": 0,
+      "ledgerMax": 9.46704212654099e-14,
+      "ledgerAt": [
+        308,
+        "wi",
+        52
+      ],
+      "speciesTotalMax": 6.679815605521696e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 0.6,
+        "bt": 1,
+        "nbi": 0,
+        "ech": 0,
+        "gas": 8,
+        "kappa": 1,
+        "delta": 0.6
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 30000020293926846000,
+        "Te": 0.09361949622560253,
+        "Ti": 0.0419848590169598
+      },
+      "reportedMaxParity": 1.1917213985096127e-12,
+      "reportedMaxLedger": 8.035923080269047e-14
+    },
+    {
+      "id": "corner-1010001",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 2.2418952808277694e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 2.2418952808277694e-12,
+      "parityFlooredAt": [
+        2499,
+        "wi"
+      ],
+      "parityAbsOverX0": 4.03697992845258e-12,
+      "parityStep0": 0,
+      "ledgerMax": 8.776098192084765e-14,
+      "ledgerAt": [
+        571,
+        "wi",
+        12
+      ],
+      "speciesTotalMax": 6.816374233932371e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 2,
+        "bt": 1,
+        "nbi": 0,
+        "ech": 0,
+        "gas": 8,
+        "kappa": 1,
+        "delta": 0.6
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 30000020293926846000,
+        "Te": 0.1212933518782003,
+        "Ti": 0.08189630848553449
+      },
+      "reportedMaxParity": 2.2418952808277694e-12,
+      "reportedMaxLedger": 7.517763292302355e-14
+    },
+    {
+      "id": "corner-1010010",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 1.12380183880893e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 1.12380183880893e-12,
+      "parityFlooredAt": [
+        2499,
+        "wi"
+      ],
+      "parityAbsOverX0": 1.2196094830723538e-12,
+      "parityStep0": 0,
+      "ledgerMax": 8.459083778959277e-14,
+      "ledgerAt": [
+        571,
+        "wi",
+        12
+      ],
+      "speciesTotalMax": 6.643276469174541e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 0.6,
+        "bt": 2.1,
+        "nbi": 0,
+        "ech": 0,
+        "gas": 8,
+        "kappa": 1,
+        "delta": 0.6
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 30000020293926846000,
+        "Te": 0.10037557597153196,
+        "Ti": 0.04905293133980062
+      },
+      "reportedMaxParity": 1.12380183880893e-12,
+      "reportedMaxLedger": 8.229511233160372e-14
+    },
+    {
+      "id": "corner-1010011",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 1.9865343705399247e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 1.9865343705399247e-12,
+      "parityFlooredAt": [
+        2499,
+        "wi"
+      ],
+      "parityAbsOverX0": 4.308845295509309e-12,
+      "parityStep0": 0,
+      "ledgerMax": 7.986098697540225e-14,
+      "ledgerAt": [
+        571,
+        "wi",
+        12
+      ],
+      "speciesTotalMax": 6.5457743288718736e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 2,
+        "bt": 2.1,
+        "nbi": 0,
+        "ech": 0,
+        "gas": 8,
+        "kappa": 1,
+        "delta": 0.6
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 30000020293926846000,
+        "Te": 0.13578500616544123,
+        "Ti": 0.1006160812467342
+      },
+      "reportedMaxParity": 1.9865343705399247e-12,
+      "reportedMaxLedger": 8.136613222409207e-14
+    },
+    {
+      "id": "corner-1010100",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 2.942741042018383e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 2.942741042018383e-12,
+      "parityFlooredAt": [
+        2499,
+        "wi"
+      ],
+      "parityAbsOverX0": 3.0264733901117938e-12,
+      "parityStep0": 0,
+      "ledgerMax": 9.46704212654099e-14,
+      "ledgerAt": [
+        308,
+        "wi",
+        52
+      ],
+      "speciesTotalMax": 7.130948865930939e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 0.6,
+        "bt": 1,
+        "nbi": 12,
+        "ech": 0,
+        "gas": 8,
+        "kappa": 1,
+        "delta": 0.6
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 30000020293926846000,
+        "Te": 0.08828631562397361,
+        "Ti": 0.040633476231544834
+      },
+      "reportedMaxParity": 2.942741042018383e-12,
+      "reportedMaxLedger": 8.030771571515959e-14
+    },
+    {
+      "id": "corner-1010101",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 3.5822251891569165e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 3.5822251891569165e-12,
+      "parityFlooredAt": [
+        2499,
+        "wi"
+      ],
+      "parityAbsOverX0": 7.452643414791757e-12,
+      "parityStep0": 0,
+      "ledgerMax": 8.805364897208606e-14,
+      "ledgerAt": [
+        1532,
+        "wi",
+        2
+      ],
+      "speciesTotalMax": 7.081354245608256e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 2,
+        "bt": 1,
+        "nbi": 12,
+        "ech": 0,
+        "gas": 8,
+        "kappa": 1,
+        "delta": 0.6
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 30000020293926846000,
+        "Te": 0.11603656721924892,
+        "Ti": 0.08295095860247988
+      },
+      "reportedMaxParity": 3.5822251891569165e-12,
+      "reportedMaxLedger": 7.897339568827842e-14
+    },
+    {
+      "id": "corner-1010110",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 2.8792146055132348e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 2.8792146055132348e-12,
+      "parityFlooredAt": [
+        2499,
+        "wi"
+      ],
+      "parityAbsOverX0": 3.3939016414123608e-12,
+      "parityStep0": 0,
+      "ledgerMax": 9.155811019503876e-14,
+      "ledgerAt": [
+        2430,
+        "wi",
+        2
+      ],
+      "speciesTotalMax": 7.117540813371899e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 0.6,
+        "bt": 2.1,
+        "nbi": 12,
+        "ech": 0,
+        "gas": 8,
+        "kappa": 1,
+        "delta": 0.6
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 30000020293926846000,
+        "Te": 0.09460563413681965,
+        "Ti": 0.047559948298478164
+      },
+      "reportedMaxParity": 2.8792146055132348e-12,
+      "reportedMaxLedger": 7.08101914657079e-14
+    },
+    {
+      "id": "corner-1010111",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 3.2381418466875593e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 3.2381418466875593e-12,
+      "parityFlooredAt": [
+        2499,
+        "wi"
+      ],
+      "parityAbsOverX0": 8.340148220937502e-12,
+      "parityStep0": 0,
+      "ledgerMax": 8.764659555796602e-14,
+      "ledgerAt": [
+        1783,
+        "wi",
+        42
+      ],
+      "speciesTotalMax": 7.077002693839156e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 2,
+        "bt": 2.1,
+        "nbi": 12,
+        "ech": 0,
+        "gas": 8,
+        "kappa": 1,
+        "delta": 0.6
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 30000020293926846000,
+        "Te": 0.1316727791038159,
+        "Ti": 0.10482825696546005
+      },
+      "reportedMaxParity": 3.2381418466875593e-12,
+      "reportedMaxLedger": 8.201070521942044e-14
+    },
+    {
+      "id": "corner-1011000",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 1.7311101196658391e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 1.5788376188932515e-12,
+      "parityFlooredAt": [
+        2497,
+        "wi"
+      ],
+      "parityAbsOverX0": 1.6229920868607016e-12,
+      "parityStep0": 0,
+      "ledgerMax": 9.46704212654099e-14,
+      "ledgerAt": [
+        308,
+        "wi",
+        52
+      ],
+      "speciesTotalMax": 6.508985307524789e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 0.6,
+        "bt": 1,
+        "nbi": 0,
+        "ech": 3,
+        "gas": 8,
+        "kappa": 1,
+        "delta": 0.6
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 30000020293926846000,
+        "Te": 0.09362246080199096,
+        "Ti": 0.04199608944653875
+      },
+      "reportedMaxParity": 1.7311101196658391e-12,
+      "reportedMaxLedger": 7.597177860880093e-14
+    },
+    {
+      "id": "corner-1011001",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 2.5647734883622003e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 2.5647734883622003e-12,
+      "parityFlooredAt": [
+        2499,
+        "wi"
+      ],
+      "parityAbsOverX0": 4.61792657128146e-12,
+      "parityStep0": 0,
+      "ledgerMax": 8.920522092285063e-14,
+      "ledgerAt": [
+        571,
+        "wi",
+        12
+      ],
+      "speciesTotalMax": 6.787522475018272e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 2,
+        "bt": 1,
+        "nbi": 0,
+        "ech": 3,
+        "gas": 8,
+        "kappa": 1,
+        "delta": 0.6
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 30000020293926846000,
+        "Te": 0.12141259351919834,
+        "Ti": 0.08217966432963582
+      },
+      "reportedMaxParity": 2.5647734883622003e-12,
+      "reportedMaxLedger": 7.864430939079309e-14
+    },
+    {
+      "id": "corner-1011010",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 1.6957322808670772e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 1.6957322808670772e-12,
+      "parityFlooredAt": [
+        2499,
+        "wi"
+      ],
+      "parityAbsOverX0": 1.8185333021451233e-12,
+      "parityStep0": 0,
+      "ledgerMax": 8.82002917453092e-14,
+      "ledgerAt": [
+        571,
+        "wi",
+        12
+      ],
+      "speciesTotalMax": 6.546552208586113e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 0.6,
+        "bt": 2.1,
+        "nbi": 0,
+        "ech": 3,
+        "gas": 8,
+        "kappa": 1,
+        "delta": 0.6
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 30000020293926846000,
+        "Te": 0.1003863546712282,
+        "Ti": 0.04909037941199156
+      },
+      "reportedMaxParity": 1.6957322808670772e-12,
+      "reportedMaxLedger": 7.80127538751721e-14
+    },
+    {
+      "id": "corner-1011011",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 2.371462480668914e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 2.371462480668914e-12,
+      "parityFlooredAt": [
+        2499,
+        "wi"
+      ],
+      "parityAbsOverX0": 5.172380533329869e-12,
+      "parityStep0": 0,
+      "ledgerMax": 8.631436858335283e-14,
+      "ledgerAt": [
+        2192,
+        "wi",
+        43
+      ],
+      "speciesTotalMax": 6.686992938601455e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 2,
+        "bt": 2.1,
+        "nbi": 0,
+        "ech": 3,
+        "gas": 8,
+        "kappa": 1,
+        "delta": 0.6
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 30000020293926846000,
+        "Te": 0.13618361666768128,
+        "Ti": 0.10145101475861105
+      },
+      "reportedMaxParity": 2.371462480668914e-12,
+      "reportedMaxLedger": 8.313530521634165e-14
+    },
+    {
+      "id": "corner-1011100",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 3.2283251727147175e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 3.2283251727147175e-12,
+      "parityFlooredAt": [
+        2499,
+        "wi"
+      ],
+      "parityAbsOverX0": 3.31379282095713e-12,
+      "parityStep0": 0,
+      "ledgerMax": 9.46704212654099e-14,
+      "ledgerAt": [
+        308,
+        "wi",
+        52
+      ],
+      "speciesTotalMax": 7.198082359032292e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 0.6,
+        "bt": 1,
+        "nbi": 12,
+        "ech": 3,
+        "gas": 8,
+        "kappa": 1,
+        "delta": 0.6
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 30000020293926846000,
+        "Te": 0.08829024409934794,
+        "Ti": 0.04064860165463561
+      },
+      "reportedMaxParity": 3.2283251727147175e-12,
+      "reportedMaxLedger": 7.6392048947354e-14
+    },
+    {
+      "id": "corner-1011101",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 3.957739747225818e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 3.957739747225818e-12,
+      "parityFlooredAt": [
+        2499,
+        "wi"
+      ],
+      "parityAbsOverX0": 8.290316749945666e-12,
+      "parityStep0": 0,
+      "ledgerMax": 9.226667179853269e-14,
+      "ledgerAt": [
+        1285,
+        "wi",
+        42
+      ],
+      "speciesTotalMax": 7.077453993601295e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 2,
+        "bt": 1,
+        "nbi": 12,
+        "ech": 3,
+        "gas": 8,
+        "kappa": 1,
+        "delta": 0.6
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 30000020293926846000,
+        "Te": 0.11636324552696786,
+        "Ti": 0.08371361102552174
+      },
+      "reportedMaxParity": 3.957739747225818e-12,
+      "reportedMaxLedger": 7.818321289464644e-14
+    },
+    {
+      "id": "corner-1011110",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 3.1982989444453348e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 3.1982989444453348e-12,
+      "parityFlooredAt": [
+        2499,
+        "wi"
+      ],
+      "parityAbsOverX0": 3.771422342534059e-12,
+      "parityStep0": 0,
+      "ledgerMax": 7.87368112960015e-14,
+      "ledgerAt": [
+        442,
+        "wi",
+        45
+      ],
+      "speciesTotalMax": 7.26026899267331e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 0.6,
+        "bt": 2.1,
+        "nbi": 12,
+        "ech": 3,
+        "gas": 8,
+        "kappa": 1,
+        "delta": 0.6
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 30000020293926846000,
+        "Te": 0.0946200703687965,
+        "Ti": 0.0476109655938084
+      },
+      "reportedMaxParity": 3.1982989444453348e-12,
+      "reportedMaxLedger": 7.608244058824399e-14
+    },
+    {
+      "id": "corner-1011111",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 3.609240021954278e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 3.609240021954278e-12,
+      "parityFlooredAt": [
+        2499,
+        "wi"
+      ],
+      "parityAbsOverX0": 9.460410151083094e-12,
+      "parityStep0": 0,
+      "ledgerMax": 8.459812172181711e-14,
+      "ledgerAt": [
+        1532,
+        "wi",
+        2
+      ],
+      "speciesTotalMax": 7.123012540978095e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 2,
+        "bt": 2.1,
+        "nbi": 12,
+        "ech": 3,
+        "gas": 8,
+        "kappa": 1,
+        "delta": 0.6
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 30000020293926846000,
+        "Te": 0.13265461543003973,
+        "Ti": 0.10679907118278449
+      },
+      "reportedMaxParity": 3.609240021954278e-12,
+      "reportedMaxLedger": 7.720364932414596e-14
+    },
+    {
+      "id": "corner-1100000",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "threw",
+      "steps": 1812,
+      "parityMax": 1.3841715220276862e-12,
+      "parityAt": [
+        1811,
+        "wi"
+      ],
+      "parityFloored": 3.831168351571306e-14,
+      "parityFlooredAt": [
+        1809,
+        "we"
+      ],
+      "parityAbsOverX0": 3.831168351571306e-14,
+      "parityStep0": 1.7505456332547196e-16,
+      "ledgerMax": 4.060523402584887e-14,
+      "ledgerAt": [
+        1750,
+        "we",
+        28
+      ],
+      "speciesTotalMax": 3.2711603472080122e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "error": "profile constraint violated at t=3.624000 s in cell 64: T_i <= 0",
+      "grammarOk": true,
+      "errorTime": 3.624,
+      "errorCell": 64,
+      "acceptedStepsConsistent": true,
+      "controls": {
+        "ip": 0.6,
+        "bt": 1,
+        "nbi": 0,
+        "ech": 0,
+        "gas": 0,
+        "kappa": 1.95,
+        "delta": 0.6
+      },
+      "minCell": {
+        "n": 799179017613817600,
+        "Te": 0.028964420323395555,
+        "Ti": 0.00003635402494142452
+      },
+      "profileOffStatus": "completed"
+    },
+    {
+      "id": "corner-1100001",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "threw",
+      "steps": 2394,
+      "parityMax": 4.791452951296012e-12,
+      "parityAt": [
+        2393,
+        "wi"
+      ],
+      "parityFloored": 1.3541512199907445e-13,
+      "parityFlooredAt": [
+        2392,
+        "we"
+      ],
+      "parityAbsOverX0": 1.3541512199907445e-13,
+      "parityStep0": 1.7505456332547196e-16,
+      "ledgerMax": 4.4711714605003524e-14,
+      "ledgerAt": [
+        723,
+        "we",
+        47
+      ],
+      "speciesTotalMax": 3.798553781234663e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "error": "profile constraint violated at t=4.788000 s in cell 64: T_i <= 0",
+      "grammarOk": true,
+      "errorTime": 4.788,
+      "errorCell": 64,
+      "acceptedStepsConsistent": true,
+      "controls": {
+        "ip": 2,
+        "bt": 1,
+        "nbi": 0,
+        "ech": 0,
+        "gas": 0,
+        "kappa": 1.95,
+        "delta": 0.6
+      },
+      "minCell": {
+        "n": 380822731058504900,
+        "Te": 0.04247337407131074,
+        "Ti": 0.00010678019176076921
+      },
+      "profileOffStatus": "completed"
+    },
+    {
+      "id": "corner-1100010",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "threw",
+      "steps": 2132,
+      "parityMax": 1.954961900083587e-12,
+      "parityAt": [
+        2131,
+        "wi"
+      ],
+      "parityFloored": 4.132405335415171e-14,
+      "parityFlooredAt": [
+        1998,
+        "we"
+      ],
+      "parityAbsOverX0": 4.132405335415171e-14,
+      "parityStep0": 1.7505456332547196e-16,
+      "ledgerMax": 4.4154787182780614e-14,
+      "ledgerAt": [
+        1939,
+        "we",
+        23
+      ],
+      "speciesTotalMax": 3.761980669468117e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "error": "profile constraint violated at t=4.264000 s in cell 64: T_i <= 0",
+      "grammarOk": true,
+      "errorTime": 4.264,
+      "errorCell": 64,
+      "acceptedStepsConsistent": true,
+      "controls": {
+        "ip": 0.6,
+        "bt": 2.1,
+        "nbi": 0,
+        "ech": 0,
+        "gas": 0,
+        "kappa": 1.95,
+        "delta": 0.6
+      },
+      "minCell": {
+        "n": 530449790996137700,
+        "Te": 0.03116988983248406,
+        "Ti": 0.00003219204060583035
+      },
+      "profileOffStatus": "completed"
+    },
+    {
+      "id": "corner-1100011",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "threw",
+      "steps": 2435,
+      "parityMax": 5.905642058376258e-12,
+      "parityAt": [
+        2434,
+        "wi"
+      ],
+      "parityFloored": 1.486978534343375e-13,
+      "parityFlooredAt": [
+        2434,
+        "we"
+      ],
+      "parityAbsOverX0": 1.486978534343375e-13,
+      "parityStep0": 1.7505456332547196e-16,
+      "ledgerMax": 4.627649714056875e-14,
+      "ledgerAt": [
+        1874,
+        "wi",
+        21
+      ],
+      "speciesTotalMax": 3.7415361139983095e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "error": "profile constraint violated at t=4.870000 s in cell 64: T_i <= 0",
+      "grammarOk": true,
+      "errorTime": 4.87,
+      "errorCell": 64,
+      "acceptedStepsConsistent": true,
+      "controls": {
+        "ip": 2,
+        "bt": 2.1,
+        "nbi": 0,
+        "ech": 0,
+        "gas": 0,
+        "kappa": 1.95,
+        "delta": 0.6
+      },
+      "minCell": {
+        "n": 361647168909510340,
+        "Te": 0.03801016687946339,
+        "Ti": 0.0008901221982549895
+      },
+      "profileOffStatus": "completed"
+    },
+    {
+      "id": "corner-1100100",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "threw",
+      "steps": 501,
+      "parityMax": 5.888998334553481e-14,
+      "parityAt": [
+        499,
+        "wi"
+      ],
+      "parityFloored": 8.248636873040068e-15,
+      "parityFlooredAt": [
+        499,
+        "we"
+      ],
+      "parityAbsOverX0": 8.248636873040068e-15,
+      "parityStep0": 1.7505456332547196e-16,
+      "ledgerMax": 3.9135227688683174e-14,
+      "ledgerAt": [
+        336,
+        "wi",
+        42
+      ],
+      "speciesTotalMax": 2.99764915584726e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "error": "profile constraint violated at t=1.002000 s in cell 63: T_e <= 0",
+      "grammarOk": true,
+      "errorTime": 1.002,
+      "errorCell": 63,
+      "acceptedStepsConsistent": true,
+      "controls": {
+        "ip": 0.6,
+        "bt": 1,
+        "nbi": 12,
+        "ech": 0,
+        "gas": 0,
+        "kappa": 1.95,
+        "delta": 0.6
+      },
+      "minCell": {
+        "n": 6153237473562276000,
+        "Te": 0.02012677802249094,
+        "Ti": 0.028841855809578883
+      },
+      "profileOffStatus": "completed"
+    },
+    {
+      "id": "corner-1100101",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 6.603984104624832e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 9.610470646981193e-13,
+      "parityFlooredAt": [
+        2489,
+        "we"
+      ],
+      "parityAbsOverX0": 9.610470646981193e-13,
+      "parityStep0": 1.7505456332547196e-16,
+      "ledgerMax": 4.3488623182059506e-14,
+      "ledgerAt": [
+        785,
+        "wi",
+        12
+      ],
+      "speciesTotalMax": 3.857581800632079e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 2,
+        "bt": 1,
+        "nbi": 12,
+        "ech": 0,
+        "gas": 0,
+        "kappa": 1.95,
+        "delta": 0.6
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 31,
+      "minCell": {
+        "n": 4429622744508878300,
+        "Te": 0.02791074497647109,
+        "Ti": 0.011387796679807053
+      },
+      "reportedMaxParity": 6.603984104624832e-12,
+      "reportedMaxLedger": 3.661250835621845e-14
+    },
+    {
+      "id": "corner-1100110",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "threw",
+      "steps": 502,
+      "parityMax": 5.4788358561717954e-14,
+      "parityAt": [
+        499,
+        "wi"
+      ],
+      "parityFloored": 9.29993372940792e-15,
+      "parityFlooredAt": [
+        501,
+        "we"
+      ],
+      "parityAbsOverX0": 9.29993372940792e-15,
+      "parityStep0": 1.7505456332547196e-16,
+      "ledgerMax": 4.122870486143994e-14,
+      "ledgerAt": [
+        381,
+        "we",
+        21
+      ],
+      "speciesTotalMax": 2.983339908412847e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "error": "profile constraint violated at t=1.004000 s in cell 64: T_e <= 0",
+      "grammarOk": true,
+      "errorTime": 1.004,
+      "errorCell": 64,
+      "acceptedStepsConsistent": true,
+      "controls": {
+        "ip": 0.6,
+        "bt": 2.1,
+        "nbi": 12,
+        "ech": 0,
+        "gas": 0,
+        "kappa": 1.95,
+        "delta": 0.6
+      },
+      "minCell": {
+        "n": 6139278259939438000,
+        "Te": 0.003987635808855463,
+        "Ti": 0.007653885257630852
+      },
+      "profileOffStatus": "completed"
+    },
+    {
+      "id": "corner-1100111",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 5.5240113747414095e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 1.08299750003679e-12,
+      "parityFlooredAt": [
+        2489,
+        "we"
+      ],
+      "parityAbsOverX0": 1.08299750003679e-12,
+      "parityStep0": 1.7505456332547196e-16,
+      "ledgerMax": 4.1960395569727927e-14,
+      "ledgerAt": [
+        418,
+        "wi",
+        47
+      ],
+      "speciesTotalMax": 3.930484622470602e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 2,
+        "bt": 2.1,
+        "nbi": 12,
+        "ech": 0,
+        "gas": 0,
+        "kappa": 1.95,
+        "delta": 0.6
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 4429622744508878300,
+        "Te": 0.056009203202917836,
+        "Ti": 0.03167335191881843
+      },
+      "reportedMaxParity": 5.5240113747414095e-12,
+      "reportedMaxLedger": 4.2747150441898154e-14
+    },
+    {
+      "id": "corner-1101000",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "threw",
+      "steps": 502,
+      "parityMax": 6.332354780781502e-14,
+      "parityAt": [
+        501,
+        "wi"
+      ],
+      "parityFloored": 9.219064740456546e-15,
+      "parityFlooredAt": [
+        501,
+        "we"
+      ],
+      "parityAbsOverX0": 9.219064740456546e-15,
+      "parityStep0": 1.7505456332547196e-16,
+      "ledgerMax": 3.9135227688683174e-14,
+      "ledgerAt": [
+        336,
+        "wi",
+        42
+      ],
+      "speciesTotalMax": 2.99764915584726e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "error": "profile constraint violated at t=1.004000 s in cell 64: T_e <= 0",
+      "grammarOk": true,
+      "errorTime": 1.004,
+      "errorCell": 64,
+      "acceptedStepsConsistent": true,
+      "controls": {
+        "ip": 0.6,
+        "bt": 1,
+        "nbi": 0,
+        "ech": 3,
+        "gas": 0,
+        "kappa": 1.95,
+        "delta": 0.6
+      },
+      "minCell": {
+        "n": 6139501457950726000,
+        "Te": 0.03144455451185788,
+        "Ti": 0.018418571174384668
+      },
+      "profileOffStatus": "completed"
+    },
+    {
+      "id": "corner-1101001",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "threw",
+      "steps": 1923,
+      "parityMax": 7.85527106834218e-13,
+      "parityAt": [
+        1921,
+        "wi"
+      ],
+      "parityFloored": 5.749785114442636e-13,
+      "parityFlooredAt": [
+        1921,
+        "wi"
+      ],
+      "parityAbsOverX0": 5.977835663285508e-13,
+      "parityStep0": 1.7505456332547196e-16,
+      "ledgerMax": 4.989572053247082e-14,
+      "ledgerAt": [
+        826,
+        "wi",
+        6
+      ],
+      "speciesTotalMax": 3.9720711190669105e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "error": "profile constraint violated at t=3.846000 s in cell 64: T_e <= 0",
+      "grammarOk": true,
+      "errorTime": 3.846,
+      "errorCell": 64,
+      "acceptedStepsConsistent": true,
+      "controls": {
+        "ip": 2,
+        "bt": 1,
+        "nbi": 0,
+        "ech": 3,
+        "gas": 0,
+        "kappa": 1.95,
+        "delta": 0.6
+      },
+      "minCell": {
+        "n": 692630101018745100,
+        "Te": 0.0007299132850142651,
+        "Ti": 0.09794321416072932
+      },
+      "profileOffStatus": "completed"
+    },
+    {
+      "id": "corner-1101010",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "threw",
+      "steps": 504,
+      "parityMax": 6.134473129368443e-14,
+      "parityAt": [
+        502,
+        "wi"
+      ],
+      "parityFloored": 1.0593837552629891e-14,
+      "parityFlooredAt": [
+        502,
+        "we"
+      ],
+      "parityAbsOverX0": 1.0593837552629891e-14,
+      "parityStep0": 1.7505456332547196e-16,
+      "ledgerMax": 4.122870486143994e-14,
+      "ledgerAt": [
+        381,
+        "we",
+        21
+      ],
+      "speciesTotalMax": 2.983339908412847e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "error": "profile constraint violated at t=1.008000 s in cell 64: T_e <= 0",
+      "grammarOk": true,
+      "errorTime": 1.008,
+      "errorCell": 64,
+      "acceptedStepsConsistent": true,
+      "controls": {
+        "ip": 0.6,
+        "bt": 2.1,
+        "nbi": 0,
+        "ech": 3,
+        "gas": 0,
+        "kappa": 1.95,
+        "delta": 0.6
+      },
+      "minCell": {
+        "n": 6113248558227956000,
+        "Te": 0.0030449313236186938,
+        "Ti": 0.02472377855262482
+      },
+      "profileOffStatus": "completed"
+    },
+    {
+      "id": "corner-1101011",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "threw",
+      "steps": 2435,
+      "parityMax": 2.610019769790937e-11,
+      "parityAt": [
+        2434,
+        "wi"
+      ],
+      "parityFloored": 6.745484540906418e-13,
+      "parityFlooredAt": [
+        2434,
+        "we"
+      ],
+      "parityAbsOverX0": 6.928854973353657e-13,
+      "parityStep0": 1.7505456332547196e-16,
+      "ledgerMax": 4.4161982155347135e-14,
+      "ledgerAt": [
+        1081,
+        "wi",
+        22
+      ],
+      "speciesTotalMax": 3.788829891453451e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "error": "profile constraint violated at t=4.870000 s in cell 64: T_i <= 0",
+      "grammarOk": true,
+      "errorTime": 4.87,
+      "errorCell": 64,
+      "acceptedStepsConsistent": true,
+      "controls": {
+        "ip": 2,
+        "bt": 2.1,
+        "nbi": 0,
+        "ech": 3,
+        "gas": 0,
+        "kappa": 1.95,
+        "delta": 0.6
+      },
+      "minCell": {
+        "n": 361647168909510340,
+        "Te": 0.037831018134166415,
+        "Ti": 0.0006444636296331151
+      },
+      "profileOffStatus": "completed"
+    },
+    {
+      "id": "corner-1101100",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "threw",
+      "steps": 501,
+      "parityMax": 5.888998334553481e-14,
+      "parityAt": [
+        499,
+        "wi"
+      ],
+      "parityFloored": 8.248636873040068e-15,
+      "parityFlooredAt": [
+        499,
+        "we"
+      ],
+      "parityAbsOverX0": 8.248636873040068e-15,
+      "parityStep0": 1.7505456332547196e-16,
+      "ledgerMax": 3.9135227688683174e-14,
+      "ledgerAt": [
+        336,
+        "wi",
+        42
+      ],
+      "speciesTotalMax": 2.99764915584726e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "error": "profile constraint violated at t=1.002000 s in cell 62: T_e <= 0",
+      "grammarOk": true,
+      "errorTime": 1.002,
+      "errorCell": 62,
+      "acceptedStepsConsistent": true,
+      "controls": {
+        "ip": 0.6,
+        "bt": 1,
+        "nbi": 12,
+        "ech": 3,
+        "gas": 0,
+        "kappa": 1.95,
+        "delta": 0.6
+      },
+      "minCell": {
+        "n": 6153237473562276000,
+        "Te": 0.007231696411295471,
+        "Ti": 0.024531584063507837
+      },
+      "profileOffStatus": "completed"
+    },
+    {
+      "id": "corner-1101101",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "threw",
+      "steps": 566,
+      "parityMax": 2.900285385363673e-14,
+      "parityAt": [
+        499,
+        "wi"
+      ],
+      "parityFloored": 1.989377128203781e-14,
+      "parityFlooredAt": [
+        499,
+        "we"
+      ],
+      "parityAbsOverX0": 4.399272998954703e-14,
+      "parityStep0": 1.7505456332547196e-16,
+      "ledgerMax": 4.309011626676937e-14,
+      "ledgerAt": [
+        76,
+        "wi",
+        14
+      ],
+      "speciesTotalMax": 2.948283345994029e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "error": "profile constraint violated at t=1.132000 s in cell 64: T_e <= 0",
+      "grammarOk": true,
+      "errorTime": 1.132,
+      "errorCell": 64,
+      "acceptedStepsConsistent": true,
+      "controls": {
+        "ip": 2,
+        "bt": 1,
+        "nbi": 12,
+        "ech": 3,
+        "gas": 0,
+        "kappa": 1.95,
+        "delta": 0.6
+      },
+      "minCell": {
+        "n": 5064565394589343000,
+        "Te": 0.001187878397060084,
+        "Ti": 0.09794321416072932
+      },
+      "profileOffStatus": "completed"
+    },
+    {
+      "id": "corner-1101110",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "threw",
+      "steps": 501,
+      "parityMax": 5.4788358561717954e-14,
+      "parityAt": [
+        499,
+        "wi"
+      ],
+      "parityFloored": 8.895588784651054e-15,
+      "parityFlooredAt": [
+        499,
+        "we"
+      ],
+      "parityAbsOverX0": 8.895588784651054e-15,
+      "parityStep0": 1.7505456332547196e-16,
+      "ledgerMax": 4.122870486143994e-14,
+      "ledgerAt": [
+        381,
+        "we",
+        21
+      ],
+      "speciesTotalMax": 2.983339908412847e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "error": "profile constraint violated at t=1.002000 s in cell 64: T_e <= 0",
+      "grammarOk": true,
+      "errorTime": 1.002,
+      "errorCell": 64,
+      "acceptedStepsConsistent": true,
+      "controls": {
+        "ip": 0.6,
+        "bt": 2.1,
+        "nbi": 12,
+        "ech": 3,
+        "gas": 0,
+        "kappa": 1.95,
+        "delta": 0.6
+      },
+      "minCell": {
+        "n": 6153237473562276000,
+        "Te": 0.04630162478267588,
+        "Ti": 0.03946009500839197
+      },
+      "profileOffStatus": "completed"
+    },
+    {
+      "id": "corner-1101111",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 7.006508218822977e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 1.4195742320524054e-12,
+      "parityFlooredAt": [
+        2489,
+        "we"
+      ],
+      "parityAbsOverX0": 1.4195742320524054e-12,
+      "parityStep0": 1.7505456332547196e-16,
+      "ledgerMax": 4.1960395569727927e-14,
+      "ledgerAt": [
+        418,
+        "wi",
+        47
+      ],
+      "speciesTotalMax": 3.938249145613239e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 2,
+        "bt": 2.1,
+        "nbi": 12,
+        "ech": 3,
+        "gas": 0,
+        "kappa": 1.95,
+        "delta": 0.6
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 4429622744508878300,
+        "Te": 0.056463774894648704,
+        "Ti": 0.032718036849199904
+      },
+      "reportedMaxParity": 7.006508218822977e-12,
+      "reportedMaxLedger": 4.179307803534451e-14
+    },
+    {
+      "id": "corner-1110000",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 4.271901429405482e-13,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 1.4604939404618003e-13,
+      "parityFlooredAt": [
+        2468,
+        "we"
+      ],
+      "parityAbsOverX0": 1.4604939404618003e-13,
+      "parityStep0": 1.7505456332547196e-16,
+      "ledgerMax": 4.6682914721673744e-14,
+      "ledgerAt": [
+        2124,
+        "we",
+        43
+      ],
+      "speciesTotalMax": 4.3426036067177605e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 0.6,
+        "bt": 1,
+        "nbi": 0,
+        "ech": 0,
+        "gas": 8,
+        "kappa": 1.95,
+        "delta": 0.6
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 29790130610243590000,
+        "Te": 0.05459649795331901,
+        "Ti": 0.023448564761017757
+      },
+      "reportedMaxParity": 4.271901429405482e-13,
+      "reportedMaxLedger": 4.7485119482276466e-14
+    },
+    {
+      "id": "corner-1110001",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 7.020652120303852e-13,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 4.339429947130687e-13,
+      "parityFlooredAt": [
+        2468,
+        "wi"
+      ],
+      "parityAbsOverX0": 4.402507758512758e-13,
+      "parityStep0": 1.7505456332547196e-16,
+      "ledgerMax": 4.6385688825487186e-14,
+      "ledgerAt": [
+        2372,
+        "wi",
+        45
+      ],
+      "speciesTotalMax": 4.406873784770089e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 2,
+        "bt": 1,
+        "nbi": 0,
+        "ech": 0,
+        "gas": 8,
+        "kappa": 1.95,
+        "delta": 0.6
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 29790130610243590000,
+        "Te": 0.07120386876519824,
+        "Ti": 0.04493575257572653
+      },
+      "reportedMaxParity": 7.020652120303852e-13,
+      "reportedMaxLedger": 4.020220618142771e-14
+    },
+    {
+      "id": "corner-1110010",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 3.7401657428303797e-13,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 1.4782851180311024e-13,
+      "parityFlooredAt": [
+        2447,
+        "we"
+      ],
+      "parityAbsOverX0": 1.4782851180311024e-13,
+      "parityStep0": 1.7505456332547196e-16,
+      "ledgerMax": 4.806170267522798e-14,
+      "ledgerAt": [
+        567,
+        "wi",
+        21
+      ],
+      "speciesTotalMax": 4.3801525254418445e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 0.6,
+        "bt": 2.1,
+        "nbi": 0,
+        "ech": 0,
+        "gas": 8,
+        "kappa": 1.95,
+        "delta": 0.6
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 29790130610243590000,
+        "Te": 0.06123714733085694,
+        "Ti": 0.028711434433781265
+      },
+      "reportedMaxParity": 3.7401657428303797e-13,
+      "reportedMaxLedger": 4.2736025509662e-14
+    },
+    {
+      "id": "corner-1110011",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 5.784512698429389e-13,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 4.371777542711236e-13,
+      "parityFlooredAt": [
+        2470,
+        "wi"
+      ],
+      "parityAbsOverX0": 4.442942252988444e-13,
+      "parityStep0": 1.7505456332547196e-16,
+      "ledgerMax": 4.573659359994388e-14,
+      "ledgerAt": [
+        2248,
+        "we",
+        43
+      ],
+      "speciesTotalMax": 4.516419100661345e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 2,
+        "bt": 2.1,
+        "nbi": 0,
+        "ech": 0,
+        "gas": 8,
+        "kappa": 1.95,
+        "delta": 0.6
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 29790130610243590000,
+        "Te": 0.08329617882039833,
+        "Ti": 0.05789424024944066
+      },
+      "reportedMaxParity": 5.784512698429389e-13,
+      "reportedMaxLedger": 4.792898018633852e-14
+    },
+    {
+      "id": "corner-1110100",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 2.0295099170853794e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 7.483616237560077e-13,
+      "parityFlooredAt": [
+        2478,
+        "we"
+      ],
+      "parityAbsOverX0": 7.646971595241851e-13,
+      "parityStep0": 1.7505456332547196e-16,
+      "ledgerMax": 4.2547786920481174e-14,
+      "ledgerAt": [
+        1032,
+        "wi",
+        22
+      ],
+      "speciesTotalMax": 3.8997850352344324e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 0.6,
+        "bt": 1,
+        "nbi": 12,
+        "ech": 0,
+        "gas": 8,
+        "kappa": 1.95,
+        "delta": 0.6
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 29790130610243590000,
+        "Te": 0.04457085885828282,
+        "Ti": 0.02232613406621593
+      },
+      "reportedMaxParity": 2.0295099170853794e-12,
+      "reportedMaxLedger": 3.904535938380535e-14
+    },
+    {
+      "id": "corner-1110101",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 1.7361358686772242e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 1.2536310667241876e-12,
+      "parityFlooredAt": [
+        2478,
+        "wi"
+      ],
+      "parityAbsOverX0": 1.3223697073328547e-12,
+      "parityStep0": 1.7505456332547196e-16,
+      "ledgerMax": 4.219573858366276e-14,
+      "ledgerAt": [
+        500,
+        "wi",
+        21
+      ],
+      "speciesTotalMax": 3.8452599536434524e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 2,
+        "bt": 1,
+        "nbi": 12,
+        "ech": 0,
+        "gas": 8,
+        "kappa": 1.95,
+        "delta": 0.6
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 29790130610243590000,
+        "Te": 0.0675540550439306,
+        "Ti": 0.04499437826713143
+      },
+      "reportedMaxParity": 1.7361358686772242e-12,
+      "reportedMaxLedger": 4.32200790247434e-14
+    },
+    {
+      "id": "corner-1110110",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 1.882843310707007e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 8.03676012198747e-13,
+      "parityFlooredAt": [
+        2478,
+        "we"
+      ],
+      "parityAbsOverX0": 8.222758796575629e-13,
+      "parityStep0": 1.7505456332547196e-16,
+      "ledgerMax": 4.104634348034224e-14,
+      "ledgerAt": [
+        2490,
+        "we",
+        35
+      ],
+      "speciesTotalMax": 3.823288638252821e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 0.6,
+        "bt": 2.1,
+        "nbi": 12,
+        "ech": 0,
+        "gas": 8,
+        "kappa": 1.95,
+        "delta": 0.6
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 29790130610243590000,
+        "Te": 0.05733532038826931,
+        "Ti": 0.027510615382139544
+      },
+      "reportedMaxParity": 1.882843310707007e-12,
+      "reportedMaxLedger": 3.951232287852167e-14
+    },
+    {
+      "id": "corner-1110111",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 1.5538835088219243e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 1.4148838306932258e-12,
+      "parityFlooredAt": [
+        2496,
+        "wi"
+      ],
+      "parityAbsOverX0": 1.5022223387607089e-12,
+      "parityStep0": 1.7505456332547196e-16,
+      "ledgerMax": 4.449473089112816e-14,
+      "ledgerAt": [
+        912,
+        "wi",
+        47
+      ],
+      "speciesTotalMax": 3.768854730931149e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 2,
+        "bt": 2.1,
+        "nbi": 12,
+        "ech": 0,
+        "gas": 8,
+        "kappa": 1.95,
+        "delta": 0.6
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 29790130610243590000,
+        "Te": 0.08070406341415899,
+        "Ti": 0.06030367595908391
+      },
+      "reportedMaxParity": 1.5538835088219243e-12,
+      "reportedMaxLedger": 4.266970473698773e-14
+    },
+    {
+      "id": "corner-1111000",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 1.1531885137079957e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 3.8234857976209254e-13,
+      "parityFlooredAt": [
+        2468,
+        "we"
+      ],
+      "parityAbsOverX0": 3.8234857976209254e-13,
+      "parityStep0": 1.7505456332547196e-16,
+      "ledgerMax": 4.2376532679251527e-14,
+      "ledgerAt": [
+        2150,
+        "wi",
+        21
+      ],
+      "speciesTotalMax": 4.343637854248333e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 0.6,
+        "bt": 1,
+        "nbi": 0,
+        "ech": 3,
+        "gas": 8,
+        "kappa": 1.95,
+        "delta": 0.6
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 29790130610243590000,
+        "Te": 0.05459786473045822,
+        "Ti": 0.023453452770913222
+      },
+      "reportedMaxParity": 1.1531885137079957e-12,
+      "reportedMaxLedger": 3.8477587584964976e-14
+    },
+    {
+      "id": "corner-1111001",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 1.1309450025424506e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 6.991932784735728e-13,
+      "parityFlooredAt": [
+        2470,
+        "wi"
+      ],
+      "parityAbsOverX0": 7.048541077001689e-13,
+      "parityStep0": 1.7505456332547196e-16,
+      "ledgerMax": 4.905807331949688e-14,
+      "ledgerAt": [
+        1495,
+        "we",
+        47
+      ],
+      "speciesTotalMax": 4.479543686452526e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 2,
+        "bt": 1,
+        "nbi": 0,
+        "ech": 3,
+        "gas": 8,
+        "kappa": 1.95,
+        "delta": 0.6
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 29790130610243590000,
+        "Te": 0.07129520122490984,
+        "Ti": 0.0451464874874173
+      },
+      "reportedMaxParity": 1.1309450025424506e-12,
+      "reportedMaxLedger": 3.974772633712072e-14
+    },
+    {
+      "id": "corner-1111010",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 1.0274539942722607e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 3.946406660827013e-13,
+      "parityFlooredAt": [
+        2468,
+        "we"
+      ],
+      "parityAbsOverX0": 3.946406660827013e-13,
+      "parityStep0": 1.7505456332547196e-16,
+      "ledgerMax": 4.508012397982119e-14,
+      "ledgerAt": [
+        1919,
+        "wi",
+        2
+      ],
+      "speciesTotalMax": 4.278613233961521e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 0.6,
+        "bt": 2.1,
+        "nbi": 0,
+        "ech": 3,
+        "gas": 8,
+        "kappa": 1.95,
+        "delta": 0.6
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 29790130610243590000,
+        "Te": 0.06124288695056328,
+        "Ti": 0.028730150581540433
+      },
+      "reportedMaxParity": 1.0274539942722607e-12,
+      "reportedMaxLedger": 4.103054596492892e-14
+    },
+    {
+      "id": "corner-1111011",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 9.390581711436008e-13,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 7.132644825511118e-13,
+      "parityFlooredAt": [
+        2470,
+        "wi"
+      ],
+      "parityAbsOverX0": 7.200574776230271e-13,
+      "parityStep0": 1.7505456332547196e-16,
+      "ledgerMax": 4.7524211383897463e-14,
+      "ledgerAt": [
+        2124,
+        "wi",
+        43
+      ],
+      "speciesTotalMax": 4.368305728107766e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 2,
+        "bt": 2.1,
+        "nbi": 0,
+        "ech": 3,
+        "gas": 8,
+        "kappa": 1.95,
+        "delta": 0.6
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 29790130610243590000,
+        "Te": 0.08360901587436048,
+        "Ti": 0.058528077204713286
+      },
+      "reportedMaxParity": 9.390581711436008e-13,
+      "reportedMaxLedger": 4.0708753642160344e-14
+    },
+    {
+      "id": "corner-1111100",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 2.695020295316847e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 9.906451146543219e-13,
+      "parityFlooredAt": [
+        2478,
+        "we"
+      ],
+      "parityAbsOverX0": 1.000187655350584e-12,
+      "parityStep0": 1.7505456332547196e-16,
+      "ledgerMax": 4.417320268507774e-14,
+      "ledgerAt": [
+        1226,
+        "wi",
+        21
+      ],
+      "speciesTotalMax": 3.728465547097901e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 0.6,
+        "bt": 1,
+        "nbi": 12,
+        "ech": 3,
+        "gas": 8,
+        "kappa": 1.95,
+        "delta": 0.6
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 29790130610243590000,
+        "Te": 0.010630817334649817,
+        "Ti": 0.02233227505404012
+      },
+      "reportedMaxParity": 2.695020295316847e-12,
+      "reportedMaxLedger": 4.036309445208323e-14
+    },
+    {
+      "id": "corner-1111101",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 2.2391028651757835e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 1.6317744590608088e-12,
+      "parityFlooredAt": [
+        2478,
+        "wi"
+      ],
+      "parityAbsOverX0": 1.6924262007743385e-12,
+      "parityStep0": 1.7505456332547196e-16,
+      "ledgerMax": 4.4402181134994975e-14,
+      "ledgerAt": [
+        1063,
+        "we",
+        22
+      ],
+      "speciesTotalMax": 3.778911559331078e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 2,
+        "bt": 1,
+        "nbi": 12,
+        "ech": 3,
+        "gas": 8,
+        "kappa": 1.95,
+        "delta": 0.6
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 29790130610243590000,
+        "Te": 0.06775443643935448,
+        "Ti": 0.045439539633780675
+      },
+      "reportedMaxParity": 2.2391028651757835e-12,
+      "reportedMaxLedger": 4.101366690675764e-14
+    },
+    {
+      "id": "corner-1111110",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 2.433538375899603e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 1.035770010489188e-12,
+      "parityFlooredAt": [
+        2478,
+        "we"
+      ],
+      "parityAbsOverX0": 1.0538846640142957e-12,
+      "parityStep0": 1.7505456332547196e-16,
+      "ledgerMax": 4.204067570450374e-14,
+      "ledgerAt": [
+        1226,
+        "wi",
+        21
+      ],
+      "speciesTotalMax": 3.888292858543993e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 0.6,
+        "bt": 2.1,
+        "nbi": 12,
+        "ech": 3,
+        "gas": 8,
+        "kappa": 1.95,
+        "delta": 0.6
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 29790130610243590000,
+        "Te": 0.05734270831900104,
+        "Ti": 0.027534743401941505
+      },
+      "reportedMaxParity": 2.433538375899603e-12,
+      "reportedMaxLedger": 4.042231001465788e-14
+    },
+    {
+      "id": "corner-1111111",
+      "group": "corner",
+      "N_rho": 64,
+      "dt": 0.002,
+      "status": "completed",
+      "steps": 2500,
+      "parityMax": 1.8808046472859963e-12,
+      "parityAt": [
+        2499,
+        "wi"
+      ],
+      "parityFloored": 1.748872755062397e-12,
+      "parityFlooredAt": [
+        2496,
+        "wi"
+      ],
+      "parityAbsOverX0": 1.8308739098590895e-12,
+      "parityStep0": 1.7505456332547196e-16,
+      "ledgerMax": 4.5010681501783346e-14,
+      "ledgerAt": [
+        2229,
+        "wi",
+        43
+      ],
+      "speciesTotalMax": 3.7282098984260315e-15,
+      "preMismatch": 0,
+      "badCells": 0,
+      "internal": [],
+      "controls": {
+        "ip": 2,
+        "bt": 2.1,
+        "nbi": 12,
+        "ech": 3,
+        "gas": 8,
+        "kappa": 1.95,
+        "delta": 0.6
+      },
+      "exportedBadValues": 0,
+      "edgeClipFlags": 0,
+      "minCell": {
+        "n": 29790130610243590000,
+        "Te": 0.0813839036016948,
+        "Ti": 0.061590258626310665
+      },
+      "reportedMaxParity": 1.8808046472859963e-12,
+      "reportedMaxLedger": 4.388625192062623e-14
+    }
+  ],
+  "summary": {
+    "runs": 138,
+    "completed": 107,
+    "threw": 31,
+    "silentViolations": 0,
+    "badThrows": 0,
+    "defaultCompleted": true,
+    "maxParityFlooredCompleted": 6.9994543233657885e-12,
+    "maxParityUnflooredCompleted": 9.55533120304223e-11,
+    "maxLedgerCompleted": 9.46704212654099e-14,
+    "edgeClipFlagsTotal": 78,
+    "minTeCompleted": 0.002549710061640785,
+    "minTiCompleted": 0.009712244714437287,
+    "failing": [
+      {
+        "id": "corner-0001100",
+        "controls": {
+          "ip": 0.6,
+          "bt": 1,
+          "nbi": 12,
+          "ech": 3,
+          "gas": 0,
+          "kappa": 1,
+          "delta": -0.3
+        },
+        "errorTime": 1.016,
+        "errorCell": 64,
+        "error": "profile constraint violated at t=1.016000 s in cell 64: T_e <= 0",
+        "profileOffStatus": "completed"
+      },
+      {
+        "id": "corner-0100000",
+        "controls": {
+          "ip": 0.6,
+          "bt": 1,
+          "nbi": 0,
+          "ech": 0,
+          "gas": 0,
+          "kappa": 1.95,
+          "delta": -0.3
+        },
+        "errorTime": 1.894,
+        "errorCell": 64,
+        "error": "profile constraint violated at t=1.894000 s in cell 64: T_i <= 0",
+        "profileOffStatus": "completed"
+      },
+      {
+        "id": "corner-0100001",
+        "controls": {
+          "ip": 2,
+          "bt": 1,
+          "nbi": 0,
+          "ech": 0,
+          "gas": 0,
+          "kappa": 1.95,
+          "delta": -0.3
+        },
+        "errorTime": 4.472,
+        "errorCell": 64,
+        "error": "profile constraint violated at t=4.472000 s in cell 64: T_i <= 0",
+        "profileOffStatus": "completed"
+      },
+      {
+        "id": "corner-0100010",
+        "controls": {
+          "ip": 0.6,
+          "bt": 2.1,
+          "nbi": 0,
+          "ech": 0,
+          "gas": 0,
+          "kappa": 1.95,
+          "delta": -0.3
+        },
+        "errorTime": 2.428,
+        "errorCell": 64,
+        "error": "profile constraint violated at t=2.428000 s in cell 64: T_i <= 0",
+        "profileOffStatus": "completed"
+      },
+      {
+        "id": "corner-0100011",
+        "controls": {
+          "ip": 2,
+          "bt": 2.1,
+          "nbi": 0,
+          "ech": 0,
+          "gas": 0,
+          "kappa": 1.95,
+          "delta": -0.3
+        },
+        "errorTime": 4.604,
+        "errorCell": 64,
+        "error": "profile constraint violated at t=4.604000 s in cell 64: T_i <= 0",
+        "profileOffStatus": "completed"
+      },
+      {
+        "id": "corner-0100100",
+        "controls": {
+          "ip": 0.6,
+          "bt": 1,
+          "nbi": 12,
+          "ech": 0,
+          "gas": 0,
+          "kappa": 1.95,
+          "delta": -0.3
+        },
+        "errorTime": 1,
+        "errorCell": 64,
+        "error": "profile constraint violated at t=1.000000 s in cell 64: T_e <= 0",
+        "profileOffStatus": "completed"
+      },
+      {
+        "id": "corner-0100101",
+        "controls": {
+          "ip": 2,
+          "bt": 1,
+          "nbi": 12,
+          "ech": 0,
+          "gas": 0,
+          "kappa": 1.95,
+          "delta": -0.3
+        },
+        "errorTime": 1.09,
+        "errorCell": 64,
+        "error": "profile constraint violated at t=1.090000 s in cell 64: T_i <= 0",
+        "profileOffStatus": "completed"
+      },
+      {
+        "id": "corner-0100110",
+        "controls": {
+          "ip": 0.6,
+          "bt": 2.1,
+          "nbi": 12,
+          "ech": 0,
+          "gas": 0,
+          "kappa": 1.95,
+          "delta": -0.3
+        },
+        "errorTime": 1.002,
+        "errorCell": 63,
+        "error": "profile constraint violated at t=1.002000 s in cell 63: T_e <= 0",
+        "profileOffStatus": "completed"
+      },
+      {
+        "id": "corner-0100111",
+        "controls": {
+          "ip": 2,
+          "bt": 2.1,
+          "nbi": 12,
+          "ech": 0,
+          "gas": 0,
+          "kappa": 1.95,
+          "delta": -0.3
+        },
+        "errorTime": 1.248,
+        "errorCell": 64,
+        "error": "profile constraint violated at t=1.248000 s in cell 64: T_i <= 0",
+        "profileOffStatus": "completed"
+      },
+      {
+        "id": "corner-0101000",
+        "controls": {
+          "ip": 0.6,
+          "bt": 1,
+          "nbi": 0,
+          "ech": 3,
+          "gas": 0,
+          "kappa": 1.95,
+          "delta": -0.3
+        },
+        "errorTime": 1.002,
+        "errorCell": 64,
+        "error": "profile constraint violated at t=1.002000 s in cell 64: T_e <= 0",
+        "profileOffStatus": "completed"
+      },
+      {
+        "id": "corner-0101001",
+        "controls": {
+          "ip": 2,
+          "bt": 1,
+          "nbi": 0,
+          "ech": 3,
+          "gas": 0,
+          "kappa": 1.95,
+          "delta": -0.3
+        },
+        "errorTime": 2.048,
+        "errorCell": 64,
+        "error": "profile constraint violated at t=2.048000 s in cell 64: T_e <= 0",
+        "profileOffStatus": "completed"
+      },
+      {
+        "id": "corner-0101010",
+        "controls": {
+          "ip": 0.6,
+          "bt": 2.1,
+          "nbi": 0,
+          "ech": 3,
+          "gas": 0,
+          "kappa": 1.95,
+          "delta": -0.3
+        },
+        "errorTime": 1.004,
+        "errorCell": 64,
+        "error": "profile constraint violated at t=1.004000 s in cell 64: T_e <= 0",
+        "profileOffStatus": "completed"
+      },
+      {
+        "id": "corner-0101011",
+        "controls": {
+          "ip": 2,
+          "bt": 2.1,
+          "nbi": 0,
+          "ech": 3,
+          "gas": 0,
+          "kappa": 1.95,
+          "delta": -0.3
+        },
+        "errorTime": 2.662,
+        "errorCell": 64,
+        "error": "profile constraint violated at t=2.662000 s in cell 64: T_e <= 0",
+        "profileOffStatus": "completed"
+      },
+      {
+        "id": "corner-0101100",
+        "controls": {
+          "ip": 0.6,
+          "bt": 1,
+          "nbi": 12,
+          "ech": 3,
+          "gas": 0,
+          "kappa": 1.95,
+          "delta": -0.3
+        },
+        "errorTime": 1,
+        "errorCell": 63,
+        "error": "profile constraint violated at t=1.000000 s in cell 63: T_e <= 0",
+        "profileOffStatus": "completed"
+      },
+      {
+        "id": "corner-0101101",
+        "controls": {
+          "ip": 2,
+          "bt": 1,
+          "nbi": 12,
+          "ech": 3,
+          "gas": 0,
+          "kappa": 1.95,
+          "delta": -0.3
+        },
+        "errorTime": 1.014,
+        "errorCell": 64,
+        "error": "profile constraint violated at t=1.014000 s in cell 64: T_e <= 0",
+        "profileOffStatus": "completed"
+      },
+      {
+        "id": "corner-0101110",
+        "controls": {
+          "ip": 0.6,
+          "bt": 2.1,
+          "nbi": 12,
+          "ech": 3,
+          "gas": 0,
+          "kappa": 1.95,
+          "delta": -0.3
+        },
+        "errorTime": 1,
+        "errorCell": 64,
+        "error": "profile constraint violated at t=1.000000 s in cell 64: T_e <= 0",
+        "profileOffStatus": "completed"
+      },
+      {
+        "id": "corner-0101111",
+        "controls": {
+          "ip": 2,
+          "bt": 2.1,
+          "nbi": 12,
+          "ech": 3,
+          "gas": 0,
+          "kappa": 1.95,
+          "delta": -0.3
+        },
+        "errorTime": 1.042,
+        "errorCell": 64,
+        "error": "profile constraint violated at t=1.042000 s in cell 64: T_e <= 0",
+        "profileOffStatus": "completed"
+      },
+      {
+        "id": "corner-0111100",
+        "controls": {
+          "ip": 0.6,
+          "bt": 1,
+          "nbi": 12,
+          "ech": 3,
+          "gas": 8,
+          "kappa": 1.95,
+          "delta": -0.3
+        },
+        "errorTime": 1.406,
+        "errorCell": 64,
+        "error": "profile constraint violated at t=1.406000 s in cell 64: T_e <= 0",
+        "profileOffStatus": "completed"
+      },
+      {
+        "id": "corner-1100000",
+        "controls": {
+          "ip": 0.6,
+          "bt": 1,
+          "nbi": 0,
+          "ech": 0,
+          "gas": 0,
+          "kappa": 1.95,
+          "delta": 0.6
+        },
+        "errorTime": 3.624,
+        "errorCell": 64,
+        "error": "profile constraint violated at t=3.624000 s in cell 64: T_i <= 0",
+        "profileOffStatus": "completed"
+      },
+      {
+        "id": "corner-1100001",
+        "controls": {
+          "ip": 2,
+          "bt": 1,
+          "nbi": 0,
+          "ech": 0,
+          "gas": 0,
+          "kappa": 1.95,
+          "delta": 0.6
+        },
+        "errorTime": 4.788,
+        "errorCell": 64,
+        "error": "profile constraint violated at t=4.788000 s in cell 64: T_i <= 0",
+        "profileOffStatus": "completed"
+      },
+      {
+        "id": "corner-1100010",
+        "controls": {
+          "ip": 0.6,
+          "bt": 2.1,
+          "nbi": 0,
+          "ech": 0,
+          "gas": 0,
+          "kappa": 1.95,
+          "delta": 0.6
+        },
+        "errorTime": 4.264,
+        "errorCell": 64,
+        "error": "profile constraint violated at t=4.264000 s in cell 64: T_i <= 0",
+        "profileOffStatus": "completed"
+      },
+      {
+        "id": "corner-1100011",
+        "controls": {
+          "ip": 2,
+          "bt": 2.1,
+          "nbi": 0,
+          "ech": 0,
+          "gas": 0,
+          "kappa": 1.95,
+          "delta": 0.6
+        },
+        "errorTime": 4.87,
+        "errorCell": 64,
+        "error": "profile constraint violated at t=4.870000 s in cell 64: T_i <= 0",
+        "profileOffStatus": "completed"
+      },
+      {
+        "id": "corner-1100100",
+        "controls": {
+          "ip": 0.6,
+          "bt": 1,
+          "nbi": 12,
+          "ech": 0,
+          "gas": 0,
+          "kappa": 1.95,
+          "delta": 0.6
+        },
+        "errorTime": 1.002,
+        "errorCell": 63,
+        "error": "profile constraint violated at t=1.002000 s in cell 63: T_e <= 0",
+        "profileOffStatus": "completed"
+      },
+      {
+        "id": "corner-1100110",
+        "controls": {
+          "ip": 0.6,
+          "bt": 2.1,
+          "nbi": 12,
+          "ech": 0,
+          "gas": 0,
+          "kappa": 1.95,
+          "delta": 0.6
+        },
+        "errorTime": 1.004,
+        "errorCell": 64,
+        "error": "profile constraint violated at t=1.004000 s in cell 64: T_e <= 0",
+        "profileOffStatus": "completed"
+      },
+      {
+        "id": "corner-1101000",
+        "controls": {
+          "ip": 0.6,
+          "bt": 1,
+          "nbi": 0,
+          "ech": 3,
+          "gas": 0,
+          "kappa": 1.95,
+          "delta": 0.6
+        },
+        "errorTime": 1.004,
+        "errorCell": 64,
+        "error": "profile constraint violated at t=1.004000 s in cell 64: T_e <= 0",
+        "profileOffStatus": "completed"
+      },
+      {
+        "id": "corner-1101001",
+        "controls": {
+          "ip": 2,
+          "bt": 1,
+          "nbi": 0,
+          "ech": 3,
+          "gas": 0,
+          "kappa": 1.95,
+          "delta": 0.6
+        },
+        "errorTime": 3.846,
+        "errorCell": 64,
+        "error": "profile constraint violated at t=3.846000 s in cell 64: T_e <= 0",
+        "profileOffStatus": "completed"
+      },
+      {
+        "id": "corner-1101010",
+        "controls": {
+          "ip": 0.6,
+          "bt": 2.1,
+          "nbi": 0,
+          "ech": 3,
+          "gas": 0,
+          "kappa": 1.95,
+          "delta": 0.6
+        },
+        "errorTime": 1.008,
+        "errorCell": 64,
+        "error": "profile constraint violated at t=1.008000 s in cell 64: T_e <= 0",
+        "profileOffStatus": "completed"
+      },
+      {
+        "id": "corner-1101011",
+        "controls": {
+          "ip": 2,
+          "bt": 2.1,
+          "nbi": 0,
+          "ech": 3,
+          "gas": 0,
+          "kappa": 1.95,
+          "delta": 0.6
+        },
+        "errorTime": 4.87,
+        "errorCell": 64,
+        "error": "profile constraint violated at t=4.870000 s in cell 64: T_i <= 0",
+        "profileOffStatus": "completed"
+      },
+      {
+        "id": "corner-1101100",
+        "controls": {
+          "ip": 0.6,
+          "bt": 1,
+          "nbi": 12,
+          "ech": 3,
+          "gas": 0,
+          "kappa": 1.95,
+          "delta": 0.6
+        },
+        "errorTime": 1.002,
+        "errorCell": 62,
+        "error": "profile constraint violated at t=1.002000 s in cell 62: T_e <= 0",
+        "profileOffStatus": "completed"
+      },
+      {
+        "id": "corner-1101101",
+        "controls": {
+          "ip": 2,
+          "bt": 1,
+          "nbi": 12,
+          "ech": 3,
+          "gas": 0,
+          "kappa": 1.95,
+          "delta": 0.6
+        },
+        "errorTime": 1.132,
+        "errorCell": 64,
+        "error": "profile constraint violated at t=1.132000 s in cell 64: T_e <= 0",
+        "profileOffStatus": "completed"
+      },
+      {
+        "id": "corner-1101110",
+        "controls": {
+          "ip": 0.6,
+          "bt": 2.1,
+          "nbi": 12,
+          "ech": 3,
+          "gas": 0,
+          "kappa": 1.95,
+          "delta": 0.6
+        },
+        "errorTime": 1.002,
+        "errorCell": 64,
+        "error": "profile constraint violated at t=1.002000 s in cell 64: T_e <= 0",
+        "profileOffStatus": "completed"
+      }
+    ]
+  },
+  "pass": true
+}

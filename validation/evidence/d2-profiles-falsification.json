@@ -1,0 +1,2019 @@
+{
+  "unit": "d2-profiles",
+  "stage": "validate",
+  "part": "B (final, supersedes Part A file)",
+  "validationModel": "claude-opus",
+  "ownAgentId": "validation lane (claude-opus), TeamFlow d2-profiles validate parts A and B",
+  "implementationAgentId": "software lane (claude-sonnet), TeamFlow d2-profiles implement",
+  "modelIndependence": "claude-opus (validation) differs from claude-sonnet (software implementation)",
+  "bindingDecisionsApplied": [
+    "DD-24 (AC-3 normaliser max(X_0D(t), X_0D(0)), un-floored reported)",
+    "DD-25 (AC-7(b) roundoff floor 100 eps M dV_N/dt for reconstructed fluxes; production face flux exactly 0)",
+    "DD-26 (AC-9 informational note)"
+  ],
+  "sourceFingerprint": "c0083e2521267e78471f838c8928d676730ce3c74d5f7ada6851e87c0a06744d",
+  "physicsSha256": {
+    "physics/engine.ts": "c57ea711b0ad722cfc51128df76d5a1efcb670a924ce097f00eca61a8154ddfb",
+    "physics/profiles.ts": "e5f3497f59098b7d391c30ece9818dc7a697cd17e259f0f0d9177e750b22cce4"
+  },
+  "harness": {
+    "path": "validation/independent/d2-profiles.mjs",
+    "sha256": "46e677c7b38072feecd38fd4d0aa68306d54d8be0bad84f40358d9e3d75d238a",
+    "imports": "physics/engine.ts (runShot, geometry, DEFAULT, LIMITS), physics/profiles.ts (withProfileStepObserver, runProfileKernel, evaluateDiagnostics, edgeValue); nothing from tests/"
+  },
+  "node": "v24.20.0",
+  "generated": "2026-09-21T21:54:20.366Z",
+  "runtime": "Part B run 2026-09-21 17:48-17:56 EDT, parallel processes: ac1 0.4 s, sweep 198 s, fixtures 243 s, probe 259 s, ac5 141 s, rates 64 s, adv 9 s; wall ~5 min; no repetitions reduced",
+  "checks": [
+    {
+      "id": "AC-1",
+      "title": "off path",
+      "command": "node --experimental-strip-types validation/independent/d2-profiles.mjs ac1; node --experimental-strip-types --test tests/api.test.mjs tests/capability-policy.test.mjs tests/jev-gate.test.mjs tests/m02.test.mjs tests/physics.test.mjs; python3 -m unittest discover -s python/tests; git diff 99b6a1f HEAD -- <those tests> (empty)",
+      "measured": {
+        "runs": 35,
+        "leafFieldsCompared": 179886,
+        "differences": 0,
+        "nonBooleanEnabledThrows": "6/6",
+        "existingSuites": {
+          "pass": true,
+          "nodeTests": 36,
+          "nodePass": 36,
+          "nodeFail": 0,
+          "files": "tests/api, capability-policy, jev-gate, m02, physics",
+          "pythonTestsRan": 14,
+          "pythonFailures": 0,
+          "gitDiffPreexistingTestsSince99b6a1fBytes": 0
+        }
+      },
+      "tolerance": "Object.is deep, 0 differences, modelVersion 0.1.0, schemaVersion 1, no profiles key; existing suites unchanged and passing",
+      "verdict": "pass",
+      "evidence": "validation/evidence/d2-profiles/d2-ver-offpath.json"
+    },
+    {
+      "id": "AC-2",
+      "title": "passenger",
+      "command": "node --experimental-strip-types validation/independent/d2-profiles.mjs sweep",
+      "measured": {
+        "casesCompared": 111,
+        "differingFields": 0,
+        "leavesCompared": 475302,
+        "keyOrderFailures": 0,
+        "modelVersionWrong": 0
+      },
+      "tolerance": "0 differing original Shot fields",
+      "verdict": "pass",
+      "evidence": "validation/evidence/d2-profiles/d2-ver-passenger.json"
+    },
+    {
+      "id": "AC-3",
+      "title": "integral parity (DD-24 normaliser)",
+      "command": "node --experimental-strip-types validation/independent/d2-profiles.mjs sweep",
+      "measured": {
+        "runs": 1296,
+        "completing": 1005,
+        "maxFlooredAllAcceptedSteps": 9.641923192390137e-11,
+        "maxUnflooredAllAcceptedSteps": 1.1156413621697193e-9,
+        "unflooredOver1e9": [
+          {
+            "id": "corner-0001001",
+            "N_rho": 128,
+            "dt": 0.002,
+            "status": "completed",
+            "unfloored": 1.1156413621697193e-9,
+            "floored": 1.773707877701281e-11,
+            "absOverX0": 1.773707877701281e-11,
+            "at": [
+              2499,
+              "wi"
+            ]
+          }
+        ],
+        "maxStep0": 4.852139337082393e-16,
+        "preStateMismatches": 0
+      },
+      "tolerance": "|sum x dV - X_0D(t)| / max(X_0D(t), X_0D(0)) <= 1e-9 every step, N_rho {32,64,128} x dt {0.004,0.002,0.001}, every completing AC-9 case (+ M02 variants, all-zero chi=5); un-floored ratio reported, not judged (DD-24)",
+      "verdict": "pass",
+      "note": "Re-verdict under DD-24 from a full re-run (1296 runs). Floored maximum 9.642e-11 (margin 10.4x). Un-floored maximum 1.1156e-9 still exceeds 1e-9 in exactly one run (corner-0001001, N_rho=128, dt=0.002, last step, W_i), whose floored value is 1.77e-11: the Part A failure is amplification by a 100x-decayed inventory, as DD-24 states. Pass is conditional on the DD-24 amendment; under the pre-amendment normaliser this run would still fail.",
+      "evidence": "validation/evidence/d2-profiles/d2-ver-parity.json"
+    },
+    {
+      "id": "AC-4",
+      "title": "ledger and anti-tautology (own oracle)",
+      "command": "node --experimental-strip-types validation/independent/d2-profiles.mjs sweep",
+      "measured": {
+        "runs": 1296,
+        "maxLedgerCompleting": 7.604904616272994e-13,
+        "maxLedgerAllAcceptedSteps": 7.604904616272994e-13,
+        "maxSpeciesTotal": 5.1393784967658264e-14,
+        "mutationStep": 750,
+        "rClean": 2.89981416709027e-14,
+        "shapeBound": 1e-10,
+        "mutations": [
+          {
+            "mutation": "(a) +1e-6 N into density cell 32",
+            "residual": 0.004112956331284625,
+            "bound": 1e-8,
+            "ratio": 411295.6331284625,
+            "rejected": true
+          },
+          {
+            "mutation": "(b1) 1e-6 We moved w_e cell 10 -> w_e cell 50",
+            "residual": 0.010857418897887152,
+            "bound": 1e-8,
+            "ratio": 1085741.8897887152,
+            "rejected": true
+          },
+          {
+            "mutation": "(b2) 1e-6 We moved w_e cell 10 -> w_i cell 10",
+            "residual": 0.012439880509452413,
+            "bound": 1e-8,
+            "ratio": 1243988.0509452412,
+            "rejected": true
+          },
+          {
+            "mutation": "(c) shape nbi x (1+1e-6)",
+            "residual": 3.511705001465862e-8,
+            "bound": 1e-10,
+            "ratio": 351.17050014658616,
+            "rejected": true
+          },
+          {
+            "mutation": "(c) shape ech x (1+1e-6)",
+            "residual": 4.450048596717792e-8,
+            "bound": 1e-10,
+            "ratio": 445.0048596717792,
+            "rejected": true
+          },
+          {
+            "mutation": "(c) shape gas x (1+1e-6)",
+            "residual": 5.251412232096687e-9,
+            "bound": 1e-10,
+            "ratio": 52.51412232096687,
+            "rejected": true
+          },
+          {
+            "mutation": "(c) shape br x (1+1e-6)",
+            "residual": 2.1184727568450572e-10,
+            "bound": 1e-10,
+            "ratio": 2.118472756845057,
+            "rejected": true
+          },
+          {
+            "mutation": "(c) shape ohm x (1+1e-6)",
+            "residual": 2.3558420494133977e-9,
+            "bound": 1e-10,
+            "ratio": 23.558420494133976,
+            "rejected": true
+          }
+        ]
+      },
+      "tolerance": "per-cell and species-total <= 1e-10; mutations (a),(b) residual >= 1e-8; (c) >= max(1e-10, 100 r_clean) (DD-20)",
+      "verdict": "pass",
+      "marginal": "bremsstrahlung shape mutation ratio 2.118 (rejected with ~2x margin); ADV-1 shows step 750 is the worst sampled step for it",
+      "evidence": "validation/evidence/d2-profiles/d2-ver-ledger.json"
+    },
+    {
+      "id": "AC-5",
+      "title": "analytic fixtures (own cell averages, 10-node Gauss-Legendre per cell, own J0 power series, verification-only kernel entry)",
+      "command": "node --experimental-strip-types validation/independent/d2-profiles.mjs ac5; node --experimental-strip-types validation/independent/d2-profiles.mjs rates",
+      "measured": {
+        "F1_steady": [
+          {
+            "fixture": "F1 (a) normalised S=1, D/L2=1",
+            "N_rho": 16,
+            "L2rel": 2.611282778817781e-14,
+            "stepsRun": 123,
+            "stopRuleReached": true,
+            "axisFaceFluxNonZero": 0
+          },
+          {
+            "fixture": "F1 (b) SI density V=23.11, D=0.1, S=1e19",
+            "N_rho": 16,
+            "L2rel": 2.8951617062230843e-14,
+            "stepsRun": 123,
+            "stopRuleReached": true,
+            "axisFaceFluxNonZero": 0
+          },
+          {
+            "fixture": "F1 (c) SI electron energy n=3e19, chi_e=3, S_e=1e5 W/m3",
+            "N_rho": 16,
+            "L2rel": 2.8720264694666716e-14,
+            "stepsRun": 123,
+            "stopRuleReached": true,
+            "axisFaceFluxNonZero": 0
+          },
+          {
+            "fixture": "F1 (a) normalised S=1, D/L2=1",
+            "N_rho": 64,
+            "L2rel": 8.390142015739565e-15,
+            "stepsRun": 123,
+            "stopRuleReached": true,
+            "axisFaceFluxNonZero": 0
+          },
+          {
+            "fixture": "F1 (b) SI density V=23.11, D=0.1, S=1e19",
+            "N_rho": 64,
+            "L2rel": 2.1721660684034148e-14,
+            "stepsRun": 123,
+            "stopRuleReached": true,
+            "axisFaceFluxNonZero": 0
+          },
+          {
+            "fixture": "F1 (c) SI electron energy n=3e19, chi_e=3, S_e=1e5 W/m3",
+            "N_rho": 64,
+            "L2rel": 4.161527071377352e-14,
+            "stepsRun": 123,
+            "stopRuleReached": true,
+            "axisFaceFluxNonZero": 0
+          },
+          {
+            "fixture": "F1 (a) normalised S=1, D/L2=1",
+            "N_rho": 256,
+            "L2rel": 2.256671594930391e-14,
+            "stepsRun": 123,
+            "stopRuleReached": true,
+            "axisFaceFluxNonZero": 0
+          },
+          {
+            "fixture": "F1 (b) SI density V=23.11, D=0.1, S=1e19",
+            "N_rho": 256,
+            "L2rel": 1.0831269576401606e-13,
+            "stepsRun": 123,
+            "stopRuleReached": true,
+            "axisFaceFluxNonZero": 0
+          },
+          {
+            "fixture": "F1 (c) SI electron energy n=3e19, chi_e=3, S_e=1e5 W/m3",
+            "N_rho": 256,
+            "L2rel": 3.306784402203167e-13,
+            "stepsRun": 124,
+            "stopRuleReached": true,
+            "axisFaceFluxNonZero": 0
+          }
+        ],
+        "F2_dirichlet": {
+          "N_rho": 256,
+          "dt": 0.000002,
+          "L2rel_we": 0.0000757191852176904,
+          "L2rel_wi": 0.0000757191852176904,
+          "pointValueRho0p5_reportedNotJudged": {
+            "interpolated": 0.0020627755750835634,
+            "analytic": 0.002062640332169856,
+            "relDiff": 0.00006556786057081068,
+            "judged": false
+          },
+          "dmpMaxViolationOverM": 0
+        },
+        "F3_reflect": {
+          "N_rho": 256,
+          "dt": 0.000001,
+          "L2rel_we": 0.000381945594237114,
+          "L2rel_wi": 0.000381945594237114,
+          "uniformCompanionRelChange": 0,
+          "edgeFluxProductionExactZero": "2000000/2000000",
+          "edgeFluxReconstructedDD25Ratio": 0.0080958151466834,
+          "rates": {
+            "spatial": [
+              {
+                "N": [
+                  32,
+                  64
+                ],
+                "e": [
+                  0.017689209377294242,
+                  0.004394504498146008
+                ],
+                "p": 2.0090971591929923,
+                "pass": true
+              },
+              {
+                "N": [
+                  64,
+                  128
+                ],
+                "e": [
+                  0.004394504498146008,
+                  0.001096730090889627
+                ],
+                "p": 2.002491986494582,
+                "pass": true
+              },
+              {
+                "N": [
+                  128,
+                  256
+                ],
+                "e": [
+                  0.001096730090889627,
+                  0.00027389703144353874
+                ],
+                "p": 2.0015029821359356,
+                "pass": true
+              }
+            ],
+            "temporal": [
+              {
+                "dt": [
+                  0.00004,
+                  0.00002,
+                  0.00001
+                ],
+                "d": [
+                  0.002161824131558056,
+                  0.0010794835428344517
+                ],
+                "p": 1.0019079128471506,
+                "pass": true
+              },
+              {
+                "dt": [
+                  0.00002,
+                  0.00001,
+                  0.000005
+                ],
+                "d": [
+                  0.0010794835428344517,
+                  0.0005393849257330181
+                ],
+                "p": 1.0009541410088243,
+                "pass": true
+              }
+            ]
+          }
+        },
+        "F4_mms": {
+          "N_rho": 128,
+          "dt": 0.00001,
+          "L2rel_we": 0.000021516878831260632,
+          "L2rel_wi": 0.000021516878831260632,
+          "ownSourceResidualFD": 7.811581170802384e-8
+        }
+      },
+      "tolerance": "F1 L2rel <= 1e-6 (9 runs), stop rule within 2000 steps, axis flux exactly 0; F2 L2rel <= 1e-4 and DMP; F3 L2rel <= 1e-3 AND p_x in [1.6,2.4] (3 rates) AND p_t in [0.8,1.2] (2 rates) AND uniform total <= 1e-12 AND edge flux (production exactly 0; reconstructed <= DD-25 bound); F4 L2rel <= 1e-4",
+      "ratios": {
+        "F1_worst": 3.306784402203167e-7,
+        "F2": 0.757191852176904,
+        "F3": 0.381945594237114,
+        "F4": 0.2151687883126063
+      },
+      "verdict": "pass",
+      "note": "Closest to its limit: F2 at 0.757 of 1e-4 (margin 1.32x), as the spec anticipated.",
+      "evidence": "validation/evidence/d2-profiles/d2-ver-steady.json, d2-ver-eigen-dirichlet.json, d2-ver-eigen-reflect.json, d2-ver-mms-conduction.json, d2-ver-refinement.json"
+    },
+    {
+      "id": "AC-6",
+      "title": "convergence rates",
+      "command": "node --experimental-strip-types validation/independent/d2-profiles.mjs rates",
+      "measured": {
+        "F2": {
+          "spatial": [
+            {
+              "N": [
+                32,
+                64
+              ],
+              "e": [
+                0.0025930381667266414,
+                0.0006642180080875194
+              ],
+              "p": 1.9649146988469988,
+              "pass": true
+            },
+            {
+              "N": [
+                64,
+                128
+              ],
+              "e": [
+                0.0006642180080875194,
+                0.0001680710847387212
+              ],
+              "p": 1.982585295313124,
+              "pass": true
+            },
+            {
+              "N": [
+                128,
+                256
+              ],
+              "e": [
+                0.0001680710847387212,
+                0.000042268957951561055
+              ],
+              "p": 1.9914010905524278,
+              "pass": true
+            }
+          ],
+          "temporal": [
+            {
+              "dt": [
+                0.00004,
+                0.00002,
+                0.00001
+              ],
+              "d": [
+                0.0003345520667670626,
+                0.00016725342842167836
+              ],
+              "p": 1.0001949727610737,
+              "pass": true
+            },
+            {
+              "dt": [
+                0.00002,
+                0.00001,
+                0.000005
+              ],
+              "d": [
+                0.00016725342842167836,
+                0.00008362106270547393
+              ],
+              "p": 1.0000975008328057,
+              "pass": true
+            }
+          ]
+        },
+        "F3": {
+          "spatial": [
+            {
+              "N": [
+                32,
+                64
+              ],
+              "e": [
+                0.017689209377294242,
+                0.004394504498146008
+              ],
+              "p": 2.0090971591929923,
+              "pass": true
+            },
+            {
+              "N": [
+                64,
+                128
+              ],
+              "e": [
+                0.004394504498146008,
+                0.001096730090889627
+              ],
+              "p": 2.002491986494582,
+              "pass": true
+            },
+            {
+              "N": [
+                128,
+                256
+              ],
+              "e": [
+                0.001096730090889627,
+                0.00027389703144353874
+              ],
+              "p": 2.0015029821359356,
+              "pass": true
+            }
+          ],
+          "temporal": [
+            {
+              "dt": [
+                0.00004,
+                0.00002,
+                0.00001
+              ],
+              "d": [
+                0.002161824131558056,
+                0.0010794835428344517
+              ],
+              "p": 1.0019079128471506,
+              "pass": true
+            },
+            {
+              "dt": [
+                0.00002,
+                0.00001,
+                0.000005
+              ],
+              "d": [
+                0.0010794835428344517,
+                0.0005393849257330181
+              ],
+              "p": 1.0009541410088243,
+              "pass": true
+            }
+          ]
+        },
+        "F4": {
+          "spatial": [
+            {
+              "N": [
+                32,
+                64
+              ],
+              "e": [
+                0.0004850407529961195,
+                0.00012643451541635456
+              ],
+              "p": 1.9397156079857643,
+              "pass": true
+            },
+            {
+              "N": [
+                64,
+                128
+              ],
+              "e": [
+                0.00012643451541635456,
+                0.0000322699742616413
+              ],
+              "p": 1.9701260270111676,
+              "pass": true
+            },
+            {
+              "N": [
+                128,
+                256
+              ],
+              "e": [
+                0.0000322699742616413,
+                0.00000815110484504885
+              ],
+              "p": 1.985124898702578,
+              "pass": true
+            }
+          ],
+          "temporal": [
+            {
+              "dt": [
+                0.00004,
+                0.00002,
+                0.00001
+              ],
+              "d": [
+                0.0000220699791400167,
+                0.000011034864764342187
+              ],
+              "p": 1.0000163169645728,
+              "pass": true
+            },
+            {
+              "dt": [
+                0.00002,
+                0.00001,
+                0.000005
+              ],
+              "d": [
+                0.000011034864764342187,
+                0.000005517400726239885
+              ],
+              "p": 1.0000082773984023,
+              "pass": true
+            }
+          ]
+        },
+        "defaultShot": [
+          {
+            "t": 0.5,
+            "cell": "first",
+            "Te": [
+              0.4040205699392379,
+              0.4041989770815191,
+              0.40428860146014933,
+              0.40433351900240794
+            ],
+            "rates": [
+              0.9932102560048749,
+              0.9966122212497696
+            ]
+          },
+          {
+            "t": 0.5,
+            "cell": "last",
+            "Te": [
+              0.22544262712401072,
+              0.22543444985025318,
+              0.22543084522090176,
+              0.22542916396446325
+            ],
+            "rates": [
+              1.1817690185461327,
+              1.100311128346878
+            ]
+          },
+          {
+            "t": 2,
+            "cell": "first",
+            "Te": [
+              1.275470548651168,
+              1.2755762955679617,
+              1.2756289601113557,
+              1.275655239613934
+            ],
+            "rates": [
+              1.005711706250836,
+              1.0028940203023917
+            ]
+          },
+          {
+            "t": 2,
+            "cell": "last",
+            "Te": [
+              0.5592621572758093,
+              0.5592433411200287,
+              0.5592337759470771,
+              0.5592289535350848
+            ],
+            "rates": [
+              0.9761089496877529,
+              0.9880361450120878
+            ]
+          },
+          {
+            "t": 3,
+            "cell": "first",
+            "Te": [
+              1.1452833357605758,
+              1.14537862926196,
+              1.1454262595468736,
+              1.1454500705761639
+            ],
+            "rates": [
+              1.00049865315936,
+              1.000249192604469
+            ]
+          },
+          {
+            "t": 3,
+            "cell": "last",
+            "Te": [
+              0.5044942890386496,
+              0.5045007405823315,
+              0.5045039610539974,
+              0.5045055699697195
+            ],
+            "rates": [
+              1.0023724012329995,
+              1.0011832418925484
+            ]
+          },
+          {
+            "t": 4.5,
+            "cell": "first",
+            "Te": [
+              0.3707551874107873,
+              0.37097559260829255,
+              0.3710861567265349,
+              0.3711415275947963
+            ],
+            "rates": [
+              0.9952749866620054,
+              0.9976842088728103
+            ]
+          },
+          {
+            "t": 4.5,
+            "cell": "last",
+            "Te": [
+              0.2364068036697139,
+              0.2367302317104474,
+              0.23689233092640563,
+              0.2369734752823158
+            ],
+            "rates": [
+              0.9965676509211846,
+              0.9983144577943528
+            ]
+          }
+        ],
+        "ratesReported": {
+          "fixtureRates": 15,
+          "shotRates": 16
+        }
+      },
+      "tolerance": "spatial [1.8,2.2] (N_rho 32..256, Richardson time-error removal at dt 1e-5/5e-6); temporal fixtures [0.85,1.15] (dt 4e-5..5e-6, N_rho 256 for F2/F3, 128 for F4); default shot [0.7,1.3] (dt 0.004..0.0005, N_rho 64, first/last-cell T_e at 0.5, 2, 3, 4.5 s)",
+      "verdict": "pass",
+      "note": "All 31 rates computed (15 fixture + 16 default-shot), none exempted as roundoff-limited. Extremes: fixture spatial 1.940 (F4, 32/64) to 2.009 (F3, 32/64); fixture temporal 1.000-1.002; default shot 0.976-1.182 (last-cell T_e at 0.5 s, 0.004/0.002/0.001 triple).",
+      "evidence": "validation/evidence/d2-profiles/d2-ver-refinement.json"
+    },
+    {
+      "id": "AC-7",
+      "title": "structure (a)-(d), DD-25 edge bound",
+      "command": "node --experimental-strip-types validation/independent/d2-profiles.mjs fixtures; node --experimental-strip-types validation/independent/d2-profiles.mjs probe",
+      "measured": {
+        "default": {
+          "axisNonZero": 0,
+          "edgeDeliveredMaxRel": 4.286676570686111e-14,
+          "edgeDeliveredAt": [
+            434,
+            "wi"
+          ],
+          "edgeTol": 1e-12,
+          "prescribedOwnVsExportedMaxRel": 0,
+          "shapeNormProdMaxDev": 1.1102230246251565e-15,
+          "shapeNormOwnMaxDev": 1.1102230246251565e-15,
+          "shapeTol": 1e-13,
+          "steps": 2500
+        },
+        "a_axisFluxNonExactZeroCount": {
+          "default": 0,
+          "fixtures": {
+            "F1 STEADY (a) N=16": 0,
+            "F1 STEADY (a) N=64": 0,
+            "F1 STEADY (a) N=256": 0,
+            "F1 diffusion-only companion N=64 (DMP)": 0,
+            "F2 EIGEN-DIRICHLET N=256 dt=2e-6 t=1": 0,
+            "F3 EIGEN-REFLECT N=256 dt=0.000001 t=1": 0,
+            "F3 EIGEN-REFLECT N=256 dt=5e-7 t=1": 0,
+            "F4 MMS-CONDUCTION N=128 dt=1e-5 t=1": 0
+          },
+          "probe": 0,
+          "tolerance": 0
+        },
+        "c_shapeNormMaxDeviation": {
+          "production": 1.1102230246251565e-15,
+          "ownOracle": 1.1102230246251565e-15,
+          "tolerance": 1e-13,
+          "ratio": 0.011102230246251565
+        },
+        "b_default": {
+          "edgeDeliveredMaxRel": 4.286676570686111e-14,
+          "tolerance": 1e-12,
+          "ratio": 0.04286676570686111
+        },
+        "d_dmp": [
+          {
+            "name": "F1 diffusion-only companion N=64 (DMP)",
+            "maxViolationOverM": 0,
+            "pass": true
+          },
+          {
+            "name": "F2 EIGEN-DIRICHLET N=256 dt=2e-6 t=1",
+            "maxViolationOverM": 0,
+            "pass": true
+          },
+          {
+            "name": "F3 EIGEN-REFLECT N=256 dt=0.000001 t=1",
+            "maxViolationOverM": 0,
+            "pass": true
+          },
+          {
+            "name": "F3 EIGEN-REFLECT N=256 dt=5e-7 t=1",
+            "maxViolationOverM": 0,
+            "pass": true
+          }
+        ],
+        "b_fixtures": [
+          {
+            "name": "F1 STEADY (a) N=16",
+            "ratioDD25": 0.0006573140770758701,
+            "ratioPreDD25": 0.000666133818027399,
+            "productionZeroFlux": {
+              "checked": 0,
+              "nonExactZero": 0,
+              "maxAbsProdDelivered": 0
+            }
+          },
+          {
+            "name": "F1 STEADY (a) N=64",
+            "ratioDD25": 0.0006812352193494208,
+            "ratioPreDD25": 0.0006835430875624193,
+            "productionZeroFlux": {
+              "checked": 0,
+              "nonExactZero": 0,
+              "maxAbsProdDelivered": 0
+            }
+          },
+          {
+            "name": "F1 STEADY (a) N=256",
+            "ratioDD25": 0.00044371065867130006,
+            "ratioPreDD25": 0.0004440947588246095,
+            "productionZeroFlux": {
+              "checked": 0,
+              "nonExactZero": 0,
+              "maxAbsProdDelivered": 0
+            }
+          },
+          {
+            "name": "F1 diffusion-only companion N=64 (DMP)",
+            "ratioDD25": 0.0009040338331379523,
+            "ratioPreDD25": 0.0009090188747526713,
+            "productionZeroFlux": {
+              "checked": 0,
+              "nonExactZero": 0,
+              "maxAbsProdDelivered": 0
+            }
+          },
+          {
+            "name": "F2 EIGEN-DIRICHLET N=256 dt=2e-6 t=1",
+            "ratioDD25": 0.00005593688805435045,
+            "ratioPreDD25": 0.001995230490841121,
+            "productionZeroFlux": {
+              "checked": 0,
+              "nonExactZero": 0,
+              "maxAbsProdDelivered": 0
+            }
+          },
+          {
+            "name": "F3 EIGEN-REFLECT N=256 dt=0.000001 t=1",
+            "ratioDD25": 0.0080958151466834,
+            "ratioPreDD25": 0.5694522839292319,
+            "productionZeroFlux": {
+              "checked": 2000000,
+              "nonExactZero": 0,
+              "maxAbsProdDelivered": 1.0127731986386834e-12
+            }
+          },
+          {
+            "name": "F3 EIGEN-REFLECT N=256 dt=5e-7 t=1",
+            "ratioDD25": 0.006856096192785871,
+            "ratioPreDD25": 0.957647051814772,
+            "productionZeroFlux": {
+              "checked": 4000000,
+              "nonExactZero": 0,
+              "maxAbsProdDelivered": 1.567856955375646e-12
+            }
+          },
+          {
+            "name": "F4 MMS-CONDUCTION N=128 dt=1e-5 t=1",
+            "ratioDD25": 0.0002059085452985203,
+            "ratioPreDD25": 0.0019848180594394956,
+            "productionZeroFlux": {
+              "checked": 0,
+              "nonExactZero": 0,
+              "maxAbsProdDelivered": 0
+            }
+          }
+        ],
+        "F3_edgeFlux_dt_1e6_5e7_2p5e7": [
+          {
+            "fixture": "F3 EIGEN-REFLECT N=256 dt=0.000001 t=1",
+            "reconstructedRatioUnderDD25Bound": 0.0080958151466834,
+            "ratioAgainstPreDD25Bound_1e12Only": 0.5694522839292319,
+            "worst": {
+              "step": 787584,
+              "species": "we",
+              "absDiff": 1.352388685453977e-17,
+              "relTerm": 2.3748937770913282e-17,
+              "roundoffFloor": 1.6467297737001703e-15,
+              "M": 0.000009511327653700097,
+              "dV_N": 0.0077972412109375,
+              "dt": 0.000001,
+              "oldRatio": 0.5694522839292319
+            },
+            "productionFaceFluxExactZero": "2000000/2000000 steps x species Object.is 0",
+            "pass": true
+          },
+          {
+            "fixture": "F3 EIGEN-REFLECT N=256 dt=5e-7 t=1",
+            "reconstructedRatioUnderDD25Bound": 0.006856096192785871,
+            "ratioAgainstPreDD25Bound_1e12Only": 0.957647051814772,
+            "worst": {
+              "step": 252435,
+              "species": "we",
+              "absDiff": 3.7480955838997687e-13,
+              "relTerm": 3.9138590536012266e-13,
+              "roundoffFloor": 5.427668581515619e-11,
+              "M": 0.15674804421155814,
+              "dV_N": 0.0077972412109375,
+              "dt": 5e-7,
+              "oldRatio": 0.957647051814772
+            },
+            "productionFaceFluxExactZero": "4000000/4000000 steps x species Object.is 0",
+            "pass": true
+          },
+          {
+            "fixture": "F3 EIGEN-REFLECT N=256 dt=2.5e-7 t=1 (probe)",
+            "reconstructedRatioUnderDD25Bound": 0.006577548293759729,
+            "ratioAgainstPreDD25Bound_1e12Only": 1.8309024305404231,
+            "worst": {
+              "step": 2581014,
+              "species": "we",
+              "absDiff": 3.5140644124502345e-16,
+              "relTerm": 1.9193073065138684e-16,
+              "roundoffFloor": 5.323320969414957e-14,
+              "M": 0.00007686727165949834,
+              "dV_N": 0.0077972412109375,
+              "dt": 2.5e-7,
+              "oldRatio": 1.8309024305404231
+            },
+            "productionFaceFluxExactZero": "8000000/8000000 steps x species Object.is 0",
+            "pass": true
+          }
+        ]
+      },
+      "tolerance": {
+        "a": "Object.is(axisFlux, 0) every species every step",
+        "b": "DD-25: |delivered - prescribed| <= 1e-12 * max(|prescribed|, flux scale) + 100 eps M dV_N/dt (reconstructed); production-reported face flux for a prescribed 0 is Object.is 0",
+        "c": "|sum h_i dV_i - 1| <= 1e-13",
+        "d": "values within [min u0 - 1e-14 M, max u0 + 1e-14 M] incl. Dirichlet boundary value"
+      },
+      "verdict": "pass",
+      "note": "Re-verdict under DD-25 from a full re-run. F3 reconstructed-flux ratio against the amended bound: F3 EIGEN-REFLECT N=256 dt=0.000001: 8.10e-3 (pre-DD-25 0.569); F3 EIGEN-REFLECT N=256 dt=5e-7: 6.86e-3 (pre-DD-25 0.958); F3 EIGEN-REFLECT N=256 dt=2.5e-7: 6.58e-3 (pre-DD-25 1.831). The production-reported face flux for the prescribed 0 is Object.is 0 on every step and species. Pass is conditional on the DD-25 amendment; against the pre-amendment 1e-12-only bound the dt=2.5e-7 run still fails (1.83).",
+      "evidence": "validation/evidence/d2-profiles/d2-ver-structure.json, d2-ver-structure-f3-probe.json"
+    },
+    {
+      "id": "AC-8",
+      "title": "diagnostics",
+      "command": "node --experimental-strip-types validation/independent/d2-profiles.mjs sweep",
+      "measured": {
+        "maxRelA6": 7.17218013168169e-15,
+        "samples": [
+          0.5,
+          2,
+          3,
+          4.5
+        ],
+        "gridOk": true,
+        "anchors": [
+          {
+            "id": "A1",
+            "pass": true,
+            "errBr": 0,
+            "errOhm": 2.220446049250313e-16
+          },
+          {
+            "id": "A2",
+            "pass": true,
+            "errorRatio": 7.5135076720602685,
+            "rel256": 0.00005932315489900291,
+            "rel64": 0.00044572497946447805
+          },
+          {
+            "id": "A3 gamma=1",
+            "pass": true,
+            "errorRatio": 15.99816893247748,
+            "rel256": 0.000007629336323033975,
+            "rel64": 0.00012205541133858411
+          },
+          {
+            "id": "A3 gamma=2",
+            "pass": true,
+            "errorRatio": 15.997316008814511,
+            "rel256": 0.000008477010179610801,
+            "rel64": 0.00013560941065317146
+          },
+          {
+            "id": "A4",
+            "pass": true
+          },
+          {
+            "id": "A5",
+            "pass": true,
+            "maxRel": 3.2188138948105588e-12
+          }
+        ]
+      },
+      "tolerance": "A6 <= 1e-9 relative (1e-15 abs at 0), clip flags exact; A1 1e-12; A2/A3 2e-4 at N=256 with ratio >= 4; A4 1e-12; A5 1e-9",
+      "verdict": "pass",
+      "evidence": "validation/evidence/d2-profiles/d2-ver-diagnostics.json"
+    },
+    {
+      "id": "AC-9",
+      "title": "sweep (own driver)",
+      "command": "node --experimental-strip-types validation/independent/d2-profiles.mjs sweep",
+      "measured": {
+        "runs": 138,
+        "completed": 107,
+        "threw": 31,
+        "silentViolations": 0,
+        "badThrows": 0,
+        "defaultCompleted": true,
+        "maxParityFlooredCompleted": 6.9994543233657885e-12,
+        "maxParityUnflooredCompleted": 9.55533120304223e-11,
+        "maxLedgerCompleted": 9.46704212654099e-14,
+        "edgeClipFlagsTotal": 78,
+        "minTeCompleted": 0.002549710061640785,
+        "minTiCompleted": 0.009712244714437287,
+        "failing": [
+          {
+            "id": "corner-0001100",
+            "controls": {
+              "ip": 0.6,
+              "bt": 1,
+              "nbi": 12,
+              "ech": 3,
+              "gas": 0,
+              "kappa": 1,
+              "delta": -0.3
+            },
+            "errorTime": 1.016,
+            "errorCell": 64,
+            "error": "profile constraint violated at t=1.016000 s in cell 64: T_e <= 0",
+            "profileOffStatus": "completed"
+          },
+          {
+            "id": "corner-0100000",
+            "controls": {
+              "ip": 0.6,
+              "bt": 1,
+              "nbi": 0,
+              "ech": 0,
+              "gas": 0,
+              "kappa": 1.95,
+              "delta": -0.3
+            },
+            "errorTime": 1.894,
+            "errorCell": 64,
+            "error": "profile constraint violated at t=1.894000 s in cell 64: T_i <= 0",
+            "profileOffStatus": "completed"
+          },
+          {
+            "id": "corner-0100001",
+            "controls": {
+              "ip": 2,
+              "bt": 1,
+              "nbi": 0,
+              "ech": 0,
+              "gas": 0,
+              "kappa": 1.95,
+              "delta": -0.3
+            },
+            "errorTime": 4.472,
+            "errorCell": 64,
+            "error": "profile constraint violated at t=4.472000 s in cell 64: T_i <= 0",
+            "profileOffStatus": "completed"
+          },
+          {
+            "id": "corner-0100010",
+            "controls": {
+              "ip": 0.6,
+              "bt": 2.1,
+              "nbi": 0,
+              "ech": 0,
+              "gas": 0,
+              "kappa": 1.95,
+              "delta": -0.3
+            },
+            "errorTime": 2.428,
+            "errorCell": 64,
+            "error": "profile constraint violated at t=2.428000 s in cell 64: T_i <= 0",
+            "profileOffStatus": "completed"
+          },
+          {
+            "id": "corner-0100011",
+            "controls": {
+              "ip": 2,
+              "bt": 2.1,
+              "nbi": 0,
+              "ech": 0,
+              "gas": 0,
+              "kappa": 1.95,
+              "delta": -0.3
+            },
+            "errorTime": 4.604,
+            "errorCell": 64,
+            "error": "profile constraint violated at t=4.604000 s in cell 64: T_i <= 0",
+            "profileOffStatus": "completed"
+          },
+          {
+            "id": "corner-0100100",
+            "controls": {
+              "ip": 0.6,
+              "bt": 1,
+              "nbi": 12,
+              "ech": 0,
+              "gas": 0,
+              "kappa": 1.95,
+              "delta": -0.3
+            },
+            "errorTime": 1,
+            "errorCell": 64,
+            "error": "profile constraint violated at t=1.000000 s in cell 64: T_e <= 0",
+            "profileOffStatus": "completed"
+          },
+          {
+            "id": "corner-0100101",
+            "controls": {
+              "ip": 2,
+              "bt": 1,
+              "nbi": 12,
+              "ech": 0,
+              "gas": 0,
+              "kappa": 1.95,
+              "delta": -0.3
+            },
+            "errorTime": 1.09,
+            "errorCell": 64,
+            "error": "profile constraint violated at t=1.090000 s in cell 64: T_i <= 0",
+            "profileOffStatus": "completed"
+          },
+          {
+            "id": "corner-0100110",
+            "controls": {
+              "ip": 0.6,
+              "bt": 2.1,
+              "nbi": 12,
+              "ech": 0,
+              "gas": 0,
+              "kappa": 1.95,
+              "delta": -0.3
+            },
+            "errorTime": 1.002,
+            "errorCell": 63,
+            "error": "profile constraint violated at t=1.002000 s in cell 63: T_e <= 0",
+            "profileOffStatus": "completed"
+          },
+          {
+            "id": "corner-0100111",
+            "controls": {
+              "ip": 2,
+              "bt": 2.1,
+              "nbi": 12,
+              "ech": 0,
+              "gas": 0,
+              "kappa": 1.95,
+              "delta": -0.3
+            },
+            "errorTime": 1.248,
+            "errorCell": 64,
+            "error": "profile constraint violated at t=1.248000 s in cell 64: T_i <= 0",
+            "profileOffStatus": "completed"
+          },
+          {
+            "id": "corner-0101000",
+            "controls": {
+              "ip": 0.6,
+              "bt": 1,
+              "nbi": 0,
+              "ech": 3,
+              "gas": 0,
+              "kappa": 1.95,
+              "delta": -0.3
+            },
+            "errorTime": 1.002,
+            "errorCell": 64,
+            "error": "profile constraint violated at t=1.002000 s in cell 64: T_e <= 0",
+            "profileOffStatus": "completed"
+          },
+          {
+            "id": "corner-0101001",
+            "controls": {
+              "ip": 2,
+              "bt": 1,
+              "nbi": 0,
+              "ech": 3,
+              "gas": 0,
+              "kappa": 1.95,
+              "delta": -0.3
+            },
+            "errorTime": 2.048,
+            "errorCell": 64,
+            "error": "profile constraint violated at t=2.048000 s in cell 64: T_e <= 0",
+            "profileOffStatus": "completed"
+          },
+          {
+            "id": "corner-0101010",
+            "controls": {
+              "ip": 0.6,
+              "bt": 2.1,
+              "nbi": 0,
+              "ech": 3,
+              "gas": 0,
+              "kappa": 1.95,
+              "delta": -0.3
+            },
+            "errorTime": 1.004,
+            "errorCell": 64,
+            "error": "profile constraint violated at t=1.004000 s in cell 64: T_e <= 0",
+            "profileOffStatus": "completed"
+          },
+          {
+            "id": "corner-0101011",
+            "controls": {
+              "ip": 2,
+              "bt": 2.1,
+              "nbi": 0,
+              "ech": 3,
+              "gas": 0,
+              "kappa": 1.95,
+              "delta": -0.3
+            },
+            "errorTime": 2.662,
+            "errorCell": 64,
+            "error": "profile constraint violated at t=2.662000 s in cell 64: T_e <= 0",
+            "profileOffStatus": "completed"
+          },
+          {
+            "id": "corner-0101100",
+            "controls": {
+              "ip": 0.6,
+              "bt": 1,
+              "nbi": 12,
+              "ech": 3,
+              "gas": 0,
+              "kappa": 1.95,
+              "delta": -0.3
+            },
+            "errorTime": 1,
+            "errorCell": 63,
+            "error": "profile constraint violated at t=1.000000 s in cell 63: T_e <= 0",
+            "profileOffStatus": "completed"
+          },
+          {
+            "id": "corner-0101101",
+            "controls": {
+              "ip": 2,
+              "bt": 1,
+              "nbi": 12,
+              "ech": 3,
+              "gas": 0,
+              "kappa": 1.95,
+              "delta": -0.3
+            },
+            "errorTime": 1.014,
+            "errorCell": 64,
+            "error": "profile constraint violated at t=1.014000 s in cell 64: T_e <= 0",
+            "profileOffStatus": "completed"
+          },
+          {
+            "id": "corner-0101110",
+            "controls": {
+              "ip": 0.6,
+              "bt": 2.1,
+              "nbi": 12,
+              "ech": 3,
+              "gas": 0,
+              "kappa": 1.95,
+              "delta": -0.3
+            },
+            "errorTime": 1,
+            "errorCell": 64,
+            "error": "profile constraint violated at t=1.000000 s in cell 64: T_e <= 0",
+            "profileOffStatus": "completed"
+          },
+          {
+            "id": "corner-0101111",
+            "controls": {
+              "ip": 2,
+              "bt": 2.1,
+              "nbi": 12,
+              "ech": 3,
+              "gas": 0,
+              "kappa": 1.95,
+              "delta": -0.3
+            },
+            "errorTime": 1.042,
+            "errorCell": 64,
+            "error": "profile constraint violated at t=1.042000 s in cell 64: T_e <= 0",
+            "profileOffStatus": "completed"
+          },
+          {
+            "id": "corner-0111100",
+            "controls": {
+              "ip": 0.6,
+              "bt": 1,
+              "nbi": 12,
+              "ech": 3,
+              "gas": 8,
+              "kappa": 1.95,
+              "delta": -0.3
+            },
+            "errorTime": 1.406,
+            "errorCell": 64,
+            "error": "profile constraint violated at t=1.406000 s in cell 64: T_e <= 0",
+            "profileOffStatus": "completed"
+          },
+          {
+            "id": "corner-1100000",
+            "controls": {
+              "ip": 0.6,
+              "bt": 1,
+              "nbi": 0,
+              "ech": 0,
+              "gas": 0,
+              "kappa": 1.95,
+              "delta": 0.6
+            },
+            "errorTime": 3.624,
+            "errorCell": 64,
+            "error": "profile constraint violated at t=3.624000 s in cell 64: T_i <= 0",
+            "profileOffStatus": "completed"
+          },
+          {
+            "id": "corner-1100001",
+            "controls": {
+              "ip": 2,
+              "bt": 1,
+              "nbi": 0,
+              "ech": 0,
+              "gas": 0,
+              "kappa": 1.95,
+              "delta": 0.6
+            },
+            "errorTime": 4.788,
+            "errorCell": 64,
+            "error": "profile constraint violated at t=4.788000 s in cell 64: T_i <= 0",
+            "profileOffStatus": "completed"
+          },
+          {
+            "id": "corner-1100010",
+            "controls": {
+              "ip": 0.6,
+              "bt": 2.1,
+              "nbi": 0,
+              "ech": 0,
+              "gas": 0,
+              "kappa": 1.95,
+              "delta": 0.6
+            },
+            "errorTime": 4.264,
+            "errorCell": 64,
+            "error": "profile constraint violated at t=4.264000 s in cell 64: T_i <= 0",
+            "profileOffStatus": "completed"
+          },
+          {
+            "id": "corner-1100011",
+            "controls": {
+              "ip": 2,
+              "bt": 2.1,
+              "nbi": 0,
+              "ech": 0,
+              "gas": 0,
+              "kappa": 1.95,
+              "delta": 0.6
+            },
+            "errorTime": 4.87,
+            "errorCell": 64,
+            "error": "profile constraint violated at t=4.870000 s in cell 64: T_i <= 0",
+            "profileOffStatus": "completed"
+          },
+          {
+            "id": "corner-1100100",
+            "controls": {
+              "ip": 0.6,
+              "bt": 1,
+              "nbi": 12,
+              "ech": 0,
+              "gas": 0,
+              "kappa": 1.95,
+              "delta": 0.6
+            },
+            "errorTime": 1.002,
+            "errorCell": 63,
+            "error": "profile constraint violated at t=1.002000 s in cell 63: T_e <= 0",
+            "profileOffStatus": "completed"
+          },
+          {
+            "id": "corner-1100110",
+            "controls": {
+              "ip": 0.6,
+              "bt": 2.1,
+              "nbi": 12,
+              "ech": 0,
+              "gas": 0,
+              "kappa": 1.95,
+              "delta": 0.6
+            },
+            "errorTime": 1.004,
+            "errorCell": 64,
+            "error": "profile constraint violated at t=1.004000 s in cell 64: T_e <= 0",
+            "profileOffStatus": "completed"
+          },
+          {
+            "id": "corner-1101000",
+            "controls": {
+              "ip": 0.6,
+              "bt": 1,
+              "nbi": 0,
+              "ech": 3,
+              "gas": 0,
+              "kappa": 1.95,
+              "delta": 0.6
+            },
+            "errorTime": 1.004,
+            "errorCell": 64,
+            "error": "profile constraint violated at t=1.004000 s in cell 64: T_e <= 0",
+            "profileOffStatus": "completed"
+          },
+          {
+            "id": "corner-1101001",
+            "controls": {
+              "ip": 2,
+              "bt": 1,
+              "nbi": 0,
+              "ech": 3,
+              "gas": 0,
+              "kappa": 1.95,
+              "delta": 0.6
+            },
+            "errorTime": 3.846,
+            "errorCell": 64,
+            "error": "profile constraint violated at t=3.846000 s in cell 64: T_e <= 0",
+            "profileOffStatus": "completed"
+          },
+          {
+            "id": "corner-1101010",
+            "controls": {
+              "ip": 0.6,
+              "bt": 2.1,
+              "nbi": 0,
+              "ech": 3,
+              "gas": 0,
+              "kappa": 1.95,
+              "delta": 0.6
+            },
+            "errorTime": 1.008,
+            "errorCell": 64,
+            "error": "profile constraint violated at t=1.008000 s in cell 64: T_e <= 0",
+            "profileOffStatus": "completed"
+          },
+          {
+            "id": "corner-1101011",
+            "controls": {
+              "ip": 2,
+              "bt": 2.1,
+              "nbi": 0,
+              "ech": 3,
+              "gas": 0,
+              "kappa": 1.95,
+              "delta": 0.6
+            },
+            "errorTime": 4.87,
+            "errorCell": 64,
+            "error": "profile constraint violated at t=4.870000 s in cell 64: T_i <= 0",
+            "profileOffStatus": "completed"
+          },
+          {
+            "id": "corner-1101100",
+            "controls": {
+              "ip": 0.6,
+              "bt": 1,
+              "nbi": 12,
+              "ech": 3,
+              "gas": 0,
+              "kappa": 1.95,
+              "delta": 0.6
+            },
+            "errorTime": 1.002,
+            "errorCell": 62,
+            "error": "profile constraint violated at t=1.002000 s in cell 62: T_e <= 0",
+            "profileOffStatus": "completed"
+          },
+          {
+            "id": "corner-1101101",
+            "controls": {
+              "ip": 2,
+              "bt": 1,
+              "nbi": 12,
+              "ech": 3,
+              "gas": 0,
+              "kappa": 1.95,
+              "delta": 0.6
+            },
+            "errorTime": 1.132,
+            "errorCell": 64,
+            "error": "profile constraint violated at t=1.132000 s in cell 64: T_e <= 0",
+            "profileOffStatus": "completed"
+          },
+          {
+            "id": "corner-1101110",
+            "controls": {
+              "ip": 0.6,
+              "bt": 2.1,
+              "nbi": 12,
+              "ech": 3,
+              "gas": 0,
+              "kappa": 1.95,
+              "delta": 0.6
+            },
+            "errorTime": 1.002,
+            "errorCell": 64,
+            "error": "profile constraint violated at t=1.002000 s in cell 64: T_e <= 0",
+            "profileOffStatus": "completed"
+          }
+        ]
+      },
+      "tolerance": "138 runs; completions floored parity <= 1e-9 (DD-24), ledger <= 1e-10, finite positive; throws match regex; 0 silent violations; DEFAULT completes",
+      "verdict": "pass",
+      "note": "Pattern as recorded in DD-26: 31 corners throw (29 at kappa=1.95 & gas=0, 1 at kappa=1.95 & gas=8, 1 at kappa=1 & gas=0 [corner-0001100, T_e at t=1.016 s]); the all-minimum corner completes. ADV-3 examines the cluster.",
+      "evidence": "validation/evidence/d2-profiles/d2-ver-failsafe.json"
+    },
+    {
+      "id": "AC-10",
+      "title": "independent falsification",
+      "command": "node --experimental-strip-types validation/independent/d2-profiles.mjs ac1|sweep|fixtures|probe|ac5|rates|adv|assemble",
+      "measured": {
+        "reExecutedChecksPassing": 9,
+        "of": 9,
+        "adversarialCases": 5,
+        "adversarialVerdicts": {
+          "ADV-1": "pass (marginal for bremsstrahlung)",
+          "ADV-2": "pass",
+          "ADV-3": "pass",
+          "ADV-4": "pass",
+          "ADV-5": "pass"
+        },
+        "validationModel": "claude-opus",
+        "softwareModel": "claude-sonnet"
+      },
+      "tolerance": "all nine AC-1..AC-9 pass from own code; >= 3 adversarial cases with input/expected/observed/verdict; validation model claude-opus != software claude-sonnet; validate-stage Jev audit PASS (recorded by the Director/TeamFlow eval, outside this file)",
+      "verdict": "pass (pending validate-stage Jev audit)"
+    }
+  ],
+  "adversarialCases": [
+    {
+      "id": "ADV-1",
+      "title": "Shape-mutation detectability across the whole DEFAULT shot (AC-4(c) is specified at step 750 only)",
+      "input": "DEFAULT, N_rho=64, dt=0.002; each of NBI/ECH/gas/bremsstrahlung/Ohmic oracle shape x (1+1e-6) at steps 50,250,450,500,750,1000,1500,1999,2000,2250,2450",
+      "expected": "residual >= max(1e-10, 100 r_clean) (ratio >= 1) at every step where the shape carries power; ratio at step 750 reproduces Part A (br 2.12)",
+      "observed": {
+        "brMinRatio": 2.118472756845057,
+        "brMinAtStep": 750,
+        "perStep": [
+          {
+            "step": 50,
+            "t": 0.1,
+            "ratios": {
+              "nbi": 0.00026937145877841155,
+              "ech": 0.00026937145877841155,
+              "gas": 67.56392762488397,
+              "br": 2.9080459565176366,
+              "ohm": 175.21091341754854
+            }
+          },
+          {
+            "step": 250,
+            "t": 0.5,
+            "ratios": {
+              "nbi": 0.00026316390593065874,
+              "ech": 0.00026316390593065874,
+              "gas": 60.12812910288962,
+              "br": 3.3156904466083614,
+              "ohm": 332.5635719672685
+            }
+          },
+          {
+            "step": 450,
+            "t": 0.9,
+            "ratios": {
+              "nbi": 0.0003322750101740144,
+              "ech": 0.0003322750101740144,
+              "gas": 56.158996962311946,
+              "br": 3.0349843746283787,
+              "ohm": 292.00691483447366
+            }
+          },
+          {
+            "step": 500,
+            "t": 1,
+            "ratios": {
+              "nbi": 2493.4292749085803,
+              "ech": 1513.6393693078912,
+              "gas": 55.49504786006953,
+              "br": 2.977984100221137,
+              "ohm": 282.32616246248733
+            }
+          },
+          {
+            "step": 750,
+            "t": 1.5,
+            "ratios": {
+              "nbi": 351.17050014658616,
+              "ech": 445.0048596717792,
+              "gas": 52.51412232096687,
+              "br": 2.118472756845057,
+              "ohm": 23.558420494133976
+            }
+          },
+          {
+            "step": 1000,
+            "t": 2,
+            "ratios": {
+              "nbi": 333.2671069951628,
+              "ech": 410.9153260065464,
+              "gas": 49.87291236999843,
+              "br": 2.546545670173015,
+              "ohm": 23.95724569619842
+            }
+          },
+          {
+            "step": 1500,
+            "t": 3,
+            "ratios": {
+              "nbi": 318.59671748977064,
+              "ech": 380.74703322426336,
+              "gas": 46.91939810118916,
+              "br": 3.0727511117358888,
+              "ohm": 25.07514140022539
+            }
+          },
+          {
+            "step": 1999,
+            "t": 3.998,
+            "ratios": {
+              "nbi": 312.0065533509914,
+              "ech": 367.7225021882693,
+              "gas": 45.49897139907578,
+              "br": 3.3553250057720114,
+              "ohm": 25.731127338951804
+            }
+          },
+          {
+            "step": 2000,
+            "t": 4,
+            "ratios": {
+              "nbi": 0.00029053333761316425,
+              "ech": 0.00029053333761316425,
+              "gas": 45.49698904580476,
+              "br": 3.355800759214262,
+              "ohm": 25.732131402490598
+            }
+          },
+          {
+            "step": 2250,
+            "t": 4.5,
+            "ratios": {
+              "nbi": 0.0002908344473479033,
+              "ech": 0.0002908344473479033,
+              "gas": 45.58747438866451,
+              "br": 5.257499797656313,
+              "ohm": 165.035235545042
+            }
+          },
+          {
+            "step": 2450,
+            "t": 4.9,
+            "ratios": {
+              "nbi": 0.0003939972106182421,
+              "ech": 0.0003939972106182421,
+              "gas": 46.23864148662647,
+              "br": 6.49153144675224,
+              "ohm": 216.77600626272888
+            }
+          }
+        ],
+        "undetectedActiveTerms": [],
+        "inactiveTermsNotJudged": [
+          "nbi@0.1s",
+          "ech@0.1s",
+          "nbi@0.5s",
+          "ech@0.5s",
+          "nbi@0.9s",
+          "ech@0.9s",
+          "nbi@4s",
+          "ech@4s",
+          "nbi@4.5s",
+          "ech@4.5s",
+          "nbi@4.9s",
+          "ech@4.9s"
+        ]
+      },
+      "verdict": "pass (marginal for bremsstrahlung)",
+      "note": "Every mutation of a shape that carries power at that step is rejected. Bremsstrahlung is the weakest: minimum ratio 2.12 over the sampled steps, i.e. the smallest normalisation error of the bremsstrahlung shape the ledger detects is about 4.72e-7; step 750 (the specified step) is the worst sampled step. NBI/ECH shapes at steps where those sources are off carry zero power, so a mis-normalisation there is physically inert and undetectable by any ledger; they are listed, not judged."
+    },
+    {
+      "id": "ADV-2",
+      "title": "F3 edge flux at dt 1e-8, 1e-10, 1e-12 (100x to 1e6x below the fixture minimum used in AC-7)",
+      "input": "F3 reflecting eigenmode N=256, 20000 steps each, observer reconstruction delivered = Phi_{N-1} + q dV_N - (x_N^{k+1} - x_N^k) dV_N/dt",
+      "expected": "DD-25 ratio <= 1 at every step; production-reported face flux Object.is 0; DMP violation 0",
+      "observed": [
+        {
+          "dt": 1e-8,
+          "steps": 20000,
+          "oldRatio1e12": 27.6895582908292,
+          "dd25Ratio": 0.003992778837009735,
+          "dd25Worst": {
+            "step": 6913,
+            "species": "we",
+            "absDiff": 6.90662804725406e-11,
+            "relTerm": 2.494307772884026e-12,
+            "roundoffFloor": 1.729530336445321e-8,
+            "M": 0.9989574476437922,
+            "dV_N": 0.0077972412109375,
+            "dt": 1e-8,
+            "oldRatio": 27.6895582908292
+          },
+          "productionReportedNonExactZero": 0,
+          "productionChecked": 40000,
+          "productionDeliveredMaxAbs": 6.90662804725406e-11,
+          "dmpMaxViolationOverM": 0
+        },
+        {
+          "dt": 1e-10,
+          "steps": 20000,
+          "oldRatio1e12": 2752.949962381386,
+          "dd25Ratio": 0.003970265477143899,
+          "dd25Worst": {
+            "step": 10816,
+            "species": "we",
+            "absDiff": 6.873569206866659e-9,
+            "relTerm": 2.49680135883066e-12,
+            "roundoffFloor": 0.0000017312593662746886,
+            "M": 0.9999561160041257,
+            "dV_N": 0.0077972412109375,
+            "dt": 1e-10,
+            "oldRatio": 2752.949962381386
+          },
+          "productionReportedNonExactZero": 0,
+          "productionChecked": 40000,
+          "productionDeliveredMaxAbs": 6.873569206866659e-9,
+          "dmpMaxViolationOverM": 0
+        },
+        {
+          "dt": 1e-12,
+          "steps": 20000,
+          "oldRatio1e12": 278375.05362595967,
+          "dd25Ratio": 0.004014691360947202,
+          "dd25Worst": {
+            "step": 0,
+            "species": "we",
+            "absDiff": 6.950582504133829e-7,
+            "relTerm": 2.496841011290121e-12,
+            "roundoffFloor": 0.0001731286860929078,
+            "M": 0.999971996610088,
+            "dV_N": 0.0077972412109375,
+            "dt": 1e-12,
+            "oldRatio": 278375.05362595967
+          },
+          "productionReportedNonExactZero": 0,
+          "productionChecked": 40000,
+          "productionDeliveredMaxAbs": 6.950582504133829e-7,
+          "dmpMaxViolationOverM": 0
+        }
+      ],
+      "verdict": "pass"
+    },
+    {
+      "id": "ADV-3",
+      "title": "LIMITS corners that throw (kappa=1.95 cluster): chi raised to the range maximum, N_rho and dt refinement",
+      "input": "all 31 failing AC-9 corners at chi_e=chi_i=10; corner corner-0100000 {\"ip\":0.6,\"bt\":1,\"nbi\":0,\"ech\":0,\"gas\":0,\"kappa\":1.95,\"delta\":-0.3} at N_rho 32..256 and dt 0.002..0.0005, chi 1.5..10",
+      "expected": "every run completes with floored parity <= 1e-9, ledger <= 1e-10 and positive finite cells, or throws the fixed-grammar constraint error; a model-driven stop should persist under grid/dt refinement at a converging time and be removed by stronger edge conduction",
+      "observed": {
+        "completedAtChi10": 29,
+        "of": 31,
+        "resolution": [
+          {
+            "N_rho": 32,
+            "dt": 0.002,
+            "status": "threw",
+            "errorTime": 2.08,
+            "errorCell": 32
+          },
+          {
+            "N_rho": 64,
+            "dt": 0.002,
+            "status": "threw",
+            "errorTime": 1.894,
+            "errorCell": 64
+          },
+          {
+            "N_rho": 128,
+            "dt": 0.002,
+            "status": "threw",
+            "errorTime": 1.812,
+            "errorCell": 128
+          },
+          {
+            "N_rho": 256,
+            "dt": 0.002,
+            "status": "threw",
+            "errorTime": 1.772,
+            "errorCell": 256
+          },
+          {
+            "N_rho": 64,
+            "dt": 0.001,
+            "status": "threw",
+            "errorTime": 1.899,
+            "errorCell": 64
+          },
+          {
+            "N_rho": 64,
+            "dt": 0.0005,
+            "status": "threw",
+            "errorTime": 1.901,
+            "errorCell": 64
+          }
+        ],
+        "chiScan": [
+          {
+            "chi": 1.5,
+            "status": "threw",
+            "errorTime": 0.164
+          },
+          {
+            "chi": 3,
+            "status": "threw",
+            "errorTime": 1.894
+          },
+          {
+            "chi": 5,
+            "status": "threw",
+            "errorTime": 4.168
+          },
+          {
+            "chi": 7,
+            "status": "threw",
+            "errorTime": 4.948
+          },
+          {
+            "chi": 10,
+            "status": "completed"
+          }
+        ],
+        "stillThrowingAtChi10": [
+          {
+            "id": "corner-0101000",
+            "error": "profile constraint violated at t=3.962000 s in cell 64: T_e <= 0"
+          },
+          {
+            "id": "corner-0101100",
+            "error": "profile constraint violated at t=1.410000 s in cell 64: T_e <= 0"
+          }
+        ],
+        "profileOffStatus": "completed",
+        "silentViolations": 0,
+        "badGrammar": 0
+      },
+      "verdict": "pass"
+    },
+    {
+      "id": "ADV-4",
+      "title": "Conservation, ledger and shape normalisation at the corners of the profile option ranges",
+      "input": "narrow edge ECH, narrow NBI, coarse grid: {\"enabled\":true,\"N_rho\":16,\"D\":0.03,\"chi_e\":1.5,\"chi_i\":1.5,\"rho_NBI\":0.7,\"sigma_NBI\":0.1,\"rho_ECH\":0.8,\"sigma_ECH\":0.05,\"gas_exponent\":8,\"jshape_gamma\":2} | central wide deposition, finest grid, max transport: {\"enabled\":true,\"N_rho\":256,\"D\":1,\"chi_e\":10,\"chi_i\":10,\"rho_NBI\":0,\"sigma_NBI\":0.4,\"rho_ECH\":0,\"sigma_ECH\":0.25,\"gas_exponent\":2,\"jshape_gamma\":0} | asymmetric chi_e min / chi_i max: {\"enabled\":true,\"N_rho\":128,\"D\":0.03,\"chi_e\":1.5,\"chi_i\":10,\"rho_NBI\":0.5,\"sigma_NBI\":0.2,\"rho_ECH\":0.3,\"sigma_ECH\":0.1,\"gas_exponent\":4,\"jshape_gamma\":1} x controls DEFAULT and ip=1.5,nbi=6; dt=0.002",
+      "expected": "completing runs: floored parity <= 1e-9, own-oracle ledger and species totals <= 1e-10, shape norms <= 1e-13, axis flux Object.is 0, all cells finite positive, oracle pre-state == production pre-state; else explicit constraint error",
+      "observed": [
+        {
+          "options": "narrow edge ECH, narrow NBI, coarse grid",
+          "controls": "DEFAULT",
+          "status": "completed",
+          "parityFloored": 3.074261706183898e-14,
+          "parityUnfloored": 1.142188697808538e-13,
+          "ledgerMax": 1.861932789261066e-15,
+          "speciesTotalMax": 3.9837406832442503e-16,
+          "shapeNormProdMaxDev": 6.661338147750939e-16,
+          "axisNonZero": 0,
+          "badCells": 0,
+          "preMismatch": 0,
+          "internal": 0
+        },
+        {
+          "options": "narrow edge ECH, narrow NBI, coarse grid",
+          "controls": "max heating ip=1.5 nbi=6",
+          "status": "completed",
+          "parityFloored": 3.388674835225433e-14,
+          "parityUnfloored": 1.0042520443323952e-13,
+          "ledgerMax": 1.5962077890048878e-15,
+          "speciesTotalMax": 4.83110330231664e-16,
+          "shapeNormProdMaxDev": 5.551115123125783e-16,
+          "axisNonZero": 0,
+          "badCells": 0,
+          "preMismatch": 0,
+          "internal": 0
+        },
+        {
+          "options": "central wide deposition, finest grid, max transport",
+          "controls": "DEFAULT",
+          "status": "completed",
+          "parityFloored": 1.1970319181473266e-11,
+          "parityUnfloored": 4.5032992322345564e-11,
+          "ledgerMax": 2.668656480357486e-12,
+          "speciesTotalMax": 1.1495828848085326e-13,
+          "shapeNormProdMaxDev": 1.7763568394002505e-15,
+          "axisNonZero": 0,
+          "badCells": 0,
+          "preMismatch": 0,
+          "internal": 0
+        },
+        {
+          "options": "central wide deposition, finest grid, max transport",
+          "controls": "max heating ip=1.5 nbi=6",
+          "status": "completed",
+          "parityFloored": 1.8021112512897318e-11,
+          "parityUnfloored": 5.493889696483277e-11,
+          "ledgerMax": 2.566492267622474e-12,
+          "speciesTotalMax": 1.1414794120759172e-13,
+          "shapeNormProdMaxDev": 1.5543122344752192e-15,
+          "axisNonZero": 0,
+          "badCells": 0,
+          "preMismatch": 0,
+          "internal": 0
+        },
+        {
+          "options": "asymmetric chi_e min / chi_i max",
+          "controls": "DEFAULT",
+          "status": "threw",
+          "error": "profile constraint violated at t=2.192000 s in cell 128: T_e <= 0",
+          "parityFloored": 4.886148042846858e-13,
+          "parityUnfloored": 4.886148042846858e-13,
+          "ledgerMax": 6.211900618867911e-13,
+          "speciesTotalMax": 3.789462870377773e-14,
+          "shapeNormProdMaxDev": 1.5543122344752192e-15,
+          "axisNonZero": 0,
+          "badCells": 0,
+          "preMismatch": 0,
+          "internal": 0
+        },
+        {
+          "options": "asymmetric chi_e min / chi_i max",
+          "controls": "max heating ip=1.5 nbi=6",
+          "status": "threw",
+          "error": "profile constraint violated at t=2.016000 s in cell 128: T_e <= 0",
+          "parityFloored": 3.7285031195001466e-13,
+          "parityUnfloored": 3.7285031195001466e-13,
+          "ledgerMax": 6.536602722569499e-13,
+          "speciesTotalMax": 3.817783767584761e-14,
+          "shapeNormProdMaxDev": 1.3322676295501878e-15,
+          "axisNonZero": 0,
+          "badCells": 0,
+          "preMismatch": 0,
+          "internal": 0
+        }
+      ],
+      "verdict": "pass"
+    },
+    {
+      "id": "ADV-5",
+      "title": "Off-path guarantee under hostile sequences: prior throw, throwing observer hook, off run inside the hook scope, frozen/mutated option objects",
+      "input": "frozen M02 case 'default' reference shot; sequence listed in observed.log",
+      "expected": "every off run Object.is-identical to the frozen reference (0 differences); throwing hook propagates and is uninstalled (0 later calls); off run inside hook scope calls the hook 0 times; inputs not mutated; frozen and mutable option objects give identical profile-on shots; exported options not aliased to the caller object",
+      "observed": {
+        "log": [
+          {
+            "step": "1 fresh off run",
+            "fieldsCompared": 4283,
+            "differences": 0,
+            "first": []
+          },
+          {
+            "step": "2 off run after a profile-on run that threw a constraint error",
+            "fieldsCompared": 4283,
+            "differences": 0,
+            "first": []
+          },
+          {
+            "step": "3 off run inside withProfileStepObserver",
+            "fieldsCompared": 4283,
+            "differences": 0,
+            "first": []
+          },
+          {
+            "step": "4 off run after profile-on runs",
+            "fieldsCompared": 4283,
+            "differences": 0,
+            "first": []
+          },
+          {
+            "step": "5 off run with {enabled:false} after all of the above",
+            "fieldsCompared": 4283,
+            "differences": 0,
+            "first": []
+          }
+        ],
+        "constraintRunThrew": true,
+        "hostileHookPropagated": true,
+        "hookCallsAfterScope": 0,
+        "hookCallsDuringOffRun": 0,
+        "inputMutated": false,
+        "frozenVsMutableDifferences": 0,
+        "exportedOptionsAliasDifferences": 0
+      },
+      "verdict": "pass"
+    }
+  ],
+  "marginalOrConditional": [
+    "AC-3 passes only under the DD-24 normaliser; the un-floored ratio is 1.1156e-9 > 1e-9 in one run (corner-0001001, N_rho=128, dt=0.002).",
+    "AC-7(b) passes only under the DD-25 roundoff floor; the pre-amendment ratio at dt=2.5e-7 is 1.83.",
+    "AC-4 bremsstrahlung shape mutation is rejected by ratio 2.12 (the weakest of all mutations; also the minimum over the whole shot, ADV-1).",
+    "AC-5 F2 L2rel 7.57e-5 against 1e-4 (margin 1.32x), as anticipated by the spec.",
+    "ADV-3: the kappa=1.95 constraint stop moves with N_rho (t_stop 2.080, 1.894, 1.812, 1.772 s at N_rho 32, 64, 128, 256; differences halve, first-order convergence to about 1.73 s) and is insensitive to dt (1.894, 1.899, 1.901 s); chi=10 removes it in 29 of 31 corners. It is a property of the converged discrete model (prescribed edge loss Wi/tauE draining the edge cell faster than conduction resupplies it), not a timestep artefact; the stop time at the default N_rho=64 carries a ~9% resolution error."
+  ],
+  "summary": {
+    "pass": [
+      "AC-1",
+      "AC-2",
+      "AC-3",
+      "AC-4",
+      "AC-5",
+      "AC-6",
+      "AC-7",
+      "AC-8",
+      "AC-9",
+      "AC-10"
+    ],
+    "fail": [],
+    "overall": "PASS (AC-1..AC-9 pass from own code under DD-24/DD-25; 5 adversarial cases pass; AC-10 pending the validate-stage Jev audit)"
+  },
+  "evidenceSha256": {
+    "validation/evidence/d2-profiles/.ac5-summary.json": "cea25d83551a92ebe69db16d57b479432d9da318a192f25f5b0e9fb0b11cee25",
+    "validation/evidence/d2-profiles/.ac7-default.json": "c8058dbd0c532f057d64cd8512f4a4bcb4274cf112261cb450d6f8641f21457d",
+    "validation/evidence/d2-profiles/d2-ver-adversarial.json": "446e984834a431e53eddaee466b6e3e63c9be1f93fe36aea9cb77871d8138c38",
+    "validation/evidence/d2-profiles/d2-ver-diagnostics.json": "a6adbcbadacefc61ba1051b87579291ebbe8536001ab6a022a3367d0d55942a0",
+    "validation/evidence/d2-profiles/d2-ver-eigen-dirichlet.json": "3f6946761b1801a969553cb0995d97ffb91778cf734230455593acfef8bf6d8a",
+    "validation/evidence/d2-profiles/d2-ver-eigen-reflect.json": "29ce57efd4dee76f3179f9ce8e4d1339eb70699c2408a3882a8d377f50f1ee49",
+    "validation/evidence/d2-profiles/d2-ver-failsafe.json": "0f5ae6c6dd8b32571d569a1e8f97fae9539c2a6ed11454babe42d834e7c84887",
+    "validation/evidence/d2-profiles/d2-ver-ledger.json": "d409b10a086714ec5e0447b4dcf29591b3e26ebcc6ddcd2ff021d4492bcb15f8",
+    "validation/evidence/d2-profiles/d2-ver-mms-conduction.json": "0b5f5cc1c9e03f4a50f5f83df83d81ea94a49d9c8ea5b689782fcf092545e9af",
+    "validation/evidence/d2-profiles/d2-ver-offpath.json": "5c138c9f80e01893ece1d0eca2939ace2cda1966baca1981aa96c20a0dad5217",
+    "validation/evidence/d2-profiles/d2-ver-parity.json": "b5a03aa3db2a2f3ed73888306e4739a8ca655554258bfb60da39b3052c5b1db1",
+    "validation/evidence/d2-profiles/d2-ver-passenger.json": "b43a26b5ce4f123e77865c7d921acd12c818bf277e7f4ffe1aa97049bd9d0185",
+    "validation/evidence/d2-profiles/d2-ver-refinement.json": "339e45ac63010c3011f09e1d03a91b7768af709659e7433d58be6151d3141fc2",
+    "validation/evidence/d2-profiles/d2-ver-steady.json": "17d88b19548f1da0e3156e698902aab4784a577e2655ca8aec57841aa92c4673",
+    "validation/evidence/d2-profiles/d2-ver-structure-f3-probe.json": "7df94cda17291b8f6ee1d409d7722b97f3c6827ef91456e59a07617fdc0d25f3",
+    "validation/evidence/d2-profiles/d2-ver-structure.json": "3ca407bc4fba1b32b94d5c7904422de37a5bccb3271fad4284629f88a5da3413"
+  },
+  "limits": [
+    "Parity and ledger checks verify implementation consistency with the 0-D balances, not physical accuracy of profile shapes (spec s9).",
+    "The oracle restates the 0-D formulas from the spec and 0.1.0 code reading; a shared misreading of an unchanged 0.1.0 formula would not be caught by AC-4 (it is caught for totals by AC-3 against the authoritative 0-D state).",
+    "Analytic fixtures test the transport operator and boundary closures on normalised or SI fixtures; they do not validate transport coefficients, which remain illustrative and uncalibrated.",
+    "Part A evidence files are superseded by this run; the Part A falsification file is not retained under validation/."
+  ]
+}

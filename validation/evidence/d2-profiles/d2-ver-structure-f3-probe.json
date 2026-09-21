@@ -1,0 +1,87 @@
+{
+  "checkId": "AC-7(b) F3 edge-flux marginal probe",
+  "validationModel": "claude-opus",
+  "role": "validation",
+  "physicsModelVersion": "0.2.0",
+  "verificationVersion": "0.3.0",
+  "node": "v24.20.0",
+  "physicsSha256": {
+    "physics/engine.ts": "c57ea711b0ad722cfc51128df76d5a1efcb670a924ce097f00eca61a8154ddfb",
+    "physics/profiles.ts": "e5f3497f59098b7d391c30ece9818dc7a697cd17e259f0f0d9177e750b22cce4"
+  },
+  "harness": "validation/independent/d2-profiles.mjs",
+  "harnessSha256": "c7d9497ac35bd491e73df10cc5163e4ebe78fe3c3b079134fbc2e1397175f654",
+  "generated": "2026-09-21T21:52:41.774Z",
+  "command": "node --experimental-strip-types validation/independent/d2-profiles.mjs probe",
+  "tolerance": "DD-25: |delivered - 0| <= 1e-12 * flux scale + 100 eps M dV_N/dt; production face flux Object.is 0",
+  "fixture": {
+    "name": "F3 EIGEN-REFLECT N=256 dt=2.5e-7 t=1 (probe)",
+    "inputs": {
+      "N_rho": 256,
+      "dt": 2.5e-7,
+      "steps": 4000000,
+      "edge": {
+        "type": "flux",
+        "value": 0
+      },
+      "freezeN": true,
+      "enforceConstraint": false
+    },
+    "stoppedEarly": false,
+    "stepsRun": 4000000,
+    "seconds": 258.831009625,
+    "axisNonZero": 0,
+    "edgeFlux": {
+      "maxRatio": 1.8309024305404231,
+      "worst": {
+        "step": 2581014,
+        "species": "we",
+        "delivered": 3.5140644124502345e-16,
+        "prescribed": 0,
+        "fluxScale": 0.00019193073065138685,
+        "absDiff": 3.5140644124502345e-16,
+        "relToScale": 1.830902430540423e-12
+      }
+    },
+    "edgeFluxDD25": {
+      "maxRatio": 0.006577548293759729,
+      "worst": {
+        "step": 2581014,
+        "species": "we",
+        "absDiff": 3.5140644124502345e-16,
+        "relTerm": 1.9193073065138684e-16,
+        "roundoffFloor": 5.323320969414957e-14,
+        "M": 0.00007686727165949834,
+        "dV_N": 0.0077972412109375,
+        "dt": 2.5e-7,
+        "oldRatio": 1.8309024305404231
+      }
+    },
+    "productionZeroFlux": {
+      "checked": 8000000,
+      "nonExactZero": 0,
+      "maxAbsProdDelivered": 3.0430935549219384e-12
+    },
+    "dmp": {
+      "bounds": {
+        "we": {
+          "lo": -0.4027443575788418,
+          "hi": 0.9999719966247792,
+          "M": 0.9999719966247692
+        },
+        "wi": {
+          "lo": -0.4027443575788418,
+          "hi": 0.9999719966247792,
+          "M": 0.9999719966247692
+        }
+      },
+      "maxViolationOverM": 0,
+      "observedMin": -0.40274287934164826,
+      "observedMax": 0.9999683263168888,
+      "pass": true
+    },
+    "negatives": 760000000,
+    "informationalL2rel": 0.0003010877185288804
+  },
+  "pass": true
+}

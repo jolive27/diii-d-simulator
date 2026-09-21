@@ -1,0 +1,1140 @@
+{
+  "checkId": "AC-10 adversarial cases (validation, beyond AC-4)",
+  "validationModel": "claude-opus",
+  "role": "validation",
+  "physicsModelVersion": "0.2.0",
+  "verificationVersion": "0.3.0",
+  "node": "v24.20.0",
+  "physicsSha256": {
+    "physics/engine.ts": "c57ea711b0ad722cfc51128df76d5a1efcb670a924ce097f00eca61a8154ddfb",
+    "physics/profiles.ts": "e5f3497f59098b7d391c30ece9818dc7a697cd17e259f0f0d9177e750b22cce4"
+  },
+  "harness": "validation/independent/d2-profiles.mjs",
+  "harnessSha256": "c7d9497ac35bd491e73df10cc5163e4ebe78fe3c3b079134fbc2e1397175f654",
+  "generated": "2026-09-21T21:52:34.064Z",
+  "command": "node --experimental-strip-types validation/independent/d2-profiles.mjs adv",
+  "cases": [
+    {
+      "id": "ADV-1",
+      "title": "Shape-mutation detectability across the whole DEFAULT shot (AC-4(c) is specified at step 750 only)",
+      "input": "DEFAULT, N_rho=64, dt=0.002; each of NBI/ECH/gas/bremsstrahlung/Ohmic oracle shape x (1+1e-6) at steps 50,250,450,500,750,1000,1500,1999,2000,2250,2450",
+      "expected": "residual >= max(1e-10, 100 r_clean) (ratio >= 1) at every step where the shape carries power; ratio at step 750 reproduces Part A (br 2.12)",
+      "observed": {
+        "rows": [
+          {
+            "step": 50,
+            "t": 0.1,
+            "rClean": 2.6937145877841155e-14,
+            "bound": 1e-10,
+            "activeTerms": {
+              "nbi": false,
+              "ech": false,
+              "gas": true,
+              "br": true,
+              "ohm": true
+            },
+            "ratios": {
+              "nbi": 0.00026937145877841155,
+              "ech": 0.00026937145877841155,
+              "gas": 67.56392762488397,
+              "br": 2.9080459565176366,
+              "ohm": 175.21091341754854
+            },
+            "brMinDetectableRelError": 3.4387352020993937e-7
+          },
+          {
+            "step": 250,
+            "t": 0.5,
+            "rClean": 2.6316390593065873e-14,
+            "bound": 1e-10,
+            "activeTerms": {
+              "nbi": false,
+              "ech": false,
+              "gas": true,
+              "br": true,
+              "ohm": true
+            },
+            "ratios": {
+              "nbi": 0.00026316390593065874,
+              "ech": 0.00026316390593065874,
+              "gas": 60.12812910288962,
+              "br": 3.3156904466083614,
+              "ohm": 332.5635719672685
+            },
+            "brMinDetectableRelError": 3.0159630885413495e-7
+          },
+          {
+            "step": 450,
+            "t": 0.9,
+            "rClean": 3.322750101740144e-14,
+            "bound": 1e-10,
+            "activeTerms": {
+              "nbi": false,
+              "ech": false,
+              "gas": true,
+              "br": true,
+              "ohm": true
+            },
+            "ratios": {
+              "nbi": 0.0003322750101740144,
+              "ech": 0.0003322750101740144,
+              "gas": 56.158996962311946,
+              "br": 3.0349843746283787,
+              "ohm": 292.00691483447366
+            },
+            "brMinDetectableRelError": 3.2949098794699586e-7
+          },
+          {
+            "step": 500,
+            "t": 1,
+            "rClean": 2.7309596414395947e-14,
+            "bound": 1e-10,
+            "activeTerms": {
+              "nbi": true,
+              "ech": true,
+              "gas": true,
+              "br": true,
+              "ohm": true
+            },
+            "ratios": {
+              "nbi": 2493.4292749085803,
+              "ech": 1513.6393693078912,
+              "gas": 55.49504786006953,
+              "br": 2.977984100221137,
+              "ohm": 282.32616246248733
+            },
+            "brMinDetectableRelError": 3.3579762898188165e-7
+          },
+          {
+            "step": 750,
+            "t": 1.5,
+            "rClean": 2.89981416709027e-14,
+            "bound": 1e-10,
+            "activeTerms": {
+              "nbi": true,
+              "ech": true,
+              "gas": true,
+              "br": true,
+              "ohm": true
+            },
+            "ratios": {
+              "nbi": 351.17050014658616,
+              "ech": 445.0048596717792,
+              "gas": 52.51412232096687,
+              "br": 2.118472756845057,
+              "ohm": 23.558420494133976
+            },
+            "brMinDetectableRelError": 4.720381684252827e-7
+          },
+          {
+            "step": 1000,
+            "t": 2,
+            "rClean": 2.0536049307234288e-14,
+            "bound": 1e-10,
+            "activeTerms": {
+              "nbi": true,
+              "ech": true,
+              "gas": true,
+              "br": true,
+              "ohm": true
+            },
+            "ratios": {
+              "nbi": 333.2671069951628,
+              "ech": 410.9153260065464,
+              "gas": 49.87291236999843,
+              "br": 2.546545670173015,
+              "ohm": 23.95724569619842
+            },
+            "brMinDetectableRelError": 3.9268881438598306e-7
+          },
+          {
+            "step": 1500,
+            "t": 3,
+            "rClean": 3.001645883152102e-14,
+            "bound": 1e-10,
+            "activeTerms": {
+              "nbi": true,
+              "ech": true,
+              "gas": true,
+              "br": true,
+              "ohm": true
+            },
+            "ratios": {
+              "nbi": 318.59671748977064,
+              "ech": 380.74703322426336,
+              "gas": 46.91939810118916,
+              "br": 3.0727511117358888,
+              "ohm": 25.07514140022539
+            },
+            "brMinDetectableRelError": 3.254412621252198e-7
+          },
+          {
+            "step": 1999,
+            "t": 3.998,
+            "rClean": 3.349675429133642e-14,
+            "bound": 1e-10,
+            "activeTerms": {
+              "nbi": true,
+              "ech": true,
+              "gas": true,
+              "br": true,
+              "ohm": true
+            },
+            "ratios": {
+              "nbi": 312.0065533509914,
+              "ech": 367.7225021882693,
+              "gas": 45.49897139907578,
+              "br": 3.3553250057720114,
+              "ohm": 25.731127338951804
+            },
+            "brMinDetectableRelError": 2.980337220030089e-7
+          },
+          {
+            "step": 2000,
+            "t": 4,
+            "rClean": 2.9053333761316425e-14,
+            "bound": 1e-10,
+            "activeTerms": {
+              "nbi": false,
+              "ech": false,
+              "gas": true,
+              "br": true,
+              "ohm": true
+            },
+            "ratios": {
+              "nbi": 0.00029053333761316425,
+              "ech": 0.00029053333761316425,
+              "gas": 45.49698904580476,
+              "br": 3.355800759214262,
+              "ohm": 25.732131402490598
+            },
+            "brMinDetectableRelError": 2.9799146962292933e-7
+          },
+          {
+            "step": 2250,
+            "t": 4.5,
+            "rClean": 2.9083444734790333e-14,
+            "bound": 1e-10,
+            "activeTerms": {
+              "nbi": false,
+              "ech": false,
+              "gas": true,
+              "br": true,
+              "ohm": true
+            },
+            "ratios": {
+              "nbi": 0.0002908344473479033,
+              "ech": 0.0002908344473479033,
+              "gas": 45.58747438866451,
+              "br": 5.257499797656313,
+              "ohm": 165.035235545042
+            },
+            "brMinDetectableRelError": 1.9020447712537807e-7
+          },
+          {
+            "step": 2450,
+            "t": 4.9,
+            "rClean": 3.939972106182421e-14,
+            "bound": 1e-10,
+            "activeTerms": {
+              "nbi": false,
+              "ech": false,
+              "gas": true,
+              "br": true,
+              "ohm": true
+            },
+            "ratios": {
+              "nbi": 0.0003939972106182421,
+              "ech": 0.0003939972106182421,
+              "gas": 46.23864148662647,
+              "br": 6.49153144675224,
+              "ohm": 216.77600626272888
+            },
+            "brMinDetectableRelError": 1.5404685445994522e-7
+          }
+        ],
+        "brMinRatio": 2.118472756845057,
+        "brMinAtStep": 750,
+        "undetectedActiveTerms": [],
+        "inactiveTermsNotJudged": [
+          "nbi@0.1s",
+          "ech@0.1s",
+          "nbi@0.5s",
+          "ech@0.5s",
+          "nbi@0.9s",
+          "ech@0.9s",
+          "nbi@4s",
+          "ech@4s",
+          "nbi@4.5s",
+          "ech@4.5s",
+          "nbi@4.9s",
+          "ech@4.9s"
+        ]
+      },
+      "verdict": "pass (marginal for bremsstrahlung)",
+      "note": "Every mutation of a shape that carries power at that step is rejected. Bremsstrahlung is the weakest: minimum ratio 2.12 over the sampled steps, i.e. the smallest normalisation error of the bremsstrahlung shape the ledger detects is about 4.72e-7; step 750 (the specified step) is the worst sampled step. NBI/ECH shapes at steps where those sources are off carry zero power, so a mis-normalisation there is physically inert and undetectable by any ledger; they are listed, not judged."
+    },
+    {
+      "id": "ADV-2",
+      "title": "F3 edge flux at dt 1e-8, 1e-10, 1e-12 (100x to 1e6x below the fixture minimum used in AC-7)",
+      "input": "F3 reflecting eigenmode N=256, 20000 steps each, observer reconstruction delivered = Phi_{N-1} + q dV_N - (x_N^{k+1} - x_N^k) dV_N/dt",
+      "expected": "DD-25 ratio <= 1 at every step; production-reported face flux Object.is 0; DMP violation 0",
+      "observed": [
+        {
+          "dt": 1e-8,
+          "steps": 20000,
+          "oldRatio1e12": 27.6895582908292,
+          "dd25Ratio": 0.003992778837009735,
+          "dd25Worst": {
+            "step": 6913,
+            "species": "we",
+            "absDiff": 6.90662804725406e-11,
+            "relTerm": 2.494307772884026e-12,
+            "roundoffFloor": 1.729530336445321e-8,
+            "M": 0.9989574476437922,
+            "dV_N": 0.0077972412109375,
+            "dt": 1e-8,
+            "oldRatio": 27.6895582908292
+          },
+          "productionReportedNonExactZero": 0,
+          "productionChecked": 40000,
+          "productionDeliveredMaxAbs": 6.90662804725406e-11,
+          "dmpMaxViolationOverM": 0
+        },
+        {
+          "dt": 1e-10,
+          "steps": 20000,
+          "oldRatio1e12": 2752.949962381386,
+          "dd25Ratio": 0.003970265477143899,
+          "dd25Worst": {
+            "step": 10816,
+            "species": "we",
+            "absDiff": 6.873569206866659e-9,
+            "relTerm": 2.49680135883066e-12,
+            "roundoffFloor": 0.0000017312593662746886,
+            "M": 0.9999561160041257,
+            "dV_N": 0.0077972412109375,
+            "dt": 1e-10,
+            "oldRatio": 2752.949962381386
+          },
+          "productionReportedNonExactZero": 0,
+          "productionChecked": 40000,
+          "productionDeliveredMaxAbs": 6.873569206866659e-9,
+          "dmpMaxViolationOverM": 0
+        },
+        {
+          "dt": 1e-12,
+          "steps": 20000,
+          "oldRatio1e12": 278375.05362595967,
+          "dd25Ratio": 0.004014691360947202,
+          "dd25Worst": {
+            "step": 0,
+            "species": "we",
+            "absDiff": 6.950582504133829e-7,
+            "relTerm": 2.496841011290121e-12,
+            "roundoffFloor": 0.0001731286860929078,
+            "M": 0.999971996610088,
+            "dV_N": 0.0077972412109375,
+            "dt": 1e-12,
+            "oldRatio": 278375.05362595967
+          },
+          "productionReportedNonExactZero": 0,
+          "productionChecked": 40000,
+          "productionDeliveredMaxAbs": 6.950582504133829e-7,
+          "dmpMaxViolationOverM": 0
+        }
+      ],
+      "verdict": "pass"
+    },
+    {
+      "id": "ADV-3",
+      "title": "LIMITS corners that throw (kappa=1.95 cluster): chi raised to the range maximum, N_rho and dt refinement",
+      "input": "all 31 failing AC-9 corners at chi_e=chi_i=10; corner corner-0100000 {\"ip\":0.6,\"bt\":1,\"nbi\":0,\"ech\":0,\"gas\":0,\"kappa\":1.95,\"delta\":-0.3} at N_rho 32..256 and dt 0.002..0.0005, chi 1.5..10",
+      "expected": "every run completes with floored parity <= 1e-9, ledger <= 1e-10 and positive finite cells, or throws the fixed-grammar constraint error; a model-driven stop should persist under grid/dt refinement at a converging time and be removed by stronger edge conduction",
+      "observed": {
+        "completedAtChi10": 29,
+        "of": 31,
+        "chi10": [
+          {
+            "id": "corner-0001100",
+            "kappa": 1,
+            "gas": 0,
+            "defaultChi": {
+              "errorTime": 1.016,
+              "errorCell": 64
+            },
+            "chi10": {
+              "status": "completed",
+              "parityFloored": 3.053378489410508e-11,
+              "ledgerMax": 2.42590948997481e-13,
+              "badCells": 0,
+              "minTe": 0.19594791999236383
+            }
+          },
+          {
+            "id": "corner-0100000",
+            "kappa": 1.95,
+            "gas": 0,
+            "defaultChi": {
+              "errorTime": 1.894,
+              "errorCell": 64
+            },
+            "chi10": {
+              "status": "completed",
+              "parityFloored": 2.162660300497309e-13,
+              "ledgerMax": 1.2847738926030984e-13,
+              "badCells": 0,
+              "minTe": 0.11283264770922816
+            }
+          },
+          {
+            "id": "corner-0100001",
+            "kappa": 1.95,
+            "gas": 0,
+            "defaultChi": {
+              "errorTime": 4.472,
+              "errorCell": 64
+            },
+            "chi10": {
+              "status": "completed",
+              "parityFloored": 6.970902014123348e-13,
+              "ledgerMax": 1.3525843517503332e-13,
+              "badCells": 0,
+              "minTe": 0.12305607649606091
+            }
+          },
+          {
+            "id": "corner-0100010",
+            "kappa": 1.95,
+            "gas": 0,
+            "defaultChi": {
+              "errorTime": 2.428,
+              "errorCell": 64
+            },
+            "chi10": {
+              "status": "completed",
+              "parityFloored": 2.370480564968591e-13,
+              "ledgerMax": 1.368456351246124e-13,
+              "badCells": 0,
+              "minTe": 0.15211128118275286
+            }
+          },
+          {
+            "id": "corner-0100011",
+            "kappa": 1.95,
+            "gas": 0,
+            "defaultChi": {
+              "errorTime": 4.604,
+              "errorCell": 64
+            },
+            "chi10": {
+              "status": "completed",
+              "parityFloored": 7.561570215354628e-13,
+              "ledgerMax": 1.2642896650237057e-13,
+              "badCells": 0,
+              "minTe": 0.17476183727107503
+            }
+          },
+          {
+            "id": "corner-0100100",
+            "kappa": 1.95,
+            "gas": 0,
+            "defaultChi": {
+              "errorTime": 1,
+              "errorCell": 64
+            },
+            "chi10": {
+              "status": "completed",
+              "parityFloored": 1.9956813134191166e-12,
+              "ledgerMax": 1.3224229787127105e-13,
+              "badCells": 0,
+              "minTe": 0.06058797764101441
+            }
+          },
+          {
+            "id": "corner-0100101",
+            "kappa": 1.95,
+            "gas": 0,
+            "defaultChi": {
+              "errorTime": 1.09,
+              "errorCell": 64
+            },
+            "chi10": {
+              "status": "completed",
+              "parityFloored": 5.112574815388922e-12,
+              "ledgerMax": 1.2793245090194798e-13,
+              "badCells": 0,
+              "minTe": 0.11152774908025696
+            }
+          },
+          {
+            "id": "corner-0100110",
+            "kappa": 1.95,
+            "gas": 0,
+            "defaultChi": {
+              "errorTime": 1.002,
+              "errorCell": 63
+            },
+            "chi10": {
+              "status": "completed",
+              "parityFloored": 2.3715245740258323e-12,
+              "ledgerMax": 1.2243611237022388e-13,
+              "badCells": 0,
+              "minTe": 0.10816806355775863
+            }
+          },
+          {
+            "id": "corner-0100111",
+            "kappa": 1.95,
+            "gas": 0,
+            "defaultChi": {
+              "errorTime": 1.248,
+              "errorCell": 64
+            },
+            "chi10": {
+              "status": "completed",
+              "parityFloored": 5.955670129614111e-12,
+              "ledgerMax": 1.2961010309118013e-13,
+              "badCells": 0,
+              "minTe": 0.13551193023345187
+            }
+          },
+          {
+            "id": "corner-0101000",
+            "kappa": 1.95,
+            "gas": 0,
+            "defaultChi": {
+              "errorTime": 1.002,
+              "errorCell": 64
+            },
+            "chi10": {
+              "status": "threw",
+              "error": "profile constraint violated at t=3.962000 s in cell 64: T_e <= 0",
+              "errorTime": 3.962,
+              "errorCell": 64,
+              "parityFloored": 7.34051272541725e-13,
+              "ledgerMax": 1.3513311305204176e-13,
+              "badCells": 0,
+              "minTe": 0.0004282418859063901
+            }
+          },
+          {
+            "id": "corner-0101001",
+            "kappa": 1.95,
+            "gas": 0,
+            "defaultChi": {
+              "errorTime": 2.048,
+              "errorCell": 64
+            },
+            "chi10": {
+              "status": "completed",
+              "parityFloored": 1.899587864381279e-12,
+              "ledgerMax": 1.3611456057747324e-13,
+              "badCells": 0,
+              "minTe": 0.12306340961879135
+            }
+          },
+          {
+            "id": "corner-0101010",
+            "kappa": 1.95,
+            "gas": 0,
+            "defaultChi": {
+              "errorTime": 1.004,
+              "errorCell": 64
+            },
+            "chi10": {
+              "status": "completed",
+              "parityFloored": 8.656708946937303e-13,
+              "ledgerMax": 1.3727788011210857e-13,
+              "badCells": 0,
+              "minTe": 0.15211128118275286
+            }
+          },
+          {
+            "id": "corner-0101011",
+            "kappa": 1.95,
+            "gas": 0,
+            "defaultChi": {
+              "errorTime": 2.662,
+              "errorCell": 64
+            },
+            "chi10": {
+              "status": "completed",
+              "parityFloored": 2.2052683624488063e-12,
+              "ledgerMax": 1.23637941565974e-13,
+              "badCells": 0,
+              "minTe": 0.17483230857997603
+            }
+          },
+          {
+            "id": "corner-0101100",
+            "kappa": 1.95,
+            "gas": 0,
+            "defaultChi": {
+              "errorTime": 1,
+              "errorCell": 63
+            },
+            "chi10": {
+              "status": "threw",
+              "error": "profile constraint violated at t=1.410000 s in cell 64: T_e <= 0",
+              "errorTime": 1.41,
+              "errorCell": 64,
+              "parityFloored": 1.6589974370374959e-13,
+              "ledgerMax": 1.1025748743019124e-13,
+              "badCells": 0,
+              "minTe": 0.00030464931460078216
+            }
+          },
+          {
+            "id": "corner-0101101",
+            "kappa": 1.95,
+            "gas": 0,
+            "defaultChi": {
+              "errorTime": 1.014,
+              "errorCell": 64
+            },
+            "chi10": {
+              "status": "completed",
+              "parityFloored": 5.891102184843213e-12,
+              "ledgerMax": 1.2793245090194798e-13,
+              "badCells": 0,
+              "minTe": 0.11174918117728111
+            }
+          },
+          {
+            "id": "corner-0101110",
+            "kappa": 1.95,
+            "gas": 0,
+            "defaultChi": {
+              "errorTime": 1,
+              "errorCell": 64
+            },
+            "chi10": {
+              "status": "completed",
+              "parityFloored": 2.7351609595017316e-12,
+              "ledgerMax": 1.2243611237022388e-13,
+              "badCells": 0,
+              "minTe": 0.10817184883489962
+            }
+          },
+          {
+            "id": "corner-0101111",
+            "kappa": 1.95,
+            "gas": 0,
+            "defaultChi": {
+              "errorTime": 1.042,
+              "errorCell": 64
+            },
+            "chi10": {
+              "status": "completed",
+              "parityFloored": 6.90416574284895e-12,
+              "ledgerMax": 1.2417446895275608e-13,
+              "badCells": 0,
+              "minTe": 0.13659293916853374
+            }
+          },
+          {
+            "id": "corner-0111100",
+            "kappa": 1.95,
+            "gas": 8,
+            "defaultChi": {
+              "errorTime": 1.406,
+              "errorCell": 64
+            },
+            "chi10": {
+              "status": "completed",
+              "parityFloored": 5.4691083700138496e-12,
+              "ledgerMax": 1.2339078925907138e-13,
+              "badCells": 0,
+              "minTe": 0.06611116236240466
+            }
+          },
+          {
+            "id": "corner-1100000",
+            "kappa": 1.95,
+            "gas": 0,
+            "defaultChi": {
+              "errorTime": 3.624,
+              "errorCell": 64
+            },
+            "chi10": {
+              "status": "completed",
+              "parityFloored": 3.5153749497161935e-13,
+              "ledgerMax": 1.3734448361190318e-13,
+              "badCells": 0,
+              "minTe": 0.1551969133823179
+            }
+          },
+          {
+            "id": "corner-1100001",
+            "kappa": 1.95,
+            "gas": 0,
+            "defaultChi": {
+              "errorTime": 4.788,
+              "errorCell": 64
+            },
+            "chi10": {
+              "status": "completed",
+              "parityFloored": 1.1470103591036113e-12,
+              "ledgerMax": 1.4682270453363097e-13,
+              "badCells": 0,
+              "minTe": 0.2349951086996294
+            }
+          },
+          {
+            "id": "corner-1100010",
+            "kappa": 1.95,
+            "gas": 0,
+            "defaultChi": {
+              "errorTime": 4.264,
+              "errorCell": 64
+            },
+            "chi10": {
+              "status": "completed",
+              "parityFloored": 3.821211357306668e-13,
+              "ledgerMax": 1.4620572588846682e-13,
+              "badCells": 0,
+              "minTe": 0.17048834368001203
+            }
+          },
+          {
+            "id": "corner-1100011",
+            "kappa": 1.95,
+            "gas": 0,
+            "defaultChi": {
+              "errorTime": 4.87,
+              "errorCell": 64
+            },
+            "chi10": {
+              "status": "completed",
+              "parityFloored": 1.2369619463765857e-12,
+              "ledgerMax": 1.411933226528945e-13,
+              "badCells": 0,
+              "minTe": 0.2591396073787606
+            }
+          },
+          {
+            "id": "corner-1100100",
+            "kappa": 1.95,
+            "gas": 0,
+            "defaultChi": {
+              "errorTime": 1.002,
+              "errorCell": 63
+            },
+            "chi10": {
+              "status": "completed",
+              "parityFloored": 4.833620338612528e-12,
+              "ledgerMax": 1.3637658654392696e-13,
+              "badCells": 0,
+              "minTe": 0.12111171563004346
+            }
+          },
+          {
+            "id": "corner-1100110",
+            "kappa": 1.95,
+            "gas": 0,
+            "defaultChi": {
+              "errorTime": 1.004,
+              "errorCell": 64
+            },
+            "chi10": {
+              "status": "completed",
+              "parityFloored": 5.6355981020432965e-12,
+              "ledgerMax": 1.4983769419418766e-13,
+              "badCells": 0,
+              "minTe": 0.13456054411429086
+            }
+          },
+          {
+            "id": "corner-1101000",
+            "kappa": 1.95,
+            "gas": 0,
+            "defaultChi": {
+              "errorTime": 1.004,
+              "errorCell": 64
+            },
+            "chi10": {
+              "status": "completed",
+              "parityFloored": 1.4002465436930272e-12,
+              "ledgerMax": 1.4249885449732635e-13,
+              "badCells": 0,
+              "minTe": 0.1551969133823179
+            }
+          },
+          {
+            "id": "corner-1101001",
+            "kappa": 1.95,
+            "gas": 0,
+            "defaultChi": {
+              "errorTime": 3.846,
+              "errorCell": 64
+            },
+            "chi10": {
+              "status": "completed",
+              "parityFloored": 3.4914326746747776e-12,
+              "ledgerMax": 1.4424798460459565e-13,
+              "badCells": 0,
+              "minTe": 0.2349951086996294
+            }
+          },
+          {
+            "id": "corner-1101010",
+            "kappa": 1.95,
+            "gas": 0,
+            "defaultChi": {
+              "errorTime": 1.008,
+              "errorCell": 64
+            },
+            "chi10": {
+              "status": "completed",
+              "parityFloored": 1.6461843020295816e-12,
+              "ledgerMax": 1.400410339762666e-13,
+              "badCells": 0,
+              "minTe": 0.17048834368001203
+            }
+          },
+          {
+            "id": "corner-1101011",
+            "kappa": 1.95,
+            "gas": 0,
+            "defaultChi": {
+              "errorTime": 4.87,
+              "errorCell": 64
+            },
+            "chi10": {
+              "status": "completed",
+              "parityFloored": 4.051935637096745e-12,
+              "ledgerMax": 1.677238142014576e-13,
+              "badCells": 0,
+              "minTe": 0.2591396073787606
+            }
+          },
+          {
+            "id": "corner-1101100",
+            "kappa": 1.95,
+            "gas": 0,
+            "defaultChi": {
+              "errorTime": 1.002,
+              "errorCell": 62
+            },
+            "chi10": {
+              "status": "completed",
+              "parityFloored": 5.580809362028741e-12,
+              "ledgerMax": 1.4155281964021562e-13,
+              "badCells": 0,
+              "minTe": 0.1211126365364947
+            }
+          },
+          {
+            "id": "corner-1101101",
+            "kappa": 1.95,
+            "gas": 0,
+            "defaultChi": {
+              "errorTime": 1.132,
+              "errorCell": 64
+            },
+            "chi10": {
+              "status": "completed",
+              "parityFloored": 1.3638312379682238e-11,
+              "ledgerMax": 1.4143271195443835e-13,
+              "badCells": 0,
+              "minTe": 0.14538353589650196
+            }
+          },
+          {
+            "id": "corner-1101110",
+            "kappa": 1.95,
+            "gas": 0,
+            "defaultChi": {
+              "errorTime": 1.002,
+              "errorCell": 64
+            },
+            "chi10": {
+              "status": "completed",
+              "parityFloored": 6.516503998690605e-12,
+              "ledgerMax": 1.5026529792092923e-13,
+              "badCells": 0,
+              "minTe": 0.13456627579574465
+            }
+          }
+        ],
+        "resolution": [
+          {
+            "N_rho": 32,
+            "dt": 0.002,
+            "status": "threw",
+            "error": "profile constraint violated at t=2.080000 s in cell 32: T_i <= 0",
+            "errorTime": 2.08,
+            "errorCell": 32,
+            "parityFloored": 1.7096763706611285e-14,
+            "ledgerMax": 1.1786395641735802e-14,
+            "badCells": 0,
+            "minTe": 0.020909627635427783
+          },
+          {
+            "N_rho": 64,
+            "dt": 0.002,
+            "status": "threw",
+            "error": "profile constraint violated at t=1.894000 s in cell 64: T_i <= 0",
+            "errorTime": 1.894,
+            "errorCell": 64,
+            "parityFloored": 4.368776362607977e-14,
+            "ledgerMax": 3.6464827333968965e-14,
+            "badCells": 0,
+            "minTe": 0.014928246500702118
+          },
+          {
+            "N_rho": 128,
+            "dt": 0.002,
+            "status": "threw",
+            "error": "profile constraint violated at t=1.812000 s in cell 128: T_i <= 0",
+            "errorTime": 1.812,
+            "errorCell": 128,
+            "parityFloored": 5.432416359386717e-14,
+            "ledgerMax": 1.3472322329962193e-13,
+            "badCells": 0,
+            "minTe": 0.012773035942856285
+          },
+          {
+            "N_rho": 256,
+            "dt": 0.002,
+            "status": "threw",
+            "error": "profile constraint violated at t=1.772000 s in cell 256: T_i <= 0",
+            "errorTime": 1.772,
+            "errorCell": 256,
+            "parityFloored": 2.1187137653955028e-13,
+            "ledgerMax": 5.662424917266795e-13,
+            "badCells": 0,
+            "minTe": 0.011905916362609716
+          },
+          {
+            "N_rho": 64,
+            "dt": 0.001,
+            "status": "threw",
+            "error": "profile constraint violated at t=1.899000 s in cell 64: T_i <= 0",
+            "errorTime": 1.899,
+            "errorCell": 64,
+            "parityFloored": 3.851545046389279e-14,
+            "ledgerMax": 1.983195200266325e-14,
+            "badCells": 0,
+            "minTe": 0.01486321969386507
+          },
+          {
+            "N_rho": 64,
+            "dt": 0.0005,
+            "status": "threw",
+            "error": "profile constraint violated at t=1.901000 s in cell 64: T_i <= 0",
+            "errorTime": 1.901,
+            "errorCell": 64,
+            "parityFloored": 1.7152316956838915e-14,
+            "ledgerMax": 9.927593068595909e-15,
+            "badCells": 0,
+            "minTe": 0.014870203508443787
+          }
+        ],
+        "chiScan": [
+          {
+            "chi": 1.5,
+            "status": "threw",
+            "error": "profile constraint violated at t=0.164000 s in cell 64: T_i <= 0",
+            "errorTime": 0.164,
+            "errorCell": 64,
+            "parityFloored": 3.283720795424297e-15,
+            "ledgerMax": 1.4098897314793967e-14,
+            "badCells": 0,
+            "minTe": 0.009362983947280737
+          },
+          {
+            "chi": 3,
+            "status": "threw",
+            "error": "profile constraint violated at t=1.894000 s in cell 64: T_i <= 0",
+            "errorTime": 1.894,
+            "errorCell": 64,
+            "parityFloored": 4.368776362607977e-14,
+            "ledgerMax": 3.6464827333968965e-14,
+            "badCells": 0,
+            "minTe": 0.014928246500702118
+          },
+          {
+            "chi": 5,
+            "status": "threw",
+            "error": "profile constraint violated at t=4.168000 s in cell 64: T_i <= 0",
+            "errorTime": 4.168,
+            "errorCell": 64,
+            "parityFloored": 1.251026237821974e-14,
+            "ledgerMax": 6.448343273868037e-14,
+            "badCells": 0,
+            "minTe": 0.018130962086337833
+          },
+          {
+            "chi": 7,
+            "status": "threw",
+            "error": "profile constraint violated at t=4.948000 s in cell 64: T_i <= 0",
+            "errorTime": 4.948,
+            "errorCell": 64,
+            "parityFloored": 1.896705685530947e-13,
+            "ledgerMax": 8.304174153950436e-14,
+            "badCells": 0,
+            "minTe": 0.014758394422401039
+          },
+          {
+            "chi": 10,
+            "status": "completed",
+            "parityFloored": 2.162660300497309e-13,
+            "ledgerMax": 1.2847738926030984e-13,
+            "badCells": 0,
+            "minTe": 0.11283264770922816
+          }
+        ],
+        "profileOffStatus": "completed",
+        "silentViolations": 0,
+        "badGrammar": 0
+      },
+      "verdict": "pass"
+    },
+    {
+      "id": "ADV-4",
+      "title": "Conservation, ledger and shape normalisation at the corners of the profile option ranges",
+      "input": "narrow edge ECH, narrow NBI, coarse grid: {\"enabled\":true,\"N_rho\":16,\"D\":0.03,\"chi_e\":1.5,\"chi_i\":1.5,\"rho_NBI\":0.7,\"sigma_NBI\":0.1,\"rho_ECH\":0.8,\"sigma_ECH\":0.05,\"gas_exponent\":8,\"jshape_gamma\":2} | central wide deposition, finest grid, max transport: {\"enabled\":true,\"N_rho\":256,\"D\":1,\"chi_e\":10,\"chi_i\":10,\"rho_NBI\":0,\"sigma_NBI\":0.4,\"rho_ECH\":0,\"sigma_ECH\":0.25,\"gas_exponent\":2,\"jshape_gamma\":0} | asymmetric chi_e min / chi_i max: {\"enabled\":true,\"N_rho\":128,\"D\":0.03,\"chi_e\":1.5,\"chi_i\":10,\"rho_NBI\":0.5,\"sigma_NBI\":0.2,\"rho_ECH\":0.3,\"sigma_ECH\":0.1,\"gas_exponent\":4,\"jshape_gamma\":1} x controls DEFAULT and ip=1.5,nbi=6; dt=0.002",
+      "expected": "completing runs: floored parity <= 1e-9, own-oracle ledger and species totals <= 1e-10, shape norms <= 1e-13, axis flux Object.is 0, all cells finite positive, oracle pre-state == production pre-state; else explicit constraint error",
+      "observed": [
+        {
+          "options": "narrow edge ECH, narrow NBI, coarse grid",
+          "controls": "DEFAULT",
+          "status": "completed",
+          "parityFloored": 3.074261706183898e-14,
+          "parityUnfloored": 1.142188697808538e-13,
+          "ledgerMax": 1.861932789261066e-15,
+          "speciesTotalMax": 3.9837406832442503e-16,
+          "shapeNormProdMaxDev": 6.661338147750939e-16,
+          "axisNonZero": 0,
+          "badCells": 0,
+          "preMismatch": 0,
+          "internal": 0
+        },
+        {
+          "options": "narrow edge ECH, narrow NBI, coarse grid",
+          "controls": "max heating ip=1.5 nbi=6",
+          "status": "completed",
+          "parityFloored": 3.388674835225433e-14,
+          "parityUnfloored": 1.0042520443323952e-13,
+          "ledgerMax": 1.5962077890048878e-15,
+          "speciesTotalMax": 4.83110330231664e-16,
+          "shapeNormProdMaxDev": 5.551115123125783e-16,
+          "axisNonZero": 0,
+          "badCells": 0,
+          "preMismatch": 0,
+          "internal": 0
+        },
+        {
+          "options": "central wide deposition, finest grid, max transport",
+          "controls": "DEFAULT",
+          "status": "completed",
+          "parityFloored": 1.1970319181473266e-11,
+          "parityUnfloored": 4.5032992322345564e-11,
+          "ledgerMax": 2.668656480357486e-12,
+          "speciesTotalMax": 1.1495828848085326e-13,
+          "shapeNormProdMaxDev": 1.7763568394002505e-15,
+          "axisNonZero": 0,
+          "badCells": 0,
+          "preMismatch": 0,
+          "internal": 0
+        },
+        {
+          "options": "central wide deposition, finest grid, max transport",
+          "controls": "max heating ip=1.5 nbi=6",
+          "status": "completed",
+          "parityFloored": 1.8021112512897318e-11,
+          "parityUnfloored": 5.493889696483277e-11,
+          "ledgerMax": 2.566492267622474e-12,
+          "speciesTotalMax": 1.1414794120759172e-13,
+          "shapeNormProdMaxDev": 1.5543122344752192e-15,
+          "axisNonZero": 0,
+          "badCells": 0,
+          "preMismatch": 0,
+          "internal": 0
+        },
+        {
+          "options": "asymmetric chi_e min / chi_i max",
+          "controls": "DEFAULT",
+          "status": "threw",
+          "error": "profile constraint violated at t=2.192000 s in cell 128: T_e <= 0",
+          "parityFloored": 4.886148042846858e-13,
+          "parityUnfloored": 4.886148042846858e-13,
+          "ledgerMax": 6.211900618867911e-13,
+          "speciesTotalMax": 3.789462870377773e-14,
+          "shapeNormProdMaxDev": 1.5543122344752192e-15,
+          "axisNonZero": 0,
+          "badCells": 0,
+          "preMismatch": 0,
+          "internal": 0
+        },
+        {
+          "options": "asymmetric chi_e min / chi_i max",
+          "controls": "max heating ip=1.5 nbi=6",
+          "status": "threw",
+          "error": "profile constraint violated at t=2.016000 s in cell 128: T_e <= 0",
+          "parityFloored": 3.7285031195001466e-13,
+          "parityUnfloored": 3.7285031195001466e-13,
+          "ledgerMax": 6.536602722569499e-13,
+          "speciesTotalMax": 3.817783767584761e-14,
+          "shapeNormProdMaxDev": 1.3322676295501878e-15,
+          "axisNonZero": 0,
+          "badCells": 0,
+          "preMismatch": 0,
+          "internal": 0
+        }
+      ],
+      "verdict": "pass"
+    },
+    {
+      "id": "ADV-5",
+      "title": "Off-path guarantee under hostile sequences: prior throw, throwing observer hook, off run inside the hook scope, frozen/mutated option objects",
+      "input": "frozen M02 case 'default' reference shot; sequence listed in observed.log",
+      "expected": "every off run Object.is-identical to the frozen reference (0 differences); throwing hook propagates and is uninstalled (0 later calls); off run inside hook scope calls the hook 0 times; inputs not mutated; frozen and mutable option objects give identical profile-on shots; exported options not aliased to the caller object",
+      "observed": {
+        "log": [
+          {
+            "step": "1 fresh off run",
+            "fieldsCompared": 4283,
+            "differences": 0,
+            "first": []
+          },
+          {
+            "step": "2 off run after a profile-on run that threw a constraint error",
+            "fieldsCompared": 4283,
+            "differences": 0,
+            "first": []
+          },
+          {
+            "step": "3 off run inside withProfileStepObserver",
+            "fieldsCompared": 4283,
+            "differences": 0,
+            "first": []
+          },
+          {
+            "step": "4 off run after profile-on runs",
+            "fieldsCompared": 4283,
+            "differences": 0,
+            "first": []
+          },
+          {
+            "step": "5 off run with {enabled:false} after all of the above",
+            "fieldsCompared": 4283,
+            "differences": 0,
+            "first": []
+          }
+        ],
+        "constraintRunThrew": true,
+        "hostileHookPropagated": true,
+        "hookCallsAfterScope": 0,
+        "hookCallsDuringOffRun": 0,
+        "inputMutated": false,
+        "frozenVsMutableDifferences": 0,
+        "exportedOptionsAliasDifferences": 0
+      },
+      "verdict": "pass"
+    }
+  ],
+  "seconds": 9.254997833
+}

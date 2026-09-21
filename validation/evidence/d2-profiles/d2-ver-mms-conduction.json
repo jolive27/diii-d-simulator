@@ -1,0 +1,34 @@
+{
+  "checkId": "AC-5 D2-VER-MMS-CONDUCTION (validation re-execution)",
+  "validationModel": "claude-opus",
+  "role": "validation",
+  "physicsModelVersion": "0.2.0",
+  "verificationVersion": "0.3.0",
+  "node": "v24.20.0",
+  "physicsSha256": {
+    "physics/engine.ts": "c57ea711b0ad722cfc51128df76d5a1efcb670a924ce097f00eca61a8154ddfb",
+    "physics/profiles.ts": "e5f3497f59098b7d391c30ece9818dc7a697cd17e259f0f0d9177e750b22cce4"
+  },
+  "harness": "validation/independent/d2-profiles.mjs",
+  "harnessSha256": "915a12943a781a3942d4a5c4b03d5bb50847770356423c32ac5992b5e0b52b28",
+  "generated": "2026-09-21T21:50:43.350Z",
+  "command": "node --experimental-strip-types validation/independent/d2-profiles.mjs ac5",
+  "L2rel_we": 0.000021516878831260632,
+  "L2rel_wi": 0.000021516878831260632,
+  "tolerance": 0.0001,
+  "ratio": 0.2151687883126063,
+  "sourceResidualOwnFD": {
+    "rho": [
+      0.05,
+      0.2,
+      0.35,
+      0.5,
+      0.65,
+      0.8,
+      0.95
+    ],
+    "t": 0.7,
+    "max": 7.811581170802384e-8
+  },
+  "pass": true
+}

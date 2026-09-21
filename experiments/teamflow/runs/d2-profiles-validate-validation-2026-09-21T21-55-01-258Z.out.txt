@@ -1,0 +1,67 @@
+## Handoff: validate d2-profiles, Part B (claude-opus)
+
+**Overall verdict: PASS.** AC-1 to AC-9 all pass from my own code, and all 5 adversarial cases pass. AC-3 and AC-7 pass only because of the DD-24 and DD-25 amendments. AC-10 still needs the validate-stage Jev audit. I loosened no tolerance. Jev flagged one question below 0.75, `numbers_recorded_per_check`; I explain it at the end.
+
+**Files** (allowed paths only)
+- `validation/independent/d2-profiles.mjs` (SHA `46e677c7…`): my harness. It adds the DD-24 floored parity, the DD-25 edge-flux bound and new modes `ac5`, `rates`, `adv`, `assemble`. It imports only from `physics/`, nothing from `tests/`.
+- `validation/evidence/d2-profiles/`: all Part A files regenerated, plus new `d2-ver-steady`, `-eigen-dirichlet`, `-eigen-reflect`, `-mms-conduction`, `-refinement` and `-adversarial` (all `.json`).
+- `validation/evidence/d2-profiles-falsification.json` (SHA `0cd82389…`): final version, replaces the Part A file.
+
+**Commands** (each `node --experimental-strip-types validation/independent/d2-profiles.mjs <mode>`, run in parallel, about 5 minutes wall time):
+- `ac1`: 0.4 s
+- `sweep`: 198 s, 1,296 runs
+- `fixtures`: 243 s
+- `probe`: 259 s
+- `ac5`: 141 s
+- `rates`: 64 s
+- `adv`: 9 s
+- `assemble`
+
+Existing suites: `node --test` on the five pre-existing files gave 36/36 passing; `python3 -m unittest` ran 14 tests, OK. `git diff 99b6a1f HEAD` over those tests is empty.
+
+**Per check**
+
+| Check | Measured | Tolerance | Verdict |
+|---|---|---|---|
+| AC-1 | 179,886 fields, 0 differences; 6/6 non-boolean `enabled` values throw | 0 differences | pass |
+| AC-2 | 111 cases, 0 differing fields | 0 | pass |
+| AC-3 | Floored: worst **9.64e-11**. Un-floored: worst **1.1156e-9**, in one run only (corner-0001001, N_rho=128); that run is 1.77e-11 floored | ≤ 1e-9 floored (DD-24) | pass, only under DD-24 |
+| AC-4 | Ledger 7.6e-13; species totals 5.1e-14; all 8 mutations rejected, the weakest being bremsstrahlung at **2.12×** | DD-20 bounds | pass, marginal |
+| AC-5 | F1: 9 runs, worst 3.3e-13, stop rule reached in 123–124 steps. F2: **7.57e-5**, maximum-principle violation 0. F3: 3.82e-4, uniform-mode total change 0, production face flux exactly 0. F4: 2.15e-5 | 1e-6 / 1e-4 / 1e-3 / 1e-4 | pass (F2 margin only 1.32×) |
+| AC-6 | Spatial: F2 1.965, 1.983, 1.991; F3 2.009, 2.002, 2.002; F4 1.940, 1.970, 1.985. Temporal: F2 1.000, 1.000; F3 1.002, 1.001; F4 1.000, 1.000. Default shot: 16 rates between 0.976 and 1.182 | [1.8, 2.2] / [0.85, 1.15] / [0.7, 1.3] | pass, all 31 rates reported |
+| AC-7 | Axis flux: 0 non-zero values. Shape normalisation 1.1e-15. Maximum-principle violation 0. F3 reconstructed flux against the DD-25 bound: **8.1e-3 at dt=1e-6, 6.9e-3 at 5e-7, 6.6e-3 at 2.5e-7** (against the old bound: 0.569, 0.958, 1.83). Production flux exactly 0 on 14M step-species checks | DD-25 bound | pass, only under DD-25 |
+| AC-8 | Recomputed diagnostics agree to 7.2e-15; anchors A1–A5 pass | per anchor | pass |
+| AC-9 | 107 complete, 31 throw with the correct error format, 0 silent violations | as spec | pass |
+| AC-10 | 9/9 checks pass; 5 adversarial cases; validation model claude-opus, software claude-sonnet | | pass, pending Jev audit |
+
+**Adversarial cases**
+- **ADV-1: shape mutations across the whole shot.** I mutated each shape at 11 steps, not only step 750. Expected: every shape that carries power is rejected. Observed: all rejected; bremsstrahlung's minimum is 2.12 at step 750, so the specified step is the worst one. NBI and ECH at steps where they are off carry zero power and cannot be detected; I listed them but did not judge them. **Pass, marginal.**
+- **ADV-2: F3 edge flux at dt = 1e-8, 1e-10, 1e-12.** Expected: ratio ≤ 1 under DD-25 and production flux exactly 0. Observed: ratio about 4.0e-3 at every dt, while the old-bound ratio grows as 1/dt (27.7, 2,753, 278,375). Production flux is exactly 0 and there are no maximum-principle violations. **Pass.**
+- **ADV-3: the kappa=1.95 failure cluster.** Expected: every run either completes cleanly or throws the explicit error. Observed:
+  - With chi raised to 10, 29 of 31 failing corners complete.
+  - In a chi scan on one corner, the stop time moves from 0.164 s at chi 1.5 to completion at chi 10.
+  - The stop time converges with N_rho: 2.080, 1.894, 1.812 and 1.772 s at N_rho 32 to 256, heading to about 1.73 s.
+  - It is insensitive to dt: 1.894 to 1.901 s.
+
+  So the stop comes from the model itself (the prescribed edge loss draining the edge cell faster than conduction refills it), not from the timestep. At N_rho=64 the stop time is off by about 9% from the converged value. There were no silent violations. **Pass.**
+- **ADV-4: conservation at the option-range extremes.** Six runs. Expected: parity ≤ 1e-9, ledger ≤ 1e-10. Observed: worst parity 1.8e-11, ledger 2.7e-12, normalisation 1.8e-15. **Pass.**
+- **ADV-5: off path under hostile call sequences.** I ran the off path after a profile-on run that threw, inside a throwing step hook, inside the hook scope, and with frozen and mutated option objects. Expected: identical to the frozen reference. Observed: 0 differences, the hook is removed afterwards, inputs are not modified and the returned options are not linked to the caller's object. **Pass.**
+
+Two of my own adversarial checks were wrong on the first run, and I fixed them before the final run:
+- ADV-5 compared the wrong shot's options.
+- ADV-1 judged NBI and ECH at steps where those sources are off.
+
+**Jev** (one batched CLI call over the evidence file, repeated once after a fix)
+
+| Question | Result |
+|---|---|
+| `reexecuted_from_own_code` | 0.94, pass |
+| `adversarial_cases_substantive` | 0.92, pass |
+| `honest_reporting` | 0.93, pass |
+| `model_independence` | 0.99, pass |
+| `verdicts_supported` | excellent (2.88) |
+| `numbers_recorded_per_check` | **0.56, flagged** (0.58 on the first call) |
+
+After the first call I removed the bare booleans from AC-7 sub-checks (a) and (c) and reassembled; the score did not move. A structural check of the file finds every AC entry has an id, command, measured values (3 to 290 numbers each), a tolerance and a verdict. Every adversarial case has input, expected, observed (14 to 79 numbers) and a verdict. I did not re-ask Jev with softer wording, so this flag stays open for your review.
+
+**Limits:** Parity and the ledger show the profiles are consistent with the 0-D model, not that the profile shapes are physically accurate. The transport coefficients are uncalibrated. The Part A falsification file was replaced; a backup is in my session scratchpad only.
