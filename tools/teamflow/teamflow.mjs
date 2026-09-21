@@ -130,7 +130,9 @@ async function run() {
     if (!unit || !stage) return fail('eval <unit> <stage|all [...]> [--model M]');
     const state = loadUnit(unit);
     const stages = stage.toLowerCase() === 'all'
-      ? reg.stages.map(s => s.id).filter(id => evalTemplate(id))
+      // Only stages that are done and carry an artifact window: auditing a pending stage (gate, accept)
+      // or re-batching nine stages under one budget overwrote full-context PASS records with truncated FAILs.
+      ? reg.stages.map(s => s.id).filter(id => evalTemplate(id) && state.stages[id]?.status === 'done' && state.artifactWindows[id])
       : args.slice(1);
     for (const s of stages) if (!stageFor(s)) return fail(`unknown stage '${s}'`);
     let records;

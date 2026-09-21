@@ -1,4 +1,4 @@
-# CONTEXT HANDOFF — as of 2026-09-21 (night; validate Part B in flight)
+# CONTEXT HANDOFF — as of 2026-09-21 (night; d2-profiles ACCEPTED, release pending)
 
 Say: "Read docs/CONTEXT-HANDOFF.md and restore my working state."
 
@@ -27,19 +27,19 @@ Single source `~/.config/jev/`:
 - `eval <unit> all` = ONE Jev call over ONE state. `gate` enforces order, scopes, audits, model independence. `accept` marks gate+accept done, signs as `claude-opus`.
 - Fixed 2026-09-21: `status` crash on `*.rubric.json` sidecars; `evals` crash on FAIL rows; choice answers (`{choice:"opt",confidence}`) now parsed in `jev.mjs`. Selftest 8/8.
 
-## ACTIVE UNIT — d2-profiles (M03 D2, 1-D radial transport + profile evolution)
-Resume with: `node tools/teamflow/teamflow.mjs status d2-profiles`. Stage: **validate** (claude-opus), Part A done, Part B was running at shutdown (2026-09-21 ~22:00).
-- DONE + committed + pushed (GitHub main 5fca848 or later): intake, research, spec, design-review (Jev 8/8), implement (Jev 5/5, code commit d68ed6e), self-review (haiku, zero defects, Jev 2/2). Validation Part A Director review: DD-24..DD-26 recorded, change request re-approved, hashes rebound.
-- **Validation Part A (opus)** result: AC-1/2/4/8/9 pass; AC-3 and AC-7(b) failed on measurement definition, ruled by DD-24 (parity normaliser max(X(t),X(0))) and DD-25 (roundoff floor for reconstructed zero flux); marginal: bremsstrahlung mutation ratio 2.12x, F3 edge flux. Transcript `experiments/teamflow/runs/d2-profiles-validate-validation-2026-09-21T21-41-59-518Z.out.txt`. Its files `validation/independent/d2-profiles.mjs`, `validation/evidence/d2-profiles/`, `validation/evidence/d2-profiles-falsification.json` are UNCOMMITTED (Part B was editing them).
-- **Validation Part B (opus)**: AC-5 fixtures, AC-6 rates, 3+ adversarial cases, re-verdict AC-3/AC-7 under DD-24/25, finalise falsification.json. The brief is stored in `experiments/teamflow/units/d2-profiles.json` under tasks.validate. If the run was killed: check `ls -t experiments/teamflow/runs/d2-profiles-validate-validation-*.out.txt` for a second transcript; if none or partial, `git status` the validation/ files, then re-dispatch the same brief with nohup (see Tooling facts) and wait with the pgrep loop.
-- After Part B: `complete d2-profiles validate --files validation/evidence/d2-profiles-falsification.json,validation/independent/d2-profiles.mjs --model claude-opus --report "..."` → `eval d2-profiles validate` (rubric: ac10_reexecution, adversarial_cases, falsification_honest, model_independence) → `eval d2-profiles all` → `gate` → `accept` → release: Director writes `science/model_versions.json` entries (physics 0.2.0 / verification 0.3.0 capability entry, top-level stays 0.1.0, DD-11/15), refreshes the engine.ts SHA cited in `science/constants.json` (DD-23), considers making the tests stop regenerating `tests/d2/evidence/*.json` timestamps in place (noisy diffs). Commit each stage with the Jev gate (`jev review --require approve`, or `jev eval` over `git diff --cached` when the tree holds in-flight lane work) and push.
-- Decisions DD-1..DD-26 in `experiments/records/d2-profiles-design-decisions.json` are binding; change request `specs/change-requests/D2-PROFILES-001.json` APPROVED, hash-bound (re-approvals listed inside).
+## ACTIVE UNIT — d2-profiles (M03 D2, 1-D radial transport + profile evolution) — ACCEPTED 2026-09-21
+Resume with: `node tools/teamflow/teamflow.mjs status d2-profiles`. Stages intake..accept all done, every stage Jev PASS; DECISION ACCEPTED (Director claude-opus, `accept --formal`). Next: **release** then **retro**.
+- Release (Director, science/ is Director-only at release per DD-15): append to `science/model_versions.json` the capability entries {physics 0.2.0, spec specs/proposals/d2-profiles.md, changeRequest specs/change-requests/D2-PROFILES-001.json} and {verification 0.3.0, spec specs/proposals/d2-profiles-verification.md}; top-level physicsModelVersion stays 0.1.0 (DD-11); refresh the engine.ts SHA cited in `science/constants.json` (DD-23); register A-D2-001..008 and C-D2-* IDs in the science registries (change request approvedNewAssumptionIds / approvedNewConstants); consider stopping tests from rewriting `tests/d2/evidence/*.json` timestamps in place; then `node tools/teamflow/teamflow.mjs release d2-profiles`, `retro d2-profiles --notes "..."`, commit with the Jev gate, push.
+- Evidence summary: TS engine profile-off bit-for-bit 0.1.0 (0 differences, 179886 fields); parity 9.6e-11 floored / 1.1e-9 un-floored worst (DD-24); ledger 7.6e-13, 8 mutations rejected (bremsstrahlung 2.12x marginal); fixtures 3.3e-13 / 7.57e-5 / 3.82e-4 / 2.15e-5; 31 rates in band; sweep 138 runs, 31 corner stops with exact grammar, shown a model limit (ADV-3). Capability remains experimentally unvalidated (plan only).
+- Decisions DD-1..DD-27 in `experiments/records/d2-profiles-design-decisions.json`; change request APPROVED with three re-approvals (hash-bound). Validation harness `validation/independent/d2-profiles.mjs`, evidence `validation/evidence/d2-profiles-falsification.json`.
+- Follow-up units parked: Python profile parity (DD-3); app display of the profiles block (spec s10 item 5); hosting replacement for OpenAI Sites.
 
 ## Lessons from design-review (2026-09-21)
 - Rubric questions must be per-area, not "is EVERY item X" over ~20 items: a calibrated evaluator caps a 20-way conjunction near 0.5 even when each item scores 0.85+. Per-item diagnostic batches via `jev eval --state-file --questions-file` localise failures cheaply.
 - TeamFlow eval now allocates the state budget proportionally to file size (`tools/teamflow/gates.mjs`); equal split had hidden the spec's acceptance-criteria section. Ledger `~/.local/share/opencode/jev-usage.jsonl` shows state_chars/input_tokens per call to confirm nothing was halved (~87k chars ≈ 29k tokens is the practical ceiling).
 - Jev reads "planned", "assigned by", "Director should confirm", "Open for", "proposed*" keys in an APPROVED document as open markers; grep for them before an approval audit.
 - Haiku reviewer lanes report PASS optimistically (missed two open-item markers); keep the Jev stage audit as the gate.
+- `eval <unit> all` now audits only done stages (was overwriting full-context PASS records with a truncated nine-stage batch and auditing pending gate/accept). A past stage's record certifies its artifacts at handoff; later Director amendments are gated at their own stage (DD-27).
 
 ## Units
 - **c1-sweep-harness** (M03 C1, Python engine benchmark + sweep harness) — ACCEPTED 2026-09-19. Artifacts: `python/d3gate/sweep.py`, `specs/proposals/c1-sweep-harness.md`, `validation/evidence/c1-sweep-harness-falsification.json`.
@@ -63,5 +63,5 @@ Director assigns/approves/accepts only; workers never sign off. No silent consta
 - Bash tool 10-min cap: run long lane dispatches with run_in_background.
 
 ## Next steps
-1. d2-profiles: finish validate Part B (see ACTIVE UNIT) → eval validate → eval all → gate → accept → release.
+1. d2-profiles release + retro (see ACTIVE UNIT).
 3. Parked: hosting replacement for the OpenAI Sites deployment; Python profile parity unit after D2.

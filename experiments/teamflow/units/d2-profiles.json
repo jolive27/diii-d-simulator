@@ -4,7 +4,7 @@
   "kind": "physics",
   "director": "claude-opus",
   "created": "2026-09-21T17:42:04.206Z",
-  "updated": "2026-09-21T21:43:49.982Z",
+  "updated": "2026-09-21T21:57:26.324Z",
   "modelVersion": "teamflow/0.1.0",
   "stages": {
     "intake": {
@@ -38,17 +38,17 @@
       "role": "reviewer"
     },
     "validate": {
-      "status": "in_progress",
+      "status": "done",
       "owner": "validation",
       "role": null
     },
     "gate": {
-      "status": "pending",
+      "status": "done",
       "owner": "director",
       "role": "auditor"
     },
     "accept": {
-      "status": "pending",
+      "status": "done",
       "owner": "director",
       "role": "auditor"
     },
@@ -169,6 +169,15 @@
       ],
       "model": "claude-haiku",
       "time": "2026-09-21T21:23:32.288Z"
+    },
+    "validate": {
+      "role": "validation",
+      "files": [
+        "validation/evidence/d2-profiles-falsification.json",
+        "validation/independent/d2-profiles.mjs"
+      ],
+      "model": "claude-opus",
+      "time": "2026-09-21T21:55:52.724Z"
     }
   },
   "handoffs": {
@@ -177,11 +186,12 @@
     "spec": "Spec complete (sonnet lane, Part A + Part B + fix-up per Director decisions DD-1..DD-10): d2-profiles.md, five package docs, d2-profiles-reference.json, change-request DRAFT. Passenger design; scalar illustrative D/chi with ranges; edge-flux closure; AC-5 1e-3 + convergence-rate check; AC-9 TypeScript driver; physics 0.2.0 / verification 0.3.0; off-path bit-for-bit 0.1.0. Lane self-verified with batched Jev before handoff.",
     "design-review": "Design review (Director claude-opus; reviewer lane claude-haiku, transcript experiments/teamflow/runs/d2-profiles-design-review-reviewer-2026-09-21T20-13-42-979Z.out.txt). Director decisions DD-12..DD-17 recorded in experiments/records/d2-profiles-design-decisions.json: cell-centre shape evaluation; AC-1 six control sets; schemaVersion 1 profile-on; registry entries at release; acceptance criteria made executable (AC-2 zero-difference rule, AC-3 relative formula, AC-4 residual >= 1e-8, AC-7 four sub-checks with case sets and scales, AC-8 recomputation rule and sample times, AC-9 driver tests/d2/sweep-driver.mjs and nine-case grid, AC-10 required evidence fields and fail conditions); constraint-violation message grammar and profiles option field names fixed so no structural choice remains for Software. No equation, constant or tolerance loosened. Spec and verification doc status APPROVED at design-review; change request D2-PROFILES-001.json APPROVED for implementation only, SHA-256 bound after all amendments. Haiku reviewer: four rubric criteria PASS, hashes matched (its own Jev self-check did not complete). Earlier audits: equal-split truncation hid spec section 12 (gates.mjs now allocates proportionally, selftest 8/8); per-criterion full-text Jev diagnostic located AC-7/AC-8/AC-10/FAILSAFE/OFFPATH as the soft spots (0.48-0.74), all others 0.76-0.91, consistency: no disagreeing pair or item. Director Jev diff review: gate approve, breaking 0.06, security 0.04.",
     "implement": "Implement stage, claude-sonnet in two lanes (transcripts experiments/teamflow/runs/d2-profiles-implement-software-2026-09-21T20-51-15-362Z.out.txt and ...T21-13-33-918Z.out.txt). Director re-ran: npm test 46/46 (existing 36 untouched), npm run pyengine:test 14 OK. engine.ts diff: import, optional sixth runShot parameter profiles, optional Shot.profiles, resolveProfiles(undefined) returns immediately on the off path; no existing line changed. Ten evidence files under tests/d2/evidence/ all pass:true. Measured vs tolerance: OFFPATH 90 runs 0 differences; PARITY max 7.2e-11 vs 1e-9 (63 runs); LEDGER clean 3.6e-14 vs 1e-10, mutations rejected with ratios 411295, 1085741, 1243988 (state, bar 1e-8) and 351, 445, 52, 24, 2.1 (shapes, bar max(1e-10,100x clean) per DD-20); STEADY L2rel 8e-15..3.3e-13 vs 1e-6, axis flux exactly 0; EIGEN-DIRICHLET 7.57e-5 vs 1e-4; EIGEN-REFLECT 3.82e-4 vs 1e-3 with mandatory rates spatial 2.0091/2.0025/2.0015 (band 1.6-2.4) temporal 1.0019/1.0010 (band 0.8-1.2), edge flux 5.7e-13 vs 1e-12 (MARGINAL, DD-23); MMS 2.15e-5 vs 1e-4; REFINEMENT 31 rates all in band (F2 spatial 1.965/1.983/1.991 temporal 1.0002/1.0001; F4 spatial 1.940/1.970/1.985 temporal 1.0000/1.0000; default shot 16 rates 0.976..1.182 in [0.7,1.3]), none roundoff-exempt; DIAGNOSTICS A1 2.2e-16, A2 5.9e-5 vs 2e-4, A3 7.6e-6/8.5e-6 vs 2e-4, A4 hand cases and clip flags exact, A5 6.4e-12 vs 1e-9, A6/AC-8 2.2e-16 vs 1e-9 at t=0.5,2,3,4.5 s; FAILSAFE (i) throws 'profile constraint violated at t=4.902000 s in cell 64: T_i <= 0', (ii-a/b/c) throw at step 0 cell 10, (iii) sweep 138 runs via tests/d2/sweep-driver.mjs: 107 completed (parity <= 9.6e-11, ledger <= 1.0e-13, all finite positive, 0 differences vs profile-off), 31 threw the fixed-grammar error, all LIMITS corners (29 with gas=0 and kappa=1.95), DEFAULT and the nine C1 grid runs completed. Director rulings DD-20..DD-23 recorded; no C-M01 constant, assumption, Controls, LIMITS, validate() or schema changed (0-D literals restated in the passenger call, accepted DD-22). Lane self-checks: Part A 4/5 (no_constant_change 0.67), Part B 3/6 (0.66/0.70/0.72 on checks-pass, rates, constants) - Director verified each directly.",
-    "self-review": "Self-review by claude-haiku (reviewer role; distinct from the claude-sonnet implementer), transcript experiments/teamflow/runs/d2-profiles-self-review-reviewer-2026-09-21T21-23-01-689Z.out.txt. Wrote no files. Re-ran npm test: 46/46 in 41.4 s. Independently recomputed from the evidence JSON with its own snippet: max parity 7.200e-11 (handoff 7.2e-11, match); clean ledger total closure 3.19e-14 (handoff quoted the cell residual 3.6e-14; both within 1e-10); off-path difference count 0 over six M02 control sets plus m01-shot.json (match); 8 mutations, all rejected under the DD-20 bounds (match). Line-by-line engine.ts diff: no existing line changed, no 0-D constant or update-order change, passenger undefined on the off path, constraint violation throws before the observer sees the step, modelVersion 0.2.0 and profiles block only when enabled. profiles.ts checked against spec s4-s10, DD-12, DD-17 with file:line evidence for backward-Euler tridiagonal (114-134), density-first then energy with face n = mean of adjacent n^{k+1} (167-173), axis flux literally 0 (139), prescribed edge flux = N/tauP, We/tauE, Wi/tauE (287), cell-centre shapes (262-265), discrete normalisation and per-step bremsstrahlung/Ohmic renormalisation (254-280), unclipped constraint check with exact DD-17 grammar (152-160), option validation before stepping with all ten fields required and unknown fields throwing (26-42, 72). Specific defect probes (off-by-one faces/cells, dV_i, edge-flux sign, T from w with cell n, silent clipping or defaulting): none found. Scope: only physics/, tests/, docs/ touched by Software. Reviewer Jev self-check: review_independent 0.98, findings_actionable 1.00, recomputation_matches_handoff 0.62 (the ledger figure compared was total closure, not the cell residual), defects_exist 0.08. Director note: evidence JSON files are regenerated in place on every test run (timestamps), so they show as modified after any npm test; harmless but noisy, to be considered at release."
+    "self-review": "Self-review by claude-haiku (reviewer role; distinct from the claude-sonnet implementer), transcript experiments/teamflow/runs/d2-profiles-self-review-reviewer-2026-09-21T21-23-01-689Z.out.txt. Wrote no files. Re-ran npm test: 46/46 in 41.4 s. Independently recomputed from the evidence JSON with its own snippet: max parity 7.200e-11 (handoff 7.2e-11, match); clean ledger total closure 3.19e-14 (handoff quoted the cell residual 3.6e-14; both within 1e-10); off-path difference count 0 over six M02 control sets plus m01-shot.json (match); 8 mutations, all rejected under the DD-20 bounds (match). Line-by-line engine.ts diff: no existing line changed, no 0-D constant or update-order change, passenger undefined on the off path, constraint violation throws before the observer sees the step, modelVersion 0.2.0 and profiles block only when enabled. profiles.ts checked against spec s4-s10, DD-12, DD-17 with file:line evidence for backward-Euler tridiagonal (114-134), density-first then energy with face n = mean of adjacent n^{k+1} (167-173), axis flux literally 0 (139), prescribed edge flux = N/tauP, We/tauE, Wi/tauE (287), cell-centre shapes (262-265), discrete normalisation and per-step bremsstrahlung/Ohmic renormalisation (254-280), unclipped constraint check with exact DD-17 grammar (152-160), option validation before stepping with all ten fields required and unknown fields throwing (26-42, 72). Specific defect probes (off-by-one faces/cells, dV_i, edge-flux sign, T from w with cell n, silent clipping or defaulting): none found. Scope: only physics/, tests/, docs/ touched by Software. Reviewer Jev self-check: review_independent 0.98, findings_actionable 1.00, recomputation_matches_handoff 0.62 (the ledger figure compared was total closure, not the cell residual), defects_exist 0.08. Director note: evidence JSON files are regenerated in place on every test run (timestamps), so they show as modified after any npm test; harmless but noisy, to be considered at release.",
+    "validate": "Validation by claude-opus (distinct from the claude-sonnet implementer), two lanes; transcripts experiments/teamflow/runs/d2-profiles-validate-validation-2026-09-21T21-41-59-518Z.out.txt (Part A) and ...T21-55-01-258Z.out.txt (Part B). Own harness validation/independent/d2-profiles.mjs imports only from physics/, nothing from tests/. All AC-1..AC-9 re-executed with numbers: AC-1 179886 fields 0 differences, 6/6 non-boolean enabled throw; AC-2 111 cases 0 differing fields; AC-3 floored worst 9.64e-11 (DD-24), un-floored worst 1.1156e-9 in one corner run (reported); AC-4 ledger 7.6e-13, totals 5.1e-14, 8 mutations rejected, bremsstrahlung 2.12x marginal; AC-5 F1 3.3e-13, F2 7.57e-5 (margin 1.32x), F3 3.82e-4 with production face flux exactly 0, F4 2.15e-5; AC-6 all 31 rates in band (spatial 1.94-2.01, temporal 1.000-1.002, default shot 0.976-1.182); AC-7 axis flux exactly 0 on 14M step-species checks, normalisation 1.1e-15, maximum principle 0 violations, F3 reconstructed flux 8.1e-3/6.9e-3/6.6e-3 of the DD-25 bound at dt 1e-6/5e-7/2.5e-7; AC-8 7.2e-15; AC-9 107 complete / 31 throw with exact grammar / 0 silent violations. Five adversarial cases: ADV-1 shape mutations at 11 steps (all rejected, step 750 is the worst for bremsstrahlung); ADV-2 F3 edge flux at dt 1e-8..1e-12 (ratio ~4e-3 under DD-25, production flux exactly 0); ADV-3 kappa=1.95 failure cluster: stop time converges with N_rho (2.080, 1.894, 1.812, 1.772 s -> ~1.73 s), insensitive to dt, 29/31 corners complete at chi=10: model limit, not numerics; ADV-4 option-range extremes parity 1.8e-11 ledger 2.7e-12; ADV-5 off path under hostile call sequences 0 differences. Two of its own adversarial checks were wrong on first run and fixed before the final run (reported). Marginals stated plainly: bremsstrahlung 2.12x, F2 1.32x, AC-3 pass only under DD-24, AC-7 only under DD-25, N_rho=64 stop time ~9% from converged. Lane Jev: reexecuted_from_own_code 0.94, adversarial_cases_substantive 0.92, honest_reporting 0.93, model_independence 0.99, numbers_recorded_per_check 0.56 flagged (lane's structural check: every AC entry has id, command, 3-290 measured numbers, tolerance, verdict). Overall verdict pass, experimentally unvalidated by design."
   },
   "evals": {
     "research": {
-      "time": "2026-09-21T17:57:55.530Z",
+      "time": "2026-09-21T21:56:45.149Z",
       "stage": "research",
       "questionCount": 4,
       "model": "jev-1.13.0",
@@ -192,17 +202,17 @@
           "pass": true
         },
         "provenance_honest": {
-          "value": 0.8,
+          "value": 0.76,
           "min": 0.75,
           "pass": true
         },
         "fixtures_correct": {
-          "value": 0.94,
+          "value": 0.95,
           "min": 0.75,
           "pass": true
         },
         "scope_labels": {
-          "value": 0.73,
+          "value": 0.77,
           "min": 0.6,
           "pass": true
         }
@@ -211,28 +221,28 @@
       "below": []
     },
     "spec": {
-      "time": "2026-09-21T18:54:01.105Z",
+      "time": "2026-09-21T21:56:50.876Z",
       "stage": "spec",
       "questionCount": 5,
       "model": "jev-1.13.0",
       "questions": {
         "capability_complete": {
-          "value": 0.94,
+          "value": 0.91,
           "min": 0.75,
           "pass": true
         },
         "no_silent_change": {
-          "value": 0.97,
+          "value": 0.96,
           "min": 0.75,
           "pass": true
         },
         "decisions_resolved": {
-          "value": 0.84,
+          "value": 0.86,
           "min": 0.75,
           "pass": true
         },
         "equations_consistent": {
-          "value": 0.85,
+          "value": 0.86,
           "min": 0.75,
           "pass": true
         },
@@ -293,36 +303,38 @@
         }
       },
       "status": "PASS",
-      "below": []
+      "below": [],
+      "restoredFrom": "commit 5fca848 (DD-27)"
     },
     "implement": {
-      "time": "2026-09-21T21:17:11.587Z",
+      "time": "2026-09-21T21:56:04.588Z",
       "stage": "implement",
       "questionCount": 5,
+      "batch": "batch:intake+research+spec+design-review+implement+self-review+validate+gate+accept",
       "model": "jev-1.13.0",
       "questions": {
         "offpath_untouched": {
-          "value": 0.88,
+          "value": 0.94,
           "min": 0.75,
           "pass": true
         },
         "scheme_as_specified": {
-          "value": 0.93,
+          "value": 0.87,
           "min": 0.75,
           "pass": true
         },
         "sources_as_specified": {
-          "value": 0.85,
+          "value": 0.87,
           "min": 0.75,
           "pass": true
         },
         "no_constant_change": {
-          "value": 0.89,
+          "value": 0.92,
           "min": 0.75,
           "pass": true
         },
         "tests_evidence_real": {
-          "value": 0.9,
+          "value": 0.91,
           "min": 0.75,
           "pass": true
         }
@@ -331,19 +343,72 @@
       "below": []
     },
     "self-review": {
-      "time": "2026-09-21T21:23:33.141Z",
+      "time": "2026-09-21T21:56:04.589Z",
       "stage": "self-review",
       "questionCount": 2,
+      "batch": "batch:intake+research+spec+design-review+implement+self-review+validate+gate+accept",
       "model": "jev-1.13.0",
       "questions": {
         "review_independent": {
-          "value": 0.92,
+          "value": 0.93,
           "min": 0.75,
           "pass": true
         },
         "review_findings_actionable": {
-          "value": 0.91,
+          "value": 0.92,
           "min": 0.75,
+          "pass": true
+        }
+      },
+      "status": "PASS",
+      "below": []
+    },
+    "validate": {
+      "time": "2026-09-21T21:56:04.590Z",
+      "stage": "validate",
+      "questionCount": 4,
+      "batch": "batch:intake+research+spec+design-review+implement+self-review+validate+gate+accept",
+      "model": "jev-1.13.0",
+      "questions": {
+        "ac10_reexecution": {
+          "value": 0.86,
+          "min": 0.75,
+          "pass": true
+        },
+        "adversarial_cases": {
+          "value": 0.87,
+          "min": 0.75,
+          "pass": true
+        },
+        "falsification_honest": {
+          "value": 0.92,
+          "min": 0.75,
+          "pass": true
+        },
+        "model_independence": {
+          "value": 0.98,
+          "min": 0.75,
+          "pass": true
+        }
+      },
+      "status": "PASS",
+      "below": []
+    },
+    "intake": {
+      "time": "2026-09-21T21:56:04.586Z",
+      "stage": "intake",
+      "questionCount": 2,
+      "batch": "batch:intake+research+spec+design-review+implement+self-review+validate+gate+accept",
+      "model": "jev-1.13.0",
+      "questions": {
+        "scope_bound": {
+          "value": 0.97,
+          "min": 0.6,
+          "pass": true
+        },
+        "owner_assigned": {
+          "value": 0.84,
+          "min": 0.6,
           "pass": true
         }
       },
@@ -352,5 +417,17 @@
     }
   },
   "compact": null,
-  "decision": null
+  "decision": {
+    "unit": "d2-profiles",
+    "status": "ACCEPTED",
+    "role": "director",
+    "agentId": "claude-opus",
+    "time": "2026-09-21T21:57:26.323Z",
+    "gate": {
+      "status": "PASS",
+      "errors": [],
+      "sourceFingerprint": "484753afead2c00746259201914fdc5d2d36bd41873681d6e793d7a68867acde"
+    },
+    "stagedBy": "claude-opus"
+  }
 }

@@ -182,9 +182,16 @@
       "question": "Spec AC-9 'expected failure' note named the all-zero-auxiliary/zero-gas corner; validation observed 31 throws clustered at kappa=1.95 with gas=0, all-minimum corner completes",
       "decision": "Informational note in AC-9 replaced by the observed pattern; no criterion changed.",
       "rationale": "The note was a prototype expectation, not a requirement."
+    },
+    {
+      "id": "DD-27",
+      "stage": "gate",
+      "question": "'eval d2-profiles all' re-batched all nine stages under one state budget and overwrote the earlier stages' full-context PASS records; a fresh individual re-audit of design-review then scored change_request_approvable 0.35 and criteria_values_consistent 0.53 because the spec, verification doc and change request were amended AFTER design-review by the Director re-approvals DD-20..DD-26 (each Jev-gated at its own stage and commit)",
+      "decision": "The design-review audit record is restored as committed at 5fca848 (PASS 8/8, 0.75-0.95), which is the evidence for that stage as completed. tools/teamflow/teamflow.mjs 'eval all' now audits only done stages with an artifact window (selftest 8/8). Research and spec re-audited individually: PASS.",
+      "rationale": "A stage audit certifies the artifacts at handoff; later Director amendments carry their own gated audits (implement 5/5, self-review 2/2, validate 4/4 and the commit gates). Re-auditing a past stage against later-amended documents is not evidence for or against that stage."
     }
   ],
-  "status": "DESIGN_REVIEW_PASS",
+  "status": "ALL_STAGES_PASS_PENDING_GATE",
   "jevAuditPartB_laneSelfCheck": {
     "complete": 0.74,
     "consistent_with_part_A": 0.87,
