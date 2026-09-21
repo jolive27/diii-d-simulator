@@ -20,7 +20,7 @@ Single source `~/.config/jev/`:
 
 ## Environment
 - macOS, zsh, Node 24.20.0, Python 3.12. VS Code with Claude Code 2.1.278, opencode ext, jev-gate ext.
-- Repo: diii-d-simulator (git, branch main). Many files untracked since the M02 commit — review before committing.
+- Repo: diii-d-simulator (git, branch main). Tree clean at handoff (2026-09-21).
 
 ## TeamFlow (`tools/teamflow/`)
 `node tools/teamflow/teamflow.mjs init|assign|complete|eval|evals|compact|gate|accept|release|retro|status|models|selftest`
@@ -47,7 +47,7 @@ Director assigns/approves/accepts only; workers never sign off. No silent consta
 
 ## Open risks
 - Hosted simulator uses `@openai/sites-vite-plugin` + `.openai/hosting.json` (OpenAI Sites). Without an OpenAI account the hosted copy likely cannot be updated; local app unaffected. Separate decision pending.
-- Uncommitted work: everything from the 2026-09-18/19/21 sessions. Commit in reviewed chunks.
+- All work through commit c0b2b39 (2026-09-21) is committed; tree clean at handoff.
 
 ## Tooling facts learned today
 - Lane timeout: `TEAMFLOW_LANE_TIMEOUT_MS` (default 30 min); exit 143 = killed by it — split big tasks (Part A/Part B worked).
