@@ -4,7 +4,7 @@
   "kind": "physics",
   "director": "claude-opus",
   "created": "2026-09-21T17:42:04.206Z",
-  "updated": "2026-09-21T18:54:01.106Z",
+  "updated": "2026-09-21T20:26:43.879Z",
   "modelVersion": "teamflow/0.1.0",
   "stages": {
     "intake": {
@@ -23,7 +23,7 @@
       "role": null
     },
     "design-review": {
-      "status": "pending",
+      "status": "done",
       "owner": "director",
       "role": "reviewer"
     },
@@ -75,6 +75,12 @@
       "model": "claude-sonnet",
       "role": "physics",
       "time": "2026-09-21T18:42:03.672Z"
+    },
+    "design-review": {
+      "task": "Design-review check, unit d2-profiles, reviewer role, READ-ONLY: write no files. Read (1) experiments/teamflow/units/d2-profiles.rubric.json section 'design-review' (four criteria), (2) specs/change-requests/D2-PROFILES-001.json (APPROVED), (3) experiments/records/d2-profiles-design-decisions.json (DD-1..DD-15), (4) specs/proposals/d2-profiles.md, (5) specs/proposals/d2-profiles-verification.md, (6) specs/change-requests/README.md. For each rubric criterion (criteria_quantified, change_request_approvable, implementable, decisions_consistent) report PASS or FAIL with the exact line-level evidence (file:line, quoted text). Specifically: grep every AC-1..AC-10 and D2-VER-* for a numeric tolerance and pass/fail rule; grep all six files for the words OPEN, TBD, 'to confirm', 'to decide', 'Director to' and report any remaining unresolved marker; verify the change request contains every field named in README.md and a sha256 for seven artifacts; recompute 'shasum -a 256' for the seven bound files and confirm they match the change request; check that AC-5 (1e-3, rate bands), AC-9 (TypeScript driver), versions 0.2.0/0.3.0, DD-12 cell-centre evaluation, DD-13 six control sets and DD-14 schemaVersion 1 appear consistently in spec, verification doc and change request. Then self-verify with ONE batched jev CLI call ('jev eval') over your findings with the four rubric questions and include the verdicts. Handoff: commands run, per-criterion verdict with evidence, list of contradictions or missing items (empty list if none), Jev verdicts. Under 600 words.",
+      "model": "claude-haiku",
+      "role": "reviewer",
+      "time": "2026-09-21T20:09:51.547Z"
     }
   },
   "artifactWindows": {
@@ -109,12 +115,23 @@
       ],
       "model": "claude-sonnet",
       "time": "2026-09-21T18:53:06.217Z"
+    },
+    "design-review": {
+      "role": "director",
+      "files": [
+        "specs/change-requests/D2-PROFILES-001.json",
+        "specs/proposals/d2-profiles.md",
+        "specs/proposals/d2-profiles-verification.md"
+      ],
+      "model": "claude-opus",
+      "time": "2026-09-21T20:20:36.507Z"
     }
   },
   "handoffs": {
     "intake": "Director intake recorded: bounded scope (1-D rho diffusion for ne/Te/Ti with prescribed coefficients inside the 0-D framework; fixed boundary; 0-D balances become integral constraints), explicit out-of-scope list, six numeric success criteria, roles/models per lane with validation on opus vs implementation on sonnet, artifact paths per stage, risks. physicsCapabilityChange=true; five-part package required; model version 0.1.0->0.2.0 via change-request.",
     "research": "Haiku research lane, five passes. Pass 1 rejected by Director: fabricated provenance (no fetch commands), fixture 2a slab/cylindrical error, wrong labels, 2459 words. Pass 2: provenance relabelled, fixture 2a corrected to cylindrical n=S(L^2-rho^2)/(4D) with axis zero-flux BC, J0 eigenmode added, labels fixed. Pass 3: trimmed to 1470 words, tolerance language reworded as candidates. Pass 4 provenance verification (transcript experiments/teamflow/runs/d2-profiles-research-physics.out.txt): WebFetch https://github.com/google-deepmind/torax SUCCESS; WebFetch https://torax.readthedocs.io/ SUCCESS; README quotation verified verbatim; license claim verified as 'not confirmed in README'. Pass 5: textbook citations in 2a labelled known-of/not read. Director grep check: every external source is labelled fetched or not read; in-repo sources read: docs/PHYSICS.md, physics/engine.ts, science/NEW-PHYSICS-REQUIREMENTS.md.",
-    "spec": "Spec complete (sonnet lane, Part A + Part B + fix-up per Director decisions DD-1..DD-10): d2-profiles.md, five package docs, d2-profiles-reference.json, change-request DRAFT. Passenger design; scalar illustrative D/chi with ranges; edge-flux closure; AC-5 1e-3 + convergence-rate check; AC-9 TypeScript driver; physics 0.2.0 / verification 0.3.0; off-path bit-for-bit 0.1.0. Lane self-verified with batched Jev before handoff."
+    "spec": "Spec complete (sonnet lane, Part A + Part B + fix-up per Director decisions DD-1..DD-10): d2-profiles.md, five package docs, d2-profiles-reference.json, change-request DRAFT. Passenger design; scalar illustrative D/chi with ranges; edge-flux closure; AC-5 1e-3 + convergence-rate check; AC-9 TypeScript driver; physics 0.2.0 / verification 0.3.0; off-path bit-for-bit 0.1.0. Lane self-verified with batched Jev before handoff.",
+    "design-review": "Design review (Director claude-opus; reviewer lane claude-haiku, transcript experiments/teamflow/runs/d2-profiles-design-review-reviewer-2026-09-21T20-13-42-979Z.out.txt). Director decisions DD-12..DD-17 recorded in experiments/records/d2-profiles-design-decisions.json: cell-centre shape evaluation; AC-1 six control sets; schemaVersion 1 profile-on; registry entries at release; acceptance criteria made executable (AC-2 zero-difference rule, AC-3 relative formula, AC-4 residual >= 1e-8, AC-7 four sub-checks with case sets and scales, AC-8 recomputation rule and sample times, AC-9 driver tests/d2/sweep-driver.mjs and nine-case grid, AC-10 required evidence fields and fail conditions); constraint-violation message grammar and profiles option field names fixed so no structural choice remains for Software. No equation, constant or tolerance loosened. Spec and verification doc status APPROVED at design-review; change request D2-PROFILES-001.json APPROVED for implementation only, SHA-256 bound after all amendments. Haiku reviewer: four rubric criteria PASS, hashes matched (its own Jev self-check did not complete). Earlier audits: equal-split truncation hid spec section 12 (gates.mjs now allocates proportionally, selftest 8/8); per-criterion full-text Jev diagnostic located AC-7/AC-8/AC-10/FAILSAFE/OFFPATH as the soft spots (0.48-0.74), all others 0.76-0.91, consistency: no disagreeing pair or item. Director Jev diff review: gate approve, breaking 0.06, security 0.04."
   },
   "evals": {
     "research": {
@@ -175,6 +192,56 @@
         },
         "illustrative_labelled": {
           "value": 0.97,
+          "min": 0.75,
+          "pass": true
+        }
+      },
+      "status": "PASS",
+      "below": []
+    },
+    "design-review": {
+      "time": "2026-09-21T20:26:43.879Z",
+      "stage": "design-review",
+      "questionCount": 8,
+      "model": "jev-1.13.0",
+      "questions": {
+        "fixtures_quantified": {
+          "value": 0.91,
+          "min": 0.75,
+          "pass": true
+        },
+        "conservation_quantified": {
+          "value": 0.95,
+          "min": 0.75,
+          "pass": true
+        },
+        "interface_quantified": {
+          "value": 0.91,
+          "min": 0.75,
+          "pass": true
+        },
+        "change_request_approvable": {
+          "value": 0.76,
+          "min": 0.75,
+          "pass": true
+        },
+        "implementable": {
+          "value": 0.92,
+          "min": 0.7,
+          "pass": true
+        },
+        "versions_consistent": {
+          "value": 0.93,
+          "min": 0.75,
+          "pass": true
+        },
+        "criteria_values_consistent": {
+          "value": 0.75,
+          "min": 0.75,
+          "pass": true
+        },
+        "no_open_markers": {
+          "value": 0.83,
           "min": 0.75,
           "pass": true
         }

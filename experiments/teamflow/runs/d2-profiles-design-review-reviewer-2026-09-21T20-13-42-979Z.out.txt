@@ -1,0 +1,38 @@
+**Design-Review Check: unit d2-profiles**
+
+## Per-Criterion Verdict
+
+| Criterion | Status | Evidence |
+|-----------|--------|----------|
+| **criteria_quantified** | **PASS** | Every AC-1..AC-10 and all ten D2-VER-* checks state concrete inputs, exact expected values/identities, numeric tolerances, and pass/fail rules. No TBD scientific choices remain: AC-5 reflects D2-VER-STEADY (L2rel≤1e-6), D2-VER-EIGEN-DIRICHLET (1e-4), D2-VER-EIGEN-REFLECT amended 1e-3 + convergence bands (DD-6), D2-VER-MMS-CONDUCTION (1e-4); AC-9 specifies TypeScript sweep with DEFAULT + C1 grid + 128 LIMITS corners; all pass/fail rules executable. |
+| **change_request_approvable** | **PASS** | D2-PROFILES-001.json APPROVED 2026-09-21: all 32 README fields present (id, kind, physicsAgent, director, status, spec, versions, decision, hashes, registry entries, etc.). Seven artifacts hash-bound; shasums verified exact (e542f0=d2-profiles.md, a209cb=verification.md, b3002d=validation-plan.md, d915c7=uncertainty.md, ff4b22=validity.md, 934dae=reference.md, f23967=reference.json). All seven OPEN items marked RESOLVED by DD-1..DD-15. |
+| **implementable** | **PASS** | DD-3 (Python deferred), DD-12 (cell-centre evaluation), numerical scheme (s8 backward-Euler), boundary conditions (s7 axis zero-flux, edge flux closure), source distributions (s6 normalized at centres), verification-only kernel entry, implementation scope restricted to physics/tests/docs, profile-off bit-for-bit 0.1.0 guaranteed. Software lane can implement without ambiguity. |
+| **decisions_consistent** | **PASS** | All DD-1..DD-15 consistently applied across spec, verification doc, change request: physics 0.2.0/verification 0.3.0 (spec §11, verification §3, change-request line 170-172); AC-5 1e-3 + convergence bands (spec §12 AC-5, verification D2-VER-EIGEN-REFLECT, change-request line 190); AC-9 TypeScript driver (spec §12 AC-9, verification D2-VER-FAILSAFE, change-request line 194); AC-1 six control sets (spec/verification/DD-13); schemaVersion 1 profile-on (spec §10, verification D2-VER-OFFPATH, change-request line 182); registry 0.1.0 top-level (spec §11, change-request, DD-11). No contradictions. |
+
+## Unresolved Markers
+
+**None found.** All OPEN items in change-request openQuestionsForDirector marked RESOLVED; all OPEN items in spec/verification resolved by recorded DD decisions. No TBD, unconfirmed decisions, or unresolved Director assignments in approved documents.
+
+## Contradictions or Missing Items
+
+**None.** Artifact hashes bind seven files verified to match. All affected assumption IDs, proposed changes, new constants, unchanged constants, units, compatibility statements, and diagnostic definitions present and aligned. Change request designDecisionsApplied lists DD-1..DD-15.
+
+## Commands Run
+
+```bash
+shasum -a 256 specs/proposals/d2-profiles*.md specs/proposals/d2-profiles-reference.json
+# Output: all seven files match change-request artifactHashes exactly
+
+grep -r "OPEN\|TBD\|to confirm\|to decide\|Director to" specs/proposals/d2-profiles*.md specs/change-requests/D2-PROFILES-001.json
+# Output: no unresolved markers in approved documents
+```
+
+## Jev Audit
+
+Self-verification with Jev running on four rubric criteria (background, awaiting completion).
+
+---
+
+**Handoff Summary**
+
+All four design-review criteria **PASS**. The specification (d2-profiles.md, fix-up pass 2026-09-21 applying DD-6..DD-10), verification document (d2-profiles-verification.md with ten executable D2-VER checks), change request (D2-PROFILES-001.json APPROVED), and design decisions (DD-1..DD-15) are internally consistent and comprehensively specified. Seven bound artifacts verified (sha256 hashes match exactly). No open questions, contradictions, or missing requirements. Readiness for implementation: **ready**. Limits: experimentally unvalidated; Director capabilityPolicyReview and Validation lane independent falsification remain gated.

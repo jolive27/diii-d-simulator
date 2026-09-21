@@ -1,4 +1,4 @@
-# CONTEXT HANDOFF — as of 2026-09-21 (evening)
+# CONTEXT HANDOFF — as of 2026-09-21 (late evening)
 
 Say: "Read docs/CONTEXT-HANDOFF.md and restore my working state."
 
@@ -28,13 +28,18 @@ Single source `~/.config/jev/`:
 - Fixed 2026-09-21: `status` crash on `*.rubric.json` sidecars; `evals` crash on FAIL rows; choice answers (`{choice:"opt",confidence}`) now parsed in `jev.mjs`. Selftest 8/8.
 
 ## ACTIVE UNIT — d2-profiles (M03 D2, 1-D radial transport + profile evolution)
-Resume with: `node tools/teamflow/teamflow.mjs status d2-profiles`. Next stage: **design-review** (owner director, role reviewer=claude-haiku).
-- intake DONE/PASS; research DONE/PASS (haiku, 5 passes, rubric: provenance/fixtures/scope); spec DONE/PASS (sonnet Part A + Part B + fix-up; 0.94/0.97/0.84/0.85/0.97).
-- Artifacts: `specs/proposals/d2-profiles.md` (+ -verification, -validation-plan, -uncertainty, -validity, -reference .md, -reference.json, -change-request-DRAFT.json).
-- Director decisions DD-1..DD-11 in `experiments/records/d2-profiles-design-decisions.json` — binding (passenger design; off-path bit-for-bit 0.1.0; TS only, Python parity deferred; AC-5 1e-3 + rate check; physics 0.2.0 / verification 0.3.0; edge-flux closure default).
-- Per-unit Jev rubric: `experiments/teamflow/units/d2-profiles.rubric.json` (research + spec). Add a design-review rubric before that stage (criteria_quantified + change-request approval readiness + implementability).
-- Design-review to-do: Director approves/amends the change-request DRAFT (moves to specs/change-requests/ as APPROVED with hash binding), haiku reviewer checks spec vs rubric, then `complete` + `eval`. Then implement on claude-sonnet (physics/, tests/, docs/ only; python untouched per DD-3), self-review haiku, validate claude-opus.
-- Lane practice that worked: bounded brief naming exact files; require the lane to self-verify with the jev CLI before handoff; Director reads only what Jev flags; rubric questions written for the failure modes seen (provenance honesty was the big one).
+Resume with: `node tools/teamflow/teamflow.mjs status d2-profiles`. Next stage: **implement** (owner software, claude-sonnet).
+- intake/research/spec/design-review DONE, all Jev PASS. Design-review final: 8/8 (fixtures 0.91, conservation 0.95, interface 0.91, CR 0.76 marginal, implementable 0.92, versions 0.93, criteria-values 0.75 marginal, no-open-markers 0.83).
+- **Approved change request:** `specs/change-requests/D2-PROFILES-001.json` (APPROVED, SHA-256 bound to `specs/proposals/d2-profiles.md` + six package artifacts; any edit to a bound file needs re-approval and new hashes). DRAFT in specs/proposals retained as history.
+- Director decisions DD-1..DD-19 in `experiments/records/d2-profiles-design-decisions.json` — binding. New at design-review: DD-12 cell-centre shape evaluation; DD-13 AC-1 = six control sets of tests/m02.test.mjs; DD-14 schemaVersion 1 profile-on; DD-15 registry entries written by Director at release; DD-16/17 every AC executable, error grammar `profile constraint violated at t=<t> s in cell <i>: <q> <r>`, options object `profiles` with C-D2-* field names; DD-18 rubric split (same thresholds); DD-19 evidence dirs `tests/d2/evidence/` (Software) and `validation/evidence/d2-profiles/` (Validation).
+- Implement brief for sonnet: physics/, tests/, docs/ only; python/ untouched; profile-off bit-for-bit 0.1.0; test layout `tests/d2-profiles.test.mjs` + helpers `tests/d2/` (sweep driver `tests/d2/sweep-driver.mjs`); ten D2-VER checks per `specs/proposals/d2-profiles-verification.md`; self-verify with jev CLI before handoff. Add implement/self-review/validate rubric sections to `experiments/teamflow/units/d2-profiles.rubric.json` first (per-area questions, not one universal claim — see lessons).
+- Then self-review haiku → validate claude-opus (AC-10 rule: re-execute AC-1..AC-9 from own code, three adversarial cases, `validation/evidence/d2-profiles-falsification.json`) → `eval d2-profiles all` → gate → accept → release (Director writes science/model_versions.json entries, DD-11/15).
+
+## Lessons from design-review (2026-09-21)
+- Rubric questions must be per-area, not "is EVERY item X" over ~20 items: a calibrated evaluator caps a 20-way conjunction near 0.5 even when each item scores 0.85+. Per-item diagnostic batches via `jev eval --state-file --questions-file` localise failures cheaply.
+- TeamFlow eval now allocates the state budget proportionally to file size (`tools/teamflow/gates.mjs`); equal split had hidden the spec's acceptance-criteria section. Ledger `~/.local/share/opencode/jev-usage.jsonl` shows state_chars/input_tokens per call to confirm nothing was halved (~87k chars ≈ 29k tokens is the practical ceiling).
+- Jev reads "planned", "assigned by", "Director should confirm", "Open for", "proposed*" keys in an APPROVED document as open markers; grep for them before an approval audit.
+- Haiku reviewer lanes report PASS optimistically (missed two open-item markers); keep the Jev stage audit as the gate.
 
 ## Units
 - **c1-sweep-harness** (M03 C1, Python engine benchmark + sweep harness) — ACCEPTED 2026-09-19. Artifacts: `python/d3gate/sweep.py`, `specs/proposals/c1-sweep-harness.md`, `validation/evidence/c1-sweep-harness-falsification.json`.
@@ -47,7 +52,7 @@ Director assigns/approves/accepts only; workers never sign off. No silent consta
 
 ## Open risks
 - Hosted simulator uses `@openai/sites-vite-plugin` + `.openai/hosting.json` (OpenAI Sites). Without an OpenAI account the hosted copy likely cannot be updated; local app unaffected. Separate decision pending.
-- All work through commit c0b2b39 (2026-09-21) is committed; tree clean at handoff.
+- All design-review work committed 2026-09-21 (see git log); tree clean at handoff.
 
 ## Tooling facts learned today
 - Lane timeout: `TEAMFLOW_LANE_TIMEOUT_MS` (default 30 min); exit 143 = killed by it — split big tasks (Part A/Part B worked).
@@ -57,6 +62,5 @@ Director assigns/approves/accepts only; workers never sign off. No silent consta
 - Bash tool 10-min cap: run long lane dispatches with run_in_background.
 
 ## Next steps
-1. Design-review stage for d2-profiles (see ACTIVE UNIT).
-2. Implement on sonnet → self-review haiku → validate opus → `eval d2-profiles all` → gate → accept.
+1. Implement d2-profiles on sonnet (see ACTIVE UNIT brief) → self-review haiku → validate opus → `eval d2-profiles all` → gate → accept → release.
 3. Parked: hosting replacement for the OpenAI Sites deployment; Python profile parity unit after D2.

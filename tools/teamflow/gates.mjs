@@ -92,9 +92,13 @@ export async function runEvalBatch(state, stageIds, { jevModel } = {}) {
   }
   // Total state budget shared across artifacts (Jev rejects oversized states with 400 max_tokens_exceeded).
   const buildPayload = (budget) => {
-    const per = files.length ? Math.max(2000, Math.floor(budget / files.length)) : budget;
+    // Proportional allocation: small artifacts never starve large ones (an equal split of 90k over
+    // five files cut a 33k spec at 18k and hid its acceptance-criteria section from the auditor).
+    const total = files.reduce((n, x) => n + x.content.length, 0);
+    const scale = total > budget ? budget / total : 1;
     const chunks = [`# TeamFlow multi-stage audit [${ids.join(', ')}]`, '', digest(state), ''];
     for (const { f, content } of files) {
+      const per = Math.max(2000, Math.floor(content.length * scale));
       chunks.push(`\n--- artifact: ${f} ---\n\n${content.slice(0, per)}${content.length > per ? `\n...[truncated at ${per} of ${content.length} chars]` : ''}\n`);
     }
     return chunks.join('\n');

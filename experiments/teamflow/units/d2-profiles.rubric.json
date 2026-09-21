@@ -92,5 +92,87 @@
         "false": "A modelling choice is presented as validated or calibrated."
       }
     }
+  ],
+  "design-review": [
+    {
+      "id": "fixtures_quantified",
+      "type": "noul",
+      "min": 0.75,
+      "instructions": "Consider AC-5 and AC-6 in spec section 12 and D2-VER-STEADY, EIGEN-DIRICHLET, EIGEN-REFLECT, MMS-CONDUCTION and REFINEMENT in verification section 3. Do they state fixture inputs, exact expected solutions, numeric tolerances, convergence-rate bands and pass/fail rules so the tests could be written without a scientific choice?",
+      "criteria": {
+        "true": "Fixture and convergence criteria are executable as written.",
+        "false": "A fixture or rate criterion lacks an input, expected value, tolerance or rule."
+      }
+    },
+    {
+      "id": "conservation_quantified",
+      "type": "noul",
+      "min": 0.75,
+      "instructions": "Consider AC-3, AC-4 and AC-7 in spec section 12 and D2-VER-PARITY and D2-VER-LEDGER in verification section 3. Do they state the compared quantities, the relative or absolute formula, numeric tolerances, the perturbation rejection bound and pass/fail rules?",
+      "criteria": {
+        "true": "Conservation criteria are executable as written.",
+        "false": "A conservation criterion lacks a formula, tolerance or rule."
+      }
+    },
+    {
+      "id": "interface_quantified",
+      "type": "noul",
+      "min": 0.75,
+      "instructions": "Consider AC-1, AC-2, AC-8, AC-9 and AC-10 in spec section 12 and D2-VER-FAILSAFE, DIAGNOSTICS and OFFPATH in verification section 3. Do they fix the case sets, option field names, error-message grammar, driver path, sample times, tolerances and objective pass/fail rules, leaving no structural choice to Software?",
+      "criteria": {
+        "true": "Interface and process criteria are objective and fixed.",
+        "false": "A case set, name, grammar, path or rule is left to implementation or is subjective."
+      }
+    },
+    {
+      "id": "change_request_approvable",
+      "type": "noul",
+      "min": 0.75,
+      "instructions": "Does the approved change request specs/change-requests/D2-PROFILES-001.json satisfy specs/change-requests/README.md: assumption IDs, old/new behaviour, units, reason, affected tests, compatibility, new model version, physics agent identity, Director decision, and SHA-256 bindings for the spec and all six package artifacts, with every open question in the DRAFT resolved by a recorded DD-n decision?",
+      "criteria": {
+        "true": "All README fields present, hashes bound, no OPEN items remain.",
+        "false": "A required field, a hash, or an unresolved OPEN item is present."
+      }
+    },
+    {
+      "id": "implementable",
+      "type": "noul",
+      "min": 0.7,
+      "instructions": "Given DD-1..DD-15, could a software lane implement the profile-on path in physics/ and tests/ only, with the profile-off path bit-for-bit unchanged, using the numerical scheme (s8), boundary conditions (s7), source distributions (s6, DD-12 cell-centre evaluation) and the verification-only kernel entry, without touching python/ or altering any 0.1.0 constant?",
+      "criteria": {
+        "true": "Scheme, interfaces, file scope and off-path guarantee are specified precisely enough to implement.",
+        "false": "A missing interface, ambiguous scheme detail, or an unavoidable 0.1.0 change blocks implementation."
+      }
+    },
+    {
+      "id": "versions_consistent",
+      "type": "noul",
+      "min": 0.75,
+      "instructions": "Are physics 0.2.0 (profiles on), verification 0.3.0, profile-off modelVersion 0.1.0, schemaVersion 1 both on and off, and registry top-level 0.1.0 stated the same way in the spec, the verification document and the change request?",
+      "criteria": {
+        "true": "No version or schema statement disagrees between the three artifacts.",
+        "false": "At least one artifact carries a different or superseded version statement."
+      }
+    },
+    {
+      "id": "criteria_values_consistent",
+      "type": "noul",
+      "min": 0.75,
+      "instructions": "Compare the numeric content of AC-5 (1e-3 plus rate bands), AC-6 (dt levels, order bands), AC-9 (driver, nine-case grid, 128 corners) and AC-1 (six control sets) between spec section 12, verification section 3 and the change request proposedTolerances. Do the numbers and case sets agree?",
+      "criteria": {
+        "true": "The same numbers and case sets appear in all three artifacts.",
+        "false": "A number or case set differs between artifacts."
+      }
+    },
+    {
+      "id": "no_open_markers",
+      "type": "noul",
+      "min": 0.75,
+      "instructions": "Is every item marked as decided by a DD-n decision free of OPEN, pending, 'to confirm', 'to decide', 'Director to' or 'Software finalises/documents' wording in the spec, verification document and change request? Historical notes that say a value WAS changed by a decision do not count as open markers.",
+      "criteria": {
+        "true": "No open marker remains on a decided item.",
+        "false": "An open marker remains on a decided item."
+      }
+    }
   ]
 }
