@@ -1,0 +1,53 @@
+{
+ "checkId": "D2-VER-MMS-CONDUCTION",
+ "physicsModelVersion": "0.2.0 (profiles on); 0.1.0 (profiles off)",
+ "verificationVersion": "0.3.0",
+ "sourceSha256": {
+  "physics/engine.ts": "c57ea711b0ad722cfc51128df76d5a1efcb670a924ce097f00eca61a8154ddfb",
+  "physics/profiles.ts": "e5f3497f59098b7d391c30ece9818dc7a697cd17e259f0f0d9177e750b22cce4"
+ },
+ "nodeVersion": "v24.20.0",
+ "note": "Recorded: measured L2rel and the finite-difference residual of the manufactured source (about 8e-8, truncation of the finite differences).",
+ "runs": [
+  {
+   "inputs": {
+    "fixture": "F4 n = 3/2 - rho^2/2, T = e^-t (1-rho^2)(1+rho^2/2), w = nT, S_e manufactured (left-endpoint cell averages), zero-Dirichlet T",
+    "N_rho": 128,
+    "t": 1,
+    "dt": 0.00001,
+    "steps": 100000,
+    "wallSeconds": 2.928
+   },
+   "measurements": [
+    {
+     "quantity": "L2rel on w = nT vs cell averages at t = 1",
+     "measured": 0.00002151687872424001,
+     "tolerance": 0.0001,
+     "ratio": 0.2151687872424001,
+     "pass": true
+    },
+    {
+     "quantity": "steps with a non-zero reported axis flux, Object.is(flux, 0) (AC-7a)",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "delivered vs prescribed edge flux / flux scale (AC-7b)",
+     "measured": 2.3920102986771824e-15,
+     "tolerance": 1e-12,
+     "ratio": 0.0023920102986771823,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "sourceResidualFiniteDifferenceMax": 7.934260826125694e-8,
+    "sourceResidualPoints": "rho in {0.05,0.2,0.35,0.5,0.65,0.8,0.95}, t = 0.7",
+    "convergenceRatesIn": "d2-ver-refinement.json"
+   },
+   "pass": true
+  }
+ ],
+ "pass": true
+}

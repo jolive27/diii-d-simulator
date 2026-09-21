@@ -1,0 +1,2231 @@
+{
+ "checkId": "D2-VER-PARITY",
+ "physicsModelVersion": "0.2.0 (profiles on); 0.1.0 (profiles off)",
+ "verificationVersion": "0.3.0",
+ "sourceSha256": {
+  "physics/engine.ts": "c57ea711b0ad722cfc51128df76d5a1efcb670a924ce097f00eca61a8154ddfb",
+  "physics/profiles.ts": "e5f3497f59098b7d391c30ece9818dc7a697cd17e259f0f0d9177e750b22cce4"
+ },
+ "nodeVersion": "v24.20.0",
+ "runCount": 63,
+ "completedRuns": 54,
+ "threwRuns": 9,
+ "note": "Parity is algebraic; it verifies implementation consistency, not physical accuracy. Threw runs are checked over accepted steps and listed for D2-VER-FAILSAFE.",
+ "runs": [
+  {
+   "inputs": {
+    "case": "nbi4/ech1/gas2.5/chi3",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 4,
+     "ech": 1,
+     "gas": 2.5,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 3,
+    "chi_i": 3,
+    "D": 0.1,
+    "N_rho": 32,
+    "dt": 0.004,
+    "status": "completed",
+    "acceptedSteps": 1250
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 2.63166772023334e-12,
+     "tolerance": 1e-9,
+     "ratio": 0.00263166772023334,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 1249,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi4/ech1/gas2.5/chi3",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 4,
+     "ech": 1,
+     "gas": 2.5,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 3,
+    "chi_i": 3,
+    "D": 0.1,
+    "N_rho": 32,
+    "dt": 0.002,
+    "status": "completed",
+    "acceptedSteps": 2500
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 5.706122022923847e-12,
+     "tolerance": 1e-9,
+     "ratio": 0.005706122022923847,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 2499,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi4/ech1/gas2.5/chi3",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 4,
+     "ech": 1,
+     "gas": 2.5,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 3,
+    "chi_i": 3,
+    "D": 0.1,
+    "N_rho": 32,
+    "dt": 0.001,
+    "status": "completed",
+    "acceptedSteps": 5000
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 8.340428506732595e-13,
+     "tolerance": 1e-9,
+     "ratio": 0.0008340428506732594,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 4999,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi4/ech1/gas2.5/chi3",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 4,
+     "ech": 1,
+     "gas": 2.5,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 3,
+    "chi_i": 3,
+    "D": 0.1,
+    "N_rho": 64,
+    "dt": 0.004,
+    "status": "completed",
+    "acceptedSteps": 1250
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 8.199333800653627e-14,
+     "tolerance": 1e-9,
+     "ratio": 0.00008199333800653627,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 1249,
+    "quantity": "N"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi4/ech1/gas2.5/chi3",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 4,
+     "ech": 1,
+     "gas": 2.5,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 3,
+    "chi_i": 3,
+    "D": 0.1,
+    "N_rho": 64,
+    "dt": 0.002,
+    "status": "completed",
+    "acceptedSteps": 2500
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 1.542204128220087e-12,
+     "tolerance": 1e-9,
+     "ratio": 0.001542204128220087,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 2499,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi4/ech1/gas2.5/chi3",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 4,
+     "ech": 1,
+     "gas": 2.5,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 3,
+    "chi_i": 3,
+    "D": 0.1,
+    "N_rho": 64,
+    "dt": 0.001,
+    "status": "completed",
+    "acceptedSteps": 5000
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 4.107054372287015e-13,
+     "tolerance": 1e-9,
+     "ratio": 0.00041070543722870146,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 4999,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi4/ech1/gas2.5/chi3",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 4,
+     "ech": 1,
+     "gas": 2.5,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 3,
+    "chi_i": 3,
+    "D": 0.1,
+    "N_rho": 128,
+    "dt": 0.004,
+    "status": "completed",
+    "acceptedSteps": 1250
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 2.1845247062211155e-13,
+     "tolerance": 1e-9,
+     "ratio": 0.00021845247062211154,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 72,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi4/ech1/gas2.5/chi3",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 4,
+     "ech": 1,
+     "gas": 2.5,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 3,
+    "chi_i": 3,
+    "D": 0.1,
+    "N_rho": 128,
+    "dt": 0.002,
+    "status": "completed",
+    "acceptedSteps": 2500
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 2.615063468388718e-12,
+     "tolerance": 1e-9,
+     "ratio": 0.002615063468388718,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 2499,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi4/ech1/gas2.5/chi3",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 4,
+     "ech": 1,
+     "gas": 2.5,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 3,
+    "chi_i": 3,
+    "D": 0.1,
+    "N_rho": 128,
+    "dt": 0.001,
+    "status": "completed",
+    "acceptedSteps": 5000
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 7.304938877459098e-13,
+     "tolerance": 1e-9,
+     "ratio": 0.0007304938877459098,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 4999,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi0/ech1/gas2.5/chi3",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 0,
+     "ech": 1,
+     "gas": 2.5,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 3,
+    "chi_i": 3,
+    "D": 0.1,
+    "N_rho": 32,
+    "dt": 0.004,
+    "status": "completed",
+    "acceptedSteps": 1250
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 1.2641523963516605e-12,
+     "tolerance": 1e-9,
+     "ratio": 0.0012641523963516604,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 1249,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi0/ech1/gas2.5/chi3",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 0,
+     "ech": 1,
+     "gas": 2.5,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 3,
+    "chi_i": 3,
+    "D": 0.1,
+    "N_rho": 32,
+    "dt": 0.002,
+    "status": "completed",
+    "acceptedSteps": 2500
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 3.5382053353060265e-12,
+     "tolerance": 1e-9,
+     "ratio": 0.0035382053353060264,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 2499,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi0/ech1/gas2.5/chi3",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 0,
+     "ech": 1,
+     "gas": 2.5,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 3,
+    "chi_i": 3,
+    "D": 0.1,
+    "N_rho": 32,
+    "dt": 0.001,
+    "status": "completed",
+    "acceptedSteps": 5000
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 7.138229144006582e-13,
+     "tolerance": 1e-9,
+     "ratio": 0.0007138229144006582,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 4999,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi0/ech1/gas2.5/chi3",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 0,
+     "ech": 1,
+     "gas": 2.5,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 3,
+    "chi_i": 3,
+    "D": 0.1,
+    "N_rho": 64,
+    "dt": 0.004,
+    "status": "completed",
+    "acceptedSteps": 1250
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 8.39133068735755e-14,
+     "tolerance": 1e-9,
+     "ratio": 0.0000839133068735755,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 1244,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi0/ech1/gas2.5/chi3",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 0,
+     "ech": 1,
+     "gas": 2.5,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 3,
+    "chi_i": 3,
+    "D": 0.1,
+    "N_rho": 64,
+    "dt": 0.002,
+    "status": "completed",
+    "acceptedSteps": 2500
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 4.446402665257398e-13,
+     "tolerance": 1e-9,
+     "ratio": 0.0004446402665257398,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 2499,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi0/ech1/gas2.5/chi3",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 0,
+     "ech": 1,
+     "gas": 2.5,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 3,
+    "chi_i": 3,
+    "D": 0.1,
+    "N_rho": 64,
+    "dt": 0.001,
+    "status": "completed",
+    "acceptedSteps": 5000
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 1.554704779035909e-12,
+     "tolerance": 1e-9,
+     "ratio": 0.001554704779035909,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 4999,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi0/ech1/gas2.5/chi3",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 0,
+     "ech": 1,
+     "gas": 2.5,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 3,
+    "chi_i": 3,
+    "D": 0.1,
+    "N_rho": 128,
+    "dt": 0.004,
+    "status": "completed",
+    "acceptedSteps": 1250
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 1.020303801076571e-12,
+     "tolerance": 1e-9,
+     "ratio": 0.001020303801076571,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 1249,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi0/ech1/gas2.5/chi3",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 0,
+     "ech": 1,
+     "gas": 2.5,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 3,
+    "chi_i": 3,
+    "D": 0.1,
+    "N_rho": 128,
+    "dt": 0.002,
+    "status": "completed",
+    "acceptedSteps": 2500
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 1.9084946205668628e-12,
+     "tolerance": 1e-9,
+     "ratio": 0.0019084946205668626,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 2499,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi0/ech1/gas2.5/chi3",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 0,
+     "ech": 1,
+     "gas": 2.5,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 3,
+    "chi_i": 3,
+    "D": 0.1,
+    "N_rho": 128,
+    "dt": 0.001,
+    "status": "completed",
+    "acceptedSteps": 5000
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 1.0422655241048155e-12,
+     "tolerance": 1e-9,
+     "ratio": 0.0010422655241048154,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 4999,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi4/ech1/gas0/chi3",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 4,
+     "ech": 1,
+     "gas": 0,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 3,
+    "chi_i": 3,
+    "D": 0.1,
+    "N_rho": 32,
+    "dt": 0.004,
+    "status": "completed",
+    "acceptedSteps": 1250
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 1.049735145972343e-11,
+     "tolerance": 1e-9,
+     "ratio": 0.010497351459723428,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 1249,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi4/ech1/gas0/chi3",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 4,
+     "ech": 1,
+     "gas": 0,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 3,
+    "chi_i": 3,
+    "D": 0.1,
+    "N_rho": 32,
+    "dt": 0.002,
+    "status": "completed",
+    "acceptedSteps": 2500
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 1.956568580205096e-11,
+     "tolerance": 1e-9,
+     "ratio": 0.01956568580205096,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 2499,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi4/ech1/gas0/chi3",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 4,
+     "ech": 1,
+     "gas": 0,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 3,
+    "chi_i": 3,
+    "D": 0.1,
+    "N_rho": 32,
+    "dt": 0.001,
+    "status": "completed",
+    "acceptedSteps": 5000
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 3.53259990926843e-12,
+     "tolerance": 1e-9,
+     "ratio": 0.0035325999092684296,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 4999,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi4/ech1/gas0/chi3",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 4,
+     "ech": 1,
+     "gas": 0,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 3,
+    "chi_i": 3,
+    "D": 0.1,
+    "N_rho": 64,
+    "dt": 0.004,
+    "status": "completed",
+    "acceptedSteps": 1250
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 6.9110181515168084e-12,
+     "tolerance": 1e-9,
+     "ratio": 0.006911018151516808,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 1249,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi4/ech1/gas0/chi3",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 4,
+     "ech": 1,
+     "gas": 0,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 3,
+    "chi_i": 3,
+    "D": 0.1,
+    "N_rho": 64,
+    "dt": 0.002,
+    "status": "completed",
+    "acceptedSteps": 2500
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 9.761802105140492e-12,
+     "tolerance": 1e-9,
+     "ratio": 0.009761802105140492,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 2499,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi4/ech1/gas0/chi3",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 4,
+     "ech": 1,
+     "gas": 0,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 3,
+    "chi_i": 3,
+    "D": 0.1,
+    "N_rho": 64,
+    "dt": 0.001,
+    "status": "completed",
+    "acceptedSteps": 5000
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 2.2305920239167844e-12,
+     "tolerance": 1e-9,
+     "ratio": 0.0022305920239167843,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 4999,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi4/ech1/gas0/chi3",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 4,
+     "ech": 1,
+     "gas": 0,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 3,
+    "chi_i": 3,
+    "D": 0.1,
+    "N_rho": 128,
+    "dt": 0.004,
+    "status": "completed",
+    "acceptedSteps": 1250
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 3.2370109759570396e-11,
+     "tolerance": 1e-9,
+     "ratio": 0.032370109759570394,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 1249,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi4/ech1/gas0/chi3",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 4,
+     "ech": 1,
+     "gas": 0,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 3,
+    "chi_i": 3,
+    "D": 0.1,
+    "N_rho": 128,
+    "dt": 0.002,
+    "status": "completed",
+    "acceptedSteps": 2500
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 2.1646094495179125e-11,
+     "tolerance": 1e-9,
+     "ratio": 0.021646094495179125,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 2499,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi4/ech1/gas0/chi3",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 4,
+     "ech": 1,
+     "gas": 0,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 3,
+    "chi_i": 3,
+    "D": 0.1,
+    "N_rho": 128,
+    "dt": 0.001,
+    "status": "completed",
+    "acceptedSteps": 5000
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 5.101392683601285e-12,
+     "tolerance": 1e-9,
+     "ratio": 0.005101392683601285,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 4999,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi8/ech1/gas2.5/chi3",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 8,
+     "ech": 1,
+     "gas": 2.5,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 3,
+    "chi_i": 3,
+    "D": 0.1,
+    "N_rho": 32,
+    "dt": 0.004,
+    "status": "completed",
+    "acceptedSteps": 1250
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 3.1592386801811704e-12,
+     "tolerance": 1e-9,
+     "ratio": 0.00315923868018117,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 1249,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi8/ech1/gas2.5/chi3",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 8,
+     "ech": 1,
+     "gas": 2.5,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 3,
+    "chi_i": 3,
+    "D": 0.1,
+    "N_rho": 32,
+    "dt": 0.002,
+    "status": "completed",
+    "acceptedSteps": 2500
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 7.55409611272638e-12,
+     "tolerance": 1e-9,
+     "ratio": 0.00755409611272638,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 2499,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi8/ech1/gas2.5/chi3",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 8,
+     "ech": 1,
+     "gas": 2.5,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 3,
+    "chi_i": 3,
+    "D": 0.1,
+    "N_rho": 32,
+    "dt": 0.001,
+    "status": "completed",
+    "acceptedSteps": 5000
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 1.3565680991972554e-12,
+     "tolerance": 1e-9,
+     "ratio": 0.0013565680991972553,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 4999,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi8/ech1/gas2.5/chi3",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 8,
+     "ech": 1,
+     "gas": 2.5,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 3,
+    "chi_i": 3,
+    "D": 0.1,
+    "N_rho": 64,
+    "dt": 0.004,
+    "status": "completed",
+    "acceptedSteps": 1250
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 5.508416160315887e-13,
+     "tolerance": 1e-9,
+     "ratio": 0.0005508416160315886,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 1249,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi8/ech1/gas2.5/chi3",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 8,
+     "ech": 1,
+     "gas": 2.5,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 3,
+    "chi_i": 3,
+    "D": 0.1,
+    "N_rho": 64,
+    "dt": 0.002,
+    "status": "completed",
+    "acceptedSteps": 2500
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 2.1200143515098014e-12,
+     "tolerance": 1e-9,
+     "ratio": 0.0021200143515098012,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 2499,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi8/ech1/gas2.5/chi3",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 8,
+     "ech": 1,
+     "gas": 2.5,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 3,
+    "chi_i": 3,
+    "D": 0.1,
+    "N_rho": 64,
+    "dt": 0.001,
+    "status": "completed",
+    "acceptedSteps": 5000
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 2.197216760842042e-12,
+     "tolerance": 1e-9,
+     "ratio": 0.002197216760842042,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 4999,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi8/ech1/gas2.5/chi3",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 8,
+     "ech": 1,
+     "gas": 2.5,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 3,
+    "chi_i": 3,
+    "D": 0.1,
+    "N_rho": 128,
+    "dt": 0.004,
+    "status": "completed",
+    "acceptedSteps": 1250
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 2.804439595706249e-13,
+     "tolerance": 1e-9,
+     "ratio": 0.0002804439595706249,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 1245,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi8/ech1/gas2.5/chi3",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 8,
+     "ech": 1,
+     "gas": 2.5,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 3,
+    "chi_i": 3,
+    "D": 0.1,
+    "N_rho": 128,
+    "dt": 0.002,
+    "status": "completed",
+    "acceptedSteps": 2500
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 4.8365402369605196e-12,
+     "tolerance": 1e-9,
+     "ratio": 0.004836540236960519,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 2499,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi8/ech1/gas2.5/chi3",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 8,
+     "ech": 1,
+     "gas": 2.5,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 3,
+    "chi_i": 3,
+    "D": 0.1,
+    "N_rho": 128,
+    "dt": 0.001,
+    "status": "completed",
+    "acceptedSteps": 5000
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 3.550734925980542e-13,
+     "tolerance": 1e-9,
+     "ratio": 0.00035507349259805416,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 4997,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi4/ech1/gas5/chi3",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 4,
+     "ech": 1,
+     "gas": 5,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 3,
+    "chi_i": 3,
+    "D": 0.1,
+    "N_rho": 32,
+    "dt": 0.004,
+    "status": "completed",
+    "acceptedSteps": 1250
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 1.5944690108960053e-12,
+     "tolerance": 1e-9,
+     "ratio": 0.0015944690108960053,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 1249,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi4/ech1/gas5/chi3",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 4,
+     "ech": 1,
+     "gas": 5,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 3,
+    "chi_i": 3,
+    "D": 0.1,
+    "N_rho": 32,
+    "dt": 0.002,
+    "status": "completed",
+    "acceptedSteps": 2500
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 4.169747151347184e-12,
+     "tolerance": 1e-9,
+     "ratio": 0.004169747151347184,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 2499,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi4/ech1/gas5/chi3",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 4,
+     "ech": 1,
+     "gas": 5,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 3,
+    "chi_i": 3,
+    "D": 0.1,
+    "N_rho": 32,
+    "dt": 0.001,
+    "status": "completed",
+    "acceptedSteps": 5000
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 8.657612754535156e-13,
+     "tolerance": 1e-9,
+     "ratio": 0.0008657612754535155,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 4999,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi4/ech1/gas5/chi3",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 4,
+     "ech": 1,
+     "gas": 5,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 3,
+    "chi_i": 3,
+    "D": 0.1,
+    "N_rho": 64,
+    "dt": 0.004,
+    "status": "completed",
+    "acceptedSteps": 1250
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 1.4017129569718724e-13,
+     "tolerance": 1e-9,
+     "ratio": 0.00014017129569718722,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 1248,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi4/ech1/gas5/chi3",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 4,
+     "ech": 1,
+     "gas": 5,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 3,
+    "chi_i": 3,
+    "D": 0.1,
+    "N_rho": 64,
+    "dt": 0.002,
+    "status": "completed",
+    "acceptedSteps": 2500
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 1.6621299909088881e-12,
+     "tolerance": 1e-9,
+     "ratio": 0.001662129990908888,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 2499,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi4/ech1/gas5/chi3",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 4,
+     "ech": 1,
+     "gas": 5,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 3,
+    "chi_i": 3,
+    "D": 0.1,
+    "N_rho": 64,
+    "dt": 0.001,
+    "status": "completed",
+    "acceptedSteps": 5000
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 1.2142746733681838e-12,
+     "tolerance": 1e-9,
+     "ratio": 0.0012142746733681837,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 4999,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi4/ech1/gas5/chi3",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 4,
+     "ech": 1,
+     "gas": 5,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 3,
+    "chi_i": 3,
+    "D": 0.1,
+    "N_rho": 128,
+    "dt": 0.004,
+    "status": "completed",
+    "acceptedSteps": 1250
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 1.333328918750799e-12,
+     "tolerance": 1e-9,
+     "ratio": 0.001333328918750799,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 1249,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi4/ech1/gas5/chi3",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 4,
+     "ech": 1,
+     "gas": 5,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 3,
+    "chi_i": 3,
+    "D": 0.1,
+    "N_rho": 128,
+    "dt": 0.002,
+    "status": "completed",
+    "acceptedSteps": 2500
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 2.0499944170951345e-12,
+     "tolerance": 1e-9,
+     "ratio": 0.0020499944170951343,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 2499,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi4/ech1/gas5/chi3",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 4,
+     "ech": 1,
+     "gas": 5,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 3,
+    "chi_i": 3,
+    "D": 0.1,
+    "N_rho": 128,
+    "dt": 0.001,
+    "status": "completed",
+    "acceptedSteps": 5000
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 9.125978764643483e-13,
+     "tolerance": 1e-9,
+     "ratio": 0.0009125978764643483,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 4999,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi0/ech0/gas0/chi3",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 0,
+     "ech": 0,
+     "gas": 0,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 3,
+    "chi_i": 3,
+    "D": 0.1,
+    "N_rho": 32,
+    "dt": 0.004,
+    "status": "threw",
+    "error": "profile constraint violated at t=4.924000 s in cell 32: T_i <= 0",
+    "acceptedSteps": 1231
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 5.79529621901616e-12,
+     "tolerance": 1e-9,
+     "ratio": 0.0057952962190161595,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 1230,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi0/ech0/gas0/chi3",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 0,
+     "ech": 0,
+     "gas": 0,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 3,
+    "chi_i": 3,
+    "D": 0.1,
+    "N_rho": 32,
+    "dt": 0.002,
+    "status": "threw",
+    "error": "profile constraint violated at t=4.930000 s in cell 32: T_i <= 0",
+    "acceptedSteps": 2465
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 1.3225972695673681e-11,
+     "tolerance": 1e-9,
+     "ratio": 0.013225972695673681,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 2464,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi0/ech0/gas0/chi3",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 0,
+     "ech": 0,
+     "gas": 0,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 3,
+    "chi_i": 3,
+    "D": 0.1,
+    "N_rho": 32,
+    "dt": 0.001,
+    "status": "threw",
+    "error": "profile constraint violated at t=4.932000 s in cell 32: T_i <= 0",
+    "acceptedSteps": 4932
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 2.7860768650532872e-12,
+     "tolerance": 1e-9,
+     "ratio": 0.002786076865053287,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 4931,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi0/ech0/gas0/chi3",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 0,
+     "ech": 0,
+     "gas": 0,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 3,
+    "chi_i": 3,
+    "D": 0.1,
+    "N_rho": 64,
+    "dt": 0.004,
+    "status": "threw",
+    "error": "profile constraint violated at t=4.896000 s in cell 64: T_i <= 0",
+    "acceptedSteps": 1224
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 4.127287481319882e-12,
+     "tolerance": 1e-9,
+     "ratio": 0.004127287481319882,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 1223,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi0/ech0/gas0/chi3",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 0,
+     "ech": 0,
+     "gas": 0,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 3,
+    "chi_i": 3,
+    "D": 0.1,
+    "N_rho": 64,
+    "dt": 0.002,
+    "status": "threw",
+    "error": "profile constraint violated at t=4.902000 s in cell 64: T_i <= 0",
+    "acceptedSteps": 2451
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 3.4491146924801305e-12,
+     "tolerance": 1e-9,
+     "ratio": 0.00344911469248013,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 2450,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi0/ech0/gas0/chi3",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 0,
+     "ech": 0,
+     "gas": 0,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 3,
+    "chi_i": 3,
+    "D": 0.1,
+    "N_rho": 64,
+    "dt": 0.001,
+    "status": "threw",
+    "error": "profile constraint violated at t=4.904000 s in cell 64: T_i <= 0",
+    "acceptedSteps": 4904
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 1.1712249650467146e-12,
+     "tolerance": 1e-9,
+     "ratio": 0.0011712249650467144,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 4903,
+    "quantity": "N"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi0/ech0/gas0/chi3",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 0,
+     "ech": 0,
+     "gas": 0,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 3,
+    "chi_i": 3,
+    "D": 0.1,
+    "N_rho": 128,
+    "dt": 0.004,
+    "status": "threw",
+    "error": "profile constraint violated at t=4.880000 s in cell 128: T_i <= 0",
+    "acceptedSteps": 1220
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 3.944763628548224e-12,
+     "tolerance": 1e-9,
+     "ratio": 0.003944763628548224,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 1219,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi0/ech0/gas0/chi3",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 0,
+     "ech": 0,
+     "gas": 0,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 3,
+    "chi_i": 3,
+    "D": 0.1,
+    "N_rho": 128,
+    "dt": 0.002,
+    "status": "threw",
+    "error": "profile constraint violated at t=4.886000 s in cell 128: T_i <= 0",
+    "acceptedSteps": 2443
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 6.246545992320466e-12,
+     "tolerance": 1e-9,
+     "ratio": 0.006246545992320465,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 2442,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi0/ech0/gas0/chi3",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 0,
+     "ech": 0,
+     "gas": 0,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 3,
+    "chi_i": 3,
+    "D": 0.1,
+    "N_rho": 128,
+    "dt": 0.001,
+    "status": "threw",
+    "error": "profile constraint violated at t=4.890000 s in cell 128: T_i <= 0",
+    "acceptedSteps": 4890
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 1.3315271289691258e-12,
+     "tolerance": 1e-9,
+     "ratio": 0.0013315271289691258,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 4889,
+    "quantity": "N"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi0/ech0/gas0/chi5",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 0,
+     "ech": 0,
+     "gas": 0,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 5,
+    "chi_i": 5,
+    "D": 0.1,
+    "N_rho": 32,
+    "dt": 0.004,
+    "status": "completed",
+    "acceptedSteps": 1250
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 1.098150062002258e-11,
+     "tolerance": 1e-9,
+     "ratio": 0.010981500620022578,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 1249,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi0/ech0/gas0/chi5",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 0,
+     "ech": 0,
+     "gas": 0,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 5,
+    "chi_i": 5,
+    "D": 0.1,
+    "N_rho": 32,
+    "dt": 0.002,
+    "status": "completed",
+    "acceptedSteps": 2500
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 1.5116514619160462e-13,
+     "tolerance": 1e-9,
+     "ratio": 0.00015116514619160462,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 2499,
+    "quantity": "N"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi0/ech0/gas0/chi5",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 0,
+     "ech": 0,
+     "gas": 0,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 5,
+    "chi_i": 5,
+    "D": 0.1,
+    "N_rho": 32,
+    "dt": 0.001,
+    "status": "completed",
+    "acceptedSteps": 5000
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 1.849275999498728e-11,
+     "tolerance": 1e-9,
+     "ratio": 0.01849275999498728,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 4999,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi0/ech0/gas0/chi5",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 0,
+     "ech": 0,
+     "gas": 0,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 5,
+    "chi_i": 5,
+    "D": 0.1,
+    "N_rho": 64,
+    "dt": 0.004,
+    "status": "completed",
+    "acceptedSteps": 1250
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 1.9529414268088335e-12,
+     "tolerance": 1e-9,
+     "ratio": 0.0019529414268088334,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 1249,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi0/ech0/gas0/chi5",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 0,
+     "ech": 0,
+     "gas": 0,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 5,
+    "chi_i": 5,
+    "D": 0.1,
+    "N_rho": 64,
+    "dt": 0.002,
+    "status": "completed",
+    "acceptedSteps": 2500
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 7.200557785430823e-11,
+     "tolerance": 1e-9,
+     "ratio": 0.07200557785430822,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 2499,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi0/ech0/gas0/chi5",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 0,
+     "ech": 0,
+     "gas": 0,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 5,
+    "chi_i": 5,
+    "D": 0.1,
+    "N_rho": 64,
+    "dt": 0.001,
+    "status": "completed",
+    "acceptedSteps": 5000
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 2.2627779176417243e-11,
+     "tolerance": 1e-9,
+     "ratio": 0.022627779176417243,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 4999,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi0/ech0/gas0/chi5",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 0,
+     "ech": 0,
+     "gas": 0,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 5,
+    "chi_i": 5,
+    "D": 0.1,
+    "N_rho": 128,
+    "dt": 0.004,
+    "status": "completed",
+    "acceptedSteps": 1250
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 2.944885150995218e-11,
+     "tolerance": 1e-9,
+     "ratio": 0.029448851509952176,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 1249,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi0/ech0/gas0/chi5",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 0,
+     "ech": 0,
+     "gas": 0,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 5,
+    "chi_i": 5,
+    "D": 0.1,
+    "N_rho": 128,
+    "dt": 0.002,
+    "status": "completed",
+    "acceptedSteps": 2500
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 1.591196422430986e-11,
+     "tolerance": 1e-9,
+     "ratio": 0.015911964224309856,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 2499,
+    "quantity": "Wi"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "nbi0/ech0/gas0/chi5",
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 0,
+     "ech": 0,
+     "gas": 0,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "chi_e": 5,
+    "chi_i": 5,
+    "D": 0.1,
+    "N_rho": 128,
+    "dt": 0.001,
+    "status": "completed",
+    "acceptedSteps": 5000
+   },
+   "measurements": [
+    {
+     "quantity": "max relative parity |sum x dV - X_0D|/X_0D over N, We, Wi and all steps",
+     "measured": 2.8492568513606836e-11,
+     "tolerance": 1e-9,
+     "ratio": 0.028492568513606834,
+     "pass": true
+    }
+   ],
+   "atMax": {
+    "step": 4999,
+    "quantity": "Wi"
+   },
+   "pass": true
+  }
+ ],
+ "pass": true
+}

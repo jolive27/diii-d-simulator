@@ -154,6 +154,13 @@
       "question": "Software interpretations and design choices reported in the Part A handoff",
       "decision": "ACCEPTED as stated: all ten fields required when enabled ({enabled:true} alone and unknown fields throw); non-object profiles throws; <t> in the error is the start time of the rejected step; 0-D guard runs before the profile step, observer sees only steps accepted by both; sample edgeFlux is the prescribed 0-D loss at the sample time; profiles block layout is Software's and is documented in docs/D2-PROFILES.md (the spec fixes content, not layout); withProfileStepObserver is a verification-only hook. Restated 0-D literals (0.8, 0.35, 0.65, 0.9, 80 keV, 0.3, 0.25 s) in the passenger call and eta constants in profiles.ts are accepted as the price of bit-for-bit off-path (any refactor of the 0-D lines would change floating-point association); D2-VER-PARITY is the cross-check that the restated totals equal the 0-D ones. The git stash incident left experiments/ intact (verified by git status).",
       "rationale": "None of these is a scientific choice; they are interface details consistent with the spec."
+    },
+    {
+      "id": "DD-23",
+      "stage": "implement (Part B review)",
+      "question": "Software interpretations in the Part B handoff",
+      "decision": "ACCEPTED: (1) DD-21 bounds include the Dirichlet boundary value (the maximum principle is stated with boundary data); (2) source-driven STEADY marches are judged for non-negativity, the DMP on a diffusion-only F1 companion; (3) AC-7(a) axis flux is structurally zero (V'(0)=0), backed by the oracle closing cell 1 with Phi_0=0; (4) A6 agreement at roundoff is expected, A1-A4 are the discriminating anchors; (5) fixture t=1 for refinement, uniform companion at dt=1e-6, failsafe runs array = 138 sweep runs with parts (i)/(ii) under groups.partsIandII, DEFAULT and the 1.2/4 grid point both run; (6) F3 delivered-edge-flux margin 1.75 (5.7e-13 vs 1e-12, roundoff eps*dV/dt) is recorded as MARGINAL for Validation to probe with smaller dt; (7) engine.ts SHA differs from the value science/constants.json cites: registry bindings are updated by the Director at release (DD-15), not by Software.",
+      "rationale": "Interface and test-structure choices consistent with the spec; none alters a scientific value."
     }
   ],
   "status": "DESIGN_REVIEW_PASS",
@@ -236,5 +243,14 @@
     "tests_evidence_real": 0.95,
     "no_constant_change": 0.67,
     "note": "0.67 attributed to restated literals; Director reviewed the engine.ts diff: no existing line changed, constants duplicated not altered (DD-22)."
+  },
+  "jevAuditImplementPartB_laneSelfCheck": {
+    "all_ten_checks_pass_with_numbers": 0.66,
+    "rates_in_bands": 0.7,
+    "sweep_138_runs_no_silent_violation": 0.75,
+    "offpath_still_bitforbit": 0.92,
+    "no_constant_change": 0.72,
+    "tests_evidence_real": 0.84,
+    "directorNote": "Director re-ran npm test: 46/46; all ten evidence files pass:true; the stage audit below is the gate."
   }
 }

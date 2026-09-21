@@ -1,0 +1,77 @@
+{
+ "checkId": "D2-VER-EIGEN-DIRICHLET",
+ "physicsModelVersion": "0.2.0 (profiles on); 0.1.0 (profiles off)",
+ "verificationVersion": "0.3.0",
+ "sourceSha256": {
+  "physics/engine.ts": "c57ea711b0ad722cfc51128df76d5a1efcb670a924ce097f00eca61a8154ddfb",
+  "physics/profiles.ts": "e5f3497f59098b7d391c30ece9818dc7a697cd17e259f0f0d9177e750b22cce4"
+ },
+ "nodeVersion": "v24.20.0",
+ "note": "A failure here is a defect or a mis-stated fixture, not a reason to loosen (DD-6 rationale). DD-21 discrete maximum principle: for this non-negative mode the bounds reduce to [0, max u(0)] once the zero Dirichlet edge value is included.",
+ "runs": [
+  {
+   "inputs": {
+    "fixture": "F2 J0(a1 rho) exp(-a1^2 D t/L^2), zero-Dirichlet, n frozen = 1",
+    "N_rho": 256,
+    "t": 1,
+    "dt": 0.000002,
+    "steps": 500000,
+    "a1": 2.404825557695773,
+    "amplitudeAtT1": 0.0030788905345452314,
+    "wallSeconds": 16.731
+   },
+   "measurements": [
+    {
+     "quantity": "L2rel vs cell averages of J0(a1 rho) exp(-a1^2)",
+     "measured": 0.00007571918521859079,
+     "tolerance": 0.0001,
+     "ratio": 0.7571918521859079,
+     "pass": true
+    },
+    {
+     "quantity": "|J0(a1)| by the test series",
+     "measured": 9.515724379496709e-17,
+     "tolerance": 1e-15,
+     "ratio": 0.09515724379496708,
+     "pass": true
+    },
+    {
+     "quantity": "steps with a non-zero reported axis flux, Object.is(flux, 0) (AC-7a)",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "delivered vs prescribed edge flux / max(|prescribed|, flux scale) (AC-7b)",
+     "measured": 1.9952304908411208e-15,
+     "tolerance": 1e-12,
+     "ratio": 0.001995230490841121,
+     "pass": true
+    },
+    {
+     "quantity": "discrete maximum principle excess over M, bounds include the Dirichlet edge value (AC-7d, DD-21)",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "pointValueAtRho0p5LinearInterpolation": 0.0020627755750835634,
+    "analyticPointValue": 0.002062640332169856,
+    "pointRelativeDifference": 0.00006556786057081068,
+    "literalDmpExcessOverM": 0.0024324803288715744,
+    "dmpBounds": [
+     -9.999889694887176e-15,
+     0.9999889694887276
+    ],
+    "minSeen": 0.000007512873315374195,
+    "maxSeen": 0.9999774034632052,
+    "convergenceRatesIn": "d2-ver-refinement.json"
+   },
+   "pass": true
+  }
+ ],
+ "pass": true
+}

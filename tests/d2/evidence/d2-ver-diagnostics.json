@@ -1,0 +1,1652 @@
+{
+ "checkId": "D2-VER-DIAGNOSTICS",
+ "physicsModelVersion": "0.2.0 (profiles on); 0.1.0 (profiles off)",
+ "verificationVersion": "0.3.0",
+ "sourceSha256": {
+  "physics/engine.ts": "c57ea711b0ad722cfc51128df76d5a1efcb670a924ce097f00eca61a8154ddfb",
+  "physics/profiles.ts": "e5f3497f59098b7d391c30ece9818dc7a697cd17e259f0f0d9177e750b22cce4"
+ },
+ "nodeVersion": "v24.20.0",
+ "linearProfileReport": {
+  "differencesFromAnalytic": {
+   "32": 0.0000406583398389615,
+   "64": 0.000010170603674641843,
+   "128": 0.0000025430132528647675
+  },
+  "rates": [
+   1.9991459955891686,
+   1.9997944269448582
+  ],
+  "expectedOrder": 2,
+  "estimate": "b h^2 / 12 = 1e-5 at N_rho = 64"
+ },
+ "note": "A2/A3 at N_rho = 64 are reported (reported.error64_notJudged); judged: N_rho = 256 within 2e-4 and error ratio >= 4. The A4 linear-profile discretisation (difference from a + b, rate about 2) is reported in linearProfileReport, not judged. AC-8 is A6 at t = 0.5, 2, 3, 4.5 s with a test-only recomputation from the exported arrays.",
+ "runs": [
+  {
+   "inputs": {
+    "anchor": "A1",
+    "N_rho": 64,
+    "n": "3e19 m^-3 uniform",
+    "T_e": "1 keV uniform (above the 0.02 keV floor)",
+    "jt": 1
+   },
+   "measurements": [
+    {
+     "quantity": "|C_br - 1|",
+     "measured": 2.220446049250313e-16,
+     "tolerance": 1e-12,
+     "ratio": 0.0002220446049250313,
+     "pass": true
+    },
+    {
+     "quantity": "|C_ohm - 1|",
+     "measured": 2.220446049250313e-16,
+     "tolerance": 1e-12,
+     "ratio": 0.0002220446049250313,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "cBr": 1.0000000000000002,
+    "cOhm": 0.9999999999999998
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "anchor": "A2 C_br",
+    "n": "3e19 uniform",
+    "T_e": "T0 (1 - rho^2) cell averages, T0 = 2 keV",
+    "V": 23.11,
+    "formula": "2 sqrt(2)/3",
+    "expected": 0.9428090415820635
+   },
+   "measurements": [
+    {
+     "quantity": "relative error at N_rho = 256",
+     "measured": 0.00005932315489935618,
+     "tolerance": 0.0002,
+     "ratio": 0.2966157744967809,
+     "pass": true
+    },
+    {
+     "quantity": "error(N_rho = 64) / error(N_rho = 256) (>= 4; no band on the rate)",
+     "measured": 7.513507672015525,
+     "tolerance": 4,
+     "ratio": 1.8783769180038812,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "value256": 0.9428649719888778,
+    "value64": 0.9432292751227616,
+    "error64_notJudged": 0.00044572497946447805,
+    "error256": 0.00005932315489935618
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "anchor": "A3 C_ohm gamma=1",
+    "n": "3e19 uniform",
+    "T_e": "1 keV uniform",
+    "jt": "(1 - rho^2)^gamma cell averages",
+    "formula": "(gamma+1)^2/(2 gamma+1)",
+    "expected": 1.3333333333333333
+   },
+   "measurements": [
+    {
+     "quantity": "relative error at N_rho = 256",
+     "measured": 0.000007629336324033176,
+     "tolerance": 0.0002,
+     "ratio": 0.03814668162016588,
+     "pass": true
+    },
+    {
+     "quantity": "error(N_rho = 64) / error(N_rho = 256) (>= 4; no band on the rate)",
+     "measured": 15.99816893046954,
+     "tolerance": 4,
+     "ratio": 3.999542232617385,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "value256": 1.3333231608849012,
+    "value64": 1.333170592784881,
+    "error64_notJudged": 0.00012205541133925024,
+    "error256": 0.000007629336324033176
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "anchor": "A3 C_ohm gamma=2",
+    "n": "3e19 uniform",
+    "T_e": "1 keV uniform",
+    "jt": "(1 - rho^2)^gamma cell averages",
+    "formula": "(gamma+1)^2/(2 gamma+1)",
+    "expected": 1.8
+   },
+   "measurements": [
+    {
+     "quantity": "relative error at N_rho = 256",
+     "measured": 0.000008477010180227592,
+     "tolerance": 0.0002,
+     "ratio": 0.042385050901137956,
+     "pass": true
+    },
+    {
+     "quantity": "error(N_rho = 64) / error(N_rho = 256) (>= 4; no band on the rate)",
+     "measured": 15.997316007766958,
+     "tolerance": 4,
+     "ratio": 3.9993290019417396,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "value256": 1.7999847413816756,
+    "value64": 1.7997559030608226,
+    "error64_notJudged": 0.00013560941065415832,
+    "error256": 0.000008477010180227592
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "anchor": "A4 hand case",
+    "quantity": "n",
+    "x_Nm1": 2,
+    "x_N": 1,
+    "expected": 0.5,
+    "expectedRaw": 0.5,
+    "expectedClip": false
+   },
+   "measurements": [
+    {
+     "quantity": "edge value error (absolute 1e-15 where the value is 0)",
+     "measured": 0,
+     "tolerance": 1e-12,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "raw (unclipped) value relative error",
+     "measured": 0,
+     "tolerance": 1e-12,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "clip flag mismatch (exact)",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "value": 0.5,
+    "raw": 0.5,
+    "clipped": false
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "anchor": "A4 hand case",
+    "quantity": "n",
+    "x_Nm1": 1,
+    "x_N": 0.4,
+    "expected": 0.1,
+    "expectedRaw": 0.10000000000000009,
+    "expectedClip": false
+   },
+   "measurements": [
+    {
+     "quantity": "edge value error (absolute 1e-15 where the value is 0)",
+     "measured": 8.326672684688674e-16,
+     "tolerance": 1e-12,
+     "ratio": 0.0008326672684688674,
+     "pass": true
+    },
+    {
+     "quantity": "raw (unclipped) value relative error",
+     "measured": 0,
+     "tolerance": 1e-12,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "clip flag mismatch (exact)",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "value": 0.10000000000000009,
+    "raw": 0.10000000000000009,
+    "clipped": false
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "anchor": "A4 hand case",
+    "quantity": "n",
+    "x_Nm1": 1,
+    "x_N": 0.2,
+    "expected": 0,
+    "expectedRaw": -0.19999999999999996,
+    "expectedClip": true
+   },
+   "measurements": [
+    {
+     "quantity": "edge value error (absolute 1e-15 where the value is 0)",
+     "measured": 0,
+     "tolerance": 1e-15,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "raw (unclipped) value relative error",
+     "measured": 0,
+     "tolerance": 1e-12,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "clip flag mismatch (exact)",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "value": 0,
+    "raw": -0.19999999999999996,
+    "clipped": true
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "anchor": "A4 hand case",
+    "quantity": "te",
+    "x_Nm1": 2,
+    "x_N": 1,
+    "expected": 0.5,
+    "expectedRaw": 0.5,
+    "expectedClip": false
+   },
+   "measurements": [
+    {
+     "quantity": "edge value error (absolute 1e-15 where the value is 0)",
+     "measured": 0,
+     "tolerance": 1e-12,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "raw (unclipped) value relative error",
+     "measured": 0,
+     "tolerance": 1e-12,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "clip flag mismatch (exact)",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "value": 0.5,
+    "raw": 0.5,
+    "clipped": false
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "anchor": "A4 hand case",
+    "quantity": "te",
+    "x_Nm1": 1,
+    "x_N": 0.4,
+    "expected": 0.1,
+    "expectedRaw": 0.10000000000000009,
+    "expectedClip": false
+   },
+   "measurements": [
+    {
+     "quantity": "edge value error (absolute 1e-15 where the value is 0)",
+     "measured": 8.326672684688674e-16,
+     "tolerance": 1e-12,
+     "ratio": 0.0008326672684688674,
+     "pass": true
+    },
+    {
+     "quantity": "raw (unclipped) value relative error",
+     "measured": 0,
+     "tolerance": 1e-12,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "clip flag mismatch (exact)",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "value": 0.10000000000000009,
+    "raw": 0.10000000000000009,
+    "clipped": false
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "anchor": "A4 hand case",
+    "quantity": "te",
+    "x_Nm1": 1,
+    "x_N": 0.2,
+    "expected": 0,
+    "expectedRaw": -0.19999999999999996,
+    "expectedClip": true
+   },
+   "measurements": [
+    {
+     "quantity": "edge value error (absolute 1e-15 where the value is 0)",
+     "measured": 0,
+     "tolerance": 1e-15,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "raw (unclipped) value relative error",
+     "measured": 0,
+     "tolerance": 1e-12,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "clip flag mismatch (exact)",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "value": 0,
+    "raw": -0.19999999999999996,
+    "clipped": true
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "anchor": "A4 hand case",
+    "quantity": "ti",
+    "x_Nm1": 2,
+    "x_N": 1,
+    "expected": 0.5,
+    "expectedRaw": 0.5,
+    "expectedClip": false
+   },
+   "measurements": [
+    {
+     "quantity": "edge value error (absolute 1e-15 where the value is 0)",
+     "measured": 0,
+     "tolerance": 1e-12,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "raw (unclipped) value relative error",
+     "measured": 0,
+     "tolerance": 1e-12,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "clip flag mismatch (exact)",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "value": 0.5,
+    "raw": 0.5,
+    "clipped": false
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "anchor": "A4 hand case",
+    "quantity": "ti",
+    "x_Nm1": 1,
+    "x_N": 0.4,
+    "expected": 0.1,
+    "expectedRaw": 0.10000000000000009,
+    "expectedClip": false
+   },
+   "measurements": [
+    {
+     "quantity": "edge value error (absolute 1e-15 where the value is 0)",
+     "measured": 8.326672684688674e-16,
+     "tolerance": 1e-12,
+     "ratio": 0.0008326672684688674,
+     "pass": true
+    },
+    {
+     "quantity": "raw (unclipped) value relative error",
+     "measured": 0,
+     "tolerance": 1e-12,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "clip flag mismatch (exact)",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "value": 0.10000000000000009,
+    "raw": 0.10000000000000009,
+    "clipped": false
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "anchor": "A4 hand case",
+    "quantity": "ti",
+    "x_Nm1": 1,
+    "x_N": 0.2,
+    "expected": 0,
+    "expectedRaw": -0.19999999999999996,
+    "expectedClip": true
+   },
+   "measurements": [
+    {
+     "quantity": "edge value error (absolute 1e-15 where the value is 0)",
+     "measured": 0,
+     "tolerance": 1e-15,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "raw (unclipped) value relative error",
+     "measured": 0,
+     "tolerance": 1e-12,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "clip flag mismatch (exact)",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "value": 0,
+    "raw": -0.19999999999999996,
+    "clipped": true
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "anchor": "A4 linear profile x = a + b rho, a = 1, b = -0.5",
+    "quantity": "n",
+    "N_rho": 64
+   },
+   "measurements": [
+    {
+     "quantity": "edge value vs the rule max(1.5 x_N - 0.5 x_{N-1}, 0) on the injected averages",
+     "measured": 0,
+     "tolerance": 1e-12,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "value": 0.49998982939632536,
+    "analyticEdge": 0.5,
+    "differenceFromAnalytic": 0.000010170603674641843
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "anchor": "A4 linear profile x = a + b rho, a = 1, b = -0.5",
+    "quantity": "te",
+    "N_rho": 64
+   },
+   "measurements": [
+    {
+     "quantity": "edge value vs the rule max(1.5 x_N - 0.5 x_{N-1}, 0) on the injected averages",
+     "measured": 0,
+     "tolerance": 1e-12,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "value": 0.49998982939632536,
+    "analyticEdge": 0.5,
+    "differenceFromAnalytic": 0.000010170603674641843
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "anchor": "A4 linear profile x = a + b rho, a = 1, b = -0.5",
+    "quantity": "ti",
+    "N_rho": 64
+   },
+   "measurements": [
+    {
+     "quantity": "edge value vs the rule max(1.5 x_N - 0.5 x_{N-1}, 0) on the injected averages",
+     "measured": 0,
+     "tolerance": 1e-12,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "value": 0.49998982939632536,
+    "analyticEdge": 0.5,
+    "differenceFromAnalytic": 0.000010170603674641843
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "anchor": "A5 T_e,avg identity",
+    "case": "nbi4/ech1/gas2.5/chi3",
+    "N_rho": 64,
+    "dt": 0.002,
+    "t": 0.5
+   },
+   "measurements": [
+    {
+     "quantity": "relative |T_e,avg(0-D) - n-weighted profile mean|",
+     "measured": 1.8204991669150125e-14,
+     "tolerance": 1e-9,
+     "ratio": 0.000018204991669150124,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "profileMean": 0.29577501419881064,
+    "zeroD": 0.29577501419880525
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "anchor": "A5 T_e,avg identity",
+    "case": "nbi4/ech1/gas2.5/chi3",
+    "N_rho": 64,
+    "dt": 0.002,
+    "t": 2
+   },
+   "measurements": [
+    {
+     "quantity": "relative |T_e,avg(0-D) - n-weighted profile mean|",
+     "measured": 1.9065951842354173e-14,
+     "tolerance": 1e-9,
+     "ratio": 0.000019065951842354174,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "profileMean": 0.9200444821280528,
+    "zeroD": 0.9200444821280703
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "anchor": "A5 T_e,avg identity",
+    "case": "nbi4/ech1/gas2.5/chi3",
+    "N_rho": 64,
+    "dt": 0.002,
+    "t": 3
+   },
+   "measurements": [
+    {
+     "quantity": "relative |T_e,avg(0-D) - n-weighted profile mean|",
+     "measured": 1.8218219032265098e-14,
+     "tolerance": 1e-9,
+     "ratio": 0.000018218219032265098,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "profileMean": 0.8409756031965979,
+    "zeroD": 0.8409756031966132
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "anchor": "A5 T_e,avg identity",
+    "case": "nbi4/ech1/gas2.5/chi3",
+    "N_rho": 64,
+    "dt": 0.002,
+    "t": 4.5
+   },
+   "measurements": [
+    {
+     "quantity": "relative |T_e,avg(0-D) - n-weighted profile mean|",
+     "measured": 2.360893296327374e-13,
+     "tolerance": 1e-9,
+     "ratio": 0.00023608932963273735,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "profileMean": 0.3042552994875807,
+    "zeroD": 0.3042552994876525
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "anchor": "A5 T_e,avg identity",
+    "case": "nbi0/ech1/gas2.5/chi3",
+    "N_rho": 64,
+    "dt": 0.002,
+    "t": 0.5
+   },
+   "measurements": [
+    {
+     "quantity": "relative |T_e,avg(0-D) - n-weighted profile mean|",
+     "measured": 1.8204991669150125e-14,
+     "tolerance": 1e-9,
+     "ratio": 0.000018204991669150124,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "profileMean": 0.29577501419881064,
+    "zeroD": 0.29577501419880525
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "anchor": "A5 T_e,avg identity",
+    "case": "nbi0/ech1/gas2.5/chi3",
+    "N_rho": 64,
+    "dt": 0.002,
+    "t": 2
+   },
+   "measurements": [
+    {
+     "quantity": "relative |T_e,avg(0-D) - n-weighted profile mean|",
+     "measured": 2.3437456575213763e-14,
+     "tolerance": 1e-9,
+     "ratio": 0.000023437456575213763,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "profileMean": 0.6963331712046632,
+    "zeroD": 0.6963331712046469
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "anchor": "A5 T_e,avg identity",
+    "case": "nbi0/ech1/gas2.5/chi3",
+    "N_rho": 64,
+    "dt": 0.002,
+    "t": 3
+   },
+   "measurements": [
+    {
+     "quantity": "relative |T_e,avg(0-D) - n-weighted profile mean|",
+     "measured": 2.889490078184734e-14,
+     "tolerance": 1e-9,
+     "ratio": 0.000028894900781847335,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "profileMean": 0.6723990186928288,
+    "zeroD": 0.6723990186928094
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "anchor": "A5 T_e,avg identity",
+    "case": "nbi0/ech1/gas2.5/chi3",
+    "N_rho": 64,
+    "dt": 0.002,
+    "t": 4.5
+   },
+   "measurements": [
+    {
+     "quantity": "relative |T_e,avg(0-D) - n-weighted profile mean|",
+     "measured": 8.836798320202814e-15,
+     "tolerance": 1e-9,
+     "ratio": 0.000008836798320202812,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "profileMean": 0.30780904030739287,
+    "zeroD": 0.3078090403073956
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "anchor": "A5 T_e,avg identity",
+    "case": "nbi4/ech1/gas0/chi3",
+    "N_rho": 64,
+    "dt": 0.002,
+    "t": 0.5
+   },
+   "measurements": [
+    {
+     "quantity": "relative |T_e,avg(0-D) - n-weighted profile mean|",
+     "measured": 3.8229275875566694e-15,
+     "tolerance": 1e-9,
+     "ratio": 0.000003822927587556669,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "profileMean": 0.36301466585413816,
+    "zeroD": 0.3630146658541368
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "anchor": "A5 T_e,avg identity",
+    "case": "nbi4/ech1/gas0/chi3",
+    "N_rho": 64,
+    "dt": 0.002,
+    "t": 2
+   },
+   "measurements": [
+    {
+     "quantity": "relative |T_e,avg(0-D) - n-weighted profile mean|",
+     "measured": 3.932250770815608e-16,
+     "tolerance": 1e-9,
+     "ratio": 3.9322507708156077e-7,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "profileMean": 2.2587023856464357,
+    "zeroD": 2.2587023856464366
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "anchor": "A5 T_e,avg identity",
+    "case": "nbi4/ech1/gas0/chi3",
+    "N_rho": 64,
+    "dt": 0.002,
+    "t": 3
+   },
+   "measurements": [
+    {
+     "quantity": "relative |T_e,avg(0-D) - n-weighted profile mean|",
+     "measured": 7.197367767058069e-14,
+     "tolerance": 1e-9,
+     "ratio": 0.00007197367767058069,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "profileMean": 2.2274282757874198,
+    "zeroD": 2.22742827578758
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "anchor": "A5 T_e,avg identity",
+    "case": "nbi4/ech1/gas0/chi3",
+    "N_rho": 64,
+    "dt": 0.002,
+    "t": 4.5
+   },
+   "measurements": [
+    {
+     "quantity": "relative |T_e,avg(0-D) - n-weighted profile mean|",
+     "measured": 1.1197671920296127e-12,
+     "tolerance": 1e-9,
+     "ratio": 0.0011197671920296127,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "profileMean": 0.5354965388051109,
+    "zeroD": 0.5354965388057106
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "anchor": "A5 T_e,avg identity",
+    "case": "nbi8/ech1/gas2.5/chi3",
+    "N_rho": 64,
+    "dt": 0.002,
+    "t": 0.5
+   },
+   "measurements": [
+    {
+     "quantity": "relative |T_e,avg(0-D) - n-weighted profile mean|",
+     "measured": 1.8204991669150125e-14,
+     "tolerance": 1e-9,
+     "ratio": 0.000018204991669150124,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "profileMean": 0.29577501419881064,
+    "zeroD": 0.29577501419880525
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "anchor": "A5 T_e,avg identity",
+    "case": "nbi8/ech1/gas2.5/chi3",
+    "N_rho": 64,
+    "dt": 0.002,
+    "t": 2
+   },
+   "measurements": [
+    {
+     "quantity": "relative |T_e,avg(0-D) - n-weighted profile mean|",
+     "measured": 1.9082501798938436e-14,
+     "tolerance": 1e-9,
+     "ratio": 0.000019082501798938435,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "profileMean": 1.0705149601630803,
+    "zeroD": 1.0705149601631008
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "anchor": "A5 T_e,avg identity",
+    "case": "nbi8/ech1/gas2.5/chi3",
+    "N_rho": 64,
+    "dt": 0.002,
+    "t": 3
+   },
+   "measurements": [
+    {
+     "quantity": "relative |T_e,avg(0-D) - n-weighted profile mean|",
+     "measured": 7.069743374061079e-15,
+     "tolerance": 1e-9,
+     "ratio": 0.000007069743374061079,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "profileMean": 0.9422319588277238,
+    "zeroD": 0.9422319588277305
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "anchor": "A5 T_e,avg identity",
+    "case": "nbi8/ech1/gas2.5/chi3",
+    "N_rho": 64,
+    "dt": 0.002,
+    "t": 4.5
+   },
+   "measurements": [
+    {
+     "quantity": "relative |T_e,avg(0-D) - n-weighted profile mean|",
+     "measured": 3.438664746533997e-13,
+     "tolerance": 1e-9,
+     "ratio": 0.0003438664746533997,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "profileMean": 0.3038155630684668,
+    "zeroD": 0.30381556306857127
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "anchor": "A5 T_e,avg identity",
+    "case": "nbi4/ech1/gas5/chi3",
+    "N_rho": 64,
+    "dt": 0.002,
+    "t": 0.5
+   },
+   "measurements": [
+    {
+     "quantity": "relative |T_e,avg(0-D) - n-weighted profile mean|",
+     "measured": 4.9314847112596264e-15,
+     "tolerance": 1e-9,
+     "ratio": 0.000004931484711259626,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "profileMean": 0.25889900366188506,
+    "zeroD": 0.2588990036618838
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "anchor": "A5 T_e,avg identity",
+    "case": "nbi4/ech1/gas5/chi3",
+    "N_rho": 64,
+    "dt": 0.002,
+    "t": 2
+   },
+   "measurements": [
+    {
+     "quantity": "relative |T_e,avg(0-D) - n-weighted profile mean|",
+     "measured": 3.5418028712291204e-14,
+     "tolerance": 1e-9,
+     "ratio": 0.000035418028712291204,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "profileMean": 0.6269253625850915,
+    "zeroD": 0.6269253625851137
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "anchor": "A5 T_e,avg identity",
+    "case": "nbi4/ech1/gas5/chi3",
+    "N_rho": 64,
+    "dt": 0.002,
+    "t": 3
+   },
+   "measurements": [
+    {
+     "quantity": "relative |T_e,avg(0-D) - n-weighted profile mean|",
+     "measured": 7.584544489806247e-14,
+     "tolerance": 1e-9,
+     "ratio": 0.00007584544489806246,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "profileMean": 0.5679530710558629,
+    "zeroD": 0.567953071055906
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "anchor": "A5 T_e,avg identity",
+    "case": "nbi4/ech1/gas5/chi3",
+    "N_rho": 64,
+    "dt": 0.002,
+    "t": 4.5
+   },
+   "measurements": [
+    {
+     "quantity": "relative |T_e,avg(0-D) - n-weighted profile mean|",
+     "measured": 3.282438955050574e-13,
+     "tolerance": 1e-9,
+     "ratio": 0.00032824389550505735,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "profileMean": 0.24394919981026542,
+    "zeroD": 0.2439491998103455
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "anchor": "A5 T_e,avg identity",
+    "case": "nbi0/ech0/gas0/chi3",
+    "N_rho": 64,
+    "dt": 0.002,
+    "t": 0.5
+   },
+   "measurements": [
+    {
+     "quantity": "relative |T_e,avg(0-D) - n-weighted profile mean|",
+     "measured": 3.8229275875566694e-15,
+     "tolerance": 1e-9,
+     "ratio": 0.000003822927587556669,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "profileMean": 0.36301466585413816,
+    "zeroD": 0.3630146658541368
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "anchor": "A5 T_e,avg identity",
+    "case": "nbi0/ech0/gas0/chi3",
+    "N_rho": 64,
+    "dt": 0.002,
+    "t": 2
+   },
+   "measurements": [
+    {
+     "quantity": "relative |T_e,avg(0-D) - n-weighted profile mean|",
+     "measured": 3.700206624465682e-14,
+     "tolerance": 1e-9,
+     "ratio": 0.00003700206624465682,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "profileMean": 0.8071170719210954,
+    "zeroD": 0.8071170719210655
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "anchor": "A5 T_e,avg identity",
+    "case": "nbi0/ech0/gas0/chi3",
+    "N_rho": 64,
+    "dt": 0.002,
+    "t": 3
+   },
+   "measurements": [
+    {
+     "quantity": "relative |T_e,avg(0-D) - n-weighted profile mean|",
+     "measured": 5.453225884619621e-14,
+     "tolerance": 1e-9,
+     "ratio": 0.000054532258846196206,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "profileMean": 0.9914839847683931,
+    "zeroD": 0.991483984768339
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "anchor": "A5 T_e,avg identity",
+    "case": "nbi0/ech0/gas0/chi3",
+    "N_rho": 64,
+    "dt": 0.002,
+    "t": 4.5
+   },
+   "measurements": [
+    {
+     "quantity": "relative |T_e,avg(0-D) - n-weighted profile mean|",
+     "measured": 7.974015410240809e-14,
+     "tolerance": 1e-9,
+     "ratio": 0.00007974015410240809,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "profileMean": 0.9230956142638161,
+    "zeroD": 0.9230956142637425
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "anchor": "A5 T_e,avg identity",
+    "case": "nbi0/ech0/gas0/chi5",
+    "N_rho": 64,
+    "dt": 0.002,
+    "t": 0.5
+   },
+   "measurements": [
+    {
+     "quantity": "relative |T_e,avg(0-D) - n-weighted profile mean|",
+     "measured": 2.752507863040802e-13,
+     "tolerance": 1e-9,
+     "ratio": 0.0002752507863040802,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "profileMean": 0.36301466585403686,
+    "zeroD": 0.3630146658541368
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "anchor": "A5 T_e,avg identity",
+    "case": "nbi0/ech0/gas0/chi5",
+    "N_rho": 64,
+    "dt": 0.002,
+    "t": 2
+   },
+   "measurements": [
+    {
+     "quantity": "relative |T_e,avg(0-D) - n-weighted profile mean|",
+     "measured": 1.016662719755608e-12,
+     "tolerance": 1e-9,
+     "ratio": 0.001016662719755608,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "profileMean": 0.807117071920245,
+    "zeroD": 0.8071170719210655
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "anchor": "A5 T_e,avg identity",
+    "case": "nbi0/ech0/gas0/chi5",
+    "N_rho": 64,
+    "dt": 0.002,
+    "t": 3
+   },
+   "measurements": [
+    {
+     "quantity": "relative |T_e,avg(0-D) - n-weighted profile mean|",
+     "measured": 1.9704397513686132e-12,
+     "tolerance": 1e-9,
+     "ratio": 0.001970439751368613,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "profileMean": 0.9914839847663853,
+    "zeroD": 0.991483984768339
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "anchor": "A5 T_e,avg identity",
+    "case": "nbi0/ech0/gas0/chi5",
+    "N_rho": 64,
+    "dt": 0.002,
+    "t": 4.5
+   },
+   "measurements": [
+    {
+     "quantity": "relative |T_e,avg(0-D) - n-weighted profile mean|",
+     "measured": 6.346378147091655e-12,
+     "tolerance": 1e-9,
+     "ratio": 0.006346378147091655,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "profileMean": 0.9230956142578842,
+    "zeroD": 0.9230956142637425
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "anchor": "A6 / AC-8",
+    "case": "DEFAULT profile-on",
+    "N_rho": 64,
+    "dt": 0.002,
+    "t": 0.5
+   },
+   "measurements": [
+    {
+     "quantity": "cBr vs independent recomputation (relative)",
+     "measured": 1.1117948212695654e-16,
+     "tolerance": 1e-9,
+     "ratio": 1.1117948212695653e-7,
+     "pass": true
+    },
+    {
+     "quantity": "cOhm vs independent recomputation (relative)",
+     "measured": 0,
+     "tolerance": 1e-9,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "n(1) vs independent recomputation (relative)",
+     "measured": 0,
+     "tolerance": 1e-9,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "T_e(1) vs independent recomputation (relative)",
+     "measured": 0,
+     "tolerance": 1e-9,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "T_i(1) vs independent recomputation (relative)",
+     "measured": 0,
+     "tolerance": 1e-9,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "edge flux N/tauP vs independent recomputation (relative)",
+     "measured": 0,
+     "tolerance": 1e-9,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "edge flux We/tauE vs independent recomputation (relative)",
+     "measured": 0,
+     "tolerance": 1e-9,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "edge flux Wi/tauE vs independent recomputation (relative)",
+     "measured": 0,
+     "tolerance": 1e-9,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "clip flag mismatches (n, T_e, T_i; exact)",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "reference": {
+     "cBr": 0.9985862529539272,
+     "cOhm": 1.1030271238101435,
+     "n(1)": 3.0842082162184985,
+     "T_e(1)": 0.22384465820347796,
+     "T_i(1)": 0.09427129468249495,
+     "edge flux N/tauP": 518351127378469260000,
+     "edge flux We/tauE": 297860.4282839832,
+     "edge flux Wi/tauE": 113890.3072755132
+    },
+    "production": {
+     "cBr": 0.9985862529539273,
+     "cOhm": 1.1030271238101435,
+     "n(1)": 3.0842082162184985,
+     "T_e(1)": 0.22384465820347796,
+     "T_i(1)": 0.09427129468249495,
+     "edge flux N/tauP": 518351127378469260000,
+     "edge flux We/tauE": 297860.4282839832,
+     "edge flux Wi/tauE": 113890.3072755132
+    },
+    "clipped": {
+     "n": false,
+     "te": false,
+     "ti": false
+    }
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "anchor": "A6 / AC-8",
+    "case": "DEFAULT profile-on",
+    "N_rho": 64,
+    "dt": 0.002,
+    "t": 2
+   },
+   "measurements": [
+    {
+     "quantity": "cBr vs independent recomputation (relative)",
+     "measured": 0,
+     "tolerance": 1e-9,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "cOhm vs independent recomputation (relative)",
+     "measured": 0,
+     "tolerance": 1e-9,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "n(1) vs independent recomputation (relative)",
+     "measured": 0,
+     "tolerance": 1e-9,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "T_e(1) vs independent recomputation (relative)",
+     "measured": 0,
+     "tolerance": 1e-9,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "T_i(1) vs independent recomputation (relative)",
+     "measured": 0,
+     "tolerance": 1e-9,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "edge flux N/tauP vs independent recomputation (relative)",
+     "measured": 0,
+     "tolerance": 1e-9,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "edge flux We/tauE vs independent recomputation (relative)",
+     "measured": 0,
+     "tolerance": 1e-9,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "edge flux Wi/tauE vs independent recomputation (relative)",
+     "measured": 0,
+     "tolerance": 1e-9,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "clip flag mismatches (n, T_e, T_i; exact)",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "reference": {
+     "cBr": 1.0221667546552202,
+     "cOhm": 1.0878216509514818,
+     "n(1)": 3.6989580557509663,
+     "T_e(1)": 0.5498921481716528,
+     "T_i(1)": 0.5671310148453547,
+     "edge flux N/tauP": 775417214516922300000,
+     "edge flux We/tauE": 2155387.6103463257,
+     "edge flux Wi/tauE": 2097354.1960523343
+    },
+    "production": {
+     "cBr": 1.0221667546552202,
+     "cOhm": 1.0878216509514818,
+     "n(1)": 3.6989580557509663,
+     "T_e(1)": 0.5498921481716528,
+     "T_i(1)": 0.5671310148453547,
+     "edge flux N/tauP": 775417214516922300000,
+     "edge flux We/tauE": 2155387.6103463257,
+     "edge flux Wi/tauE": 2097354.1960523343
+    },
+    "clipped": {
+     "n": false,
+     "te": false,
+     "ti": false
+    }
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "anchor": "A6 / AC-8",
+    "case": "DEFAULT profile-on",
+    "N_rho": 64,
+    "dt": 0.002,
+    "t": 3
+   },
+   "measurements": [
+    {
+     "quantity": "cBr vs independent recomputation (relative)",
+     "measured": 0,
+     "tolerance": 1e-9,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "cOhm vs independent recomputation (relative)",
+     "measured": 0,
+     "tolerance": 1e-9,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "n(1) vs independent recomputation (relative)",
+     "measured": 0,
+     "tolerance": 1e-9,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "T_e(1) vs independent recomputation (relative)",
+     "measured": 0,
+     "tolerance": 1e-9,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "T_i(1) vs independent recomputation (relative)",
+     "measured": 0,
+     "tolerance": 1e-9,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "edge flux N/tauP vs independent recomputation (relative)",
+     "measured": 0,
+     "tolerance": 1e-9,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "edge flux We/tauE vs independent recomputation (relative)",
+     "measured": 0,
+     "tolerance": 1e-9,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "edge flux Wi/tauE vs independent recomputation (relative)",
+     "measured": 0,
+     "tolerance": 1e-9,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "clip flag mismatches (n, T_e, T_i; exact)",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "reference": {
+     "cBr": 1.0359351431753847,
+     "cOhm": 1.1042490857725067,
+     "n(1)": 3.9247053312091293,
+     "T_e(1)": 0.49561960968914476,
+     "T_i(1)": 0.508888602285186,
+     "edge flux N/tauP": 879678571148342500000,
+     "edge flux We/tauE": 2179369.2239805404,
+     "edge flux Wi/tauE": 2110254.5026023756
+    },
+    "production": {
+     "cBr": 1.0359351431753847,
+     "cOhm": 1.1042490857725067,
+     "n(1)": 3.9247053312091293,
+     "T_e(1)": 0.49561960968914476,
+     "T_i(1)": 0.508888602285186,
+     "edge flux N/tauP": 879678571148342500000,
+     "edge flux We/tauE": 2179369.2239805404,
+     "edge flux Wi/tauE": 2110254.5026023756
+    },
+    "clipped": {
+     "n": false,
+     "te": false,
+     "ti": false
+    }
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "anchor": "A6 / AC-8",
+    "case": "DEFAULT profile-on",
+    "N_rho": 64,
+    "dt": 0.002,
+    "t": 4.5
+   },
+   "measurements": [
+    {
+     "quantity": "cBr vs independent recomputation (relative)",
+     "measured": 2.1549945101332608e-16,
+     "tolerance": 1e-9,
+     "ratio": 2.1549945101332606e-7,
+     "pass": true
+    },
+    {
+     "quantity": "cOhm vs independent recomputation (relative)",
+     "measured": 1.8761467713070374e-16,
+     "tolerance": 1e-9,
+     "ratio": 1.8761467713070372e-7,
+     "pass": true
+    },
+    {
+     "quantity": "n(1) vs independent recomputation (relative)",
+     "measured": 0,
+     "tolerance": 1e-9,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "T_e(1) vs independent recomputation (relative)",
+     "measured": 0,
+     "tolerance": 1e-9,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "T_i(1) vs independent recomputation (relative)",
+     "measured": 0,
+     "tolerance": 1e-9,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "edge flux N/tauP vs independent recomputation (relative)",
+     "measured": 0,
+     "tolerance": 1e-9,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "edge flux We/tauE vs independent recomputation (relative)",
+     "measured": 0,
+     "tolerance": 1e-9,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "edge flux Wi/tauE vs independent recomputation (relative)",
+     "measured": 0,
+     "tolerance": 1e-9,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "clip flag mismatches (n, T_e, T_i; exact)",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "reference": {
+     "cBr": 1.0303720212786087,
+     "cOhm": 1.1835140422960704,
+     "n(1)": 4.041753071064135,
+     "T_e(1)": 0.2348642560493701,
+     "T_i(1)": 0.15813891077413333,
+     "edge flux N/tauP": 885661723028025900000,
+     "edge flux We/tauE": 470332.0128037388,
+     "edge flux Wi/tauE": 300282.95640328916
+    },
+    "production": {
+     "cBr": 1.030372021278609,
+     "cOhm": 1.1835140422960702,
+     "n(1)": 4.041753071064135,
+     "T_e(1)": 0.2348642560493701,
+     "T_i(1)": 0.15813891077413333,
+     "edge flux N/tauP": 885661723028025900000,
+     "edge flux We/tauE": 470332.0128037388,
+     "edge flux Wi/tauE": 300282.95640328916
+    },
+    "clipped": {
+     "n": false,
+     "te": false,
+     "ti": false
+    }
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "anchor": "A6 / AC-8 summary"
+   },
+   "measurements": [
+    {
+     "quantity": "maximum relative difference over all quantities and samples",
+     "measured": 2.1549945101332608e-16,
+     "tolerance": 1e-9,
+     "ratio": 2.1549945101332606e-7,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "at": "cBr at t = 4.5"
+   },
+   "pass": true
+  }
+ ],
+ "pass": true
+}

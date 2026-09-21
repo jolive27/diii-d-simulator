@@ -1,0 +1,734 @@
+{
+ "checkId": "D2-VER-STEADY",
+ "physicsModelVersion": "0.2.0 (profiles on); 0.1.0 (profiles off)",
+ "verificationVersion": "0.3.0",
+ "sourceSha256": {
+  "physics/engine.ts": "c57ea711b0ad722cfc51128df76d5a1efcb670a924ce097f00eca61a8154ddfb",
+  "physics/profiles.ts": "e5f3497f59098b7d391c30ece9818dc7a697cd17e259f0f0d9177e750b22cce4"
+ },
+ "nodeVersion": "v24.20.0",
+ "note": "Nine steady runs (3 cases x 3 grids) plus three diffusion-only DMP companions. Analytic comparison against cell averages. The DD-21 bounds include the Dirichlet edge value (the literal [min u(0), max u(0)] interval excludes it and a decaying Dirichlet mode leaves it); the literal excess is reported.",
+ "runs": [
+  {
+   "inputs": {
+    "case": "a normalised",
+    "N_rho": 16,
+    "V": 1,
+    "L2": 1,
+    "D": 1,
+    "chi_e": 0,
+    "dt": 0.05,
+    "cap": 2000,
+    "edge": "zero-Dirichlet",
+    "closedForm": "centre amplitude S L^2/(4D) (1 - (rho_{i-1}^2+rho_i^2)/2)",
+    "amplitude": 0.25
+   },
+   "measurements": [
+    {
+     "quantity": "L2rel vs closed-form cell averages",
+     "measured": 2.611282778817781e-14,
+     "tolerance": 0.000001,
+     "ratio": 2.611282778817781e-8,
+     "pass": true
+    },
+    {
+     "quantity": "steps to the 1e-14 stopping rule (cap 2000)",
+     "measured": 123,
+     "tolerance": 2000,
+     "ratio": 0.0615,
+     "pass": true
+    },
+    {
+     "quantity": "final max relative cell change (stopping rule)",
+     "measured": 9.121644513867697e-15,
+     "tolerance": 1e-14,
+     "ratio": 0.9121644513867697,
+     "pass": true
+    },
+    {
+     "quantity": "steps with a non-zero reported axis flux, Object.is(flux, 0)",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "delivered vs prescribed edge flux / flux scale (AC-7b)",
+     "measured": 6.661338180273991e-16,
+     "tolerance": 1e-12,
+     "ratio": 0.0006661338180273991,
+     "pass": true
+    },
+    {
+     "quantity": "negative-value excess (no new negative values, AC-7d for a non-negative source-driven march)",
+     "measured": 0,
+     "tolerance": 1e-14,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "firstCellValue": 0.24951171874999273,
+    "analyticCentreValue": 0.25,
+    "dtRule": "0.05",
+    "discriminationNote": "a linear half-cell closure gives about 2e-4 (inherited prototype); the check rejects it"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "b SI density",
+    "N_rho": 16,
+    "V": 23.11,
+    "L2": 0.7052808897513331,
+    "D": 0.1,
+    "chi_e": 0,
+    "dt": 0.35264044487566654,
+    "cap": 2000,
+    "edge": "zero-Dirichlet",
+    "closedForm": "centre amplitude S L^2/(4D) (1 - (rho_{i-1}^2+rho_i^2)/2)",
+    "amplitude": 17632022243783326000
+   },
+   "measurements": [
+    {
+     "quantity": "L2rel vs closed-form cell averages",
+     "measured": 2.895161706223084e-14,
+     "tolerance": 0.000001,
+     "ratio": 2.895161706223084e-8,
+     "pass": true
+    },
+    {
+     "quantity": "steps to the 1e-14 stopping rule (cap 2000)",
+     "measured": 123,
+     "tolerance": 2000,
+     "ratio": 0.0615,
+     "pass": true
+    },
+    {
+     "quantity": "final max relative cell change (stopping rule)",
+     "measured": 9.149227603332208e-15,
+     "tolerance": 1e-14,
+     "ratio": 0.9149227603332207,
+     "pass": true
+    },
+    {
+     "quantity": "steps with a non-zero reported axis flux, Object.is(flux, 0)",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "delivered vs prescribed edge flux / flux scale (AC-7b)",
+     "measured": 8.813270925988225e-16,
+     "tolerance": 1e-12,
+     "ratio": 0.0008813270925988225,
+     "pass": true
+    },
+    {
+     "quantity": "negative-value excess (no new negative values, AC-7d for a non-negative source-driven march)",
+     "measured": 0,
+     "tolerance": 1e-14,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "firstCellValue": 17597584700337857000,
+    "analyticCentreValue": 17632022243783326000,
+    "dtRule": "0.05 L^2/D",
+    "discriminationNote": "a linear half-cell closure gives about 2e-4 (inherited prototype); the check rejects it"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "c SI electron energy",
+    "N_rho": 16,
+    "V": 23.11,
+    "L2": 0.7052808897513331,
+    "D": 0,
+    "chi_e": 3,
+    "dt": 0.011754681495855552,
+    "cap": 2000,
+    "edge": "zero-Dirichlet",
+    "closedForm": "centre amplitude S L^2/(4D) (1 - (rho_{i-1}^2+rho_i^2)/2)",
+    "amplitude": 0.8151883469308715
+   },
+   "measurements": [
+    {
+     "quantity": "L2rel vs closed-form cell averages",
+     "measured": 2.8765954492975685e-14,
+     "tolerance": 0.000001,
+     "ratio": 2.8765954492975686e-8,
+     "pass": true
+    },
+    {
+     "quantity": "steps to the 1e-14 stopping rule (cap 2000)",
+     "measured": 123,
+     "tolerance": 2000,
+     "ratio": 0.0615,
+     "pass": true
+    },
+    {
+     "quantity": "final max relative cell change (stopping rule)",
+     "measured": 8.992829459457066e-15,
+     "tolerance": 1e-14,
+     "ratio": 0.8992829459457067,
+     "pass": true
+    },
+    {
+     "quantity": "steps with a non-zero reported axis flux, Object.is(flux, 0)",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "delivered vs prescribed edge flux / flux scale (AC-7b)",
+     "measured": 8.059909775991141e-16,
+     "tolerance": 1e-12,
+     "ratio": 0.0008059909775991141,
+     "pass": true
+    },
+    {
+     "quantity": "negative-value excess (no new negative values, AC-7d for a non-negative source-driven march)",
+     "measured": 0,
+     "tolerance": 1e-14,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "firstCellValue": 0.8135961821907467,
+    "analyticCentreValue": 0.8151883469308715,
+    "dtRule": "0.05 L^2/chi_e",
+    "discriminationNote": "a linear half-cell closure gives about 2e-4 (inherited prototype); the check rejects it"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "a normalised",
+    "N_rho": 64,
+    "V": 1,
+    "L2": 1,
+    "D": 1,
+    "chi_e": 0,
+    "dt": 0.05,
+    "cap": 2000,
+    "edge": "zero-Dirichlet",
+    "closedForm": "centre amplitude S L^2/(4D) (1 - (rho_{i-1}^2+rho_i^2)/2)",
+    "amplitude": 0.25
+   },
+   "measurements": [
+    {
+     "quantity": "L2rel vs closed-form cell averages",
+     "measured": 8.390142015739565e-15,
+     "tolerance": 0.000001,
+     "ratio": 8.390142015739565e-9,
+     "pass": true
+    },
+    {
+     "quantity": "steps to the 1e-14 stopping rule (cap 2000)",
+     "measured": 123,
+     "tolerance": 2000,
+     "ratio": 0.0615,
+     "pass": true
+    },
+    {
+     "quantity": "final max relative cell change (stopping rule)",
+     "measured": 8.74186643821198e-15,
+     "tolerance": 1e-14,
+     "ratio": 0.8741866438211979,
+     "pass": true
+    },
+    {
+     "quantity": "steps with a non-zero reported axis flux, Object.is(flux, 0)",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "delivered vs prescribed edge flux / flux scale (AC-7b)",
+     "measured": 6.835430875624192e-16,
+     "tolerance": 1e-12,
+     "ratio": 0.0006835430875624192,
+     "pass": true
+    },
+    {
+     "quantity": "negative-value excess (no new negative values, AC-7d for a non-negative source-driven march)",
+     "measured": 0,
+     "tolerance": 1e-14,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "firstCellValue": 0.24996948242187259,
+    "analyticCentreValue": 0.25,
+    "dtRule": "0.05",
+    "discriminationNote": "a linear half-cell closure gives about 2e-4 (inherited prototype); the check rejects it"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "b SI density",
+    "N_rho": 64,
+    "V": 23.11,
+    "L2": 0.7052808897513331,
+    "D": 0.1,
+    "chi_e": 0,
+    "dt": 0.35264044487566654,
+    "cap": 2000,
+    "edge": "zero-Dirichlet",
+    "closedForm": "centre amplitude S L^2/(4D) (1 - (rho_{i-1}^2+rho_i^2)/2)",
+    "amplitude": 17632022243783326000
+   },
+   "measurements": [
+    {
+     "quantity": "L2rel vs closed-form cell averages",
+     "measured": 2.1721660684034148e-14,
+     "tolerance": 0.000001,
+     "ratio": 2.172166068403415e-8,
+     "pass": true
+    },
+    {
+     "quantity": "steps to the 1e-14 stopping rule (cap 2000)",
+     "measured": 123,
+     "tolerance": 2000,
+     "ratio": 0.0615,
+     "pass": true
+    },
+    {
+     "quantity": "final max relative cell change (stopping rule)",
+     "measured": 8.971105013772958e-15,
+     "tolerance": 1e-14,
+     "ratio": 0.8971105013772958,
+     "pass": true
+    },
+    {
+     "quantity": "steps with a non-zero reported axis flux, Object.is(flux, 0)",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "delivered vs prescribed edge flux / flux scale (AC-7b)",
+     "measured": 5.680511288994186e-16,
+     "tolerance": 1e-12,
+     "ratio": 0.0005680511288994186,
+     "pass": true
+    },
+    {
+     "quantity": "negative-value excess (no new negative values, AC-7d for a non-negative source-driven march)",
+     "measured": 0,
+     "tolerance": 1e-14,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "firstCellValue": 17629869897317562000,
+    "analyticCentreValue": 17632022243783326000,
+    "dtRule": "0.05 L^2/D",
+    "discriminationNote": "a linear half-cell closure gives about 2e-4 (inherited prototype); the check rejects it"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "c SI electron energy",
+    "N_rho": 64,
+    "V": 23.11,
+    "L2": 0.7052808897513331,
+    "D": 0,
+    "chi_e": 3,
+    "dt": 0.011754681495855552,
+    "cap": 2000,
+    "edge": "zero-Dirichlet",
+    "closedForm": "centre amplitude S L^2/(4D) (1 - (rho_{i-1}^2+rho_i^2)/2)",
+    "amplitude": 0.8151883469308715
+   },
+   "measurements": [
+    {
+     "quantity": "L2rel vs closed-form cell averages",
+     "measured": 4.167207574854827e-14,
+     "tolerance": 0.000001,
+     "ratio": 4.167207574854827e-8,
+     "pass": true
+    },
+    {
+     "quantity": "steps to the 1e-14 stopping rule (cap 2000)",
+     "measured": 123,
+     "tolerance": 2000,
+     "ratio": 0.0615,
+     "pass": true
+    },
+    {
+     "quantity": "final max relative cell change (stopping rule)",
+     "measured": 8.756632039976554e-15,
+     "tolerance": 1e-14,
+     "ratio": 0.8756632039976554,
+     "pass": true
+    },
+    {
+     "quantity": "steps with a non-zero reported axis flux, Object.is(flux, 0)",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "delivered vs prescribed edge flux / flux scale (AC-7b)",
+     "measured": 1.0074887352543196e-15,
+     "tolerance": 1e-12,
+     "ratio": 0.0010074887352543196,
+     "pass": true
+    },
+    {
+     "quantity": "negative-value excess (no new negative values, AC-7d for a non-negative source-driven march)",
+     "measured": 0,
+     "tolerance": 1e-14,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "firstCellValue": 0.81508883663458,
+    "analyticCentreValue": 0.8151883469308715,
+    "dtRule": "0.05 L^2/chi_e",
+    "discriminationNote": "a linear half-cell closure gives about 2e-4 (inherited prototype); the check rejects it"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "a normalised",
+    "N_rho": 256,
+    "V": 1,
+    "L2": 1,
+    "D": 1,
+    "chi_e": 0,
+    "dt": 0.05,
+    "cap": 2000,
+    "edge": "zero-Dirichlet",
+    "closedForm": "centre amplitude S L^2/(4D) (1 - (rho_{i-1}^2+rho_i^2)/2)",
+    "amplitude": 0.25
+   },
+   "measurements": [
+    {
+     "quantity": "L2rel vs closed-form cell averages",
+     "measured": 2.256671594930391e-14,
+     "tolerance": 0.000001,
+     "ratio": 2.2566715949303912e-8,
+     "pass": true
+    },
+    {
+     "quantity": "steps to the 1e-14 stopping rule (cap 2000)",
+     "measured": 123,
+     "tolerance": 2000,
+     "ratio": 0.0615,
+     "pass": true
+    },
+    {
+     "quantity": "final max relative cell change (stopping rule)",
+     "measured": 8.676873012936685e-15,
+     "tolerance": 1e-14,
+     "ratio": 0.8676873012936684,
+     "pass": true
+    },
+    {
+     "quantity": "steps with a non-zero reported axis flux, Object.is(flux, 0)",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "delivered vs prescribed edge flux / flux scale (AC-7b)",
+     "measured": 4.440947588246095e-16,
+     "tolerance": 1e-12,
+     "ratio": 0.0004440947588246095,
+     "pass": true
+    },
+    {
+     "quantity": "negative-value excess (no new negative values, AC-7d for a non-negative source-driven march)",
+     "measured": 0,
+     "tolerance": 1e-14,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "firstCellValue": 0.24999809265136377,
+    "analyticCentreValue": 0.25,
+    "dtRule": "0.05",
+    "discriminationNote": "a linear half-cell closure gives about 2e-4 (inherited prototype); the check rejects it"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "b SI density",
+    "N_rho": 256,
+    "V": 23.11,
+    "L2": 0.7052808897513331,
+    "D": 0.1,
+    "chi_e": 0,
+    "dt": 0.35264044487566654,
+    "cap": 2000,
+    "edge": "zero-Dirichlet",
+    "closedForm": "centre amplitude S L^2/(4D) (1 - (rho_{i-1}^2+rho_i^2)/2)",
+    "amplitude": 17632022243783326000
+   },
+   "measurements": [
+    {
+     "quantity": "L2rel vs closed-form cell averages",
+     "measured": 1.0831269576401609e-13,
+     "tolerance": 0.000001,
+     "ratio": 1.0831269576401609e-7,
+     "pass": true
+    },
+    {
+     "quantity": "steps to the 1e-14 stopping rule (cap 2000)",
+     "measured": 123,
+     "tolerance": 2000,
+     "ratio": 0.0615,
+     "pass": true
+    },
+    {
+     "quantity": "final max relative cell change (stopping rule)",
+     "measured": 9.784039397151528e-15,
+     "tolerance": 1e-14,
+     "ratio": 0.9784039397151528,
+     "pass": true
+    },
+    {
+     "quantity": "steps with a non-zero reported axis flux, Object.is(flux, 0)",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "delivered vs prescribed edge flux / flux scale (AC-7b)",
+     "measured": 9.925524279289781e-16,
+     "tolerance": 1e-12,
+     "ratio": 0.0009925524279289781,
+     "pass": true
+    },
+    {
+     "quantity": "negative-value excess (no new negative values, AC-7d for a non-negative source-driven march)",
+     "measured": 0,
+     "tolerance": 1e-14,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "firstCellValue": 17631887722127012000,
+    "analyticCentreValue": 17632022243783326000,
+    "dtRule": "0.05 L^2/D",
+    "discriminationNote": "a linear half-cell closure gives about 2e-4 (inherited prototype); the check rejects it"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "c SI electron energy",
+    "N_rho": 256,
+    "V": 23.11,
+    "L2": 0.7052808897513331,
+    "D": 0,
+    "chi_e": 3,
+    "dt": 0.011754681495855552,
+    "cap": 2000,
+    "edge": "zero-Dirichlet",
+    "closedForm": "centre amplitude S L^2/(4D) (1 - (rho_{i-1}^2+rho_i^2)/2)",
+    "amplitude": 0.8151883469308715
+   },
+   "measurements": [
+    {
+     "quantity": "L2rel vs closed-form cell averages",
+     "measured": 3.307396294027098e-13,
+     "tolerance": 0.000001,
+     "ratio": 3.3073962940270984e-7,
+     "pass": true
+    },
+    {
+     "quantity": "steps to the 1e-14 stopping rule (cap 2000)",
+     "measured": 124,
+     "tolerance": 2000,
+     "ratio": 0.062,
+     "pass": true
+    },
+    {
+     "quantity": "final max relative cell change (stopping rule)",
+     "measured": 6.954634964016885e-15,
+     "tolerance": 1e-14,
+     "ratio": 0.6954634964016885,
+     "pass": true
+    },
+    {
+     "quantity": "steps with a non-zero reported axis flux, Object.is(flux, 0)",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "delivered vs prescribed edge flux / flux scale (AC-7b)",
+     "measured": 1.0074887220095194e-15,
+     "tolerance": 1e-12,
+     "ratio": 0.0010074887220095194,
+     "pass": true
+    },
+    {
+     "quantity": "negative-value excess (no new negative values, AC-7d for a non-negative source-driven march)",
+     "measured": 0,
+     "tolerance": 1e-14,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "firstCellValue": 0.8151821275370141,
+    "analyticCentreValue": 0.8151883469308715,
+    "dtRule": "0.05 L^2/chi_e",
+    "discriminationNote": "a linear half-cell closure gives about 2e-4 (inherited prototype); the check rejects it"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "diffusion-only companion (a): steady shape decays, no source",
+    "N_rho": 16,
+    "dt": 0.05,
+    "steps": 100,
+    "edge": "zero-Dirichlet"
+   },
+   "measurements": [
+    {
+     "quantity": "steps with a non-zero reported axis flux, Object.is(flux, 0) (AC-7a)",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "delivered vs prescribed edge flux / max(|prescribed|, flux scale) (AC-7b)",
+     "measured": 7.2469544648233e-16,
+     "tolerance": 1e-12,
+     "ratio": 0.0007246954464823301,
+     "pass": true
+    },
+    {
+     "quantity": "discrete maximum principle excess over M, bounds include the Dirichlet edge value (AC-7d, DD-21)",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "literalDmpExcessOverM": 0.06066536203479342,
+    "bounds": [
+     -2.4951171875e-15,
+     0.2495117187500025
+    ],
+    "minSeen": 1.0520178873823063e-13,
+    "maxSeen": 0.20250544272660553
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "diffusion-only companion (a): steady shape decays, no source",
+    "N_rho": 64,
+    "dt": 0.05,
+    "steps": 100,
+    "edge": "zero-Dirichlet"
+   },
+   "measurements": [
+    {
+     "quantity": "steps with a non-zero reported axis flux, Object.is(flux, 0) (AC-7a)",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "delivered vs prescribed edge flux / max(|prescribed|, flux scale) (AC-7b)",
+     "measured": 6.696956618167124e-16,
+     "tolerance": 1e-12,
+     "ratio": 0.0006696956618167123,
+     "pass": true
+    },
+    {
+     "quantity": "discrete maximum principle excess over M, bounds include the Dirichlet edge value (AC-7d, DD-21)",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "literalDmpExcessOverM": 0.015504822365900265,
+    "bounds": [
+     -2.49969482421875e-15,
+     0.2499694824218775
+    ],
+    "minSeen": 2.529952341780199e-14,
+    "maxSeen": 0.20290476798557464
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "case": "diffusion-only companion (a): steady shape decays, no source",
+    "N_rho": 256,
+    "dt": 0.05,
+    "steps": 100,
+    "edge": "zero-Dirichlet"
+   },
+   "measurements": [
+    {
+     "quantity": "steps with a non-zero reported axis flux, Object.is(flux, 0) (AC-7a)",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "delivered vs prescribed edge flux / max(|prescribed|, flux scale) (AC-7b)",
+     "measured": 4.626295087924391e-16,
+     "tolerance": 1e-12,
+     "ratio": 0.0004626295087924391,
+     "pass": true
+    },
+    {
+     "quantity": "discrete maximum principle excess over M, bounds include the Dirichlet edge value (AC-7d, DD-21)",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "literalDmpExcessOverM": 0.0038986503497752114,
+    "bounds": [
+     -2.4999809265136717e-15,
+     0.24999809265136969
+    ],
+    "minSeen": 6.299122958345023e-15,
+    "maxSeen": 0.2029295642139162
+   },
+   "pass": true
+  }
+ ],
+ "pass": true
+}

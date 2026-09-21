@@ -1,0 +1,292 @@
+{
+ "checkId": "D2-VER-EIGEN-REFLECT",
+ "physicsModelVersion": "0.2.0 (profiles on); 0.1.0 (profiles off)",
+ "verificationVersion": "0.3.0",
+ "sourceSha256": {
+  "physics/engine.ts": "c57ea711b0ad722cfc51128df76d5a1efcb670a924ce097f00eca61a8154ddfb",
+  "physics/profiles.ts": "e5f3497f59098b7d391c30ece9818dc7a697cd17e259f0f0d9177e750b22cce4"
+ },
+ "nodeVersion": "v24.20.0",
+ "rateReport": {
+  "spatial": [
+   2.009097159194406,
+   2.002491986161122,
+   2.001502964409082
+  ],
+  "temporal": [
+   1.0019079128551356,
+   1.0009541399909596
+  ],
+  "bands": {
+   "spatial": [
+    1.6,
+    2.4
+   ],
+   "temporal": [
+    0.8,
+    1.2
+   ]
+  },
+  "theory": {
+   "spatial": 2,
+   "temporal": 1
+  }
+ },
+ "note": "Pass needs every condition; no condition compensates another; a missing rate or one outside its 20% band fails even if L2rel <= 1e-3 (DD-6). The uniform-mode edge condition is the prescribed zero flux; the delivered value is reported.",
+ "runs": [
+  {
+   "inputs": {
+    "fixture": "F3 J0(b1 rho) exp(-b1^2 D t/L^2), zero-flux edge, n frozen = 1",
+    "N_rho": 256,
+    "t": 1,
+    "dt": 0.000001,
+    "steps": 1000000,
+    "b1": 3.831705970207512,
+    "amplitudeAtT1": 4.204372305150768e-7,
+    "wallSeconds": 26.8
+   },
+   "measurements": [
+    {
+     "quantity": "L2rel vs cell averages of J0(b1 rho) exp(-b1^2)",
+     "measured": 0.00038194558851125645,
+     "tolerance": 0.001,
+     "ratio": 0.38194558851125643,
+     "pass": true
+    },
+    {
+     "quantity": "|J1(b1)| by the test series",
+     "measured": 7.226029105915115e-17,
+     "tolerance": 1e-15,
+     "ratio": 0.07226029105915115,
+     "pass": true
+    },
+    {
+     "quantity": "prescribed edge flux max |flux| (identically 0)",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "steps with a non-zero reported axis flux, Object.is(flux, 0) (AC-7a)",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "delivered vs prescribed edge flux / max(|prescribed|, flux scale) (AC-7b)",
+     "measured": 5.671287405098325e-13,
+     "tolerance": 1e-12,
+     "ratio": 0.5671287405098325,
+     "pass": true
+    },
+    {
+     "quantity": "discrete maximum principle excess over M, bounds include the Dirichlet edge value (AC-7d, DD-21)",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "literalDmpExcessOverM": 0,
+    "dmpBounds": [
+     -0.40274435757884136,
+     0.9999719966247783
+    ],
+    "minSeen": -0.4027384446952048,
+    "maxSeen": 0.9999573155549034,
+    "constraintCheckDisabled": "enforceConstraint:false, J0(b1 rho) is negative for rho > 0.63 (DD-21)"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "fixture": "uniform mode u = 1, zero-flux edge, n frozen = 1",
+    "N_rho": 256,
+    "t": 1,
+    "dt": 0.000001
+   },
+   "measurements": [
+    {
+     "quantity": "max relative drift of sum u dV over all steps",
+     "measured": 0,
+     "tolerance": 1e-12,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "prescribed edge flux max |flux| (identically 0)",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "maxDeviationFromUniform": 1.9984014443252818e-15,
+    "deliveredEdgeFluxAbsMax": 3.397282455352979e-13,
+    "note": "delivered flux is the cell-balance residual, roundoff eps dV/dt; there is no flux scale for a uniform field"
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "rate": "spatial",
+    "from_N_rho": 32,
+    "to_N_rho": 64,
+    "e_N": 0.017689209377242388,
+    "e_2N": 0.004394504498128821,
+    "dt": 0.00001,
+    "procedure": "L2rel(2 u_{dt/2} - u_dt, exact)",
+    "bandTheory": 2
+   },
+   "measurements": [
+    {
+     "quantity": "p_x(32->64) >= 1.6",
+     "measured": 2.009097159194406,
+     "tolerance": 1.6,
+     "ratio": 1.2556857244965036,
+     "pass": true
+    },
+    {
+     "quantity": "p_x(32->64) <= 2.4",
+     "measured": 2.009097159194406,
+     "tolerance": 2.4,
+     "ratio": 0.8371238163310024,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "p": 2.009097159194406
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "rate": "spatial",
+    "from_N_rho": 64,
+    "to_N_rho": 128,
+    "e_N": 0.004394504498128821,
+    "e_2N": 0.0010967300911388321,
+    "dt": 0.00001,
+    "procedure": "L2rel(2 u_{dt/2} - u_dt, exact)",
+    "bandTheory": 2
+   },
+   "measurements": [
+    {
+     "quantity": "p_x(64->128) >= 1.6",
+     "measured": 2.002491986161122,
+     "tolerance": 1.6,
+     "ratio": 1.2515574913507013,
+     "pass": true
+    },
+    {
+     "quantity": "p_x(64->128) <= 2.4",
+     "measured": 2.002491986161122,
+     "tolerance": 2.4,
+     "ratio": 0.8343716609004675,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "p": 2.002491986161122
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "rate": "spatial",
+    "from_N_rho": 128,
+    "to_N_rho": 256,
+    "e_N": 0.0010967300911388321,
+    "e_2N": 0.00027389703487123534,
+    "dt": 0.00001,
+    "procedure": "L2rel(2 u_{dt/2} - u_dt, exact)",
+    "bandTheory": 2
+   },
+   "measurements": [
+    {
+     "quantity": "p_x(128->256) >= 1.6",
+     "measured": 2.001502964409082,
+     "tolerance": 1.6,
+     "ratio": 1.250939352755676,
+     "pass": true
+    },
+    {
+     "quantity": "p_x(128->256) <= 2.4",
+     "measured": 2.001502964409082,
+     "tolerance": 2.4,
+     "ratio": 0.8339595685037842,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "p": 2.001502964409082
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "rate": "temporal",
+    "pair": "0.00004 vs 0.00002 / 0.00002 vs 0.00001",
+    "N_rho": 256,
+    "d_k": 0.002161824131570023,
+    "d_k1": 0.0010794835428344525,
+    "bandTheory": 1
+   },
+   "measurements": [
+    {
+     "quantity": "p_t(0.00004 vs 0.00002 / 0.00002 vs 0.00001) >= 0.8",
+     "measured": 1.0019079128551356,
+     "tolerance": 0.8,
+     "ratio": 1.2523848910689195,
+     "pass": true
+    },
+    {
+     "quantity": "p_t(0.00004 vs 0.00002 / 0.00002 vs 0.00001) <= 1.2",
+     "measured": 1.0019079128551356,
+     "tolerance": 1.2,
+     "ratio": 0.834923260712613,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "p": 1.0019079128551356
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "rate": "temporal",
+    "pair": "0.00002 vs 0.00001 / 0.00001 vs 0.000005",
+    "N_rho": 256,
+    "d_k": 0.0010794835428344525,
+    "d_k1": 0.0005393849261135709,
+    "bandTheory": 1
+   },
+   "measurements": [
+    {
+     "quantity": "p_t(0.00002 vs 0.00001 / 0.00001 vs 0.000005) >= 0.8",
+     "measured": 1.0009541399909596,
+     "tolerance": 0.8,
+     "ratio": 1.2511926749886995,
+     "pass": true
+    },
+    {
+     "quantity": "p_t(0.00002 vs 0.00001 / 0.00001 vs 0.000005) <= 1.2",
+     "measured": 1.0009541399909596,
+     "tolerance": 1.2,
+     "ratio": 0.8341284499924664,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "p": 1.0009541399909596
+   },
+   "pass": true
+  }
+ ],
+ "pass": true
+}

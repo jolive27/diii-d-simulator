@@ -1,4 +1,6 @@
 /** SI internally. Zero-D thermal deuterium + fixed-boundary Solovev family. */
+import {resolveProfiles,createPassenger} from './profiles.ts';
+import type {ProfilesOptions,ProfilesBlock} from './profiles.ts';
 export const MU0=4*Math.PI*1e-7, KEV=1.602176634e-16;
 export const MACHINE={R:1.66,a:0.66,name:'DIII-D educational geometry'};
 export type Controls={ip:number;bt:number;nbi:number;ech:number;gas:number;kappa:number;delta:number};
@@ -60,15 +62,17 @@ export function equilibrium(b:Basis,ipMA:number,bt:number,pbar:number){
  return {valid:true,psi,A,B,meanPressure,current,maxPsi,minF2,residual:residual/sourceMax,pressureError:Math.abs(meanPressure-pbar)/Math.max(1,pbar),currentError:Math.abs(current-I)/I} as const;
 }
 export type Sample={t:number;ip:number;ne:number;te:number;ti:number;we:number;wi:number;nbi:number;ech:number;pOhm:number;pLoss:number;pRad:number;tauE:number;pressure:number;beta:number;energyError:number;particleError:number};
-export type Shot={schemaVersion:1;modelVersion:string;controls:Controls;volume:number;dt:number;samples:Sample[];assumptions:string[]};
+export type Shot={schemaVersion:1;modelVersion:string;controls:Controls;volume:number;dt:number;samples:Sample[];assumptions:string[];profiles?:ProfilesBlock};
 export interface TransportClosure { evaluate(c:Controls,ne:number,te:number,ip:number,pAux:number):{tauE:number;tauP:number;resistivity:number} }
 export const educationalTransport:TransportClosure={evaluate(c,ne,te,ip,pAux){return {tauE:0.12*(ip/1.2)**0.7*(c.bt/2)**0.2*(Math.max(ne,1e18)/4e19)**0.2*(Math.max(pAux,0.5)/5)**-0.35,tauP:1.6,resistivity:2.8e-8*(Math.max(te,0.02))**-1.5};}};
 export function waveform(c:Controls,t:number){const ramp=t<1?0.4+(c.ip-0.4)*t:t>4?c.ip+(0.4-c.ip)*(t-4):c.ip;const heat=t>=1&&t<4?1:0;return {ip:ramp,nbi:c.nbi*heat,ech:c.ech*heat};}
 export type StepObservation=Readonly<{step:number;t:number;dt:number;volume:number;initialN:number;initialWe:number;initialWi:number;preN:number;preWe:number;preWi:number;postN:number;postWe:number;postWi:number}>;
 export type StepObserver=(step:StepObservation)=>void;
-export function runShot(c:Controls,g:Geometry,dt=0.002,closure:TransportClosure=educationalTransport,observer?:StepObserver):Shot{
+export function runShot(c:Controls,g:Geometry,dt=0.002,closure:TransportClosure=educationalTransport,observer?:StepObserver,profiles?:ProfilesOptions):Shot{
  validate(c);if(!(dt>0&&dt<=0.01))throw new Error('Time step must be >0 and <=0.01 s');
+ const profileOptions=resolveProfiles(profiles); // D2: undefined unless enabled; all fields validated before stepping
  const V=g.volume,N0=3e19*V,W0=1.5*N0*KEV*0.5;let N=N0,We=W0,Wi=W0,Ein=0,Eout=0,Nin=0,Nout=0;
+ const passenger=profileOptions&&createPassenger(profileOptions,{V,R0:MACHINE.R,KEV,N0,We0:W0,Wi0:W0});
  const samples:Sample[]=[];const steps=Math.round(5/dt);dt=5/steps;
  function rates(t:number){const w=waveform(c,t),ne=N/V,te=We/(1.5*N*KEV),ti=Wi/(1.5*N*KEV),tr=closure.evaluate(c,ne,te,w.ip,w.nbi+w.ech);
  const pOhm=tr.resistivity*(2*Math.PI*MACHINE.R)**2/V*(w.ip*1e6)**2;
@@ -77,17 +81,22 @@ export function runShot(c:Controls,g:Geometry,dt=0.002,closure:TransportClosure=
  return {...w,ne,te,ti,...tr,pOhm,pRad,source};}
  for(let s=0;s<=steps;s++){
   const t=s*dt,r=rates(t);
-  if(s%Math.max(1,Math.round(0.02/dt))===0||s===steps){const pressure=2*(We+Wi)/(3*V);samples.push({t,ip:r.ip,ne:r.ne/1e19,te:r.te,ti:r.ti,we:We/1e6,wi:Wi/1e6,nbi:r.nbi,ech:r.ech,pOhm:r.pOhm/1e6,pLoss:(We+Wi)/r.tauE/1e6,pRad:r.pRad/1e6,tauE:r.tauE,pressure,beta:100*2*MU0*pressure/c.bt**2,energyError:(We+Wi-2*W0-Ein+Eout)/Math.max(2*W0,Ein),particleError:(N-N0-Nin+Nout)/Math.max(N0,Nin)});}
+  if(s%Math.max(1,Math.round(0.02/dt))===0||s===steps){if(passenger)passenger.sample(t,{N,We,Wi,tauE:r.tauE,tauP:r.tauP});const pressure=2*(We+Wi)/(3*V);samples.push({t,ip:r.ip,ne:r.ne/1e19,te:r.te,ti:r.ti,we:We/1e6,wi:Wi/1e6,nbi:r.nbi,ech:r.ech,pOhm:r.pOhm/1e6,pLoss:(We+Wi)/r.tauE/1e6,pRad:r.pRad/1e6,tauE:r.tauE,pressure,beta:100*2*MU0*pressure/c.bt**2,energyError:(We+Wi-2*W0-Ein+Eout)/Math.max(2*W0,Ein),particleError:(N-N0-Nin+Nout)/Math.max(N0,Nin)});}
   if(s===steps)break;
   // Explicit conservative finite-volume update. Guard against invalid state, never clip.
   const exchange=(We-Wi)/0.25,ionization=0.0136*KEV*0.3*c.gas*1e21;
   const pe=(0.8*0.35*r.nbi+0.9*r.ech)*1e6+r.pOhm,pi=0.8*0.65*r.nbi*1e6;
   const le=We/r.tauE+r.pRad+ionization,li=Wi/r.tauE;
+  const prePassenger=passenger?{N,We,Wi}:undefined;
   const observed=observer?{step:s,t,dt,volume:V,initialN:N0,initialWe:W0,initialWi:W0,preN:N,preWe:We,preWi:Wi}:undefined;
   We+=dt*(pe-le-exchange);Wi+=dt*(pi-li+exchange);
   const sink=N/r.tauP;N+=dt*(r.source-sink);Ein+=dt*(pe+pi);Eout+=dt*(le+li);Nin+=dt*r.source;Nout+=dt*sink;
   if(!Number.isFinite(We+Wi+N)||We<=0||Wi<=0||N<=0)throw new Error(`Reduced model left its valid thermal-plasma regime at ${t.toFixed(3)} s. Reduce fueling or increase heating.`);
+  // D2 passenger: consumes the pre-step 0-D totals and rates, never writes back; a constraint violation throws before the observer sees the step.
+  if(passenger&&prePassenger)passenger.step(t,dt,s,{...prePassenger,tauE:r.tauE,tauP:r.tauP,gas:0.3*c.gas*1e21,beam:0.8*r.nbi*1e6/(80*KEV),pNbiE:0.8*0.35*r.nbi*1e6,pNbiI:0.8*0.65*r.nbi*1e6,pEch:0.9*r.ech*1e6,pOhm:r.pOhm,pRad:r.pRad,pIon:ionization,tauEx:0.25},{N,We,Wi});
   if(observer&&observed)observer(Object.freeze({...observed,postN:N,postWe:We,postWi:Wi}));
  }
- return {schemaVersion:1,modelVersion:'0.1.0',controls:{...c},volume:V,dt,samples,assumptions:['Formed deuterium plasma; no breakdown or extinction','Constant boundary per shot; programmed current with ideal external drive','Heuristic confinement, resistivity and electron-ion exchange; no calibration','Fixed absorbed heating fractions and 80 keV beam particle source','Solovev fixed-boundary equilibrium; no coils, X-point, stability or disruptions']};
+ const shot:Shot={schemaVersion:1,modelVersion:'0.1.0',controls:{...c},volume:V,dt,samples,assumptions:['Formed deuterium plasma; no breakdown or extinction','Constant boundary per shot; programmed current with ideal external drive','Heuristic confinement, resistivity and electron-ion exchange; no calibration','Fixed absorbed heating fractions and 80 keV beam particle source','Solovev fixed-boundary equilibrium; no coils, X-point, stability or disruptions']};
+ if(passenger){shot.modelVersion='0.2.0';shot.profiles=passenger.block();}
+ return shot;
 }

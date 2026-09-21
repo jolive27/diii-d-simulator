@@ -21,3 +21,9 @@ Baseline at 2.5 s: Te ≈0.8723 keV, Ti ≈0.8464 keV, mean ne ≈5.7854e19 m^-3
 Residual/conservation tests do not establish experimental accuracy, globally second-order boundary convergence, stability, or hardware feasibility. Analytic-equilibrium and experimental validation remain future work. See PHYSICS.md and ARCHITECTURE.md.
 
 Sidebar net energy is ΔW=We(t)+Wi(t)-We(0)-Wi(0), in MJ. Net heating power is absorbed NBI+ECH+ohmic input minus modeled thermal transport, radiation, and gas ionization losses, in MW. Both follow the selected playback time. They are not electrical output or fusion gain.
+
+## D2 profiles option (verification 0.3.0, physics model 0.2.0 when enabled)
+
+`runShot(..., profiles)` with `{enabled: true, ...}` adds 1-D flux-surface-averaged profiles of n, w_e, w_i as a passenger of the unchanged 0-D balances; with the option absent or `{enabled: false}` the output is bit-for-bit 0.1.0 (schema 1). Ten checks in `tests/d2-profiles.test.mjs` (run by `npm test`) write numbered evidence to `tests/d2/evidence/d2-ver-*.json`: OFFPATH, PARITY, LEDGER, FAILSAFE (with a 138-run TypeScript sweep), STEADY, EIGEN-DIRICHLET, EIGEN-REFLECT, MMS-CONDUCTION, REFINEMENT (31 convergence rates) and DIAGNOSTICS. Details, tolerances and how to run a single check: `docs/D2-PROFILES.md`; specification: `specs/proposals/d2-profiles-verification.md`.
+
+These are numerical verification results for an illustrative, uncalibrated model. They show equations, discretisation order, conservation and the opt-in contract hold; they are not experimental validation and make no claim of agreement with DIII-D data.

@@ -1,0 +1,98 @@
+# Handoff: d2-profiles IMPLEMENT Part B (software, claude-sonnet)
+
+All ten checks pass and are written to `tests/d2/evidence/`, with `d2-ver-failsafe.json` now `complete:true` with 138 runs. Jev put three of six questions under my 0.75 bar (below), so it is not a clean self-audit.
+
+## Files changed
+- **New:** `tests/d2/fixtures.mjs`, `trace.mjs`, `sweep-driver.mjs`, `worker.mjs`, `pool.mjs`. The fixtures module holds F1–F4, my own J0/J1 series, 10-node Gauss–Legendre cell averages, the convergence procedures and the AC-7 accumulator.
+- **Edited:**
+  - `tests/d2-profiles.test.mjs`: LEDGER per DD-20, plus six new tests and the FAILSAFE (iii) sweep.
+  - `tests/d2/util.mjs`: `band()`, run groups.
+  - `docs/D2-PROFILES.md` and `docs/VERIFICATION.md`: the option, the ten checks, how to run them, no validation claim.
+- **Not touched:** `physics/profiles.ts` and `physics/engine.ts` have Part A timestamps. Nothing under `python/`, `app/`, `specs/`, `science/` or `experiments/` was edited by me.
+
+## Commands
+- `npm test`: 46 tests, 46 pass, about 40 s (the D2 file is about 30 s). The heavy fixture runs execute in worker threads started at file load, so a name-filtered run still executes them.
+- `npm run pyengine:test`: 14 tests, OK.
+
+## Measured values against tolerance
+- **LEDGER (DD-20):** clean residual 3.6e-14 at step 750. Perturbations rejected, residual over bound:
+  - state (a): 4.1e-3 vs 1e-8.
+  - state (b): 1.1e-2 and 1.2e-2 vs 1e-8.
+  - shape NBI: 3.5e-8 vs 1e-10 (ratio 351).
+  - shape ECH: 4.5e-8 vs 1e-10 (ratio 445).
+  - shape gas: 5.3e-9 vs 1e-10 (ratio 52).
+  - shape Ohmic: 2.4e-9 vs 1e-10 (ratio 24).
+  - shape bremsstrahlung: 2.12e-10 vs 1e-10 (ratio 2.1, the thinnest margin).
+- **STEADY:** L2rel 8e-15 to 3.3e-13 across the nine runs, vs 1e-6. All marches reach 1e-14 in about 123 steps, and the axis flux is exactly 0.
+- **EIGEN-DIRICHLET:** 7.57e-5 vs 1e-4. `|J0(a1)|` is 9.5e-17.
+- **EIGEN-REFLECT:** 3.82e-4 vs 1e-3. The uniform-mode total drift is 0 against 1e-12. Delivered edge flux is **5.7e-13 vs 1e-12**, a margin of only 1.75.
+- **MMS:** 2.15e-5 vs 1e-4. The source residual is 7.9e-8.
+- **PARITY:** 7.2e-11 vs 1e-9 over 63 runs.
+- **OFFPATH:** 90 runs, 0 differences.
+- **DIAGNOSTICS:**
+  - A1: 2.2e-16.
+  - A2: 5.9e-5 vs 2e-4, error ratio 7.5.
+  - A3: 7.6e-6 and 8.5e-6, ratio 16.
+  - A4: hand cases exact, clip flags exact. The linear-profile rate is 2.00, reported only.
+  - A5: at most 6.4e-12 vs 1e-9.
+  - A6/AC-8 at t = 0.5, 2, 3, 4.5 s: at most 2.2e-16 vs 1e-9.
+
+## Rates
+- **F3, the five mandatory rates:** spatial 2.0091, 2.0025, 2.0015 (band 1.6–2.4); temporal 1.0019, 1.0010 (band 0.8–1.2).
+- **All 31 refinement rates:**
+  - F2: spatial 1.9649, 1.9826, 1.9914; temporal 1.0002, 1.0001.
+  - F3: as above.
+  - F4: spatial 1.9397, 1.9701, 1.9851; temporal 1.0000, 1.0000.
+  - Default shot (two rates each, band 0.7–1.3):
+
+    | Quantity | Rates |
+    |---|---|
+    | first cell, 0.5 s | 0.9932, 0.9966 |
+    | last cell, 0.5 s | 1.1818, 1.1003 |
+    | first cell, 2 s | 1.0057, 1.0029 |
+    | last cell, 2 s | 0.9761, 0.9880 |
+    | first cell, 3 s | 1.0005, 1.0002 |
+    | last cell, 3 s | 1.0024, 1.0012 |
+    | first cell, 4.5 s | 0.9953, 0.9977 |
+    | last cell, 4.5 s | 0.9966, 0.9983 |
+  - None was roundoff-exempt.
+
+## Sweep (138 runs)
+- 107 completed and 31 threw the fixed-grammar error. There were no 0-D throws and no silent violations.
+- DEFAULT and all nine C1 grid runs completed.
+- Completions: parity at most 9.6e-11, ledger at most 1.0e-13, no non-finite or non-positive values, 0 differences from the profile-off run.
+- All 31 throws are LIMITS corners, at t between 1.000 and 4.870 s, in cells 62–64. 20 are `T_e ≤ 0` and 11 are `T_i ≤ 0`.
+  - 29 have gas=0 with kappa=1.95.
+  - 8 of the 32 zero-auxiliary corners threw.
+  - The other two are corner 012 (kappa 1, nbi 12, ech 3, gas 0; t=1.016 s) and corner 060 (kappa 1.95, gas 8, nbi 12, ech 3; t=1.406 s).
+
+## Jev (one batched call)
+
+| Question | Value | Bar 0.75 |
+|---|---|---|
+| all_ten_checks_pass_with_numbers | 0.66 | fail |
+| rates_in_bands | 0.70 | fail |
+| sweep_138_runs_no_silent_violation | 0.75 | pass |
+| offpath_still_bitforbit | 0.92 | pass |
+| no_constant_change | 0.72 | fail |
+| tests_evidence_real | 0.84 | pass |
+
+I did not re-ask. I checked the three misses directly:
+- All ten evidence files have `pass:true` and 0 failed or non-finite measurements.
+- Every rate is judged in the tests.
+- `git diff` shows only the Part A `engine.ts` diff.
+
+My guess is that the `engine.ts` diff in the state confused the no-constant-change question, but that is only a guess.
+
+## Interpretations for the Director
+1. **DD-21 bounds.** Taken literally, `[min u(0), max u(0)]` fails F2, because the Dirichlet edge value 0 lies below min u(0). I included the edge value in the bounds and report the literal excess.
+2. **STEADY DMP.** The source-driven F1 marches start from 0 and rise, so DD-21 cannot apply to them. I judge DD-21 on a diffusion-only F1 companion and check the marches for no negative values. Please confirm.
+3. **AC-7(a) is weak.** `axisFlux` is a hard-coded 0 in the production record. It is backed by the independent oracle closing cell 1 with Φ0=0.
+4. **A6 agrees at roundoff** because it restates the same formulas in the same order. The discriminating evidence is A1–A4.
+5. **Choices the spec does not fix:**
+   - Fixture t=1 is used for refinement.
+   - The uniform companion runs at dt=1e-6.
+   - The failsafe `runs` array holds the 138 sweep runs; parts (i) and (ii) sit in `groups.partsIandII`.
+   - 1.2/4 appears twice, as DEFAULT and as a grid point, and both are run.
+6. **Watch the F3 edge-flux margin** (5.7e-13 vs 1e-12). It is roundoff, ε·ΔV/dt, and a smaller dt would fail it.
+7. **Constants.** `engine.ts` still has a different SHA than the one `science/constants.json` was bound to.

@@ -1,0 +1,1222 @@
+{
+ "checkId": "D2-VER-REFINEMENT",
+ "physicsModelVersion": "0.2.0 (profiles on); 0.1.0 (profiles off)",
+ "verificationVersion": "0.3.0",
+ "sourceSha256": {
+  "physics/engine.ts": "c57ea711b0ad722cfc51128df76d5a1efcb670a924ce097f00eca61a8154ddfb",
+  "physics/profiles.ts": "e5f3497f59098b7d391c30ece9818dc7a697cd17e259f0f0d9177e750b22cce4"
+ },
+ "nodeVersion": "v24.20.0",
+ "rateCount": 31,
+ "bands": {
+  "spatial": [
+   1.8,
+   2.2
+  ],
+  "temporalFixtures": [
+   0.85,
+   1.15
+  ],
+  "temporalDefaultShot": [
+   0.7,
+   1.3
+  ]
+ },
+ "note": "Spatial: N_rho = 32..256, Richardson time-error removal at dt = 1e-5. Temporal fixtures: dt = 4e-5..5e-6 (N_rho 256 for F2/F3, 128 for F4). Default shot: dt = 0.004..0.0005, band widened for the step-function heating at 1 s and 4 s. F3 is never roundoff-exempt.",
+ "runs": [
+  {
+   "inputs": {
+    "fixture": "F2",
+    "rate": "spatial",
+    "from_N_rho": 32,
+    "to_N_rho": 64,
+    "e_N": 0.002593038166727538,
+    "e_2N": 0.0006642180080884073,
+    "dt": 0.00001,
+    "procedure": "L2rel(2 u_{dt/2} - u_dt, exact); t = 1",
+    "theory": 2
+   },
+   "measurements": [
+    {
+     "quantity": "F2 p_x(32->64) >= 1.8",
+     "measured": 1.9649146988455692,
+     "tolerance": 1.8,
+     "ratio": 1.0916192771364273,
+     "pass": true
+    },
+    {
+     "quantity": "F2 p_x(32->64) <= 2.2",
+     "measured": 1.9649146988455692,
+     "tolerance": 2.2,
+     "ratio": 0.8931430449298041,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "p": 1.9649146988455692
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "fixture": "F2",
+    "rate": "spatial",
+    "from_N_rho": 64,
+    "to_N_rho": 128,
+    "e_N": 0.0006642180080884073,
+    "e_2N": 0.0001680710847421621,
+    "dt": 0.00001,
+    "procedure": "L2rel(2 u_{dt/2} - u_dt, exact); t = 1",
+    "theory": 2
+   },
+   "measurements": [
+    {
+     "quantity": "F2 p_x(64->128) >= 1.8",
+     "measured": 1.9825852952855163,
+     "tolerance": 1.8,
+     "ratio": 1.1014362751586202,
+     "pass": true
+    },
+    {
+     "quantity": "F2 p_x(64->128) <= 2.2",
+     "measured": 1.9825852952855163,
+     "tolerance": 2.2,
+     "ratio": 0.9011751342206892,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "p": 1.9825852952855163
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "fixture": "F2",
+    "rate": "spatial",
+    "from_N_rho": 128,
+    "to_N_rho": 256,
+    "e_N": 0.0001680710847421621,
+    "e_2N": 0.000042268957952461316,
+    "dt": 0.00001,
+    "procedure": "L2rel(2 u_{dt/2} - u_dt, exact); t = 1",
+    "theory": 2
+   },
+   "measurements": [
+    {
+     "quantity": "F2 p_x(128->256) >= 1.8",
+     "measured": 1.991401090551237,
+     "tolerance": 1.8,
+     "ratio": 1.1063339391951317,
+     "pass": true
+    },
+    {
+     "quantity": "F2 p_x(128->256) <= 2.2",
+     "measured": 1.991401090551237,
+     "tolerance": 2.2,
+     "ratio": 0.9051823138869258,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "p": 1.991401090551237
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "fixture": "F2",
+    "rate": "temporal",
+    "pair": "0.00004 vs 0.00002 / 0.00002 vs 0.00001",
+    "N_rho": 256,
+    "d_k": 0.0003345520667670629,
+    "d_k1": 0.00016725342842167852,
+    "procedure": "d_k = L2 norm of successive field differences / exact norm; t = 1",
+    "theory": 1
+   },
+   "measurements": [
+    {
+     "quantity": "F2 p_t(0.00004 vs 0.00002 / 0.00002 vs 0.00001) >= 0.85",
+     "measured": 1.0001949727610737,
+     "tolerance": 0.85,
+     "ratio": 1.1766999679542045,
+     "pass": true
+    },
+    {
+     "quantity": "F2 p_t(0.00004 vs 0.00002 / 0.00002 vs 0.00001) <= 1.15",
+     "measured": 1.0001949727610737,
+     "tolerance": 1.15,
+     "ratio": 0.8697347589226728,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "p": 1.0001949727610737
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "fixture": "F2",
+    "rate": "temporal",
+    "pair": "0.00002 vs 0.00001 / 0.00001 vs 0.000005",
+    "N_rho": 256,
+    "d_k": 0.00016725342842167852,
+    "d_k1": 0.00008362106270547401,
+    "procedure": "d_k = L2 norm of successive field differences / exact norm; t = 1",
+    "theory": 1
+   },
+   "measurements": [
+    {
+     "quantity": "F2 p_t(0.00002 vs 0.00001 / 0.00001 vs 0.000005) >= 0.85",
+     "measured": 1.0000975008328057,
+     "tolerance": 0.85,
+     "ratio": 1.1765852950974185,
+     "pass": true
+    },
+    {
+     "quantity": "F2 p_t(0.00002 vs 0.00001 / 0.00001 vs 0.000005) <= 1.15",
+     "measured": 1.0000975008328057,
+     "tolerance": 1.15,
+     "ratio": 0.869650000724179,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "p": 1.0000975008328057
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "fixture": "F3",
+    "rate": "spatial",
+    "from_N_rho": 32,
+    "to_N_rho": 64,
+    "e_N": 0.017689209377242388,
+    "e_2N": 0.004394504498128821,
+    "dt": 0.00001,
+    "procedure": "L2rel(2 u_{dt/2} - u_dt, exact); t = 1",
+    "theory": 2
+   },
+   "measurements": [
+    {
+     "quantity": "F3 p_x(32->64) >= 1.8",
+     "measured": 2.009097159194406,
+     "tolerance": 1.8,
+     "ratio": 1.1161650884413366,
+     "pass": true
+    },
+    {
+     "quantity": "F3 p_x(32->64) <= 2.2",
+     "measured": 2.009097159194406,
+     "tolerance": 2.2,
+     "ratio": 0.9132259814520025,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "p": 2.009097159194406
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "fixture": "F3",
+    "rate": "spatial",
+    "from_N_rho": 64,
+    "to_N_rho": 128,
+    "e_N": 0.004394504498128821,
+    "e_2N": 0.0010967300911388321,
+    "dt": 0.00001,
+    "procedure": "L2rel(2 u_{dt/2} - u_dt, exact); t = 1",
+    "theory": 2
+   },
+   "measurements": [
+    {
+     "quantity": "F3 p_x(64->128) >= 1.8",
+     "measured": 2.002491986161122,
+     "tolerance": 1.8,
+     "ratio": 1.11249554786729,
+     "pass": true
+    },
+    {
+     "quantity": "F3 p_x(64->128) <= 2.2",
+     "measured": 2.002491986161122,
+     "tolerance": 2.2,
+     "ratio": 0.9102236300732373,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "p": 2.002491986161122
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "fixture": "F3",
+    "rate": "spatial",
+    "from_N_rho": 128,
+    "to_N_rho": 256,
+    "e_N": 0.0010967300911388321,
+    "e_2N": 0.00027389703487123534,
+    "dt": 0.00001,
+    "procedure": "L2rel(2 u_{dt/2} - u_dt, exact); t = 1",
+    "theory": 2
+   },
+   "measurements": [
+    {
+     "quantity": "F3 p_x(128->256) >= 1.8",
+     "measured": 2.001502964409082,
+     "tolerance": 1.8,
+     "ratio": 1.1119460913383787,
+     "pass": true
+    },
+    {
+     "quantity": "F3 p_x(128->256) <= 2.2",
+     "measured": 2.001502964409082,
+     "tolerance": 2.2,
+     "ratio": 0.9097740747314007,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "p": 2.001502964409082
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "fixture": "F3",
+    "rate": "temporal",
+    "pair": "0.00004 vs 0.00002 / 0.00002 vs 0.00001",
+    "N_rho": 256,
+    "d_k": 0.002161824131570023,
+    "d_k1": 0.0010794835428344525,
+    "procedure": "d_k = L2 norm of successive field differences / exact norm; t = 1",
+    "theory": 1
+   },
+   "measurements": [
+    {
+     "quantity": "F3 p_t(0.00004 vs 0.00002 / 0.00002 vs 0.00001) >= 0.85",
+     "measured": 1.0019079128551356,
+     "tolerance": 0.85,
+     "ratio": 1.1787151915942773,
+     "pass": true
+    },
+    {
+     "quantity": "F3 p_t(0.00004 vs 0.00002 / 0.00002 vs 0.00001) <= 1.15",
+     "measured": 1.0019079128551356,
+     "tolerance": 1.15,
+     "ratio": 0.8712242720479441,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "p": 1.0019079128551356
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "fixture": "F3",
+    "rate": "temporal",
+    "pair": "0.00002 vs 0.00001 / 0.00001 vs 0.000005",
+    "N_rho": 256,
+    "d_k": 0.0010794835428344525,
+    "d_k1": 0.0005393849261135709,
+    "procedure": "d_k = L2 norm of successive field differences / exact norm; t = 1",
+    "theory": 1
+   },
+   "measurements": [
+    {
+     "quantity": "F3 p_t(0.00002 vs 0.00001 / 0.00001 vs 0.000005) >= 0.85",
+     "measured": 1.0009541399909596,
+     "tolerance": 0.85,
+     "ratio": 1.1775931058717173,
+     "pass": true
+    },
+    {
+     "quantity": "F3 p_t(0.00002 vs 0.00001 / 0.00001 vs 0.000005) <= 1.15",
+     "measured": 1.0009541399909596,
+     "tolerance": 1.15,
+     "ratio": 0.8703949043399649,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "p": 1.0009541399909596
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "fixture": "F4",
+    "rate": "spatial",
+    "from_N_rho": 32,
+    "to_N_rho": 64,
+    "e_N": 0.0004850407530058464,
+    "e_2N": 0.00012643451507397002,
+    "dt": 0.00001,
+    "procedure": "L2rel(2 u_{dt/2} - u_dt, exact); t = 1",
+    "theory": 2
+   },
+   "measurements": [
+    {
+     "quantity": "F4 p_x(32->64) >= 1.8",
+     "measured": 1.9397156119215122,
+     "tolerance": 1.8,
+     "ratio": 1.0776197844008402,
+     "pass": true
+    },
+    {
+     "quantity": "F4 p_x(32->64) <= 2.2",
+     "measured": 1.9397156119215122,
+     "tolerance": 2.2,
+     "ratio": 0.8816889145097782,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "p": 1.9397156119215122
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "fixture": "F4",
+    "rate": "spatial",
+    "from_N_rho": 64,
+    "to_N_rho": 128,
+    "e_N": 0.00012643451507397002,
+    "e_2N": 0.000032269974690941204,
+    "dt": 0.00001,
+    "procedure": "L2rel(2 u_{dt/2} - u_dt, exact); t = 1",
+    "theory": 2
+   },
+   "measurements": [
+    {
+     "quantity": "F4 p_x(64->128) >= 1.8",
+     "measured": 1.9701260039116226,
+     "tolerance": 1.8,
+     "ratio": 1.094514446617568,
+     "pass": true
+    },
+    {
+     "quantity": "F4 p_x(64->128) <= 2.2",
+     "measured": 1.9701260039116226,
+     "tolerance": 2.2,
+     "ratio": 0.8955118199598284,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "p": 1.9701260039116226
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "fixture": "F4",
+    "rate": "spatial",
+    "from_N_rho": 128,
+    "to_N_rho": 256,
+    "e_N": 0.000032269974690941204,
+    "e_2N": 0.000008151105603152234,
+    "dt": 0.00001,
+    "procedure": "L2rel(2 u_{dt/2} - u_dt, exact); t = 1",
+    "theory": 2
+   },
+   "measurements": [
+    {
+     "quantity": "F4 p_x(128->256) >= 1.8",
+     "measured": 1.985124783715712,
+     "tolerance": 1.8,
+     "ratio": 1.1028471020642845,
+     "pass": true
+    },
+    {
+     "quantity": "F4 p_x(128->256) <= 2.2",
+     "measured": 1.985124783715712,
+     "tolerance": 2.2,
+     "ratio": 0.9023294471435054,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "p": 1.985124783715712
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "fixture": "F4",
+    "rate": "temporal",
+    "pair": "0.00004 vs 0.00002 / 0.00002 vs 0.00001",
+    "N_rho": 128,
+    "d_k": 0.000022069979042038394,
+    "d_k1": 0.000011034864673050669,
+    "procedure": "d_k = L2 norm of successive field differences / exact norm; t = 1",
+    "theory": 1
+   },
+   "measurements": [
+    {
+     "quantity": "F4 p_t(0.00004 vs 0.00002 / 0.00002 vs 0.00001) >= 0.85",
+     "measured": 1.0000163224952443,
+     "tolerance": 0.85,
+     "ratio": 1.1764897911708756,
+     "pass": true
+    },
+    {
+     "quantity": "F4 p_t(0.00004 vs 0.00002 / 0.00002 vs 0.00001) <= 1.15",
+     "measured": 1.0000163224952443,
+     "tolerance": 1.15,
+     "ratio": 0.8695794108654299,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "p": 1.0000163224952443
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "fixture": "F4",
+    "rate": "temporal",
+    "pair": "0.00002 vs 0.00001 / 0.00001 vs 0.000005",
+    "N_rho": 128,
+    "d_k": 0.000011034864673050669,
+    "d_k1": 0.000005517401000972639,
+    "procedure": "d_k = L2 norm of successive field differences / exact norm; t = 1",
+    "theory": 1
+   },
+   "measurements": [
+    {
+     "quantity": "F4 p_t(0.00002 vs 0.00001 / 0.00001 vs 0.000005) >= 0.85",
+     "measured": 1.0000081936256027,
+     "tolerance": 0.85,
+     "ratio": 1.1764802277948267,
+     "pass": true
+    },
+    {
+     "quantity": "F4 p_t(0.00002 vs 0.00001 / 0.00001 vs 0.000005) <= 1.15",
+     "measured": 1.0000081936256027,
+     "tolerance": 1.15,
+     "ratio": 0.8695723422831328,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "p": 1.0000081936256027
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "fixture": "DEFAULT shot profile-on",
+    "rate": "temporal",
+    "quantity": "first-cell T_e [keV] at t = 0.5 s",
+    "N_rho": 64,
+    "dts": [
+     0.004,
+     0.002,
+     0.001,
+     0.0005
+    ],
+    "T_e_values": [
+     0.4040205699392379,
+     0.4041989770815191,
+     0.40428860146014933,
+     0.40433351900240794
+    ],
+    "d_k": 0.0004412375771401626,
+    "d_k1": 0.00022165953208968286,
+    "normalisation": "|x(dt_k) - x(dt_k+1)| / |x(0.0005)|",
+    "theory": 1
+   },
+   "measurements": [
+    {
+     "quantity": "DEFAULT first T_e t=0.5 p_t(k=1) >= 0.7",
+     "measured": 0.9932102560048749,
+     "tolerance": 0.7,
+     "ratio": 1.4188717942926785,
+     "pass": true
+    },
+    {
+     "quantity": "DEFAULT first T_e t=0.5 p_t(k=1) <= 1.3",
+     "measured": 0.9932102560048749,
+     "tolerance": 1.3,
+     "ratio": 0.7640078892345191,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "p": 0.9932102560048749
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "fixture": "DEFAULT shot profile-on",
+    "rate": "temporal",
+    "quantity": "first-cell T_e [keV] at t = 0.5 s",
+    "N_rho": 64,
+    "dts": [
+     0.004,
+     0.002,
+     0.001,
+     0.0005
+    ],
+    "T_e_values": [
+     0.4040205699392379,
+     0.4041989770815191,
+     0.40428860146014933,
+     0.40433351900240794
+    ],
+    "d_k": 0.00022165953208968286,
+    "d_k1": 0.0001110903255545753,
+    "normalisation": "|x(dt_k) - x(dt_k+1)| / |x(0.0005)|",
+    "theory": 1
+   },
+   "measurements": [
+    {
+     "quantity": "DEFAULT first T_e t=0.5 p_t(k=2) >= 0.7",
+     "measured": 0.9966122212497696,
+     "tolerance": 0.7,
+     "ratio": 1.423731744642528,
+     "pass": true
+    },
+    {
+     "quantity": "DEFAULT first T_e t=0.5 p_t(k=2) <= 1.3",
+     "measured": 0.9966122212497696,
+     "tolerance": 1.3,
+     "ratio": 0.7666247855767457,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "p": 0.9966122212497696
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "fixture": "DEFAULT shot profile-on",
+    "rate": "temporal",
+    "quantity": "last-cell T_e [keV] at t = 0.5 s",
+    "N_rho": 64,
+    "dts": [
+     0.004,
+     0.002,
+     0.001,
+     0.0005
+    ],
+    "T_e_values": [
+     0.22544262712401072,
+     0.22543444985025318,
+     0.22543084522090176,
+     0.22542916396446325
+    ],
+    "d_k": 0.00003627424958569949,
+    "d_k1": 0.000015990075498797075,
+    "normalisation": "|x(dt_k) - x(dt_k+1)| / |x(0.0005)|",
+    "theory": 1
+   },
+   "measurements": [
+    {
+     "quantity": "DEFAULT last T_e t=0.5 p_t(k=1) >= 0.7",
+     "measured": 1.1817690185461327,
+     "tolerance": 0.7,
+     "ratio": 1.688241455065904,
+     "pass": true
+    },
+    {
+     "quantity": "DEFAULT last T_e t=0.5 p_t(k=1) <= 1.3",
+     "measured": 1.1817690185461327,
+     "tolerance": 1.3,
+     "ratio": 0.9090530911893329,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "p": 1.1817690185461327
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "fixture": "DEFAULT shot profile-on",
+    "rate": "temporal",
+    "quantity": "last-cell T_e [keV] at t = 0.5 s",
+    "N_rho": 64,
+    "dts": [
+     0.004,
+     0.002,
+     0.001,
+     0.0005
+    ],
+    "T_e_values": [
+     0.22544262712401072,
+     0.22543444985025318,
+     0.22543084522090176,
+     0.22542916396446325
+    ],
+    "d_k": 0.000015990075498797075,
+    "d_k1": 0.000007458025434445228,
+    "normalisation": "|x(dt_k) - x(dt_k+1)| / |x(0.0005)|",
+    "theory": 1
+   },
+   "measurements": [
+    {
+     "quantity": "DEFAULT last T_e t=0.5 p_t(k=2) >= 0.7",
+     "measured": 1.100311128346878,
+     "tolerance": 0.7,
+     "ratio": 1.57187304049554,
+     "pass": true
+    },
+    {
+     "quantity": "DEFAULT last T_e t=0.5 p_t(k=2) <= 1.3",
+     "measured": 1.100311128346878,
+     "tolerance": 1.3,
+     "ratio": 0.8463931756514447,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "p": 1.100311128346878
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "fixture": "DEFAULT shot profile-on",
+    "rate": "temporal",
+    "quantity": "first-cell T_e [keV] at t = 2 s",
+    "N_rho": 64,
+    "dts": [
+     0.004,
+     0.002,
+     0.001,
+     0.0005
+    ],
+    "T_e_values": [
+     1.275470548651168,
+     1.2755762955679617,
+     1.2756289601113557,
+     1.275655239613934
+    ],
+    "d_k": 0.00008289615682194279,
+    "d_k1": 0.00004128430767075476,
+    "normalisation": "|x(dt_k) - x(dt_k+1)| / |x(0.0005)|",
+    "theory": 1
+   },
+   "measurements": [
+    {
+     "quantity": "DEFAULT first T_e t=2 p_t(k=1) >= 0.7",
+     "measured": 1.005711706250836,
+     "tolerance": 0.7,
+     "ratio": 1.4367310089297658,
+     "pass": true
+    },
+    {
+     "quantity": "DEFAULT first T_e t=2 p_t(k=1) <= 1.3",
+     "measured": 1.005711706250836,
+     "tolerance": 1.3,
+     "ratio": 0.77362438942372,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "p": 1.005711706250836
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "fixture": "DEFAULT shot profile-on",
+    "rate": "temporal",
+    "quantity": "first-cell T_e [keV] at t = 2 s",
+    "N_rho": 64,
+    "dts": [
+     0.004,
+     0.002,
+     0.001,
+     0.0005
+    ],
+    "T_e_values": [
+     1.275470548651168,
+     1.2755762955679617,
+     1.2756289601113557,
+     1.275655239613934
+    ],
+    "d_k": 0.00004128430767075476,
+    "d_k1": 0.00002060078754995588,
+    "normalisation": "|x(dt_k) - x(dt_k+1)| / |x(0.0005)|",
+    "theory": 1
+   },
+   "measurements": [
+    {
+     "quantity": "DEFAULT first T_e t=2 p_t(k=2) >= 0.7",
+     "measured": 1.0028940203023917,
+     "tolerance": 0.7,
+     "ratio": 1.432705743289131,
+     "pass": true
+    },
+    {
+     "quantity": "DEFAULT first T_e t=2 p_t(k=2) <= 1.3",
+     "measured": 1.0028940203023917,
+     "tolerance": 1.3,
+     "ratio": 0.7714569386941474,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "p": 1.0028940203023917
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "fixture": "DEFAULT shot profile-on",
+    "rate": "temporal",
+    "quantity": "last-cell T_e [keV] at t = 2 s",
+    "N_rho": 64,
+    "dts": [
+     0.004,
+     0.002,
+     0.001,
+     0.0005
+    ],
+    "T_e_values": [
+     0.5592621572758093,
+     0.5592433411200287,
+     0.5592337759470771,
+     0.5592289535350848
+    ],
+    "d_k": 0.000033646605136669164,
+    "d_k1": 0.000017104216244745195,
+    "normalisation": "|x(dt_k) - x(dt_k+1)| / |x(0.0005)|",
+    "theory": 1
+   },
+   "measurements": [
+    {
+     "quantity": "DEFAULT last T_e t=2 p_t(k=1) >= 0.7",
+     "measured": 0.9761089496877529,
+     "tolerance": 0.7,
+     "ratio": 1.39444135669679,
+     "pass": true
+    },
+    {
+     "quantity": "DEFAULT last T_e t=2 p_t(k=1) <= 1.3",
+     "measured": 0.9761089496877529,
+     "tolerance": 1.3,
+     "ratio": 0.7508530382213483,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "p": 0.9761089496877529
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "fixture": "DEFAULT shot profile-on",
+    "rate": "temporal",
+    "quantity": "last-cell T_e [keV] at t = 2 s",
+    "N_rho": 64,
+    "dts": [
+     0.004,
+     0.002,
+     0.001,
+     0.0005
+    ],
+    "T_e_values": [
+     0.5592621572758093,
+     0.5592433411200287,
+     0.5592337759470771,
+     0.5592289535350848
+    ],
+    "d_k": 0.000017104216244745195,
+    "d_k1": 0.000008623323169883956,
+    "normalisation": "|x(dt_k) - x(dt_k+1)| / |x(0.0005)|",
+    "theory": 1
+   },
+   "measurements": [
+    {
+     "quantity": "DEFAULT last T_e t=2 p_t(k=2) >= 0.7",
+     "measured": 0.9880361450120878,
+     "tolerance": 0.7,
+     "ratio": 1.4114802071601256,
+     "pass": true
+    },
+    {
+     "quantity": "DEFAULT last T_e t=2 p_t(k=2) <= 1.3",
+     "measured": 0.9880361450120878,
+     "tolerance": 1.3,
+     "ratio": 0.7600278038554521,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "p": 0.9880361450120878
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "fixture": "DEFAULT shot profile-on",
+    "rate": "temporal",
+    "quantity": "first-cell T_e [keV] at t = 3 s",
+    "N_rho": 64,
+    "dts": [
+     0.004,
+     0.002,
+     0.001,
+     0.0005
+    ],
+    "T_e_values": [
+     1.1452833357605758,
+     1.14537862926196,
+     1.1454262595468736,
+     1.1454500705761639
+    ],
+    "d_k": 0.00008319306430906316,
+    "d_k1": 0.00004158215721226877,
+    "normalisation": "|x(dt_k) - x(dt_k+1)| / |x(0.0005)|",
+    "theory": 1
+   },
+   "measurements": [
+    {
+     "quantity": "DEFAULT first T_e t=3 p_t(k=1) >= 0.7",
+     "measured": 1.00049865315936,
+     "tolerance": 0.7,
+     "ratio": 1.4292837902276574,
+     "pass": true
+    },
+    {
+     "quantity": "DEFAULT first T_e t=3 p_t(k=1) <= 1.3",
+     "measured": 1.00049865315936,
+     "tolerance": 1.3,
+     "ratio": 0.769614348584123,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "p": 1.00049865315936
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "fixture": "DEFAULT shot profile-on",
+    "rate": "temporal",
+    "quantity": "first-cell T_e [keV] at t = 3 s",
+    "N_rho": 64,
+    "dts": [
+     0.004,
+     0.002,
+     0.001,
+     0.0005
+    ],
+    "T_e_values": [
+     1.1452833357605758,
+     1.14537862926196,
+     1.1454262595468736,
+     1.1454500705761639
+    ],
+    "d_k": 0.00004158215721226877,
+    "d_k1": 0.000020787487732485905,
+    "normalisation": "|x(dt_k) - x(dt_k+1)| / |x(0.0005)|",
+    "theory": 1
+   },
+   "measurements": [
+    {
+     "quantity": "DEFAULT first T_e t=3 p_t(k=2) >= 0.7",
+     "measured": 1.000249192604469,
+     "tolerance": 0.7,
+     "ratio": 1.4289274180063845,
+     "pass": true
+    },
+    {
+     "quantity": "DEFAULT first T_e t=3 p_t(k=2) <= 1.3",
+     "measured": 1.000249192604469,
+     "tolerance": 1.3,
+     "ratio": 0.7694224558495915,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "p": 1.000249192604469
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "fixture": "DEFAULT shot profile-on",
+    "rate": "temporal",
+    "quantity": "last-cell T_e [keV] at t = 3 s",
+    "N_rho": 64,
+    "dts": [
+     0.004,
+     0.002,
+     0.001,
+     0.0005
+    ],
+    "T_e_values": [
+     0.5044942890386496,
+     0.5045007405823315,
+     0.5045039610539974,
+     0.5045055699697195
+    ],
+    "d_k": 0.00001278785422000087,
+    "d_k1": 0.000006383421428017729,
+    "normalisation": "|x(dt_k) - x(dt_k+1)| / |x(0.0005)|",
+    "theory": 1
+   },
+   "measurements": [
+    {
+     "quantity": "DEFAULT last T_e t=3 p_t(k=1) >= 0.7",
+     "measured": 1.0023724012329995,
+     "tolerance": 0.7,
+     "ratio": 1.4319605731899994,
+     "pass": true
+    },
+    {
+     "quantity": "DEFAULT last T_e t=3 p_t(k=1) <= 1.3",
+     "measured": 1.0023724012329995,
+     "tolerance": 1.3,
+     "ratio": 0.7710556932561534,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "p": 1.0023724012329995
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "fixture": "DEFAULT shot profile-on",
+    "rate": "temporal",
+    "quantity": "last-cell T_e [keV] at t = 3 s",
+    "N_rho": 64,
+    "dts": [
+     0.004,
+     0.002,
+     0.001,
+     0.0005
+    ],
+    "T_e_values": [
+     0.5044942890386496,
+     0.5045007405823315,
+     0.5045039610539974,
+     0.5045055699697195
+    ],
+    "d_k": 0.000006383421428017729,
+    "d_k1": 0.000003189094071235142,
+    "normalisation": "|x(dt_k) - x(dt_k+1)| / |x(0.0005)|",
+    "theory": 1
+   },
+   "measurements": [
+    {
+     "quantity": "DEFAULT last T_e t=3 p_t(k=2) >= 0.7",
+     "measured": 1.0011832418925484,
+     "tolerance": 0.7,
+     "ratio": 1.4302617741322121,
+     "pass": true
+    },
+    {
+     "quantity": "DEFAULT last T_e t=3 p_t(k=2) <= 1.3",
+     "measured": 1.0011832418925484,
+     "tolerance": 1.3,
+     "ratio": 0.7701409553019603,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "p": 1.0011832418925484
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "fixture": "DEFAULT shot profile-on",
+    "rate": "temporal",
+    "quantity": "first-cell T_e [keV] at t = 4.5 s",
+    "N_rho": 64,
+    "dts": [
+     0.004,
+     0.002,
+     0.001,
+     0.0005
+    ],
+    "T_e_values": [
+     0.3707551874107873,
+     0.37097559260829255,
+     0.3710861567265349,
+     0.3711415275947963
+    ],
+    "d_k": 0.000593857547910678,
+    "d_k1": 0.000297902848433203,
+    "normalisation": "|x(dt_k) - x(dt_k+1)| / |x(0.0005)|",
+    "theory": 1
+   },
+   "measurements": [
+    {
+     "quantity": "DEFAULT first T_e t=4.5 p_t(k=1) >= 0.7",
+     "measured": 0.9952749866620054,
+     "tolerance": 0.7,
+     "ratio": 1.4218214095171506,
+     "pass": true
+    },
+    {
+     "quantity": "DEFAULT first T_e t=4.5 p_t(k=1) <= 1.3",
+     "measured": 0.9952749866620054,
+     "tolerance": 1.3,
+     "ratio": 0.765596143586158,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "p": 0.9952749866620054
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "fixture": "DEFAULT shot profile-on",
+    "rate": "temporal",
+    "quantity": "first-cell T_e [keV] at t = 4.5 s",
+    "N_rho": 64,
+    "dts": [
+     0.004,
+     0.002,
+     0.001,
+     0.0005
+    ],
+    "T_e_values": [
+     0.3707551874107873,
+     0.37097559260829255,
+     0.3710861567265349,
+     0.3711415275947963
+    ],
+    "d_k": 0.000297902848433203,
+    "d_k1": 0.0001491907106710486,
+    "normalisation": "|x(dt_k) - x(dt_k+1)| / |x(0.0005)|",
+    "theory": 1
+   },
+   "measurements": [
+    {
+     "quantity": "DEFAULT first T_e t=4.5 p_t(k=2) >= 0.7",
+     "measured": 0.9976842088728103,
+     "tolerance": 0.7,
+     "ratio": 1.4252631555325863,
+     "pass": true
+    },
+    {
+     "quantity": "DEFAULT first T_e t=4.5 p_t(k=2) <= 1.3",
+     "measured": 0.9976842088728103,
+     "tolerance": 1.3,
+     "ratio": 0.7674493914406233,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "p": 0.9976842088728103
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "fixture": "DEFAULT shot profile-on",
+    "rate": "temporal",
+    "quantity": "last-cell T_e [keV] at t = 4.5 s",
+    "N_rho": 64,
+    "dts": [
+     0.004,
+     0.002,
+     0.001,
+     0.0005
+    ],
+    "T_e_values": [
+     0.2364068036697139,
+     0.2367302317104474,
+     0.23689233092640563,
+     0.2369734752823158
+    ],
+    "d_k": 0.0013648280270532466,
+    "d_k1": 0.0006840394933023929,
+    "normalisation": "|x(dt_k) - x(dt_k+1)| / |x(0.0005)|",
+    "theory": 1
+   },
+   "measurements": [
+    {
+     "quantity": "DEFAULT last T_e t=4.5 p_t(k=1) >= 0.7",
+     "measured": 0.9965676509211846,
+     "tolerance": 0.7,
+     "ratio": 1.4236680727445494,
+     "pass": true
+    },
+    {
+     "quantity": "DEFAULT last T_e t=4.5 p_t(k=1) <= 1.3",
+     "measured": 0.9965676509211846,
+     "tolerance": 1.3,
+     "ratio": 0.7665905007086035,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "p": 0.9965676509211846
+   },
+   "pass": true
+  },
+  {
+   "inputs": {
+    "fixture": "DEFAULT shot profile-on",
+    "rate": "temporal",
+    "quantity": "last-cell T_e [keV] at t = 4.5 s",
+    "N_rho": 64,
+    "dts": [
+     0.004,
+     0.002,
+     0.001,
+     0.0005
+    ],
+    "T_e_values": [
+     0.2364068036697139,
+     0.2367302317104474,
+     0.23689233092640563,
+     0.2369734752823158
+    ],
+    "d_k": 0.0006840394933023929,
+    "d_k1": 0.00034241957169888826,
+    "normalisation": "|x(dt_k) - x(dt_k+1)| / |x(0.0005)|",
+    "theory": 1
+   },
+   "measurements": [
+    {
+     "quantity": "DEFAULT last T_e t=4.5 p_t(k=2) >= 0.7",
+     "measured": 0.9983144577943528,
+     "tolerance": 0.7,
+     "ratio": 1.42616351113479,
+     "pass": true
+    },
+    {
+     "quantity": "DEFAULT last T_e t=4.5 p_t(k=2) <= 1.3",
+     "measured": 0.9983144577943528,
+     "tolerance": 1.3,
+     "ratio": 0.7679341983033483,
+     "pass": true
+    }
+   ],
+   "reported": {
+    "p": 0.9983144577943528
+   },
+   "pass": true
+  }
+ ],
+ "pass": true
+}

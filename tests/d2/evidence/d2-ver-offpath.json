@@ -1,0 +1,2377 @@
+{
+ "checkId": "D2-VER-OFFPATH",
+ "physicsModelVersion": "0.2.0 (profiles on); 0.1.0 (profiles off)",
+ "verificationVersion": "0.3.0",
+ "sourceSha256": {
+  "physics/engine.ts": "c57ea711b0ad722cfc51128df76d5a1efcb670a924ce097f00eca61a8154ddfb",
+  "physics/profiles.ts": "e5f3497f59098b7d391c30ece9818dc7a697cd17e259f0f0d9177e750b22cce4"
+ },
+ "nodeVersion": "v24.20.0",
+ "note": "Off-path identity, option validation and passenger identity. The requirement that all existing tests/ and python/tests/ pass unchanged is recorded in the implementer handoff (npm test, npm run pyengine:test), not in this file.",
+ "runs": [
+  {
+   "inputs": {
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 4,
+     "ech": 1,
+     "gas": 2.5,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "optionsForm": "absent",
+    "dt": 0.002,
+    "reference": "experiments/baseline/m01-regression.json case default"
+   },
+   "measurements": [
+    {
+     "quantity": "fields compared vs frozen 0.1.0 shot",
+     "measured": 4283,
+     "tolerance": 1,
+     "ratio": 4283,
+     "pass": true
+    },
+    {
+     "quantity": "differences vs frozen 0.1.0 shot",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "differences vs option-absent run",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 4,
+     "ech": 1,
+     "gas": 2.5,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "optionsForm": "undefined",
+    "dt": 0.002,
+    "reference": "experiments/baseline/m01-regression.json case default"
+   },
+   "measurements": [
+    {
+     "quantity": "fields compared vs frozen 0.1.0 shot",
+     "measured": 4283,
+     "tolerance": 1,
+     "ratio": 4283,
+     "pass": true
+    },
+    {
+     "quantity": "differences vs frozen 0.1.0 shot",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "differences vs option-absent run",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 4,
+     "ech": 1,
+     "gas": 2.5,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "optionsForm": "{enabled:false}",
+    "dt": 0.002,
+    "reference": "experiments/baseline/m01-regression.json case default"
+   },
+   "measurements": [
+    {
+     "quantity": "fields compared vs frozen 0.1.0 shot",
+     "measured": 4283,
+     "tolerance": 1,
+     "ratio": 4283,
+     "pass": true
+    },
+    {
+     "quantity": "differences vs frozen 0.1.0 shot",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "differences vs option-absent run",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 4,
+     "ech": 1,
+     "gas": 2.5,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "optionsForm": "{enabled:false,N_rho:-1,chi_e:NaN}",
+    "dt": 0.002,
+    "reference": "experiments/baseline/m01-regression.json case default"
+   },
+   "measurements": [
+    {
+     "quantity": "fields compared vs frozen 0.1.0 shot",
+     "measured": 4283,
+     "tolerance": 1,
+     "ratio": 4283,
+     "pass": true
+    },
+    {
+     "quantity": "differences vs frozen 0.1.0 shot",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "differences vs option-absent run",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 0,
+     "ech": 1,
+     "gas": 2.5,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "optionsForm": "absent",
+    "dt": 0.002,
+    "reference": "experiments/baseline/m01-regression.json case no-nbi"
+   },
+   "measurements": [
+    {
+     "quantity": "fields compared vs frozen 0.1.0 shot",
+     "measured": 4283,
+     "tolerance": 1,
+     "ratio": 4283,
+     "pass": true
+    },
+    {
+     "quantity": "differences vs frozen 0.1.0 shot",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "differences vs option-absent run",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 0,
+     "ech": 1,
+     "gas": 2.5,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "optionsForm": "undefined",
+    "dt": 0.002,
+    "reference": "experiments/baseline/m01-regression.json case no-nbi"
+   },
+   "measurements": [
+    {
+     "quantity": "fields compared vs frozen 0.1.0 shot",
+     "measured": 4283,
+     "tolerance": 1,
+     "ratio": 4283,
+     "pass": true
+    },
+    {
+     "quantity": "differences vs frozen 0.1.0 shot",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "differences vs option-absent run",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 0,
+     "ech": 1,
+     "gas": 2.5,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "optionsForm": "{enabled:false}",
+    "dt": 0.002,
+    "reference": "experiments/baseline/m01-regression.json case no-nbi"
+   },
+   "measurements": [
+    {
+     "quantity": "fields compared vs frozen 0.1.0 shot",
+     "measured": 4283,
+     "tolerance": 1,
+     "ratio": 4283,
+     "pass": true
+    },
+    {
+     "quantity": "differences vs frozen 0.1.0 shot",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "differences vs option-absent run",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 0,
+     "ech": 1,
+     "gas": 2.5,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "optionsForm": "{enabled:false,N_rho:-1,chi_e:NaN}",
+    "dt": 0.002,
+    "reference": "experiments/baseline/m01-regression.json case no-nbi"
+   },
+   "measurements": [
+    {
+     "quantity": "fields compared vs frozen 0.1.0 shot",
+     "measured": 4283,
+     "tolerance": 1,
+     "ratio": 4283,
+     "pass": true
+    },
+    {
+     "quantity": "differences vs frozen 0.1.0 shot",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "differences vs option-absent run",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 4,
+     "ech": 1,
+     "gas": 0,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "optionsForm": "absent",
+    "dt": 0.002,
+    "reference": "experiments/baseline/m01-regression.json case no-gas"
+   },
+   "measurements": [
+    {
+     "quantity": "fields compared vs frozen 0.1.0 shot",
+     "measured": 4283,
+     "tolerance": 1,
+     "ratio": 4283,
+     "pass": true
+    },
+    {
+     "quantity": "differences vs frozen 0.1.0 shot",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "differences vs option-absent run",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 4,
+     "ech": 1,
+     "gas": 0,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "optionsForm": "undefined",
+    "dt": 0.002,
+    "reference": "experiments/baseline/m01-regression.json case no-gas"
+   },
+   "measurements": [
+    {
+     "quantity": "fields compared vs frozen 0.1.0 shot",
+     "measured": 4283,
+     "tolerance": 1,
+     "ratio": 4283,
+     "pass": true
+    },
+    {
+     "quantity": "differences vs frozen 0.1.0 shot",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "differences vs option-absent run",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 4,
+     "ech": 1,
+     "gas": 0,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "optionsForm": "{enabled:false}",
+    "dt": 0.002,
+    "reference": "experiments/baseline/m01-regression.json case no-gas"
+   },
+   "measurements": [
+    {
+     "quantity": "fields compared vs frozen 0.1.0 shot",
+     "measured": 4283,
+     "tolerance": 1,
+     "ratio": 4283,
+     "pass": true
+    },
+    {
+     "quantity": "differences vs frozen 0.1.0 shot",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "differences vs option-absent run",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 4,
+     "ech": 1,
+     "gas": 0,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "optionsForm": "{enabled:false,N_rho:-1,chi_e:NaN}",
+    "dt": 0.002,
+    "reference": "experiments/baseline/m01-regression.json case no-gas"
+   },
+   "measurements": [
+    {
+     "quantity": "fields compared vs frozen 0.1.0 shot",
+     "measured": 4283,
+     "tolerance": 1,
+     "ratio": 4283,
+     "pass": true
+    },
+    {
+     "quantity": "differences vs frozen 0.1.0 shot",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "differences vs option-absent run",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 8,
+     "ech": 1,
+     "gas": 2.5,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "optionsForm": "absent",
+    "dt": 0.002,
+    "reference": "experiments/baseline/m01-regression.json case high-nbi"
+   },
+   "measurements": [
+    {
+     "quantity": "fields compared vs frozen 0.1.0 shot",
+     "measured": 4283,
+     "tolerance": 1,
+     "ratio": 4283,
+     "pass": true
+    },
+    {
+     "quantity": "differences vs frozen 0.1.0 shot",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "differences vs option-absent run",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 8,
+     "ech": 1,
+     "gas": 2.5,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "optionsForm": "undefined",
+    "dt": 0.002,
+    "reference": "experiments/baseline/m01-regression.json case high-nbi"
+   },
+   "measurements": [
+    {
+     "quantity": "fields compared vs frozen 0.1.0 shot",
+     "measured": 4283,
+     "tolerance": 1,
+     "ratio": 4283,
+     "pass": true
+    },
+    {
+     "quantity": "differences vs frozen 0.1.0 shot",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "differences vs option-absent run",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 8,
+     "ech": 1,
+     "gas": 2.5,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "optionsForm": "{enabled:false}",
+    "dt": 0.002,
+    "reference": "experiments/baseline/m01-regression.json case high-nbi"
+   },
+   "measurements": [
+    {
+     "quantity": "fields compared vs frozen 0.1.0 shot",
+     "measured": 4283,
+     "tolerance": 1,
+     "ratio": 4283,
+     "pass": true
+    },
+    {
+     "quantity": "differences vs frozen 0.1.0 shot",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "differences vs option-absent run",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 8,
+     "ech": 1,
+     "gas": 2.5,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "optionsForm": "{enabled:false,N_rho:-1,chi_e:NaN}",
+    "dt": 0.002,
+    "reference": "experiments/baseline/m01-regression.json case high-nbi"
+   },
+   "measurements": [
+    {
+     "quantity": "fields compared vs frozen 0.1.0 shot",
+     "measured": 4283,
+     "tolerance": 1,
+     "ratio": 4283,
+     "pass": true
+    },
+    {
+     "quantity": "differences vs frozen 0.1.0 shot",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "differences vs option-absent run",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 4,
+     "ech": 1,
+     "gas": 5,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "optionsForm": "absent",
+    "dt": 0.002,
+    "reference": "experiments/baseline/m01-regression.json case high-gas"
+   },
+   "measurements": [
+    {
+     "quantity": "fields compared vs frozen 0.1.0 shot",
+     "measured": 4283,
+     "tolerance": 1,
+     "ratio": 4283,
+     "pass": true
+    },
+    {
+     "quantity": "differences vs frozen 0.1.0 shot",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "differences vs option-absent run",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 4,
+     "ech": 1,
+     "gas": 5,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "optionsForm": "undefined",
+    "dt": 0.002,
+    "reference": "experiments/baseline/m01-regression.json case high-gas"
+   },
+   "measurements": [
+    {
+     "quantity": "fields compared vs frozen 0.1.0 shot",
+     "measured": 4283,
+     "tolerance": 1,
+     "ratio": 4283,
+     "pass": true
+    },
+    {
+     "quantity": "differences vs frozen 0.1.0 shot",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "differences vs option-absent run",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 4,
+     "ech": 1,
+     "gas": 5,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "optionsForm": "{enabled:false}",
+    "dt": 0.002,
+    "reference": "experiments/baseline/m01-regression.json case high-gas"
+   },
+   "measurements": [
+    {
+     "quantity": "fields compared vs frozen 0.1.0 shot",
+     "measured": 4283,
+     "tolerance": 1,
+     "ratio": 4283,
+     "pass": true
+    },
+    {
+     "quantity": "differences vs frozen 0.1.0 shot",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "differences vs option-absent run",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 4,
+     "ech": 1,
+     "gas": 5,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "optionsForm": "{enabled:false,N_rho:-1,chi_e:NaN}",
+    "dt": 0.002,
+    "reference": "experiments/baseline/m01-regression.json case high-gas"
+   },
+   "measurements": [
+    {
+     "quantity": "fields compared vs frozen 0.1.0 shot",
+     "measured": 4283,
+     "tolerance": 1,
+     "ratio": 4283,
+     "pass": true
+    },
+    {
+     "quantity": "differences vs frozen 0.1.0 shot",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "differences vs option-absent run",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 0,
+     "ech": 0,
+     "gas": 0,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "optionsForm": "absent",
+    "dt": 0.002,
+    "reference": "experiments/baseline/m01-regression.json case zero-aux-gas"
+   },
+   "measurements": [
+    {
+     "quantity": "fields compared vs frozen 0.1.0 shot",
+     "measured": 4283,
+     "tolerance": 1,
+     "ratio": 4283,
+     "pass": true
+    },
+    {
+     "quantity": "differences vs frozen 0.1.0 shot",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "differences vs option-absent run",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 0,
+     "ech": 0,
+     "gas": 0,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "optionsForm": "undefined",
+    "dt": 0.002,
+    "reference": "experiments/baseline/m01-regression.json case zero-aux-gas"
+   },
+   "measurements": [
+    {
+     "quantity": "fields compared vs frozen 0.1.0 shot",
+     "measured": 4283,
+     "tolerance": 1,
+     "ratio": 4283,
+     "pass": true
+    },
+    {
+     "quantity": "differences vs frozen 0.1.0 shot",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "differences vs option-absent run",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 0,
+     "ech": 0,
+     "gas": 0,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "optionsForm": "{enabled:false}",
+    "dt": 0.002,
+    "reference": "experiments/baseline/m01-regression.json case zero-aux-gas"
+   },
+   "measurements": [
+    {
+     "quantity": "fields compared vs frozen 0.1.0 shot",
+     "measured": 4283,
+     "tolerance": 1,
+     "ratio": 4283,
+     "pass": true
+    },
+    {
+     "quantity": "differences vs frozen 0.1.0 shot",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "differences vs option-absent run",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 0,
+     "ech": 0,
+     "gas": 0,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "optionsForm": "{enabled:false,N_rho:-1,chi_e:NaN}",
+    "dt": 0.002,
+    "reference": "experiments/baseline/m01-regression.json case zero-aux-gas"
+   },
+   "measurements": [
+    {
+     "quantity": "fields compared vs frozen 0.1.0 shot",
+     "measured": 4283,
+     "tolerance": 1,
+     "ratio": 4283,
+     "pass": true
+    },
+    {
+     "quantity": "differences vs frozen 0.1.0 shot",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "differences vs option-absent run",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "controls": {
+     "ip": 1.2,
+     "bt": 2,
+     "nbi": 4,
+     "ech": 1,
+     "gas": 2.5,
+     "kappa": 1.7,
+     "delta": 0.35
+    },
+    "dt": 0.002,
+    "reference": "experiments/baseline/m01-shot.json (original Shot fields)"
+   },
+   "measurements": [
+    {
+     "quantity": "fields compared",
+     "measured": 4283,
+     "tolerance": 1,
+     "ratio": 4283,
+     "pass": true
+    },
+    {
+     "quantity": "differences",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "invalid": "enabled=0"
+   },
+   "measurements": [
+    {
+     "quantity": "throws (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "observer calls before throw",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "invalid": "enabled=1"
+   },
+   "measurements": [
+    {
+     "quantity": "throws (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "observer calls before throw",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "invalid": "enabled=\"true\""
+   },
+   "measurements": [
+    {
+     "quantity": "throws (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "observer calls before throw",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "invalid": "enabled=null"
+   },
+   "measurements": [
+    {
+     "quantity": "throws (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "observer calls before throw",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "invalid": "enabled=[]"
+   },
+   "measurements": [
+    {
+     "quantity": "throws (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "observer calls before throw",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "invalid": "enabled={}"
+   },
+   "measurements": [
+    {
+     "quantity": "throws (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "observer calls before throw",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "invalid": "N_rho=15"
+   },
+   "measurements": [
+    {
+     "quantity": "throws (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "observer calls before throw",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "invalid": "N_rho=257"
+   },
+   "measurements": [
+    {
+     "quantity": "throws (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "observer calls before throw",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "invalid": "N_rho=64.5"
+   },
+   "measurements": [
+    {
+     "quantity": "throws (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "observer calls before throw",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "invalid": "N_rho=NaN"
+   },
+   "measurements": [
+    {
+     "quantity": "throws (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "observer calls before throw",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "invalid": "D=0.02"
+   },
+   "measurements": [
+    {
+     "quantity": "throws (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "observer calls before throw",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "invalid": "D=1.01"
+   },
+   "measurements": [
+    {
+     "quantity": "throws (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "observer calls before throw",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "invalid": "D=NaN"
+   },
+   "measurements": [
+    {
+     "quantity": "throws (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "observer calls before throw",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "invalid": "D=Infinity"
+   },
+   "measurements": [
+    {
+     "quantity": "throws (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "observer calls before throw",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "invalid": "chi_e=1.4"
+   },
+   "measurements": [
+    {
+     "quantity": "throws (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "observer calls before throw",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "invalid": "chi_e=10.1"
+   },
+   "measurements": [
+    {
+     "quantity": "throws (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "observer calls before throw",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "invalid": "chi_i=1.4"
+   },
+   "measurements": [
+    {
+     "quantity": "throws (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "observer calls before throw",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "invalid": "chi_i=10.1"
+   },
+   "measurements": [
+    {
+     "quantity": "throws (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "observer calls before throw",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "invalid": "rho_NBI=-0.1"
+   },
+   "measurements": [
+    {
+     "quantity": "throws (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "observer calls before throw",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "invalid": "rho_NBI=0.71"
+   },
+   "measurements": [
+    {
+     "quantity": "throws (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "observer calls before throw",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "invalid": "sigma_NBI=0.09"
+   },
+   "measurements": [
+    {
+     "quantity": "throws (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "observer calls before throw",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "invalid": "sigma_NBI=0.41"
+   },
+   "measurements": [
+    {
+     "quantity": "throws (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "observer calls before throw",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "invalid": "rho_ECH=-0.1"
+   },
+   "measurements": [
+    {
+     "quantity": "throws (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "observer calls before throw",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "invalid": "rho_ECH=0.81"
+   },
+   "measurements": [
+    {
+     "quantity": "throws (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "observer calls before throw",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "invalid": "sigma_ECH=0.04"
+   },
+   "measurements": [
+    {
+     "quantity": "throws (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "observer calls before throw",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "invalid": "sigma_ECH=0.26"
+   },
+   "measurements": [
+    {
+     "quantity": "throws (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "observer calls before throw",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "invalid": "gas_exponent=1"
+   },
+   "measurements": [
+    {
+     "quantity": "throws (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "observer calls before throw",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "invalid": "gas_exponent=9"
+   },
+   "measurements": [
+    {
+     "quantity": "throws (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "observer calls before throw",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "invalid": "jshape_gamma=-0.1"
+   },
+   "measurements": [
+    {
+     "quantity": "throws (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "observer calls before throw",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "invalid": "jshape_gamma=2.1"
+   },
+   "measurements": [
+    {
+     "quantity": "throws (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "observer calls before throw",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "invalid": "partial {enabled:true,chi_e:3}"
+   },
+   "measurements": [
+    {
+     "quantity": "throws (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "observer calls before throw",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "invalid": "partial {enabled:true} (no silent defaults; implementation choice, see handoff)"
+   },
+   "measurements": [
+    {
+     "quantity": "throws (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "observer calls before throw",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "invalid": "unknown field chi_E"
+   },
+   "measurements": [
+    {
+     "quantity": "throws (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "observer calls before throw",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "invalid": "profiles=null"
+   },
+   "measurements": [
+    {
+     "quantity": "throws (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "observer calls before throw",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "invalid": "profiles=5"
+   },
+   "measurements": [
+    {
+     "quantity": "throws (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "observer calls before throw",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "invalid": "profiles=\"x\""
+   },
+   "measurements": [
+    {
+     "quantity": "throws (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "observer calls before throw",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "invalid": "profiles=[]"
+   },
+   "measurements": [
+    {
+     "quantity": "throws (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "observer calls before throw",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "validEndpoint": {}
+   },
+   "measurements": [
+    {
+     "quantity": "resolved (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "validEndpoint": {
+     "N_rho": 16
+    }
+   },
+   "measurements": [
+    {
+     "quantity": "resolved (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "validEndpoint": {
+     "N_rho": 256
+    }
+   },
+   "measurements": [
+    {
+     "quantity": "resolved (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "validEndpoint": {
+     "D": 0.03
+    }
+   },
+   "measurements": [
+    {
+     "quantity": "resolved (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "validEndpoint": {
+     "D": 1
+    }
+   },
+   "measurements": [
+    {
+     "quantity": "resolved (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "validEndpoint": {
+     "chi_e": 1.5
+    }
+   },
+   "measurements": [
+    {
+     "quantity": "resolved (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "validEndpoint": {
+     "chi_e": 10
+    }
+   },
+   "measurements": [
+    {
+     "quantity": "resolved (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "validEndpoint": {
+     "chi_i": 1.5
+    }
+   },
+   "measurements": [
+    {
+     "quantity": "resolved (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "validEndpoint": {
+     "chi_i": 10
+    }
+   },
+   "measurements": [
+    {
+     "quantity": "resolved (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "validEndpoint": {
+     "rho_NBI": 0
+    }
+   },
+   "measurements": [
+    {
+     "quantity": "resolved (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "validEndpoint": {
+     "rho_NBI": 0.7
+    }
+   },
+   "measurements": [
+    {
+     "quantity": "resolved (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "validEndpoint": {
+     "sigma_NBI": 0.1
+    }
+   },
+   "measurements": [
+    {
+     "quantity": "resolved (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "validEndpoint": {
+     "sigma_NBI": 0.4
+    }
+   },
+   "measurements": [
+    {
+     "quantity": "resolved (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "validEndpoint": {
+     "rho_ECH": 0
+    }
+   },
+   "measurements": [
+    {
+     "quantity": "resolved (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "validEndpoint": {
+     "rho_ECH": 0.8
+    }
+   },
+   "measurements": [
+    {
+     "quantity": "resolved (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "validEndpoint": {
+     "sigma_ECH": 0.05
+    }
+   },
+   "measurements": [
+    {
+     "quantity": "resolved (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "validEndpoint": {
+     "sigma_ECH": 0.25
+    }
+   },
+   "measurements": [
+    {
+     "quantity": "resolved (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "validEndpoint": {
+     "gas_exponent": 2
+    }
+   },
+   "measurements": [
+    {
+     "quantity": "resolved (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "validEndpoint": {
+     "gas_exponent": 8
+    }
+   },
+   "measurements": [
+    {
+     "quantity": "resolved (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "validEndpoint": {
+     "jshape_gamma": 0
+    }
+   },
+   "measurements": [
+    {
+     "quantity": "resolved (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "validEndpoint": {
+     "jshape_gamma": 2
+    }
+   },
+   "measurements": [
+    {
+     "quantity": "resolved (1 = yes) shortfall",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "passenger": "nbi4/ech1/gas2.5/chi3",
+    "N_rho": 64,
+    "dt": 0.002
+   },
+   "measurements": [
+    {
+     "quantity": "original fields compared",
+     "measured": 4282,
+     "tolerance": 1,
+     "ratio": 4282,
+     "pass": true
+    },
+    {
+     "quantity": "differing original fields (AC-2)",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "profile samples equal 0-D samples",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "passenger": "nbi0/ech1/gas2.5/chi3",
+    "N_rho": 64,
+    "dt": 0.002
+   },
+   "measurements": [
+    {
+     "quantity": "original fields compared",
+     "measured": 4282,
+     "tolerance": 1,
+     "ratio": 4282,
+     "pass": true
+    },
+    {
+     "quantity": "differing original fields (AC-2)",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "profile samples equal 0-D samples",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "passenger": "nbi4/ech1/gas0/chi3",
+    "N_rho": 64,
+    "dt": 0.002
+   },
+   "measurements": [
+    {
+     "quantity": "original fields compared",
+     "measured": 4282,
+     "tolerance": 1,
+     "ratio": 4282,
+     "pass": true
+    },
+    {
+     "quantity": "differing original fields (AC-2)",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "profile samples equal 0-D samples",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "passenger": "nbi8/ech1/gas2.5/chi3",
+    "N_rho": 64,
+    "dt": 0.002
+   },
+   "measurements": [
+    {
+     "quantity": "original fields compared",
+     "measured": 4282,
+     "tolerance": 1,
+     "ratio": 4282,
+     "pass": true
+    },
+    {
+     "quantity": "differing original fields (AC-2)",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "profile samples equal 0-D samples",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "passenger": "nbi4/ech1/gas5/chi3",
+    "N_rho": 64,
+    "dt": 0.002
+   },
+   "measurements": [
+    {
+     "quantity": "original fields compared",
+     "measured": 4282,
+     "tolerance": 1,
+     "ratio": 4282,
+     "pass": true
+    },
+    {
+     "quantity": "differing original fields (AC-2)",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "profile samples equal 0-D samples",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "passenger": "nbi0/ech0/gas0/chi3",
+    "status": "threw (listed for FAILSAFE)"
+   },
+   "measurements": [
+    {
+     "quantity": "completed shortfall not judged",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  },
+  {
+   "inputs": {
+    "passenger": "nbi0/ech0/gas0/chi5",
+    "N_rho": 64,
+    "dt": 0.002
+   },
+   "measurements": [
+    {
+     "quantity": "original fields compared",
+     "measured": 4282,
+     "tolerance": 1,
+     "ratio": 4282,
+     "pass": true
+    },
+    {
+     "quantity": "differing original fields (AC-2)",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    },
+    {
+     "quantity": "profile samples equal 0-D samples",
+     "measured": 0,
+     "tolerance": 0,
+     "ratio": 0,
+     "pass": true
+    }
+   ],
+   "pass": true
+  }
+ ],
+ "pass": true
+}
