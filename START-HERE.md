@@ -32,7 +32,7 @@ All of these live inside **Desktop → DIII-D-Simulator**. The development agent
 
 ## Reasoning level
 
-Use **GPT-6 Astra / Medium** for infrastructure, routine implementation and test execution. Consider **High** when deriving or revising physics, investigating unexplained convergence or conservation failures, comparing experimental equilibria, or designing radial transport. A higher setting is not a substitute for independent evidence or acceptance gates. The Director should flag the need before changing the requested setting.
+Use **Claude Sonnet** for infrastructure, routine implementation and test execution. Use **Claude Opus** when deriving or revising physics, investigating unexplained convergence or conservation failures, comparing experimental equilibria, designing radial transport, running independent Validation, or for Director sign-off. Use **Claude Haiku** for cheap research and review. A higher setting is not a substitute for independent evidence or acceptance gates. The Director should flag the need before changing the requested lane.
 
 ## Open the verification dashboard
 

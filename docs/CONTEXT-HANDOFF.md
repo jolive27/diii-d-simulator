@@ -1,62 +1,45 @@
-# CONTEXT HANDOFF — as of 2026-09-18
+# CONTEXT HANDOFF — as of 2026-09-21
 
-## Prompt to paste into the new session
-See the block at the bottom of this file; or just say:
-"Read docs/CONTEXT-HANDOFF.md and restore my working state."
+Say: "Read docs/CONTEXT-HANDOFF.md and restore my working state."
 
-## Environment / stack
-- macOS, zsh. Repo: diii-d-simulator (git). JS/Node 24.20.0. opencode CLI 1.18.31.
-- opencode = session host. **big-pickle = Director**: brainstorming model + sole sign-off authority.
-- **No Codex/gpt-6-astra anymore** (dropped). Formal role seats run on other models:
-  - Physics / Software: **DeepSeek V4.1** (Cline sidebar, free; `manual` backend — runs via IDE brief)
-  - Validation: **granite4.1:8b** (Ollama) or Copilot model — **must differ from software's model**
-  - Research / reviewer subagents: **granite4.1:8b** / **qwen3.5:4b** (Ollama, auto-run from shell)
-  - Copilot free (manual): claude-sonnet-4.6, gpt-5.6-terra, claude-haiku-4.5
-  - Auditor: **Jev** (`jev-latest`) — evaluation API, never a conversational agent
-- Jev key: `~/.config/opencode/.secrets/jev.key` (also `$JEV_API_KEY`). Ledger: `~/.local/share/opencode/jev-usage.jsonl`.
-- Ollama 0.33.3, models installed: granite4.1:8b, qwen3.5:4b.
-- VS Code 1.138.0, extensions: Cline 4.1.19, official sst-dev.opencode 0.0.13, varro 0.29.3, jev-gate 0.1.0, bierner.markdown-mermaid 1.32.1 (needs reload to render), multi-command, runonsave, sqlite-viewer.
+## Roles
+- **Director / lead engineer: Claude Code (Opus)** — brainstorming, scope, design review, sign-off. Delegates bounded work to subagents (haiku: lookups/summaries; sonnet: specified implementation; opus: physics derivation, hard debugging, validation). Never delegates sign-off.
+- Lanes (registry `tools/teamflow/registries.json`): physics/software = `claude-sonnet`, validation = `claude-opus` (must differ from software), research/reviewer = `claude-haiku`.
+- **Auditor: Jev** (`jev-latest`) — batched typed-evaluation API, never a chat model. Independent of the Claude family; the main independence check now that all lanes are Claude.
+- **No OpenAI access** (no Codex / GPT-6 Astra / gpt-5.6-terra). `tools/dispatch-agent.mjs` is dormant; `.codex/`, `.openai/` and old records are historical provenance.
+- Copilot and Cline are not in use (registered with Jev, idle). opencode remains available with its own `jev` plugin.
 
-## This session (2026-09-18): TeamFlow engine built and live-proven
-`tools/teamflow/`:
-- `registries.json` — stages, roles→models, model catalog, Jev eval templates with `min` thresholds
-- `jev.mjs` — batched client (single call / one state), ledger appends
-- `backends.mjs` — ollama (auto) / opencode / manual (IDE brief); codex → dormant error
-- `state.mjs` — unit state `experiments/teamflow/units/`, decisions, ledger
-- `gates.mjs` — digest + **artifact-content-embedded batched audits**, compaction audit, `gateCheck`
-- `teamflow.mjs` — CLI (init/assign/complete/eval/evals/compact/gate/accept/release/retro/status/models/selftest)
-- `README.md`, `workflow.md` (simple mermaid flow), `workflow.mmd`
+## Jev everywhere (built 2026-09-21)
+Single source `~/.config/jev/`:
+- `core.mjs` client, `mcp.mjs` MCP server (`jev_evaluate`, `jev_review_diff`, `jev_usage`), `bin/jev` CLI (`jev eval|review|usage|template`, on PATH via `~/.local/bin/jev`).
+- `SKILL.md` (skill `jev-verify`) and `AGENT-RULES.md` — symlinked into Claude Code (`~/.claude/CLAUDE.md` imports it), opencode, Copilot, Cline. Re-link after edits: `~/.config/jev/sync.sh`.
+- Batching rule enforced in code: single-question calls refused unless `gate=true`. Ledger `~/.local/share/opencode/jev-usage.jsonl` now records `caller`.
+- Key: `~/.config/opencode/.secrets/jev.key` or `$JEV_API_KEY`. Never print.
+- `claude` on PATH via `~/.local/bin/claude` (wrapper to the VS Code extension binary) so TeamFlow's `claude` backend works from the shell.
+- Claude Code permissions: `~/.claude/settings.json` allows Bash/edits without prompts; denies sudo, destructive rm/git, and secret reads.
 
-Proven live (real Jev):
-- `eval <unit> all` = ONE Jev call over ONE state, 12 questions across 9 stages, partitioned verdicts (the batching rule).
-- Jev answer shape: `{ type:"noul", noul: 0.37 }` → normalized by `numeric()`.
-- Audits embed artifact content (bounded) so verdicts judge evidence; research verdict flipped 0.1→0.95 after grounding.
-- `node tools/teamflow.mjs selftest` → 8/8 pass (mock, offline).
+## Environment
+- macOS, zsh, Node 24.20.0, Python 3.12. VS Code with Claude Code 2.1.278, opencode ext, jev-gate ext.
+- Repo: diii-d-simulator (git, branch main). Many files untracked since the M02 commit — review before committing.
 
-Live unit: **ide-workflow** ("Copilot + Cline integration into TeamFlow")
-- research stage DONE + audited PASS (Jev 0.95). Artifact: `specs/proposals/teamflow-integration.md` (role→model map, round-trip, guardrails, reference pathway).
-- Remaining stages pending: spec → design-review → implement → self-review → validate → gate → accept.
-- Status anytime: `node tools/teamflow/teamflow.mjs status` (or `status ide-workflow`).
+## TeamFlow (`tools/teamflow/`)
+`node tools/teamflow/teamflow.mjs init|assign|complete|eval|evals|compact|gate|accept|release|retro|status|models|selftest`
+- `eval <unit> all` = ONE Jev call over ONE state. `gate` enforces order, scopes, audits, model independence. `accept` marks gate+accept done, signs as `claude-opus`.
+- Fixed 2026-09-21: `status` crash on `*.rubric.json` sidecars; `evals` crash on FAIL rows; choice answers (`{choice:"opt",confidence}`) now parsed in `jev.mjs`. Selftest 8/8.
 
-## Prior session recap (governance setup)
-- pyengine (python/d3gate/) accepted baseline; Jev governance, disk cleanup (~40GiB freed), used jev-gate extension + batched `jev` tool in opencode.
-- Retired the Streamlit dashboard (`dash/`); **do not build web dashboards or resurrect dash**; no LLM orchestration in any web app.
-- opencode-stats-engine plugin configured (~/.config/opencode/opencode.jsonc), dashboard http://127.0.0.1:11133 after desktop restart.
-- VS Code stack installed (Cline, official opencode ext, varro, jev-gate, tooling extensions).
+## Units
+- **c1-sweep-harness** (M03 C1, Python engine benchmark + sweep harness) — ACCEPTED 2026-09-19. Artifacts: `python/d3gate/sweep.py`, `specs/proposals/c1-sweep-harness.md`, `validation/evidence/c1-sweep-harness-falsification.json`.
+- **ide-workflow** — CLOSED 2026-09-21 (Copilot/Cline integration no longer needed).
+- pyengine (`python/d3gate/`) accepted baseline; `dash/` retired — do not resurrect web dashboards or put LLM orchestration in the web app.
 
-## Governance (honor, from AGENTS.md)
-- Director (big-pickle) assigns, approves, integrates, accepts only. Workers never sign off.
-- No silent constant/spec changes; `specs/change-requests` with old/new/model/Director approval.
-- New physics: five-part package (verification, validation plan, uncertainty, domain, reference pathway); capability classification; hashes; independent review. Plans ≠ completed validation.
-- `agents/permissions.json` scopes every role; enforced at `complete` + `gate`.
-- Only Director import/approve; Jev independent (batched only).
+## Governance (AGENTS.md)
+Director assigns/approves/accepts only; workers never sign off. No silent constant/spec changes (`specs/change-requests`). New physics needs the five-part package. Role scopes in `agents/permissions.json` enforced at `complete`/`gate`.
 
-## Snapshot daemon
-- `~/.local/share/opencode/session-snapshot.mjs` running (every 2 min) → `~/.local/share/opencode/session-snapshots/{latest.md, <session>-*.md}`. Restart it after reboot if needed:
-  `nohup node ~/.local/share/opencode/session-snapshot.mjs >> ~/.local/share/opencode/session-snapshots-daemon.log 2>&1 &`
+## Open risks
+- Hosted simulator uses `@openai/sites-vite-plugin` + `.openai/hosting.json` (OpenAI Sites). Without an OpenAI account the hosted copy likely cannot be updated; local app unaffected. Separate decision pending.
+- Uncommitted work: everything from the 2026-09-18/19/21 sessions. Commit in reviewed chunks.
 
-## Next steps (nominal)
-1. Reload window after restart so markdown-mermaid renders workflow.md (⌘⇧V) — the thing that started this restart.
-2. Continue ide-workflow: run physics spec on it via a real brief (DeepSeek V4.1 in Cline) or migrate to a real milestone task.
-3. Optionally: wall-clock `while` status view next to the terminal.
-4. Keep everything batched through Jev; never per-call.
+## Next steps
+1. Commit the governance/tooling changes (after a `jev review`).
+2. Next M03 unit: `node tools/teamflow/teamflow.mjs init <unit> --title ... --kind physics|engineering`, then `assign` per stage.
+3. Decide the hosting replacement for the OpenAI Sites deployment.
