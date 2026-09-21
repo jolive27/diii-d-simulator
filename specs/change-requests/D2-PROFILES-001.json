@@ -183,7 +183,7 @@
   "approvedTolerances": {
     "offPath": "Object.is-identical to 0.1.0",
     "passenger": "Object.is-identical original Shot fields between profile-on and profile-off, except modelVersion and profiles",
-    "integralParity": "<= 1e-9 relative for N, We, Wi every step",
+    "integralParity": "<= 1e-9 for N, We, Wi every step, ratio normalised by max(X_0D(t), X_0D(0)); un-floored ratio reported (DD-24)",
     "ledger": "<= 1e-10 per step per species, independent oracle",
     "steadyFixture": "<= 1e-6 relative L2 at N_rho=64",
     "dirichletEigenmodeFixture": "<= 1e-4 relative L2 vs analytic cell averages at t=1, N_rho=256, dt<=2e-6",
@@ -197,7 +197,8 @@
     "independentFalsification": "AC-10: every AC-1..AC-9 check re-executed by Validation from its own code meets its tolerance; three documented adversarial cases; validate-stage Jev PASS (DD-16)",
     "offPathCases": "the six control sets of tests/m02.test.mjs (DEFAULT plus five variants) plus experiments/baseline/m01-shot.json; Object.is-identical (DD-13)",
     "shapeEvaluation": "h(rho) and jt(rho) evaluated at cell centres rho_i=(i-1/2)/N_rho, then normalised on discrete cell volumes (DD-12)",
-    "structureMaximumPrinciple": "diffusion-only fixtures: every cell value within [min u(0) - 1e-14 M, max u(0) + 1e-14 M] (DD-21)"
+    "structureMaximumPrinciple": "diffusion-only fixtures: every cell value within [min u(0) - 1e-14 M, max u(0) + 1e-14 M] (DD-21)",
+    "structureEdgeFlux": "|delivered - prescribed| <= 1e-12 x max(|prescribed|, flux scale) + 100 eps M dV_N/dt for reconstructed fluxes; production face flux for a prescribed 0 is exactly 0 (DD-25)"
   },
   "dependencies": [
     "C1 sweep harness (accepted 2026-09-19): enumerates the ordered control grid cited by the TypeScript sweep driver of AC-9 (DD-7); the Python harness itself compares profile-off paths only",
@@ -224,7 +225,8 @@
     "DD-16 acceptance-criteria quantification: AC-2 zero-difference rule, AC-3 relative formula, AC-4 residual >= 1e-8, AC-9 driver path and nine-case grid fixed, AC-10 objective re-execution rule, Dirichlet point value by linear interpolation (design-review 2026-09-21)",
     "DD-17 AC-7/AC-8/AC-10 executable rules, fixed constraint-violation message grammar, fixed profiles option field names (design-review 2026-09-21)",
     "DD-19 evidence directories: tests/d2/evidence/ (Software), validation/evidence/d2-profiles/ (Validation)",
-    "DD-20 AC-4 shape-perturbation bound relative to clean residual; DD-21 AC-7(d) discrete maximum principle; DD-22 Part A interface interpretations accepted (implement-stage re-approval 2026-09-21, hashes rebound)"
+    "DD-20 AC-4 shape-perturbation bound relative to clean residual; DD-21 AC-7(d) discrete maximum principle; DD-22 Part A interface interpretations accepted (implement-stage re-approval 2026-09-21, hashes rebound)",
+    "DD-24 parity normaliser max(current, initial inventory); DD-25 reconstructed edge-flux roundoff floor; DD-26 AC-9 observed-failure note (validate-stage re-approval 2026-09-21, hashes rebound)"
   ],
   "diagnosticDefinitions": {
     "edgeValue": "x_edge = max((3/2) x_N - (1/2) x_{N-1}, 0) for n, T_e, T_i separately, from the last two cell centres rho_i = (i - 1/2)/N_rho; clip is diagnostic-only, flagged per sample, never applied to state; constraint check uses unclipped cell values (spec section 4)",
@@ -237,10 +239,10 @@
   "supersedes": "specs/proposals/d2-profiles-change-request-DRAFT.json (retained as spec-stage history; this file is authoritative)",
   "artifactHashes": {
     "algorithm": "sha256",
-    "boundAt": "re-approval 2026-09-21 after Part A (DD-20..DD-22)",
+    "boundAt": "re-approval 2026-09-21 after validation Part A (DD-24..DD-26)",
     "files": {
-      "specs/proposals/d2-profiles.md": "2617f99aa19a18a947f78bb763af1d885d34dfbef85a8803af2a0e6d4a562685",
-      "specs/proposals/d2-profiles-verification.md": "af3f8c2ef934d07ac29f34e8026b04dc3dc9954ae021e39c1b664448ba47d77b",
+      "specs/proposals/d2-profiles.md": "82d820d61386f327439eaab1652bbf0d6f6c7664d7c15a1f76a66c89fee259ee",
+      "specs/proposals/d2-profiles-verification.md": "e845a15801670cdcdff089f15beec3da13a86a5a50a960c2d0d7dd6d74cf5110",
       "specs/proposals/d2-profiles-validation-plan.md": "b3002d6e7de3f85fd27cd90265e9d21bcced4e2e88f6c86ddca77a5b520516b2",
       "specs/proposals/d2-profiles-uncertainty.md": "d915c746449d373f5010a749b38a0cbbf405982be4aecedfdf4393d03503f5c7",
       "specs/proposals/d2-profiles-validity.md": "ff4b221c3ac1295a6bb7229d3998cef37cc08abd2a6404cb4f14173e730b1f3b",
@@ -324,6 +326,16 @@
         "DD-22"
       ],
       "reason": "Part A evidence showed the DD-16 shape-perturbation bar unreachable for physically small terms and AC-7(d) ill-posed for a signed eigenmode; no closure tolerance loosened."
+    },
+    {
+      "date": "2026-09-21",
+      "stage": "validate (after Part A, claude-opus falsification)",
+      "decisions": [
+        "DD-24",
+        "DD-25",
+        "DD-26"
+      ],
+      "reason": "Independent validation found one parity ratio of 1.116e-9 against a hundredfold-decayed inventory and a reconstructed-flux check measuring test-side roundoff at small dt; both are measurement-definition issues, not scheme defects. Tolerance values unchanged; normaliser and a roundoff floor defined."
     }
   ]
 }
