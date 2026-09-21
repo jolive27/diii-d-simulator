@@ -79,12 +79,35 @@
       "rationale": "The registry describes production; the default path is unchanged; a capability entry records the opt-in without relabelling the baseline."
     }
   ],
-  "status": "SPEC_COMPLETE_AWAITING_FULL_JEV_AUDIT",
+  "status": "SPEC_STAGE_PASS_COMMITTED",
   "jevAuditPartB_laneSelfCheck": {
     "complete": 0.74,
     "consistent_with_part_A": 0.87,
     "illustrative_labelled": 0.88,
     "provenance_honest": 0.97,
     "verification_doc_completeness": 0.58
+  },
+  "jevAuditSpecFinal": {
+    "capability_complete": 0.94,
+    "no_silent_change": 0.97,
+    "decisions_resolved": 0.84,
+    "equations_consistent": 0.85,
+    "illustrative_labelled": 0.97,
+    "state_chars": 87142,
+    "input_tokens": 27612
+  },
+  "commitReviewDisposition": {
+    "commit": "2ac8c0a",
+    "jevDiffReview": {
+      "gate_decision": "revise",
+      "risk": "moderate",
+      "security": 0.05,
+      "breaking": 0.14,
+      "scope_creep": 0.36,
+      "tests_evidence": 0.85,
+      "intent_met": 0.59,
+      "correct": 0.64
+    },
+    "directorDisposition": "KEEP. The diff review saw a truncated ~80k-char slice of a 133k-char spec package and could not confirm whole-package intent; the content gate is the TeamFlow spec rubric audit (all five PASS), which saw the balanced package plus unit digest. Hygiene verdicts (security, breaking, scope) are clean. Process gap closed: `jev review --require approve` now exits non-zero so commit chains cannot proceed on revise/reject."
   }
 }
