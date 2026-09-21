@@ -1,0 +1,39 @@
+## Handoff: d2-profiles Part B (Physics lane)
+
+**Result:** all five documents are written and section 14 of `d2-profiles.md` now binds them by name. The self-verification is not clean: Jev's completeness check on the verification document came back at 0.58, below its 0.7 threshold, and I could not resolve it.
+
+### Files changed
+- **Created (`specs/proposals/`):** `d2-profiles-verification.md` (1449 words), `d2-profiles-validation-plan.md` (1155), `d2-profiles-uncertainty.md` (1185), `d2-profiles-validity.md` (1320), `d2-profiles-reference.md` (1388).
+- **Edited:** `d2-profiles.md`, section 14 only (verified by diff hunk). It now names the five files, marks SHA-256 bindings as pending, and states that the capability remains experimentally unvalidated.
+- Nothing else was touched. The `git status` entries for `experiments/` were already modified before I started.
+
+### Commands run
+- Read `agents/physics.md`, Part A, the research note, `NEW-PHYSICS-REQUIREMENTS.md`, `model_versions.json`, the design decisions, and the relevant parts of `engine.ts`, `tests/m02/ledger.mjs`, `sweep.py` and `tests/m02.test.mjs`.
+- **Prototype:** a throwaway numpy script in the scratchpad (not in the repo, not evidence) to check that the fixture tolerances are reachable. It found:
+  - F1 (steady state) error is about 1e-13 with a quadratic edge closure, but 2e-4 at N=64 with a linear half-cell closure.
+  - F2 (Dirichlet eigenmode) spatial order is 1.97–1.99. Its error at N=256 is 4.2e-5 spatial plus about 3.3e-5 temporal, which fits under 1e-4.
+  - F3 (reflecting eigenmode) spatial order is 2.00.
+  - The MMS fixture (manufactured solution, variable `n`) has order 1.88–1.98 and error 2.2e-5 at N=128, dt=1e-5.
+  - Temporal order is 1.000.
+- **Jev CLI:** four `jev eval` calls, not one, because the first was inconclusive.
+
+### Jev verdicts (final call)
+| Question | Value | Result |
+|---|---|---|
+| `complete` (all five documents) | 0.74 | pass |
+| `consistent_with_part_A` | 0.87 | pass |
+| `illustrative_labelled` | 0.88 | pass |
+| `provenance_honest` | 0.97 | pass |
+| Per-document completeness: validation / uncertainty / validity / reference | 0.88 / 0.92 / 0.96 / 0.91 | pass |
+| Per-document completeness: verification | 0.58 | **fail** |
+
+The first call gave `complete` 0.5. I then added per-document questions to localise the gap, and restructured the verification document with uniform fields (fixture, expected, tolerance, convergence, pass). That moved its score from 0.20 to about 0.6. Jev returns no rationale, so I stopped rather than tune blindly.
+
+### Open concerns (Director decisions needed)
+1. **The F3 tolerance in Part A cannot be met.** AC-5 sets 1e-4 for the reflecting eigenmode. The prototype's spatial error alone is 2.7e-4 at N=256, and the temporal error is about 1.1e-4 at dt=1e-6. I propose 5e-4 at dt ≤ 1e-6 as deviation D-1, but the 1e-4 value stands until you record a change. Until then, that check is expected to fail. This unresolved tolerance is my best guess for the low verification score.
+2. **AC-9 conflicts with DD-3.** Part A's sweep names the Python harness, but DD-3 defers Python profiles. I assigned profile-on sweeps to a TypeScript driver (D-2). The AC-9 wording needs amending.
+3. **Version string collision.** I propose a `physics` entry 0.2.0 and a `verification` entry 0.3.0 (D-3). "0.2.0" is already the M02 verification version, so it would then label two different things.
+4. **No JSON reference artifact.** The requirements call for a structured JSON reference file, but the assignment allowed only five files. The intended content is embedded in the reference document (§7), and the `.json` sibling is a follow-up. TORAX is also unpinned: only the README was read, the source was not, and its conventions are marked unverified.
+5. **Two gaps in Part A left for Software.** Edge-value extrapolation is undefined, and `T_e,avg` in `C_br` is ambiguous. I defined it as the 0-D value `We/((3/2)N KEV)` in the DIAGNOSTICS check.
+6. **Benchmark tolerances are unverified.** The values in `d2-profiles-reference.md` (B0–B3) are illustrative starting points, to be fixed before any comparison run.
+7. **The capability stays experimentally unvalidated.** The validation plan has no data, no data route and no execution.

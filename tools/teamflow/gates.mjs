@@ -79,25 +79,41 @@ export async function runEval(state, stageId, { jevModel } = {}) {
  */
 export async function runEvalBatch(state, stageIds, { jevModel } = {}) {
   const ids = stageIds.filter(id => templateFor(state, id));
-  const chunks = [`# TeamFlow multi-stage audit [${ids.join(', ')}]`, '', digest(state), ''];
+  const files = [];
   for (const id of ids) {
     const win = state.artifactWindows[id];
     if (!win || !Array.isArray(win.files)) continue;
     for (const f of win.files) {
       try {
         const full = path.join(root, f);
-        if (!fs.existsSync(full) || !fs.statSync(full).isFile()) continue;
-        const content = fs.readFileSync(full, 'utf8');
-        chunks.push(`\n--- artifact: ${f} ---\n\n${content.slice(0, 24000)}${content.length > 24000 ? '\n...[truncated]' : ''}\n`);
+        if (fs.existsSync(full) && fs.statSync(full).isFile()) files.push({ f, content: fs.readFileSync(full, 'utf8') });
       } catch { /* unreadable artifact: skip */ }
     }
   }
-  const payload = chunks.join('\n');
+  // Total state budget shared across artifacts (Jev rejects oversized states with 400 max_tokens_exceeded).
+  const buildPayload = (budget) => {
+    const per = files.length ? Math.max(2000, Math.floor(budget / files.length)) : budget;
+    const chunks = [`# TeamFlow multi-stage audit [${ids.join(', ')}]`, '', digest(state), ''];
+    for (const { f, content } of files) {
+      chunks.push(`\n--- artifact: ${f} ---\n\n${content.slice(0, per)}${content.length > per ? `\n...[truncated at ${per} of ${content.length} chars]` : ''}\n`);
+    }
+    return chunks.join('\n');
+  };
   const questions = {};
   for (const id of ids) {
     for (const q of templateFor(state, id)) questions[`${id}::${q.id}`] = { type: q.type, instructions: q.instructions, criteria: q.criteria };
   }
-  const res = await jevOrMock(payload, questions);
+  let budget = Number(process.env.JEV_STATE_BUDGET_CHARS || 90_000);
+  let res;
+  for (let attempt = 0; ; attempt++) {
+    try {
+      res = await jevOrMock(buildPayload(budget), questions);
+      break;
+    } catch (err) {
+      if (attempt < 3 && /max_tokens_exceeded/.test(err.message || '')) { budget = Math.floor(budget / 2); continue; }
+      throw err;
+    }
+  }
   const records = {};
   for (const id of ids) {
     const tpl = templateFor(state, id);

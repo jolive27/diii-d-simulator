@@ -1,0 +1,53 @@
+## Handoff: d2-profiles spec fix-up (physics lane)
+
+**The fix-up is applied, but Jev did not clear two of its four checks.** `ac5_ac9_versions_consistent_everywhere` and `verification_executable` both stayed below the 0.75 threshold. Details are under the Jev verdicts below.
+
+### Files changed
+All changes are under `specs/proposals/`.
+
+- **`d2-profiles.md`**
+  - AC-5 amended per DD-6: F3 tolerance 1e-3, with a mandatory rate report. Spatial order must be in [1.6, 2.4] and temporal in [0.8, 1.2].
+  - AC-9 amended per DD-7: profile-on sweeps use a TypeScript sweep driver; the Python C1 harness is profile-off only.
+  - Versions per DD-8 (physics 0.2.0, verification 0.3.0).
+  - Section 4 now defines the edge value: `max(1.5·x_N − 0.5·x_{N−1}, 0)`, with a clip flag and diagnostic-only clipping.
+  - Section 4 also defines `T_e,avg = We/((3/2) N KEV)` (0-D value).
+  - Section 14 binds `d2-profiles-reference.json` as the sixth artifact.
+  - **AC-6:** I aligned the fixture temporal `dt` list to the verification doc (`4e-5, 2e-5, 1e-5, 5e-6`). This edit goes beyond the DD list; it was needed to yield the two rates DD-6 requires.
+  - **Section 15:** I added an open-concern bullet (see the open items below).
+- **`d2-profiles-verification.md`**
+  - Rewritten so every D2-VER check states fixture inputs, expected value, tolerance, convergence procedure, pass/fail rule and output artifact name.
+  - F3 is aligned with DD-6, and the earlier deviations D-1 to D-3 are recorded as resolved.
+- **`d2-profiles-reference.json`** (new): TORAX pathway with source URL, unpinned version, README-only read status, 12 mapping entries, B0–B3 tolerances marked illustrative, non-comparable items with reasons, and a search record. It is valid JSON with the four required keys.
+- **`d2-profiles-change-request-DRAFT.json`:** reflects DD-6..DD-10, versions and amended tolerances. Status remains DRAFT and the decision is still PENDING.
+- **Companion docs:** `d2-profiles-uncertainty.md` now cites the DD-10 edge rule. `d2-profiles-reference.md` §7 now points to the JSON. Validation-plan and validity had no references to AC-5, AC-9 or the versions, so they are unchanged.
+
+### Commands run
+- Scratch numpy check outside the repo, in the scratchpad (scipy and sympy are not installed):
+  - F3 at N=256, dt=1e-6 gives L2rel 3.82e-4, well inside 1e-3.
+  - F3 observed spatial rates are 2.009 / 2.002 / 2.001 and temporal rates 1.002 / 1.001.
+  - The F4 manufactured source is confirmed (residual 7.8e-8).
+- The same check showed the Part B diagnostic anchors could not hold at 1e-9 against closed forms on a discrete grid:
+  - The discrete errors are about 5.6e-5 for C_br and about 1e-5 for C_ohm at N=256, and about 4e-4 at N=64.
+  - I restated the anchors at a 2e-4 discretisation allowance, labelled illustrative. The 1e-9 bound is kept for independent recomputation on the same data.
+- JSON validity check on both JSON files: both valid.
+- `jev eval`, one batched call, run twice.
+
+### Jev verdicts
+Jev returns no reasons, so I could not act on them directly.
+
+| Check | 1st pass | 2nd pass (after fixes) |
+|---|---|---|
+| `ac5_ac9_versions_consistent_everywhere` | 0.71 | 0.58 (below 0.75) |
+| `verification_executable` | 0.48 | 0.44 (below 0.75) |
+| `reference_json_valid_and_bound` | 0.94 | 0.94 |
+| `no_silent_change` | 0.93 | 0.91 |
+
+Between passes I fixed the "five companion documents" heading, the AC-6 `dt` mismatch, an undefined rate normaliser at the finest step, and the ledger face indexing and mutation set. I also fixed the OFFPATH option field names and the scope of SI runs. A grep for residual contradictions (old 1e-4 for F3, Python harness for profile-on sweeps, "bump left to Director") found none. I did not re-ask with softer wording. The Director should treat the two low scores as unresolved.
+
+### Could not resolve or decide
+1. **Registry version field:** the top-level `physicsModelVersion` in `science/model_versions.json` while profile-off is the default path. The string 0.2.0 now sits in both the physics and verification namespaces, so consumers must key on `(kind, version)`.
+2. **Shape evaluation point:** whether `h(rho)` and `jt(rho)` are evaluated at cell centres or as cell averages is unspecified. It is O(h²), outside DD-6..DD-10, and flagged in spec §15. The diagnostic anchors do not depend on it.
+3. **AC-1 wording:** AC-1 says "DEFAULT plus six variants", but `tests/m02.test.mjs` line 8 has six control sets in total (DEFAULT plus five). Not edited; the Director should confirm the intended set.
+4. **D2-VER-EIGEN-DIRICHLET margin:** the check is thin. The inherited prototype error is about 7.5e-5 against a 1e-4 limit. DD-6 covers only F3, so I left it and noted that a failure there is a defect, not grounds to loosen.
+5. **Fixed by Software:** Software fixes the exact option field names, the error message grammar, the sweep driver path, and the list from `expand_cases`. Verification anchors these to the `C-D2-*` names and to fixed substrings.
+6. **Reference status:** TORAX is still unpinned and only its README was read, so B0–B3 remain unrun and illustrative.

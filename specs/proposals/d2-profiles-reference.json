@@ -1,0 +1,109 @@
+{
+  "time": "2026-09-21",
+  "availability": "available",
+  "unit": "d2-profiles",
+  "boundTo": "specs/proposals/d2-profiles.md section 14 item 6 (DD-9); human-readable companion specs/proposals/d2-profiles-reference.md",
+  "physicsModelVersion": "0.2.0",
+  "verificationVersion": "0.3.0",
+  "status": "PROPOSED; no comparison has been run",
+  "implementations": [
+    {
+      "name": "TORAX (google-deepmind/torax)",
+      "versionOrRevision": "UNPINNED: pin a tagged release or commit hash and record install method and date at execution; until pinned this record is incomplete",
+      "source": "https://github.com/google-deepmind/torax",
+      "readStatus": {
+        "read": ["repository README, fetched 2026-09-21 by the research stage (inherited; not re-fetched in the spec stage)"],
+        "notRead": ["source code", "configuration schema", "documentation pages", "release notes"],
+        "consequence": "Every TORAX convention below is known-of from general literature familiarity and is marked unverified; each must be confirmed against the pinned release before any comparison. The research note's statement that TORAX applies zero-Dirichlet n = T = 0 at rho = 1 is not relied on."
+      },
+      "comparisonPlan": "Run D2's verification-only kernel (Dirichlet edge with a closure exact for quadratics, prescribed identical Gaussian sources) and a pinned TORAX on matched circular-geometry benchmarks B0-B3 (theta = 1, constant uniform transport, electron-ion exchange disabled in both, no current diffusion, no neural surrogate, time step at least four times finer than the D2 step for TORAX), on a common analysis grid with SI conversion at the comparison layer; report metrics against the illustrative tolerances below after a TORAX self-convergence study fixes the working tolerance before comparing; treat the closed-form solution as a third anchor. See specs/proposals/d2-profiles-reference.md sections 2-5.",
+      "equationMapping": [
+        {"item": "radial label", "d2": "rho_V = sqrt(V(rho)/V), V'(rho) = 2 V rho", "reference": "normalised toroidal-flux label rho_tor_norm", "verified": false, "note": "coincide only for concentric circles with constant B (large aspect ratio); otherwise a coordinate shift, reported by B0 and not scored on the T-DIII-D tier"},
+        {"item": "metric", "d2": "<|grad rho|^2> = 1/L^2, L^2 = V/(2 pi^2 R0)", "reference": "geometry-supplied V' and metric coefficients", "verified": false, "note": "compared numerically by B0"},
+        {"item": "unknowns", "d2": "n, w_e = (3/2) n T_e KEV, w_i", "reference": "T_i, T_e, n_e (and psi)", "verified": false, "note": "same conduction operator form n chi grad T; D2 advances energy density"},
+        {"item": "time scheme", "d2": "backward Euler, explicit left-endpoint sources", "reference": "theta method, implicit by default", "verified": false, "note": "theta = 1 in B1-B3"},
+        {"item": "grid", "d2": "64 cells uniform in rho (volume label), cell averages", "reference": "uniform cells and faces in rho_tor_norm", "verified": false, "note": "compare on a common analysis grid; D2 cell averages against reference values with quadratic interpolation"},
+        {"item": "units", "d2": "SI internally, KEV = 1.602176634e-16 J/keV, n in m^-3", "reference": "keV and 1e20 m^-3-type normalisation", "verified": false, "note": "convert to SI at the comparison layer"},
+        {"item": "transport", "d2": "scalar D, chi_e, chi_i uniform in rho and t", "reference": "constant-transport model option", "verified": false, "note": "identical values in both codes"},
+        {"item": "sources", "d2": "Gaussian shapes normalised so sum h_i dV_i = 1, totals prescribed", "reference": "generic Gaussian sources with location, width, total", "verified": false, "note": "benchmarks supply identical totals; compare integrated source power first"},
+        {"item": "axis", "d2": "zero flux exactly (V'(0) = 0)", "reference": "zero gradient", "verified": false, "note": "equivalent"},
+        {"item": "edge, verification", "d2": "Dirichlet value, second-order closure", "reference": "Dirichlet value", "verified": false, "note": "comparable; the only D2 edge that maps"},
+        {"item": "edge, production", "d2": "prescribed flux equal to the 0-D loss; no edge value", "reference": "none", "verified": false, "note": "no reference counterpart; see nonComparable"},
+        {"item": "edge value diagnostic (DD-10)", "d2": "linear extrapolation from the last two cell centres, clipped to >= 0", "reference": "boundary value is a solver input, not a diagnostic", "verified": false, "note": "when comparing a Dirichlet run, compare the imposed value, not the extrapolated one"},
+        {"item": "ion density and Z_eff", "d2": "n_i = n_e = n, Z_eff = 1", "reference": "dilution and Z_eff handled explicitly", "verified": false, "note": "set Z_eff = 1, pure deuterium in the reference"}
+      ],
+      "commonBenchmarkRules": {
+        "edge": "verification-only Dirichlet edge in D2",
+        "sources": "prescribed Gaussians with identical totals; illustrative rho_E = 0.3, sigma_E = 0.1",
+        "coefficients": "illustrative defaults D = 0.1, chi = 3.0 m^2/s",
+        "geometry": "circular, kappa = 1; tier T-large R0 = 10 m, a = 0.84 m (aspect ratio 12); tier T-DIII-D R0 = 1.66 m, a = L = 0.840 m (equivalent-circle radius of the default equilibrium, epsilon = 0.51)",
+        "referenceSettings": "theta = 1, uniform constant transport, exchange disabled, no current diffusion, no neural surrogate, fixed steps at least 4x finer than the D2 step"
+      },
+      "benchmarks": [
+        {
+          "id": "B0",
+          "case": "Geometry equivalence: extract each code's V'(rho) and metric on the analysis grid",
+          "observable": "V', metric ratio",
+          "metric": "maximum relative difference",
+          "tolerance": {"tierTLarge": 0.005, "tierTDIIID": "reported only; about 5% expected (coordinate shift, hand estimate)", "status": "illustrative"}
+        },
+        {
+          "id": "B1",
+          "case": "Steady conduction, uniform n, uniform electron source, Dirichlet edge T = 0.1 keV, T_i not evolved",
+          "observable": "T_e(rho)",
+          "metric": "L2rel on a 64-point analysis grid; anchored to the closed form T_b + S L^2 (1 - rho^2)/(4 (3/2) KEV n chi)",
+          "tolerance": {"tierTLarge": 0.003, "status": "illustrative"}
+        },
+        {
+          "id": "B2",
+          "case": "Relaxation of parabolic T (0.5 -> 0.1 keV), uniform n, no sources, t = 0.05, 0.1, 0.3 s",
+          "observable": "T_e(rho, t) and total We(t)",
+          "metric": "L2rel; relative energy-content difference",
+          "tolerance": {"L2rel": 0.01, "energyContent": 0.003, "status": "illustrative"}
+        },
+        {
+          "id": "B3",
+          "case": "Gaussian ECH-like source (rho_E = 0.3, sigma_E = 0.1), frozen n, chi_e only, run to 1 s",
+          "observable": "T_e(rho) at 1 s",
+          "metric": "L2rel",
+          "tolerance": {"L2rel": 0.02, "status": "illustrative"}
+        }
+      ],
+      "tolerancePolicy": {
+        "provenance": "illustrative starting values set from the expected accuracy of second-order schemes on comparable grids; not fitted, not derived from a read TORAX result",
+        "workingTolerance": "max(listed value, 3 x TORAX self-convergence difference at doubled resolution), recorded before comparing",
+        "adjustment": "tolerances may not be adjusted after seeing the comparison",
+        "threeWay": "if D2 and the reference disagree, whichever differs from the closed form is the suspect"
+      },
+      "expectedDifferences": [
+        "Coordinate: rho_tor^2 versus rho_V^2 differ by about 5% at r = a/2 on the T-DIII-D tier (hand check, 0.237 versus 0.250) and at most about 0.2% on T-large (hand estimate); structural, not an error",
+        "Metric: D2's constant 1/L^2 versus geometry-supplied metrics; reported by B0",
+        "Mesh, mesh spacing and solver choices; bounded by the reference self-convergence study",
+        "Source normalisation: D2's discrete sum h_i dV_i = 1 versus the reference's own normalisation of Gaussian totals (unverified); compare integrated source power first"
+      ],
+      "nonComparable": [
+        {"item": "production edge-flux closure (prescribed flux equal to the 0-D loss, no edge value)", "reason": "no reference-code counterpart: TORAX-type codes impose boundary values; only the verification-only Dirichlet edge maps. The production edge is tested by D2's own parity and ledger checks and experimentally by validation falsifier F-6 (DD-5)"},
+        {"item": "passenger construction and 0-D integral parity", "reason": "a self-consistent code has no 0-D authority; parity is an internal consistency property of D2"},
+        {"item": "physical source models (NBI, ECH, gas, Ohmic with jt, bremsstrahlung)", "reason": "D2's are illustrative shapes with renormalised totals and the reference's source models differ; benchmarks use identical prescribed Gaussians instead"},
+        {"item": "reference turbulent surrogate, current diffusion, self-consistent geometry evolution", "reason": "no D2 counterpart; using any of them puts a benchmark outside this pathway"},
+        {"item": "equilibrium coupling and psi", "reason": "D2's profile grid is independent of psi and of the equilibrium solve"},
+        {"item": "edge-value diagnostic and clip flag (DD-10)", "reason": "diagnostics of a flux-closed edge; in the reference the edge value is an input"}
+      ],
+      "executionAndAccess": "Python environment able to install the pinned TORAX, run outside the repository (no new runtime dependency, no LLM or orchestration in the web app); configuration and result files saved under an evidence path assigned by the Director; Validation (claude-opus) reviews. Depends on the D2 kernel's verification-only entry. Status: not started, blocked on the Software implementation and on pinning the reference version."
+    }
+  ],
+  "otherCandidatesConsidered": [
+    {"name": "TRANSP, ASTRA, JETTO", "status": "known-of, unread; institutional or collaboration codes whose accessibility is unknown here (lack of access alone is not evidence that no reference exists); candidates if TORAX proves unsuitable"},
+    {"name": "RAPTOR", "status": "reduced 1-D code, known-of only; not pursued"}
+  ],
+  "searchRecord": [
+    {"query": "accessible 1-D tokamak transport code for matched benchmarks", "source": "research stage (d2-profiles-research.md): literature familiarity plus TORAX README fetch", "date": "2026-09-21", "result": "TORAX chosen as the most accessible candidate; version and conventions unverified"}
+  ],
+  "limitations": [
+    "Production edge-flux closure has no reference counterpart",
+    "Conventions of the reference are unverified pending a pinned-source read; version is unpinned",
+    "Benchmark tolerances are illustrative and are fixed before comparing, after a reference self-convergence study",
+    "Reference agreement establishes consistent solution of the equations, not experimental validity, and is separate from d2-profiles-validation-plan.md",
+    "The T-DIII-D tier reports a coordinate shift rather than passing or failing on it"
+  ]
+}

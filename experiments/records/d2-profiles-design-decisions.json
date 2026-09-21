@@ -1,0 +1,90 @@
+{
+  "id": "d2-profiles-design-decisions",
+  "unit": "d2-profiles",
+  "stage": "spec (Part A review)",
+  "role": "director",
+  "time": "2026-09-21",
+  "jevAuditPartA": {
+    "no_silent_change": 0.98,
+    "decisions_resolved": 0.93,
+    "equations_consistent": 0.88,
+    "illustrative_labelled": 0.96,
+    "capability_complete": "0.03 — pending Part B package"
+  },
+  "decisions": [
+    {
+      "id": "DD-1",
+      "question": "Passenger (diagnostic) profiles vs self-consistent feedback",
+      "decision": "PASSENGER. The 0-D N/We/Wi loop stays authoritative and unchanged; profiles cannot alter confinement, radiation, heating totals or equilibrium input. Feedback is a future capability requiring its own five-part package.",
+      "rationale": "Matches intake (0-D balances as integral constraint); makes profile-off bit-for-bit parity provable; isolates the new numerics from accepted physics."
+    },
+    {
+      "id": "DD-2",
+      "question": "modelVersion / schemaVersion when profiles are off",
+      "decision": "Stay '0.1.0' and schemaVersion 1 exactly. Any change to the off-path output is a defect.",
+      "rationale": "Bit-for-bit parity is a success criterion."
+    },
+    {
+      "id": "DD-3",
+      "question": "Must the Python port implement profiles in this unit?",
+      "decision": "NO. TypeScript engine only in d2-profiles. Python parity for profiles is a follow-up unit; until then the C1 harness compares profile-off paths only and the spec must say so.",
+      "rationale": "Halves implementation and validation surface; C1 harness remains valid for the frozen path."
+    },
+    {
+      "id": "DD-4",
+      "question": "Verification-version bump",
+      "decision": "Follow the existing convention recorded in science/model_versions.json (spec lane reads it and proposes; Director approves in the change-request).",
+      "rationale": "No silent versioning changes."
+    },
+    {
+      "id": "DD-5",
+      "question": "Edge boundary condition",
+      "decision": "Accept the lane's rejection of a fixed 100 eV Dirichlet default; edge flux closure equal to 0-D loss terms is the production default, Dirichlet remains verification-only. Validity doc must state the closure has no reference-code counterpart.",
+      "rationale": "A Dirichlet bath outside the ledger would break parity and hide energy."
+    },
+    {
+      "id": "DD-6",
+      "question": "AC-5 reflecting-eigenmode tolerance 1e-4 not achievable with backward-Euler/64-256 cells",
+      "decision": "Amend AC-5 to 1e-3 relative AND require the observed convergence rate (spatial order ~2, temporal order ~1) to be reported and to match the scheme's theoretical order within 20%.",
+      "rationale": "An unattainable tolerance invites silent loosening later; rate checks catch real defects better than an absolute number."
+    },
+    {
+      "id": "DD-7",
+      "question": "AC-9 names the Python harness for profile-on sweeps; DD-3 defers Python profiles",
+      "decision": "AC-9 amended: profile-on sweeps run via a TypeScript sweep driver; Python harness compares profile-off paths only until the follow-up parity unit.",
+      "rationale": "Consistency with DD-3."
+    },
+    {
+      "id": "DD-8",
+      "question": "Version strings",
+      "decision": "physics 0.2.0 (profiles on), verification 0.3.0; physics 0.1.0 / schema 1 unchanged when profiles off.",
+      "rationale": "Avoids relabelling M02's verification 0.2.0; namespaces are distinct but must not collide numerically."
+    },
+    {
+      "id": "DD-9",
+      "question": "Structured reference JSON required by NEW-PHYSICS-REQUIREMENTS but not in the five-file brief",
+      "decision": "Allow a sixth artifact specs/proposals/d2-profiles-reference.json in the pyengine-reference.json format, bound from the spec's Package section.",
+      "rationale": "Requirement compliance; precedent exists."
+    },
+    {
+      "id": "DD-10",
+      "question": "Two gaps left for Software: edge-value extrapolation; T_e,avg in C_br",
+      "decision": "Both must be defined in the spec, not left to implementation: edge value = linear extrapolation from the last two cell centres, clipped to >=0; T_e,avg = 0-D value We/((3/2) N KEV) as the lane proposed.",
+      "rationale": "No scientific choices at implementation time (agents/software.md)."
+    },
+    {
+      "id": "DD-11",
+      "question": "Top-level physicsModelVersion in science/model_versions.json while profile-off remains the default path",
+      "decision": "Registry top-level physicsModelVersion stays 0.1.0 (the default, profile-off engine). Add a separate capability entry for profiles (physics 0.2.0, verification 0.3.0) so the registry states both; per-run modelVersion in output reports 0.1.0 off / 0.2.0 on.",
+      "rationale": "The registry describes production; the default path is unchanged; a capability entry records the opt-in without relabelling the baseline."
+    }
+  ],
+  "status": "SPEC_COMPLETE_AWAITING_FULL_JEV_AUDIT",
+  "jevAuditPartB_laneSelfCheck": {
+    "complete": 0.74,
+    "consistent_with_part_A": 0.87,
+    "illustrative_labelled": 0.88,
+    "provenance_honest": 0.97,
+    "verification_doc_completeness": 0.58
+  }
+}
