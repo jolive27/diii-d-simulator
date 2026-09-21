@@ -28,7 +28,7 @@ Single source `~/.config/jev/`:
 - Fixed 2026-09-21: `status` crash on `*.rubric.json` sidecars; `evals` crash on FAIL rows; choice answers (`{choice:"opt",confidence}`) now parsed in `jev.mjs`. Selftest 8/8.
 
 ## ACTIVE UNIT — d2-profiles (M03 D2, 1-D radial transport + profile evolution)
-Resume with: `node tools/teamflow/teamflow.mjs status d2-profiles`. Next stage: **implement** (owner software, claude-sonnet).
+Resume with: `node tools/teamflow/teamflow.mjs status d2-profiles`. Next stage: **self-review** (haiku) then **validate** (claude-opus). Implement DONE, Jev PASS 5/5 (0.85-0.93), commit d68ed6e pushed to GitHub. Code: `physics/profiles.ts` (kernel), one optional `runShot` parameter in `physics/engine.ts`, `tests/d2-profiles.test.mjs`, `tests/d2/` (ledger oracle, fixtures, sweep driver, worker pool), evidence `tests/d2/evidence/d2-ver-*.json` (ten checks, all pass), `docs/D2-PROFILES.md`. npm test 46/46, pyengine 14 OK. Marginal items for Validation: F3 delivered edge flux 5.7e-13 vs 1e-12 (roundoff eps*dV/dt); bremsstrahlung shape mutation ratio 2.1. DD-20..DD-23 added at implement (change request re-approved, hashes rebound).
 - intake/research/spec/design-review DONE, all Jev PASS. Design-review final: 8/8 (fixtures 0.91, conservation 0.95, interface 0.91, CR 0.76 marginal, implementable 0.92, versions 0.93, criteria-values 0.75 marginal, no-open-markers 0.83).
 - **Approved change request:** `specs/change-requests/D2-PROFILES-001.json` (APPROVED, SHA-256 bound to `specs/proposals/d2-profiles.md` + six package artifacts; any edit to a bound file needs re-approval and new hashes). DRAFT in specs/proposals retained as history.
 - Director decisions DD-1..DD-19 in `experiments/records/d2-profiles-design-decisions.json` — binding. New at design-review: DD-12 cell-centre shape evaluation; DD-13 AC-1 = six control sets of tests/m02.test.mjs; DD-14 schemaVersion 1 profile-on; DD-15 registry entries written by Director at release; DD-16/17 every AC executable, error grammar `profile constraint violated at t=<t> s in cell <i>: <q> <r>`, options object `profiles` with C-D2-* field names; DD-18 rubric split (same thresholds); DD-19 evidence dirs `tests/d2/evidence/` (Software) and `validation/evidence/d2-profiles/` (Validation).
@@ -55,12 +55,13 @@ Director assigns/approves/accepts only; workers never sign off. No silent consta
 - All design-review work committed 2026-09-21 (see git log); tree clean at handoff.
 
 ## Tooling facts learned today
-- Lane timeout: `TEAMFLOW_LANE_TIMEOUT_MS` (default 30 min); exit 143 = killed by it — split big tasks (Part A/Part B worked).
+- Lane timeout: `TEAMFLOW_LANE_TIMEOUT_MS` (default 30 min); exit 143 = killed by it — split big tasks (Part A/Part B worked). Dispatch long lanes with `nohup node tools/teamflow/teamflow.mjs assign ... > experiments/teamflow/runs/<unit>-<stage>.dispatch.log 2>&1 &` — a lane started inside the Bash tool is killed by the tool's 10-min cap even with run_in_background. Wait with a background `until ! pgrep -f 'claude -p ...'` loop.
+- `jev review` audits the whole working diff; to gate a partial commit, audit `git diff --cached` with `jev eval --state-file`.
 - `assign`: flags may go anywhere; run transcripts are timestamped under `experiments/teamflow/runs/`.
 - Jev size limit ~30–40k input tokens (`400 max_tokens_exceeded`); TeamFlow eval and `jev review` halve-and-retry automatically. `jev review --require approve && git commit` blocks commits on revise/reject.
 - Jev spend is NOT to be minimised (user decision): lanes re-checking after each edit is wanted.
 - Bash tool 10-min cap: run long lane dispatches with run_in_background.
 
 ## Next steps
-1. Implement d2-profiles on sonnet (see ACTIVE UNIT brief) → self-review haiku → validate opus → `eval d2-profiles all` → gate → accept → release.
+1. d2-profiles: self-review haiku → validate opus (AC-10: re-execute AC-1..AC-9 from own code, three adversarial cases, validation/evidence/d2-profiles-falsification.json) → `eval d2-profiles all` → gate → accept → release (Director writes science/model_versions.json entries and refreshes science/constants.json engine SHA, DD-11/15/23).
 3. Parked: hosting replacement for the OpenAI Sites deployment; Python profile parity unit after D2.

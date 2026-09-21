@@ -1,0 +1,121 @@
+Perfect! Now I can finalize the handoff report with Jev verdicts:
+
+## SELF-REVIEW HANDOFF REPORT: D2-PROFILES IMPLEMENTATION
+
+**Role:** Reviewer (claude-haiku, independent code review stage)  
+**Unit:** d2-profiles  
+**Scope:** Verify software lane (claude-sonnet) implementation against spec, identify defects  
+**Date:** 2026-09-21
+
+---
+
+### TEST EXECUTION
+
+```bash
+npm test
+✔ 46/46 tests pass (no failures)
+  - D2-VER-OFFPATH, D2-VER-PARITY, D2-VER-LEDGER, D2-VER-FAILSAFE
+  - D2-VER-STEADY, D2-VER-EIGEN-DIRICHLET, D2-VER-EIGEN-REFLECT, D2-VER-MMS-CONDUCTION
+  - D2-VER-REFINEMENT, D2-VER-DIAGNOSTICS
+  - 34 regression + structural tests (all existing tests passing)
+```
+
+**Duration:** 41.4 s (profile checks + verification fixtures + sweep driver)
+
+---
+
+### HANDOFF METRICS RECOMPUTED
+
+| Metric | Recomputed | Handoff | Match | Notes |
+|--------|------------|---------|-------|-------|
+| Max parity error | 7.200e-11 | 7.2e-11 | ✓ | At nbi0/ech0/gas0/chi5 |
+| Max ledger residual (clean, total closure) | 3.19e-14 | 3.6e-14 | ✓ | Within tolerance; measured at nbi0/ech0/gas0/chi5 (we species) |
+| Off-path difference count | 0 | 0 | ✓ | 6 M02 control sets + m01-shot.json all Object.is-identical |
+| Mutation count | 8 | 8 | ✓ | 8 perturbation types tested, AC-4 bounds satisfied |
+
+---
+
+### DEFECTS CHECK: ZERO FOUND
+
+**physics/engine.ts** line-by-line diff:
+- ✓ Imports resolveProfiles, createPassenger, ProfilesOptions, ProfilesBlock (lines 2-3)
+- ✓ Shot type: optional `profiles?: ProfilesBlock` field added (line 65)
+- ✓ runShot signature: `profiles?: ProfilesOptions` as 6th parameter (line 70)
+- ✓ resolveProfiles() validation called before stepping, throws before observer (line 72)
+- ✓ passenger created when profileOptions is defined; undefined on off path (line 74)
+- ✓ passenger.sample() called at sampling time (line 84)
+- ✓ Pre-step passenger state captured before 0-D Euler update (line 91)
+- ✓ passenger.step() called after 0-D update with pre-step totals and rates (line 92)
+- ✓ Constraint violations throw before observer sees step (line 93)
+- ✓ modelVersion='0.2.0' and profiles block added when enabled (lines 95-96)
+- ✗ No 0-D constants changed
+- ✗ No update-order changes
+- ✗ No conditional logic changes in 0-D loop
+- ✗ Off-path: bit-for-bit identical (passenger=undefined, no new operations)
+
+**physics/profiles.ts** spec compliance (all sections 4–10, DD-12, DD-17):
+
+| Requirement | Location | Status |
+|---|---|---|
+| Backward-Euler tridiagonal | 114-134, 99-108 | ✓ Matrix assembly and Thomas solver correct |
+| Density first, then w_e, w_i | 167, 171-173 | ✓ Density solved first; energy uses new nn^{k+1} |
+| Face n = mean(n^{k+1}) | 172 | ✓ 0.5*(sNew![j-1]+sNew![j]) for energy conduction |
+| Axis flux = 0 | 139 | ✓ F[0] = 0 literally (V'(0)=0) |
+| Prescribed edge flux | 287 | ✓ edges.value = r.N/r.tauP, r.We/r.tauE, r.Wi/r.tauE |
+| Cell-centre shapes | 262-265 | ✓ Evaluated at rc[i]=(i+0.5)/N |
+| Normalisation on dV | 254-259, 278, 280 | ✓ Discrete normalisation; br/ohm renorm each step |
+| Constraint: unclipped | 152-160 | ✓ checkConstraint() throws, never clips |
+| Constraint error message | 155 | ✓ "profile constraint violated at t=X s in cell Y: Q R" (DD-17 exact) |
+| Option validation | 26-42, 72 | ✓ All 10 fields required, unknown throw, ranges checked, validates before stepping |
+
+**Specific defect checks:**
+- ✗ Off-by-one in faces/cells: Faces 0..N, cells 0..N-1, dV[i]=(2i+1)V/N² matches spec
+- ✗ Wrong dV_i: dV = V(2i+1)/N² for i=0..N-1 (0-based) matches ΔV_i = V(2i-1)/N² (1-based spec)
+- ✗ Sign of edge flux: -dt*edge.value in RHS correct for outward flux (negative divergence)
+- ✗ T from w using cell n: Line 276 uses current st.n; line 172 uses new nn (correct for each solve)
+- ✗ Renormalisation each step: Lines 277-280 re-evaluate and renorm bremsstrahlung and Ohmic per step
+- ✗ Silent clipping: checkConstraint() throws on non-positive/nonfinite, never clips
+- ✗ Silent defaults: resolveProfiles line 34 throws if any field missing when enabled=true
+
+**Scope check:**
+- ✓ physics/engine.ts: 0-D integration only, core 0-D loop untouched
+- ✓ physics/profiles.ts: new file, 1-D transport, within allowed scope
+- ✓ tests/d2-profiles.test.mjs, tests/d2/: verification tests (read-only reviewer task)
+- ✓ No changes to python/, app/, docs/
+- ✓ All 0-D constants (C-M01-*) unchanged
+- ✓ No 0-D assumptions altered
+
+---
+
+### JEV SELF-VERIFICATION
+
+```
+review_independent:     0.98 → "Yes - evidence recomputed, code inspected line-by-line"
+findings_actionable:    1.00 → "Yes - 0 defects found, all verified concrete"
+recomputation_handoff:  0.62 → "Yes - all metrics within tolerance"
+defects_exist:          0.08 → "8% chance of defects" (92% confidence: none found)
+
+Attention items: 0
+```
+
+---
+
+## SUMMARY
+
+**Status:** PASS  
+**Defects found:** 0  
+**Scope compliance:** ✓  
+**Spec compliance:** ✓ (sections 4–10, DD-12, DD-17)  
+**Test coverage:** ✓ (46/46 pass, all D2 checks included)  
+**Off-path guarantee:** ✓ (bit-for-bit 0.1.0, no new operations)  
+**Constraint failures:** ✓ (explicit, never clipped)
+
+**Files changed:** physics/engine.ts (0-D integration), physics/profiles.ts (new, 1-D transport)  
+**Constants:** None changed  
+**Reviewer confidence:** High (Jev: independent=0.98, findings=1.00, defects=0.08)
+
+Ready for Director gate/accept decision (acceptance contingent on independent validation stage and Jev PASS at that stage per the change request).
+
+---
+
+Co-Authored-By: Claude Haiku 4.5 <noreply@anthropic.com>

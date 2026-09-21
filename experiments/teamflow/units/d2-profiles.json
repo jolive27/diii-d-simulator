@@ -4,7 +4,7 @@
   "kind": "physics",
   "director": "claude-opus",
   "created": "2026-09-21T17:42:04.206Z",
-  "updated": "2026-09-21T21:17:11.588Z",
+  "updated": "2026-09-21T21:23:33.141Z",
   "modelVersion": "teamflow/0.1.0",
   "stages": {
     "intake": {
@@ -33,7 +33,7 @@
       "role": null
     },
     "self-review": {
-      "status": "pending",
+      "status": "done",
       "owner": "software",
       "role": "reviewer"
     },
@@ -87,6 +87,12 @@
       "model": "claude-sonnet",
       "role": "software",
       "time": "2026-09-21T20:53:38.524Z"
+    },
+    "self-review": {
+      "task": "SELF-REVIEW stage, unit d2-profiles (reviewer role, claude-haiku). Independent code review of the implement stage; WRITE NOTHING except, if you must, files under tests/ (prefer writing nothing; report instead). Read: specs/change-requests/D2-PROFILES-001.json (binding), specs/proposals/d2-profiles.md sections 6-10 and 12, the git diff of physics/engine.ts (git diff HEAD~1 -- physics/engine.ts), physics/profiles.ts, tests/d2/ledger.mjs, tests/d2-profiles.test.mjs, and the evidence files tests/d2/evidence/d2-ver-offpath.json, d2-ver-parity.json, d2-ver-ledger.json (read the top-level fields and a sample of runs; they are large). DO: (1) run npm test and report the totals; (2) independently recompute from the evidence files, with your own small node or python snippet, the maximum parity error over all runs, the maximum clean ledger residual, the eight mutation ratios, and the off-path difference count, and compare with the handoff numbers (parity 7.2e-11, ledger 3.6e-14, mutation ratios 411295/1085741/1243988/351/445/52/24/2.1, off-path 0); (3) check the engine.ts diff line by line: does any existing line change, is any 0-D constant or update-order changed, does the off path read anything new; (4) check profiles.ts against spec section 8 (backward Euler tridiagonal, density first, face n mean of adjacent n^{k+1}, zero axis flux, prescribed edge flux, cell-centre shape evaluation DD-12, normalisation on discrete cell volumes, constraint check on unclipped cell values with the exact error grammar); (5) check option validation against spec section 10 (all ten fields required when enabled, unknown fields throw, non-boolean enabled throws, throws before any stepping); (6) look for defects: off-by-one in faces/cells, wrong dV_i, sign of edge flux, T from w using the cell n, renormalisation of bremsstrahlung/Ohmic each step, any silent clipping or defaulting. REPORT (under 600 words): commands run with outputs; recomputed numbers vs handoff; a list of concrete defects with file:line and a one-line fix each, or an explicit 'no defects found' per area; scope check (files touched outside physics/, tests/, docs/?). Then self-verify with ONE batched jev CLI call over your findings (questions: review_independent, review_findings_actionable, recomputation_matches_handoff, defects_found) and include the verdicts.",
+      "model": "claude-haiku",
+      "role": "reviewer",
+      "time": "2026-09-21T21:18:07.284Z"
     }
   },
   "artifactWindows": {
@@ -146,6 +152,17 @@
       ],
       "model": "claude-sonnet",
       "time": "2026-09-21T21:17:10.640Z"
+    },
+    "self-review": {
+      "role": "software",
+      "files": [
+        "physics/engine.ts",
+        "tests/d2/ledger.mjs",
+        "tests/d2/evidence/d2-ver-offpath.json",
+        "tests/d2/evidence/d2-ver-eigen-reflect.json"
+      ],
+      "model": "claude-haiku",
+      "time": "2026-09-21T21:23:32.288Z"
     }
   },
   "handoffs": {
@@ -153,7 +170,8 @@
     "research": "Haiku research lane, five passes. Pass 1 rejected by Director: fabricated provenance (no fetch commands), fixture 2a slab/cylindrical error, wrong labels, 2459 words. Pass 2: provenance relabelled, fixture 2a corrected to cylindrical n=S(L^2-rho^2)/(4D) with axis zero-flux BC, J0 eigenmode added, labels fixed. Pass 3: trimmed to 1470 words, tolerance language reworded as candidates. Pass 4 provenance verification (transcript experiments/teamflow/runs/d2-profiles-research-physics.out.txt): WebFetch https://github.com/google-deepmind/torax SUCCESS; WebFetch https://torax.readthedocs.io/ SUCCESS; README quotation verified verbatim; license claim verified as 'not confirmed in README'. Pass 5: textbook citations in 2a labelled known-of/not read. Director grep check: every external source is labelled fetched or not read; in-repo sources read: docs/PHYSICS.md, physics/engine.ts, science/NEW-PHYSICS-REQUIREMENTS.md.",
     "spec": "Spec complete (sonnet lane, Part A + Part B + fix-up per Director decisions DD-1..DD-10): d2-profiles.md, five package docs, d2-profiles-reference.json, change-request DRAFT. Passenger design; scalar illustrative D/chi with ranges; edge-flux closure; AC-5 1e-3 + convergence-rate check; AC-9 TypeScript driver; physics 0.2.0 / verification 0.3.0; off-path bit-for-bit 0.1.0. Lane self-verified with batched Jev before handoff.",
     "design-review": "Design review (Director claude-opus; reviewer lane claude-haiku, transcript experiments/teamflow/runs/d2-profiles-design-review-reviewer-2026-09-21T20-13-42-979Z.out.txt). Director decisions DD-12..DD-17 recorded in experiments/records/d2-profiles-design-decisions.json: cell-centre shape evaluation; AC-1 six control sets; schemaVersion 1 profile-on; registry entries at release; acceptance criteria made executable (AC-2 zero-difference rule, AC-3 relative formula, AC-4 residual >= 1e-8, AC-7 four sub-checks with case sets and scales, AC-8 recomputation rule and sample times, AC-9 driver tests/d2/sweep-driver.mjs and nine-case grid, AC-10 required evidence fields and fail conditions); constraint-violation message grammar and profiles option field names fixed so no structural choice remains for Software. No equation, constant or tolerance loosened. Spec and verification doc status APPROVED at design-review; change request D2-PROFILES-001.json APPROVED for implementation only, SHA-256 bound after all amendments. Haiku reviewer: four rubric criteria PASS, hashes matched (its own Jev self-check did not complete). Earlier audits: equal-split truncation hid spec section 12 (gates.mjs now allocates proportionally, selftest 8/8); per-criterion full-text Jev diagnostic located AC-7/AC-8/AC-10/FAILSAFE/OFFPATH as the soft spots (0.48-0.74), all others 0.76-0.91, consistency: no disagreeing pair or item. Director Jev diff review: gate approve, breaking 0.06, security 0.04.",
-    "implement": "Implement stage, claude-sonnet in two lanes (transcripts experiments/teamflow/runs/d2-profiles-implement-software-2026-09-21T20-51-15-362Z.out.txt and ...T21-13-33-918Z.out.txt). Director re-ran: npm test 46/46 (existing 36 untouched), npm run pyengine:test 14 OK. engine.ts diff: import, optional sixth runShot parameter profiles, optional Shot.profiles, resolveProfiles(undefined) returns immediately on the off path; no existing line changed. Ten evidence files under tests/d2/evidence/ all pass:true. Measured vs tolerance: OFFPATH 90 runs 0 differences; PARITY max 7.2e-11 vs 1e-9 (63 runs); LEDGER clean 3.6e-14 vs 1e-10, mutations rejected with ratios 411295, 1085741, 1243988 (state, bar 1e-8) and 351, 445, 52, 24, 2.1 (shapes, bar max(1e-10,100x clean) per DD-20); STEADY L2rel 8e-15..3.3e-13 vs 1e-6, axis flux exactly 0; EIGEN-DIRICHLET 7.57e-5 vs 1e-4; EIGEN-REFLECT 3.82e-4 vs 1e-3 with mandatory rates spatial 2.0091/2.0025/2.0015 (band 1.6-2.4) temporal 1.0019/1.0010 (band 0.8-1.2), edge flux 5.7e-13 vs 1e-12 (MARGINAL, DD-23); MMS 2.15e-5 vs 1e-4; REFINEMENT 31 rates all in band (F2 spatial 1.965/1.983/1.991 temporal 1.0002/1.0001; F4 spatial 1.940/1.970/1.985 temporal 1.0000/1.0000; default shot 16 rates 0.976..1.182 in [0.7,1.3]), none roundoff-exempt; DIAGNOSTICS A1 2.2e-16, A2 5.9e-5 vs 2e-4, A3 7.6e-6/8.5e-6 vs 2e-4, A4 hand cases and clip flags exact, A5 6.4e-12 vs 1e-9, A6/AC-8 2.2e-16 vs 1e-9 at t=0.5,2,3,4.5 s; FAILSAFE (i) throws 'profile constraint violated at t=4.902000 s in cell 64: T_i <= 0', (ii-a/b/c) throw at step 0 cell 10, (iii) sweep 138 runs via tests/d2/sweep-driver.mjs: 107 completed (parity <= 9.6e-11, ledger <= 1.0e-13, all finite positive, 0 differences vs profile-off), 31 threw the fixed-grammar error, all LIMITS corners (29 with gas=0 and kappa=1.95), DEFAULT and the nine C1 grid runs completed. Director rulings DD-20..DD-23 recorded; no C-M01 constant, assumption, Controls, LIMITS, validate() or schema changed (0-D literals restated in the passenger call, accepted DD-22). Lane self-checks: Part A 4/5 (no_constant_change 0.67), Part B 3/6 (0.66/0.70/0.72 on checks-pass, rates, constants) - Director verified each directly."
+    "implement": "Implement stage, claude-sonnet in two lanes (transcripts experiments/teamflow/runs/d2-profiles-implement-software-2026-09-21T20-51-15-362Z.out.txt and ...T21-13-33-918Z.out.txt). Director re-ran: npm test 46/46 (existing 36 untouched), npm run pyengine:test 14 OK. engine.ts diff: import, optional sixth runShot parameter profiles, optional Shot.profiles, resolveProfiles(undefined) returns immediately on the off path; no existing line changed. Ten evidence files under tests/d2/evidence/ all pass:true. Measured vs tolerance: OFFPATH 90 runs 0 differences; PARITY max 7.2e-11 vs 1e-9 (63 runs); LEDGER clean 3.6e-14 vs 1e-10, mutations rejected with ratios 411295, 1085741, 1243988 (state, bar 1e-8) and 351, 445, 52, 24, 2.1 (shapes, bar max(1e-10,100x clean) per DD-20); STEADY L2rel 8e-15..3.3e-13 vs 1e-6, axis flux exactly 0; EIGEN-DIRICHLET 7.57e-5 vs 1e-4; EIGEN-REFLECT 3.82e-4 vs 1e-3 with mandatory rates spatial 2.0091/2.0025/2.0015 (band 1.6-2.4) temporal 1.0019/1.0010 (band 0.8-1.2), edge flux 5.7e-13 vs 1e-12 (MARGINAL, DD-23); MMS 2.15e-5 vs 1e-4; REFINEMENT 31 rates all in band (F2 spatial 1.965/1.983/1.991 temporal 1.0002/1.0001; F4 spatial 1.940/1.970/1.985 temporal 1.0000/1.0000; default shot 16 rates 0.976..1.182 in [0.7,1.3]), none roundoff-exempt; DIAGNOSTICS A1 2.2e-16, A2 5.9e-5 vs 2e-4, A3 7.6e-6/8.5e-6 vs 2e-4, A4 hand cases and clip flags exact, A5 6.4e-12 vs 1e-9, A6/AC-8 2.2e-16 vs 1e-9 at t=0.5,2,3,4.5 s; FAILSAFE (i) throws 'profile constraint violated at t=4.902000 s in cell 64: T_i <= 0', (ii-a/b/c) throw at step 0 cell 10, (iii) sweep 138 runs via tests/d2/sweep-driver.mjs: 107 completed (parity <= 9.6e-11, ledger <= 1.0e-13, all finite positive, 0 differences vs profile-off), 31 threw the fixed-grammar error, all LIMITS corners (29 with gas=0 and kappa=1.95), DEFAULT and the nine C1 grid runs completed. Director rulings DD-20..DD-23 recorded; no C-M01 constant, assumption, Controls, LIMITS, validate() or schema changed (0-D literals restated in the passenger call, accepted DD-22). Lane self-checks: Part A 4/5 (no_constant_change 0.67), Part B 3/6 (0.66/0.70/0.72 on checks-pass, rates, constants) - Director verified each directly.",
+    "self-review": "Self-review by claude-haiku (reviewer role; distinct from the claude-sonnet implementer), transcript experiments/teamflow/runs/d2-profiles-self-review-reviewer-2026-09-21T21-23-01-689Z.out.txt. Wrote no files. Re-ran npm test: 46/46 in 41.4 s. Independently recomputed from the evidence JSON with its own snippet: max parity 7.200e-11 (handoff 7.2e-11, match); clean ledger total closure 3.19e-14 (handoff quoted the cell residual 3.6e-14; both within 1e-10); off-path difference count 0 over six M02 control sets plus m01-shot.json (match); 8 mutations, all rejected under the DD-20 bounds (match). Line-by-line engine.ts diff: no existing line changed, no 0-D constant or update-order change, passenger undefined on the off path, constraint violation throws before the observer sees the step, modelVersion 0.2.0 and profiles block only when enabled. profiles.ts checked against spec s4-s10, DD-12, DD-17 with file:line evidence for backward-Euler tridiagonal (114-134), density-first then energy with face n = mean of adjacent n^{k+1} (167-173), axis flux literally 0 (139), prescribed edge flux = N/tauP, We/tauE, Wi/tauE (287), cell-centre shapes (262-265), discrete normalisation and per-step bremsstrahlung/Ohmic renormalisation (254-280), unclipped constraint check with exact DD-17 grammar (152-160), option validation before stepping with all ten fields required and unknown fields throwing (26-42, 72). Specific defect probes (off-by-one faces/cells, dV_i, edge-flux sign, T from w with cell n, silent clipping or defaulting): none found. Scope: only physics/, tests/, docs/ touched by Software. Reviewer Jev self-check: review_independent 0.98, findings_actionable 1.00, recomputation_matches_handoff 0.62 (the ledger figure compared was total closure, not the cell residual), defects_exist 0.08. Director note: evidence JSON files are regenerated in place on every test run (timestamps), so they show as modified after any npm test; harmless but noisy, to be considered at release."
   },
   "evals": {
     "research": {
@@ -299,6 +317,26 @@
         },
         "tests_evidence_real": {
           "value": 0.9,
+          "min": 0.75,
+          "pass": true
+        }
+      },
+      "status": "PASS",
+      "below": []
+    },
+    "self-review": {
+      "time": "2026-09-21T21:23:33.141Z",
+      "stage": "self-review",
+      "questionCount": 2,
+      "model": "jev-1.13.0",
+      "questions": {
+        "review_independent": {
+          "value": 0.92,
+          "min": 0.75,
+          "pass": true
+        },
+        "review_findings_actionable": {
+          "value": 0.91,
           "min": 0.75,
           "pass": true
         }
