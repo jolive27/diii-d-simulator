@@ -1,0 +1,73 @@
+{
+  "id": "D2-PROFILES-001",
+  "kind": "physics-capability-extension",
+  "physicsAgent": "physics lane (claude-sonnet), TeamFlow unit d2-profiles",
+  "director": "claude-opus",
+  "status": "DRAFT",
+  "draftedOn": "2026-09-21",
+  "specification": "specs/proposals/d2-profiles.md (to become specs/d2-profiles.json on Director approval; SHA-256 of the spec and of the five Part B artifacts pending, not yet computed)",
+  "physicsCapabilityChange": true,
+  "affectedAssumptionIds": ["A-M01-004", "A-M01-005", "A-M01-006", "A-M01-007", "A-M01-008", "A-M01-009", "A-M01-013", "A-M01-014"],
+  "referencedUnchangedAssumptionIds": ["A-M01-001", "A-M01-002", "A-M01-003", "A-M01-010", "A-M01-011", "A-M01-012", "A-M01-015", "A-M01-016"],
+  "oldBehavior": "0-D only: total electron/ion thermal energies and one common particle inventory evolve; no radial profile is solved (A-M01-004). Losses are W/tauE and N/tauP with illustrative closures; sources carry no radial deposition (A-M01-006/007); bremsstrahlung and Ohmic power are volume totals (A-M01-008); the ledger is scalar (A-M01-013).",
+  "newBehavior": "When explicitly enabled through a separate optional options value: flux-surface-averaged 1-D diffusion of n, w_e, w_i on rho in [0,1] (rho = volume-normalised radius, V'(rho)=2 V rho, V = 0.1.0 Geometry.volume; metric closure <|grad rho|^2> = 1/L^2, L^2 = V/(2 pi^2 R0)) with prescribed scalar D, chi_e, chi_i; every 0.1.0 source total distributed by a normalised prescribed shape; zero flux at the axis and a prescribed edge flux equal to the 0-D losses N/tauP, We/tauE, Wi/tauE. The 0-D loop stays authoritative and unchanged (passenger coupling), so profile integrals equal the 0-D N, We, Wi to 1e-9 relative. A new explicit 'profile constraint violated' stop is added. When not enabled: behaviour, outputs and modelVersion '0.1.0' are bit-for-bit unchanged.",
+  "proposedAssumptionChanges": [
+    {"id": "A-M01-004", "change": "Still active and exact for the profile-off path. When profiles are enabled, radial profiles of n, T_e, T_i are evolved as a constrained passenger of the 0-D totals; totals remain 0-D. Recommended: keep the ID active, add scope note; register new A-D2-* IDs rather than redefine."},
+    {"id": "A-M01-005", "change": "Unchanged 0.1.0 closures. New illustrative closures added under proposed IDs A-D2-*: scalar D, chi_e, chi_i and source-shape parameters."},
+    {"id": "A-M01-006", "change": "Fractions and totals unchanged; the 'no deposition' clause is superseded only when profiles are enabled, by prescribed illustrative deposition shapes (no orbit, resonance or fast-ion model)."},
+    {"id": "A-M01-007", "change": "Efficiency, prompt ionization and cold gas unchanged; gas and ionization cost distributed edge-locally by rho^m."},
+    {"id": "A-M01-008", "change": "Bremsstrahlung total unchanged; local distribution follows n^2 sqrt(T_e), renormalised to the 0-D total each step."},
+    {"id": "A-M01-009", "change": "W/tauE remains the effective total loss; when profiles are enabled it is applied as the edge conductive flux. No separate advective term added."},
+    {"id": "A-M01-013", "change": "Scalar ledger unchanged; a radial per-species ledger and integral-parity check are added for profile-on runs."},
+    {"id": "A-M01-014", "change": "Existing unsupported statuses unchanged; a distinct profile-constraint-violated status is added (non-positive n, T_e or T_i in any cell; never clipped)."}
+  ],
+  "proposedNewAssumptionIds": ["A-D2-001 volume-normalised radius and V'=2 V rho", "A-D2-002 constant equivalent-circular metric <|grad rho|^2>=1/L^2", "A-D2-003 scalar prescribed D, chi_e, chi_i (illustrative)", "A-D2-004 conductive-only energy flux, no separate advection", "A-D2-005 prescribed illustrative source shapes normalised to 0-D totals", "A-D2-006 edge flux equals 0-D loss (integral constraint), passenger coupling, no profile feedback", "A-D2-007 uniform initial profiles", "A-D2-008 profile pressure not fed to, and not reconciled with, the Solovev pressure"],
+  "proposedNewConstants": {
+    "C-D2-D": {"value": 0.1, "units": "m^2/s", "range": [0.03, 1.0], "kind": "illustrative_model_parameter"},
+    "C-D2-chi_e": {"value": 3.0, "units": "m^2/s", "range": [1.5, 10], "kind": "illustrative_model_parameter"},
+    "C-D2-chi_i": {"value": 3.0, "units": "m^2/s", "range": [1.5, 10], "kind": "illustrative_model_parameter"},
+    "C-D2-rho_NBI": {"value": 0.5, "units": "1", "range": [0, 0.7], "kind": "illustrative_unread_source_shape"},
+    "C-D2-sigma_NBI": {"value": 0.2, "units": "1", "range": [0.1, 0.4], "kind": "illustrative_unread_source_shape"},
+    "C-D2-rho_ECH": {"value": 0.3, "units": "1", "range": [0, 0.8], "kind": "illustrative_physics_chosen"},
+    "C-D2-sigma_ECH": {"value": 0.1, "units": "1", "range": [0.05, 0.25], "kind": "illustrative_unread_source_shape"},
+    "C-D2-gas_exponent": {"value": 4, "units": "1", "range": [2, 8], "kind": "illustrative_model_parameter"},
+    "C-D2-jshape_gamma": {"value": 1.0, "units": "1", "range": [0, 2], "kind": "illustrative_model_parameter"},
+    "C-D2-N_rho": {"value": 64, "units": "cells", "range": [16, 256], "kind": "numerical_setting"}
+  },
+  "unchangedConstants": "All C-M01-* constants and the confinement scaling are unchanged and unedited; no constant is tuned for 0-D/1-D consistency.",
+  "units": "SI internally; n [m^-3], w [J m^-3], T [keV], D and chi [m^2/s], edge fluxes as N/tauP [s^-1] and W/tauE [W]; export units unchanged (1e19 m^-3, keV).",
+  "physicsModelVersion": "0.2.0",
+  "previousPhysicsModelVersion": "0.1.0",
+  "versionNote": "Additive. A profile-off run is the 0.1.0 model and still reports modelVersion '0.1.0'; a profile-on run reports '0.2.0'. Verification-version bump left to the Director.",
+  "rationale": "M03 headline capability D2: core-versus-edge profiles as a new observable, with the existing 0-D balances kept as the integral constraint rather than a competing model. Passenger coupling was chosen so that enabling profiles cannot change any accepted 0.1.0 output, and so equilibrium input, unsupported statuses and the M01 baseline remain untouched.",
+  "evidenceAndLimits": "Constructed from the 0.1.0 source code and hand derivations only; no external source was read in Part A. Coefficient values, deposition shapes and the flat initial condition are illustrative and uncalibrated; NBI/ECH shapes come from a research note with no primary source identified. Feasibility indications (edge collapse for chi below about 1.25 at D=0.1; all-zero-auxiliary corner fails at chi=3) come from a throwaway scratchpad prototype that is not repository evidence. Parity with the 0-D balances holds by construction and verifies implementation consistency, not physical accuracy. Experimentally unvalidated.",
+  "conservationAndDimensionalChecks": "Discrete volume integrals of the three equations reduce term-for-term to the 0-D Euler update when shapes are normalised on the discrete cell volumes and edge fluxes equal N/tauP, We/tauE, Wi/tauE. Axis flux is exactly zero (V'(0)=0). Dimensional check: D/L^2 in s^-1, (3/2) KEV n chi/L^2 dT/drho in W m^-3 after the 1/V' divergence, V' in m^3.",
+  "expectedImpact": "Profile-off: none (bit-for-bit). Profile-on: new optional 'profiles' output block; possible explicit failure where the prescribed edge loss cannot be carried by the chosen chi (e.g. chi below about 1.25 at D=0.1 on the default shot).",
+  "affectedTests": ["all existing tests/ and python/tests/ must stay unchanged and passing (AC-1)", "M02 frozen regression fixtures and experiments/baseline/m01-shot.json (bit-for-bit, profile off)", "new: D2-VER-STEADY, D2-VER-EIGEN-DIRICHLET, D2-VER-EIGEN-REFLECT, D2-VER-MMS-CONDUCTION, D2-VER-REFINEMENT, D2-VER-LEDGER, D2-VER-PARITY, D2-VER-FAILSAFE, D2-VER-DIAGNOSTICS, D2-VER-OFFPATH (paths chosen by Software)"],
+  "compatibility": "Export schemaVersion 1 unchanged; profiles is an additive optional field on profile-on shots only (Director to confirm). Controls, LIMITS and validate() unchanged. Python port (python/d3gate/engine.py) porting scope is a Director decision; TypeScript engine is the source of truth.",
+  "proposedTolerances": {
+    "offPath": "Object.is-identical to 0.1.0",
+    "passenger": "Object.is-identical original Shot fields between profile-on and profile-off, except modelVersion and profiles",
+    "integralParity": "<= 1e-9 relative for N, We, Wi every step",
+    "ledger": "<= 1e-10 per step per species, independent oracle",
+    "steadyFixture": "<= 1e-6 relative L2 at N_rho=64",
+    "eigenmodeFixtures": "<= 1e-4 relative L2 vs analytic cell averages at t=1, N_rho=256, dt<=2e-6",
+    "spatialOrder": "[1.8, 2.2]",
+    "temporalOrder": "[0.85, 1.15] on fixtures; [0.7, 1.3] on the default shot"
+  },
+  "dependencies": ["C1 sweep harness (accepted 2026-09-19) for AC-9", "Part B artifacts: d2-profiles-verification.md, d2-profiles-validation-plan.md, d2-profiles-uncertainty.md, d2-profiles-validity.md, d2-profiles-reference.md (plus a structured JSON reference artifact per science/NEW-PHYSICS-REQUIREMENTS.md)", "Director capabilityPolicyReview after the Part B artifacts exist and are hash-bound"],
+  "conditions": [
+    "No 0.1.0 constant, assumption, equation or output changes on the profile-off path",
+    "Coefficients, shapes and initial profiles labelled illustrative/uncalibrated everywhere they appear",
+    "Capability stays labelled experimentally unvalidated until evidence exists",
+    "Independent validation on a model different from Software's; Jev audit of every stage",
+    "Approved artifact hashes and independent scientific review before implementation"
+  ],
+  "openQuestionsForDirector": [
+    "Confirm passenger (0-D-constrained) coupling over a self-consistent profile-feedback design",
+    "Confirm profile-off modelVersion stays '0.1.0' and schemaVersion stays 1",
+    "Decide whether the Python port must implement profiles and at what parity tolerance",
+    "Choose verification-version bump"
+  ],
+  "decision": "PENDING: draft only, not reviewed and not approved by the Director"
+}

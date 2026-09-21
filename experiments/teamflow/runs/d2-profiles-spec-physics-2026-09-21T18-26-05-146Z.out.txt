@@ -1,0 +1,63 @@
+**PART A is done: I wrote the spec and the draft change request, and the Jev audit flagged two verdicts that stay open.** The 0-D loop stays as-is, and the 1-D layer only reads it, so the profile-off path is untouched by construction.
+
+## Files changed
+Only these two new files, both under `specs/proposals/`:
+- `d2-profiles.md`: about 4,050 words by `wc`, slightly over your 4,000 target, and that count includes tables and code fences.
+- `d2-profiles-change-request-DRAFT.json`: status `DRAFT`, decision `PENDING`, in the M02-OBSERVABILITY-001 format.
+
+The five other modified files in `git status` were already modified before I started.
+
+## Commands run and outputs
+- Read all the files you listed, plus `agents/physics.md`, `physics/engine.ts`, `specs/change-requests/README.md`, `science/model_versions.json` and `agents/permissions.json`.
+- Ran the real engine through `node` type-stripping to get the default shot facts: `V = 23.11 m³`, `L² = 0.7053 m²`, and 0-D τE between 0.12 and 0.30 s.
+- Ran a throwaway Python/numpy prototype of the coupled scheme in the scratchpad, not in the repo, to choose defaults:
+  - Parity with the 0-D totals was about 1e-12 to 7e-11.
+  - With D = 0.1, the default shot completes for χ ≥ 1.25 and fails near t = 1.04 s at χ = 1.0.
+  - At χ = 3 the all-zero corner (nbi = ech = gas = 0) fails at t ≈ 4.9 s; it passes at χ ≥ 5.
+  - At t = 3 s, radiation is 1.04× and Ohmic 1.10× what the 0-D formulas would give with the profiles.
+- Checked the change request parses as JSON and that every assumption ID in it exists in `science/assumptions.yaml`.
+- The prototype is labelled in the spec as a feasibility check only, not evidence.
+
+## Decisions and why
+- **Coordinate:** ρ is a volume-normalised radius, so `V' = 2Vρ` for any shape, using the same `Geometry.volume` as `runShot`. The equilibrium ψ is never used, so the profile grid doesn't depend on whether the equilibrium solver is supported. The gradient metric is a closure, `1/L²` with `L² = V/(2π²R0)`.
+- **Coupling:** the 0-D N/We/Wi loop runs unchanged and is authoritative. Each 0-D source total is distributed by a normalised shape, and the edge flux equals the 0-D loss terms (`N/τP`, `We/τE`, `Wi/τE`). Summing the 1-D equations then reproduces the 0-D Euler update term for term.
+- **Transport:** scalar coefficients, illustrative and uncalibrated: D = 0.1 (0.03–1.0) and χe = χi = 3.0 (1.5–10) m²/s. The heat flux is the n·χ·∇T form, not diffusion of energy density.
+- **Numerics:** 64 cells, backward-Euler transport, explicit left-endpoint sources, same dt as the 0-D run.
+- **Tolerances:** integral parity ≤ 1e-9 per step and ledger closure ≤ 1e-10 per step.
+- **Opt-in:** a separate optional options object. Off means absent, `undefined` or `{enabled:false}`, and gives bit-for-bit 0.1.0 output including `modelVersion: '0.1.0'`. On reports `'0.2.0'` and adds a `profiles` block.
+- **Capability:** `physicsCapabilityChange: true`, with 0.1.0 → 0.2.0. Ten `D2-VER-*` check IDs are defined. SHA-256 hashes are marked pending, not invented.
+
+## Corrections to the research note
+- The gas shape `(1−ρ)^n` is centre-peaked, so I used `ρ^m` instead.
+- I rejected the fixed 100 eV Dirichlet edge as the production default. It would break 0-D parity and act as an energy bath outside the ledger. Dirichlet is kept only as a verification-only option for the analytic fixtures.
+- The research 1e-4 parity tolerance is far too loose here (1e-6 mis-normalisations must be caught).
+- The energy identity in the research note omitted the `3/2 · KEV` factor.
+- The claim that TORAX uses zero-Dirichlet edges was known-of, not read, so the spec doesn't rely on it.
+
+## Jev audit
+One batched `jev eval` call, run twice.
+
+| Question | First run | After fixes | Note |
+|---|---|---|---|
+| honest | 0.96 | 0.96 | |
+| tolerance | 0.96 | 0.95 | |
+| accept | 0.90 | 0.92 | |
+| quality | excellent | excellent | |
+| largest weakness | passenger, no feedback | passenger, no feedback | |
+| coherent | 0.87 | 0.87 | flagged, unchanged |
+| offpath | 0.72 | 0.79 | flagged, improved |
+
+I closed two gaps Jev's `offpath` flag pointed at: an invalid field next to `enabled:false` can no longer throw, and `enabled` must be a boolean. I also changed the eigenmode tolerance to a cell-average L2 comparison. `coherent` didn't move, and I can't say what it objects to. `offpath` can only be settled by implementation and the frozen-fixture regression tests.
+
+## Open concerns for the Director
+1. Confirm the passenger design over a self-consistent profile-feedback design. Profiles cannot change confinement, radiation, heating totals or equilibrium input.
+2. The profile-on run can stop with an explicit "profile constraint violated" error where the 0-D run completes, for example at small χ or in the all-zero corner.
+3. The flat initial profile conflicts with the 0-D τE, so there is an initial transient whose duration is unmeasured.
+4. The NBI/ECH shapes and all coefficients are illustrative. The NBI shape has no primary source. The ECH centre was chosen by Physics, since the research note gave only a width.
+5. The edge-flux closure has no reference-code counterpart.
+6. Decisions needed from the Director:
+   - Confirm `modelVersion` stays `'0.1.0'` and `schemaVersion` stays 1 when profiles are off.
+   - Decide whether the Python port must implement profiles.
+   - Choose the verification-version bump.
+7. The requirements document calls for structured JSON reference artifacts, but the requested `d2-profiles-reference.md` is Markdown. Part B will probably need a JSON sibling, as `pyengine-reference.json` does.
+8. Nothing external was fetched or read, and all verification and validation remain planned.

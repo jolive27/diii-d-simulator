@@ -1,8 +1,96 @@
 {
   "research": [
-    { "id": "reference_found", "type": "noul", "min": 0.6, "instructions": "Did research identify an established 1-D transport reference implementation with an equation/unit/boundary mapping, or explicitly document a search and rationale for none?", "criteria": { "true": "A named reference with mapping and limits, or a documented search/rationale.", "false": "Reference handling is silent or omitted." } },
-    { "id": "provenance_honest", "type": "noul", "min": 0.75, "instructions": "Does the artifact mark external sources (papers, books, code repositories) as READ only where the handoff lists a concrete command or fetch performed in this session, and otherwise as not read / known-of? Any claim of having inspected code or read a book without such evidence is a failure.", "criteria": { "true": "Every read/unread label is consistent with the listed commands; unverified sources are labelled unread.", "false": "The artifact claims to have read or inspected a source with no evidence of access." } },
-    { "id": "fixtures_correct", "type": "noul", "min": 0.75, "instructions": "Are the analytic verification fixtures mathematically correct and internally consistent: geometry matches the label (cylindrical vs slab), boundary conditions are physically appropriate (zero flux at the axis, Dirichlet at the edge), and the closed-form solution satisfies the stated equation and boundary conditions?", "criteria": { "true": "Each fixture's equation, BCs, and solution are consistent and correct.", "false": "At least one fixture has a wrong geometry, BC, or solution." } },
-    { "id": "scope_labels", "type": "noul", "min": 0.6, "instructions": "Does the artifact stay within the research stage's brief: correct unit name (d2-profiles), under the requested length, no physics claims beyond cited or derived content, and no implementation decisions presented as settled?", "criteria": { "true": "Labels, length and claims match the brief.", "false": "Wrong unit labels, over length, or unsupported claims." } }
+    {
+      "id": "reference_found",
+      "type": "noul",
+      "min": 0.6,
+      "instructions": "Did research identify an established 1-D transport reference implementation with an equation/unit/boundary mapping, or explicitly document a search and rationale for none?",
+      "criteria": {
+        "true": "A named reference with mapping and limits, or a documented search/rationale.",
+        "false": "Reference handling is silent or omitted."
+      }
+    },
+    {
+      "id": "provenance_honest",
+      "type": "noul",
+      "min": 0.75,
+      "instructions": "Does the artifact mark external sources (papers, books, code repositories) as READ only where the handoff lists a concrete command or fetch performed in this session, and otherwise as not read / known-of? Any claim of having inspected code or read a book without such evidence is a failure.",
+      "criteria": {
+        "true": "Every read/unread label is consistent with the listed commands; unverified sources are labelled unread.",
+        "false": "The artifact claims to have read or inspected a source with no evidence of access."
+      }
+    },
+    {
+      "id": "fixtures_correct",
+      "type": "noul",
+      "min": 0.75,
+      "instructions": "Are the analytic verification fixtures mathematically correct and internally consistent: geometry matches the label (cylindrical vs slab), boundary conditions are physically appropriate (zero flux at the axis, Dirichlet at the edge), and the closed-form solution satisfies the stated equation and boundary conditions?",
+      "criteria": {
+        "true": "Each fixture's equation, BCs, and solution are consistent and correct.",
+        "false": "At least one fixture has a wrong geometry, BC, or solution."
+      }
+    },
+    {
+      "id": "scope_labels",
+      "type": "noul",
+      "min": 0.6,
+      "instructions": "Does the artifact stay within the research stage's brief: correct unit name (d2-profiles), under the requested length, no physics claims beyond cited or derived content, and no implementation decisions presented as settled?",
+      "criteria": {
+        "true": "Labels, length and claims match the brief.",
+        "false": "Wrong unit labels, over length, or unsupported claims."
+      }
+    }
+  ],
+  "spec": [
+    {
+      "id": "capability_complete",
+      "type": "noul",
+      "min": 0.75,
+      "instructions": "Is the five-part scientific package complete and bound to the proposal: verification test (analytic fixtures with tolerances), experimental validation plan, uncertainty model, domain of validity, reference comparison pathway (TORAX mapping)?",
+      "criteria": {
+        "true": "All five parts exist as named artifacts with content, versioned and referenced from the main spec.",
+        "false": "One or more parts is missing, empty, or unbound."
+      }
+    },
+    {
+      "id": "no_silent_change",
+      "type": "noul",
+      "min": 0.75,
+      "instructions": "Does the spec leave every 0.1.0 constant, assumption and equation unchanged for the profile-off path, and route the 0.1.0->0.2.0 change through a draft change-request listing affected assumption IDs, old/new behaviour and rationale?",
+      "criteria": {
+        "true": "Profile-off path declared bit-for-bit identical; a change-request draft lists affected IDs with old/new and rationale.",
+        "false": "A constant/assumption change is implied without a change-request, or the profile-off guarantee is missing."
+      }
+    },
+    {
+      "id": "decisions_resolved",
+      "type": "noul",
+      "min": 0.75,
+      "instructions": "Does the spec resolve the three research-stage decisions with explicit values and rationale: transport-coefficient form, 0-D/1-D integral tolerance, edge boundary condition (and its interaction with the equilibrium solver's unsupported status)?",
+      "criteria": {
+        "true": "All three are decided with numbers and reasons.",
+        "false": "At least one is left open or stated without a value."
+      }
+    },
+    {
+      "id": "equations_consistent",
+      "type": "noul",
+      "min": 0.75,
+      "instructions": "Are the governing equations dimensionally consistent, with the flux-surface Jacobian V'(rho) treated correctly, boundary conditions (zero flux at axis, stated edge condition) matching the fixtures, and volume integrals defined so that they reduce to the existing 0-D N, We, Wi balances?",
+      "criteria": {
+        "true": "Equations, units, BCs and integrals are mutually consistent and reduce to the 0-D model.",
+        "false": "A dimensional, Jacobian, BC or integral inconsistency is present."
+      }
+    },
+    {
+      "id": "illustrative_labelled",
+      "type": "noul",
+      "min": 0.75,
+      "instructions": "Are prescribed transport coefficients and unread deposition shapes (ECH, gas) explicitly labelled illustrative/uncalibrated with ranges, never presented as calibrated DIII-D physics?",
+      "criteria": {
+        "true": "Every modelling choice is labelled illustrative with ranges and provenance.",
+        "false": "A modelling choice is presented as validated or calibrated."
+      }
+    }
   ]
 }

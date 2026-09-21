@@ -97,14 +97,17 @@ export function dispatch({ unit, stage, role, model, task }) {
     const alias = { 'claude-opus': 'opus', 'claude-sonnet': 'sonnet', 'claude-haiku': 'haiku' }[model] || model;
     const perms = read('agents/permissions.json')[role];
     const preamble = `You are the ${role} development agent. Read AGENTS.md and agents/${role}.md first. Work only within allowed output paths: ${JSON.stringify(perms)}. Never accept milestones, alter permissions, or edit validation evidence. Return a handoff: files changed, commands run with outputs, limits, open concerns.`;
+    // Long-form stages (specs, implementation) need more than the old 10-minute cap; exit 143 = killed by this timeout.
+    const timeout = Number(process.env.TEAMFLOW_LANE_TIMEOUT_MS || 1_800_000);
     const r = spawnSync('claude', ['-p', `${preamble}\n\nTask: ${task}`, '--model', alias, '--permission-mode', 'acceptEdits', '--output-format', 'text'], {
-      cwd: root, encoding: 'utf8', timeout: 600_000, maxBuffer: 64 * 1024 * 1024,
+      cwd: root, encoding: 'utf8', timeout, maxBuffer: 64 * 1024 * 1024,
     });
+    const killed = r.signal === 'SIGTERM' || r.status === 143;
     return {
       ok: r.status === 0,
       manual: false,
       output: (r.stdout || '').slice(0, 50_000),
-      error: r.status !== 0 ? `claude exit ${r.status}: ${(r.stderr || '').slice(0, 1000)}` : undefined,
+      error: r.status !== 0 ? (killed ? `claude lane killed after ${timeout / 60000} min (TEAMFLOW_LANE_TIMEOUT_MS); split the task or raise the limit` : `claude exit ${r.status}: ${(r.stderr || '').slice(0, 1000)}`) : undefined,
       backend,
       model,
     };
