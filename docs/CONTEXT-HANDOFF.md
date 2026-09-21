@@ -1,4 +1,4 @@
-# CONTEXT HANDOFF — as of 2026-09-21
+# CONTEXT HANDOFF — as of 2026-09-21 (evening)
 
 Say: "Read docs/CONTEXT-HANDOFF.md and restore my working state."
 
@@ -27,9 +27,19 @@ Single source `~/.config/jev/`:
 - `eval <unit> all` = ONE Jev call over ONE state. `gate` enforces order, scopes, audits, model independence. `accept` marks gate+accept done, signs as `claude-opus`.
 - Fixed 2026-09-21: `status` crash on `*.rubric.json` sidecars; `evals` crash on FAIL rows; choice answers (`{choice:"opt",confidence}`) now parsed in `jev.mjs`. Selftest 8/8.
 
+## ACTIVE UNIT — d2-profiles (M03 D2, 1-D radial transport + profile evolution)
+Resume with: `node tools/teamflow/teamflow.mjs status d2-profiles`. Next stage: **design-review** (owner director, role reviewer=claude-haiku).
+- intake DONE/PASS; research DONE/PASS (haiku, 5 passes, rubric: provenance/fixtures/scope); spec DONE/PASS (sonnet Part A + Part B + fix-up; 0.94/0.97/0.84/0.85/0.97).
+- Artifacts: `specs/proposals/d2-profiles.md` (+ -verification, -validation-plan, -uncertainty, -validity, -reference .md, -reference.json, -change-request-DRAFT.json).
+- Director decisions DD-1..DD-11 in `experiments/records/d2-profiles-design-decisions.json` — binding (passenger design; off-path bit-for-bit 0.1.0; TS only, Python parity deferred; AC-5 1e-3 + rate check; physics 0.2.0 / verification 0.3.0; edge-flux closure default).
+- Per-unit Jev rubric: `experiments/teamflow/units/d2-profiles.rubric.json` (research + spec). Add a design-review rubric before that stage (criteria_quantified + change-request approval readiness + implementability).
+- Design-review to-do: Director approves/amends the change-request DRAFT (moves to specs/change-requests/ as APPROVED with hash binding), haiku reviewer checks spec vs rubric, then `complete` + `eval`. Then implement on claude-sonnet (physics/, tests/, docs/ only; python untouched per DD-3), self-review haiku, validate claude-opus.
+- Lane practice that worked: bounded brief naming exact files; require the lane to self-verify with the jev CLI before handoff; Director reads only what Jev flags; rubric questions written for the failure modes seen (provenance honesty was the big one).
+
 ## Units
 - **c1-sweep-harness** (M03 C1, Python engine benchmark + sweep harness) — ACCEPTED 2026-09-19. Artifacts: `python/d3gate/sweep.py`, `specs/proposals/c1-sweep-harness.md`, `validation/evidence/c1-sweep-harness-falsification.json`.
 - **ide-workflow** — CLOSED 2026-09-21 (Copilot/Cline integration no longer needed).
+- **dryrun-lane** — throwaway, deleted after proving live dispatch.
 - pyengine (`python/d3gate/`) accepted baseline; `dash/` retired — do not resurrect web dashboards or put LLM orchestration in the web app.
 
 ## Governance (AGENTS.md)
@@ -39,7 +49,14 @@ Director assigns/approves/accepts only; workers never sign off. No silent consta
 - Hosted simulator uses `@openai/sites-vite-plugin` + `.openai/hosting.json` (OpenAI Sites). Without an OpenAI account the hosted copy likely cannot be updated; local app unaffected. Separate decision pending.
 - Uncommitted work: everything from the 2026-09-18/19/21 sessions. Commit in reviewed chunks.
 
+## Tooling facts learned today
+- Lane timeout: `TEAMFLOW_LANE_TIMEOUT_MS` (default 30 min); exit 143 = killed by it — split big tasks (Part A/Part B worked).
+- `assign`: flags may go anywhere; run transcripts are timestamped under `experiments/teamflow/runs/`.
+- Jev size limit ~30–40k input tokens (`400 max_tokens_exceeded`); TeamFlow eval and `jev review` halve-and-retry automatically. `jev review --require approve && git commit` blocks commits on revise/reject.
+- Jev spend is NOT to be minimised (user decision): lanes re-checking after each edit is wanted.
+- Bash tool 10-min cap: run long lane dispatches with run_in_background.
+
 ## Next steps
-1. Commit the governance/tooling changes (after a `jev review`).
-2. Next M03 unit: `node tools/teamflow/teamflow.mjs init <unit> --title ... --kind physics|engineering`, then `assign` per stage.
-3. Decide the hosting replacement for the OpenAI Sites deployment.
+1. Design-review stage for d2-profiles (see ACTIVE UNIT).
+2. Implement on sonnet → self-review haiku → validate opus → `eval d2-profiles all` → gate → accept.
+3. Parked: hosting replacement for the OpenAI Sites deployment; Python profile parity unit after D2.
