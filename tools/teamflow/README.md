@@ -4,10 +4,9 @@ Director-operated engine that runs the DIII-D governance contract as an
 engineering team: **Director (big-pickle) brainstorms and signs off; other models
 act as agents/subagents; Jev is the evaluator/auditor.**
 
-Overrides nothing in `AGENTS.md` — it *executes* the contract. Legacy Codex rail
-(`tools/dispatch-agent.mjs`) is dormant: Codex/gpt-6-astra is gone, so formal role
-seats now run on IDE-locked models (Cline/DeepSeek, Copilot Claude/GPT) with brief
-handoffs. All agent lanes run via Claude Code (subscription); no local Ollama.
+Overrides nothing in `AGENTS.md`, it executes the contract. The first-phase
+dispatcher (`tools/dispatch-agent.mjs`) is retired and kept only for its `allowed()`
+helper. All agent lanes run via Claude Code (subscription); no local Ollama.
 
 ## Roles → models
 
@@ -77,7 +76,7 @@ node tools/teamflow.mjs selftest                                # offline, 8 che
   eval templates with per-question `min` thresholds.
 - `jev.mjs` — batched client, key resolution, ledger.
 - `backends.mjs` — `claude` / `opencode` / `manual` executors; brief generation;
-  command detection. `codex` returns a dormant error.
+  command detection. The retired `codex` backend name returns an error.
 - `state.mjs` — unit state in `experiments/teamflow/units/`, decisions, ledger.
 - `gates.mjs` — digest, evidence-embedded batched audits, compaction audit,
   structural `gateCheck`.
@@ -91,5 +90,5 @@ node tools/teamflow.mjs selftest                                # offline, 8 che
 - Out-of-lane file writes are rejected mechanically; independence is enforced for
   validation.
 - Evidence-bound reports and freshness checks remain the baseline; old
-  `workflow.mjs` gate artifacts that hard-require retired Codex identities are
-  read-only.
+  `workflow.mjs` gate artifacts that hard-require retired first-phase agent identities
+  are read-only.

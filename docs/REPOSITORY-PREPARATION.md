@@ -25,15 +25,15 @@ Ignore rules do not remove previously committed material and are not a credentia
 
 A local read-only review covered tracked/current candidate files and reachable Git history. Secret-pattern scanning found no likely embedded API tokens, private keys or password assignments; this is a bounded review, not a guarantee that all secrets are detectable. No private measured DIII-D shot dataset was identified. The included numerical fixtures are synthetic model outputs with recorded provenance.
 
-The following existing metadata remains intentionally preserved and needs a privacy decision before publication:
+What was done before publishing, and what was deliberately left alone:
 
-- `Launch Simulator.command` contains the original user's absolute bundled-runtime path.
-- `docs/PROJECT-CONTEXT.md` contains a personal source path and conversation/task identifiers; other development context records retain conversation/agent identifiers.
-- Hosted shortcut files contain the existing private simulator address.
-- `.openai/hosting.json` identifies the existing Sites project. It is not a credential and participates in validation fingerprints.
-- Commit author metadata and historical versions may contain personal names or addresses. Scrubbing only current files would not scrub history.
+- Personal absolute paths in tracked files were replaced with `~`. The Desktop launcher and the hosted-site shortcuts were removed; `pnpm dev` is the portable route.
+- Agent lane transcripts under `experiments/teamflow/runs/` are ignored going forward. The durable audit trail is `validation/` and `experiments/records/`.
+- First-phase agent settings (`.codex/`) were removed from the tree. Records and evidence that name the models used in that phase are provenance and were not edited.
+- History was not rewritten. The acceptance records are bound to commit hashes and source fingerprints, and a rewrite would invalidate them. Commit metadata and old versions may still contain a personal name or path; that is a known and accepted trade-off.
+- The hosting configuration (`.openai/hosting.json` and the Sites Vite plugin) is handled on its own branch, because removing it changes the build and needs a local `pnpm dev` check first. It participates in the infrastructure validation fingerprint, so removing it is expected to show that historical report as stale.
 
-These items are not API keys or measured experimental data. They have not been removed through a destructive history rewrite. Before a public push, explicitly choose whether to retain this provenance or prepare a separately reviewed sanitized history/export. Never silently remove `.openai/hosting.json`, change scientific artifacts or replace evidence hashes to make a gate pass.
+Never change scientific artifacts or replace evidence hashes to make a gate pass.
 
 ## Licensing decision
 
