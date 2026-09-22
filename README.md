@@ -10,7 +10,7 @@ Milestone 1 is the working simulator, with a set of frozen regression cases so l
 
 Milestone 2 added the numerical verification: an analytic Solov'ev benchmark for the equilibrium solver, independent particle and energy ledgers with negative controls, time step and grid convergence studies, and the agent workflow described below. The independent reports and the acceptance decision are in `validation/`, and `MILESTONE-02-RESULTS.md` walks through the results and what they do and do not show.
 
-Physics model 0.1.0, verification infrastructure 0.2.0 (see `science/model_versions.json`). Milestone 3 has not been implemented in this repo.
+Milestone 3 is in progress. So far it has a Python port of the engine (`python/d3gate/`) that reproduces the TypeScript engine bit for bit, a sweep and regression harness on top of it, and a 1-D radial profile layer (D2) that evolves density and electron and ion temperatures on a volume-normalized radius. The profile layer rides along with the 0-D balances and never feeds back into them, so with profiles off the output is unchanged from 0.1.0. D2 passed independent validation and was accepted on 2026-09-21; the release step that records it in the science registries is still pending, so `science/model_versions.json` still reads physics 0.1.0 and verification 0.2.0 until that lands.
 
 One thing to know about the acceptance records: they are tied to hashes of the source and evidence. A saved PASS is a record of what passed at that commit, not a guarantee about the current checkout. Run the gate commands below to check the state you actually have.
 
@@ -42,7 +42,8 @@ node tools/workflow.mjs gate m02
 ```text
 app/                       Simulator UI and validation dashboard
 components/, hooks/, lib/  Shared UI components and helpers
-physics/                   Engine, deterministic API, numerical benchmarks
+physics/                   TypeScript engine, deterministic API, numerical benchmarks
+python/                    Python engine port (d3gate), sweep harness and tests
 agents/                    Persistent roles, permissions and workflow
 science/                   Assumptions, constants, equations, model and validation registries
 specs/                     Approved specs, proposals and physics change requests
@@ -53,9 +54,10 @@ experiments/records/       Assignments, audit trail and execution records
 experiments/runs/          Local shot exports (new runs are gitignored)
 examples/                  A curated synthetic baseline example
 public/                    Static assets and saved dashboard data
-tools/                     Agent dispatch, gates, verification and export commands
+tools/                     Gates, verification and export commands; tools/teamflow is the agent workflow runner
+vscode-exts/               A small VS Code extension that gates commits on the auditor
 docs/                      Architecture, physics, API, history and repo notes
-.codex/                    Project agent settings
+dash/                      Retired local dashboard, kept for history
 .openai/hosting.json       Sites project linkage, not an API credential
 ```
 
@@ -63,13 +65,13 @@ Some of these paths exist to keep imports, launch shortcuts, and the source fing
 
 ## The physics
 
-The engine in `physics/engine.ts` evolves a volume-averaged particle inventory and separate electron and ion thermal energies, driven by prescribed heating, fueling, and current, with simple transport closures. A finite-difference Grad-Shafranov solve gives a fixed-boundary equilibrium, coupled one way from the thermal pressure. There is no radial transport, no free-boundary or coil solve, no turbulence, no MHD stability, no disruptions, and no fusion yield.
+The engine in `physics/engine.ts` evolves a volume-averaged particle inventory and separate electron and ion thermal energies, driven by prescribed heating, fueling, and current, with simple transport closures. A finite-difference Grad-Shafranov solve gives a fixed-boundary equilibrium, coupled one way from the thermal pressure. The optional D2 layer adds 1-D diffusion of density and the two temperatures with uniform transport coefficients, constrained to match the 0-D totals. There is still no free-boundary or coil solve, no turbulence, no MHD stability, no disruptions, and no fusion yield, and none of it is calibrated to DIII-D data.
 
 `physics/api.ts` exposes `run_shot`, `run_benchmark`, `parameter_sweep`, `get_metrics`, and `export_results`. None of them touch the browser, network, or filesystem. The details are in `docs/API.md`, `docs/PHYSICS.md`, `docs/ARCHITECTURE.md`, and `science/equations.md`.
 
 ## How development works
 
-I built this with AI coding agents, and the main lesson was that agent-written code will happily grade its own homework. So the workflow splits the roles and does not let any one of them sign off on itself. Read `AGENTS.md` and `agents/README.md` before changing anything.
+I built this with AI coding agents, and the main lesson was that agent-written code will happily grade its own homework. So the workflow splits the roles and does not let any one of them sign off on itself, and a separate auditor (Jev, a typed evaluation API from outside the model family doing the work) grades each stage's evidence against a rubric before it can advance. The runner for all of this is `tools/teamflow/`. Read `AGENTS.md` and `agents/README.md` before changing anything.
 
 1. The Director assigns scope and records the task in `experiments/records`.
 2. Physics writes the governing equations, assumptions, units, boundaries, and quantitative acceptance criteria. It cannot change production code.
