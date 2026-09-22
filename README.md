@@ -71,7 +71,7 @@ The engine in `physics/engine.ts` evolves a volume-averaged particle inventory a
 
 ## How development works
 
-I built this with AI coding agents, and the main lesson was that agent-written code will happily grade its own homework. So the workflow splits the roles and does not let any one of them sign off on itself, and a separate auditor (Jev, a typed evaluation API from outside the model family doing the work) grades each stage's evidence against a rubric before it can advance. The runner for all of this is `tools/teamflow/`. Read `AGENTS.md` and `agents/README.md` before changing anything.
+I built this with AI coding agents, and the main lesson was that agent-written code will happily grade its own homework. So the workflow splits the roles and does not let any one of them sign off on itself, and a separate auditor (Jev, a typed evaluation API from outside the model family doing the work) grades each stage's evidence against a rubric before I can sign off to advance. The runner for all of this is `tools/teamflow/`. Read `AGENTS.md` and `agents/README.md` before changing anything.
 
 1. The Director assigns scope and records the task in `experiments/records`.
 2. Physics writes the governing equations, assumptions, units, boundaries, and quantitative acceptance criteria. It cannot change production code.
