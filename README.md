@@ -90,4 +90,4 @@ The synthetic fixtures and the compact review evidence are tracked on purpose. O
 
 ## License
 
-Not decided yet. The original code is mine, but the UI components and dependencies came with their own notices that need reviewing before I put a blanket license on the repo. No rights to DIII-D experimental data are implied. See `docs/REPOSITORY-PREPARATION.md`.
+MIT, see `LICENSE`. The UI components and dependencies keep their own licenses, listed in `THIRD_PARTY_NOTICES.md`. No rights to DIII-D experimental data are implied and the DIII-D name does not imply endorsement.

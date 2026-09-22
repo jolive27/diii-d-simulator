@@ -35,9 +35,9 @@ What was done before publishing, and what was deliberately left alone:
 
 Never change scientific artifacts or replace evidence hashes to make a gate pass.
 
-## Licensing decision
+## License
 
-No repository-wide license was present or added. Confirm ownership/permission for the original code and review inherited Sites starter/UI components, assets and dependency notices before selecting a license. Dependency package licenses do not automatically license the whole project. Preserve required third-party notices and make any required attribution explicit. No permission to redistribute DIII-D experimental data is assumed, and the DIII-D name does not imply endorsement.
+MIT for my code (`LICENSE`), with inherited component and dependency licenses listed in `THIRD_PARTY_NOTICES.md`. The notices table was written from the package list, not from a legal review, so check it if the dependency set changes. No permission to redistribute DIII-D experimental data is assumed, and the DIII-D name does not imply endorsement.
 
 ## Validation and next GitHub step
 
