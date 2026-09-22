@@ -11,7 +11,7 @@ Follow-up: Save the simulator files in a folder on the user's Desktop.
 
 Interpretation implemented: a browser-based educational reduced model with explicitly tracked particle and thermal-energy inventories and fixed-boundary force-balance equilibrium, not a research-grade digital twin. No private shot data or facility controls have been accessed. No empirical shot validation is claimed.
 
-Source location: `/Users/johnoliver/Desktop/DIII-D-Simulator`.
+Source location: `~/Desktop/DIII-D-Simulator`.
 The project-level Codex configuration requests `gpt-6-astra`, `medium` for future sessions. The running task's setting could not be changed by the available tools.
 
 Current scope includes formed-plasma current ramp, flat-top heating, and ramp-down to a nonzero current. It does not include breakdown, extinction, coil circuits, divertor geometry, current diffusion, or plasma stability.

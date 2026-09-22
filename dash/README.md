@@ -16,7 +16,7 @@ This Streamlit experiment is retired. The workspace now uses opencode-native sur
 ## Uninstall (optional)
 
 ```bash
-cd /Users/johnoliver/Documents/Default Project/diii-d-simulator
+cd ~/Documents/Default Project/diii-d-simulator
 rm -rf .venv-dash                       # python env used to run it
 # keep config.json / ledgers? they also live at ~/.local/share/opencode/*.jsonl
 ```

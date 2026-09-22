@@ -112,3 +112,6 @@ yarn-error.log*
 tools/teamflow/.mmd-cache/
 vscode-exts/**/out/
 *.vsix
+
+# agent lane transcripts and dispatch logs (durable evidence lives in validation/ and experiments/records/)
+experiments/teamflow/runs/

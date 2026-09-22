@@ -1,2 +1,2 @@
-dispatched to claude/claude-sonnet; output saved to /Users/johnoliver/Documents/Default Project/diii-d-simulator/experiments/teamflow/runs/d2-profiles-implement-software-2026-09-21T20-51-15-362Z.out.txt
+dispatched to claude/claude-sonnet; output saved to ~/Documents/Default Project/diii-d-simulator/experiments/teamflow/runs/d2-profiles-implement-software-2026-09-21T20-51-15-362Z.out.txt
 Review then: node tools/teamflow.mjs complete d2-profiles implement --files ... --report "...";  then: node tools/teamflow.mjs eval d2-profiles implement

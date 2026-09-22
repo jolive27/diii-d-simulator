@@ -35,7 +35,7 @@ node tools/milestone-status.mjs
 node tools/workflow.mjs gate m02
 ```
 
-`pnpm start` serves the built site through local Wrangler. `Launch Simulator.command` is a launcher for my own Mac and has a machine-specific path in it, so the commands above are the portable way to run it. Some of the fine-grid checks are sensitive to floating-point cancellation and can differ slightly between runtimes. If you see a discrepancy, report it rather than loosening the tolerance.
+`pnpm start` serves the built site through local Wrangler. Some of the fine-grid checks are sensitive to floating-point cancellation and can differ slightly between runtimes. If you see a discrepancy, report it rather than loosening the tolerance.
 
 ## What is in the repo
 
