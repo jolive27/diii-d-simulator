@@ -58,7 +58,6 @@ tools/                     Gates, verification and export commands; tools/teamfl
 vscode-exts/               A small VS Code extension that gates commits on the auditor
 docs/                      Architecture, physics, API, history and repo notes
 dash/                      Retired local dashboard, kept for history
-.openai/hosting.json       Sites project linkage, not an API credential
 ```
 
 Some of these paths exist to keep imports, launch shortcuts, and the source fingerprints in the acceptance records stable, so please do not move them casually. `START-HERE.md` and `Project Guide.html` are the plain-language map.

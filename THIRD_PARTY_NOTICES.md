@@ -30,7 +30,6 @@ Installed via pnpm; each package ships its own license file under `node_modules/
 | tailwindcss, @tailwindcss/postcss | MIT |
 | @cloudflare/vite-plugin, @cloudflare/workers-types, wrangler | MIT or Apache-2.0 |
 | oxlint, oxfmt, oxlint-tsgolint | MIT |
-| @openai/sites-vite-plugin | see package (hosting integration, slated for removal) |
 
 ## Python
 
