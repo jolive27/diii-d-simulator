@@ -1,26 +1,31 @@
 # DIII-D Virtual Shot
 
-An independent, reduced educational tokamak simulator inspired by DIII-D. Explore a five-second formed-plasma shot using plasma current, toroidal field, neutral-beam heating, electron-cyclotron heating, fueling and shape controls. The browser computes synthetic temperature/density histories, thermal-energy and particle balances, and fixed-boundary equilibrium; playback and JSON export are included.
+A small, educational tokamak simulator loosely modeled on DIII-D. You set the plasma current, toroidal field, neutral beam and ECH heating, gas fueling, and plasma shape, and it runs a 5 second shot in the browser. It tracks the particle inventory, the electron and ion thermal energies, and solves a fixed-boundary equilibrium, then lets you play the shot back and export the results as JSON.
 
-**This is not an official DIII-D product. It is not experimentally validated, calibrated to facility shots, or suitable for facility operation predictions, shot planning, safety decisions, disruption prediction or fusion-gain claims.** Numerical verification establishes limited properties of the implemented equations, not their predictive accuracy in real plasmas.
+This is not an official DIII-D tool and it has not been checked against real shot data. It should not be used for shot planning, operations, safety decisions, disruption prediction, or any fusion gain claims. The numerical checks in this repo show that the equations are being solved correctly, not that they describe a real plasma.
 
-## Current status
+## Where it stands
 
-- Milestone 01: preserved reduced shot simulator and frozen synthetic regression cases.
-- Milestone 02: numerical verification and development-agent infrastructure are present. Recorded independent reports and Director decisions are in `validation/`; results and limitations are described in `MILESTONE-02-RESULTS.md`.
-- Physics model: **0.1.0**. Verification infrastructure: **0.2.0** (see `science/model_versions.json`). Milestone 03 has not been implemented.
-- Acceptance is tied to source/evidence hashes. A saved PASS or dashboard is historical evidence, not proof that the latest checkout passes. Run the status/gate commands below; stale evidence requires fresh independent validation, never a manually substituted hash.
+Milestone 1 is the working simulator, with a set of frozen regression cases so later changes can be compared against it.
 
-## Run locally
+Milestone 2 added the numerical verification: an analytic Solov'ev benchmark for the equilibrium solver, independent particle and energy ledgers with negative controls, time step and grid convergence studies, and the agent workflow described below. The independent reports and the acceptance decision are in `validation/`, and `MILESTONE-02-RESULTS.md` walks through the results and what they do and do not show.
 
-Requirements: Git, Node.js **22.13 or newer**, and pnpm. Retain the committed `pnpm-lock.yaml` for reproducible dependency resolution.
+Physics model 0.1.0, verification infrastructure 0.2.0 (see `science/model_versions.json`). Milestone 3 has not been implemented in this repo.
+
+One thing to know about the acceptance records: they are tied to hashes of the source and evidence. A saved PASS is a record of what passed at that commit, not a guarantee about the current checkout. Run the gate commands below to check the state you actually have.
+
+## Running it
+
+You need Git, Node 22.13 or newer, and pnpm. Keep the committed `pnpm-lock.yaml`.
 
 ```sh
 pnpm install --frozen-lockfile
 pnpm dev
 ```
 
-Open the local URL printed by the server. The validation dashboard is at `/validation`. Stop the server with Ctrl+C. No AI key, private experimental data or facility access is needed to run the simulator. The included `Launch Simulator.command` is a convenience launcher for the original Mac installation; its bundled-runtime path is machine-specific. The commands above are the portable route.
+Open the URL it prints. The validation dashboard is at `/validation`. No API keys, private data, or facility access are needed.
+
+To run the checks:
 
 ```sh
 pnpm test
@@ -30,59 +35,59 @@ node tools/milestone-status.mjs
 node tools/workflow.mjs gate m02
 ```
 
-`pnpm start` serves the completed build through local Wrangler. A numerical test or successful build does not replace independent validation or Director acceptance. The historical infrastructure report may have a stale source hash after M02 changes; inspect the current M02 gate separately. Some fine-grid checks are sensitive to floating-point cancellation across runtimes; preserve approved tolerances and report discrepancies.
+`pnpm start` serves the built site through local Wrangler. `Launch Simulator.command` is a launcher for my own Mac and has a machine-specific path in it, so the commands above are the portable way to run it. Some of the fine-grid checks are sensitive to floating-point cancellation and can differ slightly between runtimes. If you see a discrepancy, report it rather than loosening the tolerance.
 
-## Repository map
+## What is in the repo
 
 ```text
 app/                       Simulator UI and validation dashboard
 components/, hooks/, lib/  Shared UI components and helpers
 physics/                   Engine, deterministic API, numerical benchmarks
 agents/                    Persistent roles, permissions and workflow
-science/                   Assumptions, constants, equations, model/validation registries
+science/                   Assumptions, constants, equations, model and validation registries
 specs/                     Approved specs, proposals and physics change requests
 tests/                     API, physics, regression and policy checks
 validation/                Independent executors, evidence, reports and decisions
-experiments/baseline/       Frozen synthetic M01 fixtures and provenance
-experiments/records/        Persistent assignments, audit trail and execution records
-experiments/runs/           Local shot exports (new runs ignored)
-examples/                  Curated synthetic baseline example
-public/                    Static assets and saved validation dashboard data
+experiments/baseline/      Frozen synthetic M01 fixtures and provenance
+experiments/records/       Assignments, audit trail and execution records
+experiments/runs/          Local shot exports (new runs are gitignored)
+examples/                  A curated synthetic baseline example
+public/                    Static assets and saved dashboard data
 tools/                     Agent dispatch, gates, verification and export commands
-docs/                      Architecture, physics, API, history and repository guidance
+docs/                      Architecture, physics, API, history and repo notes
 .codex/                    Project agent settings
-.openai/hosting.json        Existing Sites project linkage; not an API credential
-package.json               Runtime requirements, commands and dependencies
-pnpm-lock.yaml             Pinned dependency resolution
+.openai/hosting.json       Sites project linkage, not an API credential
 ```
 
-The existing paths are retained to preserve imports, launch shortcuts, scientific provenance and machine-checkable source fingerprints. `START-HERE.md`, `Project Guide.html` and the Desktop launch shortcuts remain available.
+Some of these paths exist to keep imports, launch shortcuts, and the source fingerprints in the acceptance records stable, so please do not move them casually. `START-HERE.md` and `Project Guide.html` are the plain-language map.
 
-## Architecture and physics scope
+## The physics
 
-The TypeScript engine in `physics/engine.ts` evolves volume-averaged particle inventory and separate electron/ion thermal energies using prescribed heating, fueling, current and illustrative transport closures. A finite-difference Grad–Shafranov calculation supplies a restricted fixed-boundary equilibrium with one-way coupling from thermal pressure. There is no radial transport evolution, free-boundary coil solve, turbulence, MHD stability, disruption or fusion-yield model.
+The engine in `physics/engine.ts` evolves a volume-averaged particle inventory and separate electron and ion thermal energies, driven by prescribed heating, fueling, and current, with simple transport closures. A finite-difference Grad-Shafranov solve gives a fixed-boundary equilibrium, coupled one way from the thermal pressure. There is no radial transport, no free-boundary or coil solve, no turbulence, no MHD stability, no disruptions, and no fusion yield.
 
-`physics/api.ts` exposes `run_shot`, `run_benchmark`, `parameter_sweep`, `get_metrics` and `export_results`, without browser, network or filesystem side effects. See [API](docs/API.md), [physics](docs/PHYSICS.md), [architecture](docs/ARCHITECTURE.md) and [equations](science/equations.md). Agent orchestration belongs to development tooling; no agent is embedded as an LLM feature in the simulator UI.
+`physics/api.ts` exposes `run_shot`, `run_benchmark`, `parameter_sweep`, `get_metrics`, and `export_results`. None of them touch the browser, network, or filesystem. The details are in `docs/API.md`, `docs/PHYSICS.md`, `docs/ARCHITECTURE.md`, and `science/equations.md`.
 
-## Agent development and acceptance
+## How development works
 
-Read `AGENTS.md` and [agents/README.md](agents/README.md) before changes. Use distinct real agent sessions with durable repository artifacts:
+I built this with AI coding agents, and the main lesson was that agent-written code will happily grade its own homework. So the workflow splits the roles and does not let any one of them sign off on itself. Read `AGENTS.md` and `agents/README.md` before changing anything.
 
-1. Director assigns scope and records tasks in `experiments/records`.
-2. Physics proposes governing equations, assumptions, units, boundaries and quantitative acceptance criteria; it cannot change production code.
-3. Director approves the specification and any explicit physics change request.
-4. Software implements the approved specification and tests without silently changing assumptions.
-5. Independent Validation executes checks against frozen source, records its own identity and evidence hashes, and cannot repair production physics or approve itself.
-6. Only the Director runs acceptance after all required gates pass. FAIL, INCONCLUSIVE, missing evidence and stale fingerprints block acceptance.
+1. The Director assigns scope and records the task in `experiments/records`.
+2. Physics writes the governing equations, assumptions, units, boundaries, and quantitative acceptance criteria. It cannot change production code.
+3. The Director approves the spec and any explicit physics change request.
+4. Software implements the approved spec and tests without quietly changing assumptions.
+5. Independent Validation runs the checks against frozen source and records its own evidence hashes. It cannot fix production physics or approve its own work.
+6. Only the Director runs acceptance, and only after every required gate passes. A FAIL, an INCONCLUSIVE, missing evidence, or a stale fingerprint blocks it.
 
-New physics must include a verification test, experimental validation plan, uncertainty model, domain of validity and comparison pathway to an established reference implementation where available. See `science/NEW-PHYSICS-REQUIREMENTS.md`; plans must never be described as completed experimental validation.
+New physics has to come with a verification test, an experimental validation plan, an uncertainty model, a domain of validity, and a comparison path to an established reference code where one exists. See `science/NEW-PHYSICS-REQUIREMENTS.md`. A plan is a plan, not a completed validation, and the docs should never say otherwise.
 
-Native agents share a filesystem. Role instructions and hash gates are not OS security isolation or authentication against a hostile same-user process. The alternate dispatcher uses separate working copies and rejects out-of-role changes before Director review/import. Role files persist; they do not create always-on agents. Do not weaken permission boundaries or acceptance checks to facilitate a commit.
+The agents share a filesystem, so the role files and hash gates are a workflow discipline, not a security boundary against a process that wants to cheat. Do not weaken the permission checks or the acceptance gates to get a commit through.
 
-## Verification, data and licensing
+## Verification is not validation
 
-Retain analytic benchmarks, exact M01 regression fixtures, independent particle/energy ledgers, negative controls, grid/time-step studies and their approved tolerances. Verification asks whether the equations were solved correctly; experimental validation asks whether those equations reproduce measurements. Neither small residuals nor agreement with a synthetic baseline proves experimental accuracy. Document held-out observables, measurement uncertainty and permitted data access before future experimental comparisons.
+Verification asks whether the code solves the equations it claims to solve. Validation asks whether those equations match measurements. Everything in this repo is the first kind. Small residuals and agreement with a synthetic baseline say nothing about experimental accuracy, and any future comparison to real data needs its held-out observables, measurement uncertainties, and data permissions written down first.
 
-Synthetic fixtures and compact review evidence are intentionally tracked. One existing recorded run remains tracked to preserve its audit links; future disposable shot outputs, dependencies, builds, caches, secrets and private/restricted/raw experimental data are ignored. `.gitignore` cannot detect arbitrary secrets or large files and does not remove anything already in Git history. Review changes before staging and before publication.
+The synthetic fixtures and the compact review evidence are tracked on purpose. One recorded run is kept so its audit links stay valid. Disposable shot outputs, dependencies, builds, caches, secrets, and any raw or restricted experimental data are gitignored. `.gitignore` cannot find every secret or large file, and it does not remove anything already in history, so look over your changes before staging.
 
-**License decision pending.** No blanket license has been added: original-code ownership and inherited Sites/UI component and dependency notices need review first. No rights to DIII-D experimental data are implied. See [repository preparation and publication checklist](docs/REPOSITORY-PREPARATION.md). Nothing in this preparation publishes or pushes the project.
+## License
+
+Not decided yet. The original code is mine, but the UI components and dependencies came with their own notices that need reviewing before I put a blanket license on the repo. No rights to DIII-D experimental data are implied. See `docs/REPOSITORY-PREPARATION.md`.
