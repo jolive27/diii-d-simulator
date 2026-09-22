@@ -1,9 +1,11 @@
-# Continuation context
+# Development context
 
-Original discussion: Build DIII D Simulator, conversation 6a9da2f5-cf1c-83ea-84bd-46951db6e158. M01 task: DIII-D Simulator, 01a077ca-0701-7433-8f56-d1c776769742. Current task: Build DIII-D agent infrastructure.
+The instructions I set going into Milestone 2, kept here because later decisions refer back to them:
 
-User instructions: preserve completed M01; build real separate persistent development roles first, then M02 via that workflow. Physics specifies, Software implements approved specs, Validation independently tests without production editing; only Director accepts. Artifacts, APIs, registries, audit and machine-checkable gates persist. Agent orchestration stays outside the website UI. No M03 until M02 accepted, and M03 is not authorized in this implementation phase.
+Preserve the completed Milestone 1. Build real, separate, persistent development roles first, then do M02 through that workflow. Physics specifies, Software implements approved specs, Validation tests independently without touching production code, and only the Director accepts. Artifacts, APIs, registries, the audit trail, and the machine-checkable gates all persist in the repo. Agent orchestration stays out of the website. No M03 work until M02 is accepted.
 
-M02 scope: finite-difference Grad–Shafranov grid convergence; suitable analytic Solov'ev benchmark; automated particle, electron and ion conservation and regression checks; dedicated evidence dashboard. Preserve educational limitations and explicitly trace any physics assumption changes.
+The M02 scope was: finite-difference Grad-Shafranov grid convergence, a Solov'ev analytic benchmark, automated particle, electron, and ion conservation and regression checks, and a dedicated evidence dashboard. Keep the educational limitations explicit and trace any change to a physics assumption.
 
-User additionally requested all files on Desktop with readable pathways, and advice before High reasoning becomes worthwhile. Current explicit specialist settings: GPT-6 Astra / Medium. Project Guide.html and START-HERE.md provide the Desktop map. Independent role execution uses native collaboration, not sequential role-play in one prompt.
+I also asked for readable pathways through the repo (`START-HERE.md`, `Project Guide.html`) and for advice on when a stronger reasoning setting is worth it, which is in `MILESTONE-02-RESULTS.md`. Independent role execution means real separate agent sessions, not one model playing several roles in one prompt.
+
+For the current state, read `docs/CONTEXT-HANDOFF.md`.

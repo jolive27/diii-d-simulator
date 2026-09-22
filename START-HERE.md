@@ -1,47 +1,53 @@
 # Start here
 
-Your simulator project is saved in the **DIII-D-Simulator** folder on your Desktop.
+This is the quickest way to get the simulator running and find your way around the repo.
 
-Use **Launch Simulator.command** for the current Desktop development version. **Open Hosted Simulator.webloc** opens the separately published version, which may be older; this phase updates your local Desktop project.
+## Run it
 
-1. Open `Launch Simulator.command` to start the local simulator. Keep the Terminal window open.
-2. Use the sliders to set current, field, heating, fueling, elongation, and triangularity.
-3. Click **Run virtual shot**. Changed sliders do not affect an already completed shot until you run again.
-4. Move the time slider or click **Play shot** to follow the discharge and its computed equilibrium.
-5. Click **Export shot** to save the program, traces, assumptions, and selected equilibrium as JSON.
+You need Node 22.13 or newer and pnpm.
 
-The baseline begins with an already formed plasma. Heating runs from 1–4 seconds. Shape is held fixed during a shot. You can change shape between runs.
+```sh
+pnpm install --frozen-lockfile
+pnpm dev
+```
 
-Some combinations leave the reduced model's supported regime. The app displays a clear message; an unsupported equilibrium does not imply that DIII-D itself cannot operate there. No disruption or stability model is included.
+Open the URL it prints, then:
 
-The **docs** folder explains the architecture, equations, assumptions, checks, and original project brief. The **examples** folder contains the baseline synthetic result. The **physics** folder contains the independent numerical engine; the **app** folder contains the controls and plots.
+1. Use the sliders to set current, field, heating, fueling, elongation, and triangularity.
+2. Click **Run virtual shot**. Changing a slider does not change a finished shot, you have to run again.
+3. Drag the time slider or click **Play shot** to follow the discharge and its equilibrium.
+4. Click **Export shot** to save the program, traces, assumptions, and the selected equilibrium as JSON.
 
-## Find your project files
+The baseline starts with an already formed plasma. Heating runs from 1 to 4 seconds. Shape is held fixed during a shot but you can change it between runs.
 
-| What you want | Open this folder or file |
+Some slider combinations fall outside what the reduced model supports. The app tells you when that happens. It means the model gave up, not that DIII-D could not run there. There is no disruption or stability model.
+
+## The verification dashboard
+
+Click **Physics validation** in the header, or go to `/validation`. It shows a saved validation snapshot and links to the full report. It does not run any development agents and there is nothing AI-driven in the site.
+
+## Finding things
+
+| What you want | Where it is |
 |---|---|
-| Agent responsibilities | [agents](agents/) — Director, Physics, Software, Validation |
-| Equations and assumptions | [science](science/) |
-| Approved work and change requests | [specs](specs/) |
+| Agent roles and what each one is allowed to touch | [agents](agents/) |
+| Equations, constants, and assumptions | [science](science/) |
+| Approved specs and change requests | [specs](specs/) |
 | Independent test results and milestone decisions | [validation](validation/) |
-| Saved baseline and experiment history | [experiments](experiments/) |
-| How another development session should continue | [AGENTS.md](AGENTS.md) |
-| Callable simulator operations | [docs/API.md](docs/API.md) |
+| Frozen baselines and the development record | [experiments](experiments/) |
+| The rules for any development session | [AGENTS.md](AGENTS.md) |
+| The callable simulator API | [docs/API.md](docs/API.md) |
 
-All of these live inside **Desktop → DIII-D-Simulator**. The development agents are separate from the simulator website. Their role files and records survive after an agent session ends; they are not continuously running background processes.
+The development agents are separate from the website. Their role files and records stay in the repo between sessions, but nothing runs in the background.
 
-## Reasoning level
+## Which model for what
 
-Use **Claude Sonnet** for infrastructure, routine implementation and test execution. Use **Claude Opus** when deriving or revising physics, investigating unexplained convergence or conservation failures, comparing experimental equilibria, designing radial transport, running independent Validation, or for Director sign-off. Use **Claude Haiku** for cheap research and review. A higher setting is not a substitute for independent evidence or acceptance gates. The Director should flag the need before changing the requested lane.
+Sonnet for infrastructure, routine implementation, and running tests. Opus for deriving or revising physics, chasing an unexplained convergence or conservation failure, comparing equilibria, designing radial transport, independent validation, and Director sign-off. Haiku for cheap research and review passes. A bigger model is not a substitute for independent evidence or the acceptance gates, and the Director should say why before changing the lane.
 
-## Open the verification dashboard
+## Where things stand
 
-After starting **Launch Simulator.command**, click **Physics validation** in the simulator header, or double-click **Open Local Validation.webloc**. The dashboard displays a saved validation snapshot and links to its full report. It does not run development agents from the website.
+Milestone 2 is accepted; **MILESTONE-02-RESULTS.md** has the results and what they do and do not show. Milestone 3 is in progress through TeamFlow, one unit at a time. The C1 sweep harness and the D2 1-D profiles are accepted, with the D2 release step pending. `docs/CONTEXT-HANDOFF.md` is the current working state.
 
-## Current status
+## Adding physics
 
-Milestone 02 is accepted. Read **MILESTONE-02-RESULTS.md** for the results, evidence and reasoning-level recommendation. Milestone 03 has not started.
-
-## Requirements for future physics
-
-Read **science/NEW-PHYSICS-REQUIREMENTS.md** for the mandatory verification, experimental validation, uncertainty, validity-domain and reference-comparison package. The report dashboard now groups checks and shows the main numerical results first; technical evidence remains expandable.
+Read **science/NEW-PHYSICS-REQUIREMENTS.md** first. Every new capability needs a verification test, an experimental validation plan, an uncertainty model, a domain of validity, and a comparison against a reference implementation where one exists. The dashboard groups checks and shows the main numbers first, with the detailed evidence expandable underneath.
